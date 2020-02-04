@@ -1,0 +1,37 @@
+SERVER_PORT: 8080
+DATABASE: edinar
+DATABASE_URL: localhost
+DATABASE_PORT: 3306
+
+server:
+  port: ${SERVER_PORT}
+
+logging:
+  level:
+    org.springframework:
+      web: INFO
+    org.hibernate: WARN
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DATABASE_URL}:${DATABASE_PORT}
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: validate
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    show-sql: false
+  mvc:
+    view:
+       prefix: /WEB-INF/pages/
+       suffix: .jsp
+    throw-exception-if-no-handler-found: true
+  # static-path-pattern: /static/**
