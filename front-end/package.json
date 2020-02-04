@@ -1,0 +1,32 @@
+{
+  "name": "tpcms_web_admin",
+  "version": "0.1.0",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "latest",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean": "latest",
+    "gulp-concat": "latest",
+    "gulp-if": "latest",
+    "gulp-sass": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-uglify-es": "latest"
+  },
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
+    "bootstrap": "^4.3.1",
+    "handlebars": "^4.5.3",
+    "jquery": "^3.4.1",
+    "jquery-maskmoney": "^3.0.2",
+    "jquery-ui-dist": "^1.12.1",
+    "jquery-validation": "^1.19.1",
+    "jquery.nicescroll": "^3.7.6",
+    "owl.carousel": "^2.3.4",
+    "select2": "^4.0.12"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%"
+  ]
+}

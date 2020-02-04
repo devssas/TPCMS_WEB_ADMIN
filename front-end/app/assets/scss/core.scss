@@ -1,0 +1,70 @@
+//------------------------------------------------------------
+// = IMPORTS
+//------------------------------------------------------------
+// Base
+@import "bootstrap";
+@import "variables";
+@import "typography";
+@import "buttons";
+@import "forms";
+
+// fancybox max hack
+@function max($numbers...){
+	@return m#{a}x(#{$numbers});
+}
+
+//------------------------------------------------------------
+// = LIBRARY OVERRIDE
+//------------------------------------------------------------
+@import "../../../node_modules/jquery-ui-dist/jquery-ui.min";
+@import "../../../node_modules/select2/dist/css/select2.min";
+@import "../../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min";
+
+
+//------------------------------------------------------------
+// = RESET
+//------------------------------------------------------------
+* {
+	outline: 0;
+}
+html {
+	font-size: 10px;
+}
+body {
+	font-family: $font;
+}
+h1, h2, h3, h4, h5, h6, ul, label {
+	margin: 0;
+	padding: 0;
+}
+ul {
+	list-style: none;
+}
+::selection {
+	color: #fff;
+	background: $color-primary;
+}
+::-moz-selection {
+	color: #fff;
+	background: $color-primary;
+}
+
+
+//------------------------------------------------------------
+// = LAYOUT
+//------------------------------------------------------------
+@mixin line-clamp ($lines: 1, $line-height: 1, $is-max: false) {
+	$height: $lines * $line-height;
+
+	display: -webkit-box;
+	-webkit-line-clamp: $lines;
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis-lastline;
+	overflow: hidden;
+
+	@if $is-max == true {
+		max-height: $height;
+	} @else {
+		height: $height;
+	}
+}
