@@ -1,3 +1,19 @@
 //------------------------------------------------------------
 // = BUTTONS
 //------------------------------------------------------------
+
+.button{
+  height: 55px;
+  text-align: center;
+  border: none;
+  &.full-width{
+    width: 100%;
+  }
+}
+.button-v1{
+  @extend %fs-16;
+  @include f-roboto(700);
+  color: $color-white;
+  background: $color-1;
+  border-radius: 10px;
+}
