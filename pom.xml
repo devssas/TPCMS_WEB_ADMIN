@@ -30,6 +30,9 @@
         <junit.version>4.12</junit.version>
         <jfixture.version>2.7.2</jfixture.version>
 
+        <!-- Clients -->
+        <tpcms-client.version>1.0</tpcms-client.version>
+
         <!-- Swagger -->
         <swagger.version>2.9.2</swagger.version>
     </properties>
@@ -42,6 +45,13 @@
     </parent>
 
     <dependencies>
+        <!-- Clients -->
+        <dependency>
+            <groupId>com.tpcms</groupId>
+            <artifactId>WS_CLIENT</artifactId>
+            <version>${tpcms-client.version}</version>
+        </dependency>
+
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
