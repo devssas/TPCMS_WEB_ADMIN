@@ -14,10 +14,24 @@
   font-weight: $font-weight;
 }
 
+%fs-42{
+  @include fontsize(4.2);
+}
+%fs-32{
+  @include fontsize(3.2);
+}
 %fs-25{
   @include fontsize(2.5);
 }
-
 %fs-16{
   @include fontsize(1.6);
+}
+%fs-14{
+  @include fontsize(1.4);
+}
+%fs-12{
+  @include fontsize(1.2);
+}
+%fs-11{
+  @include fontsize(1.1);
 }
