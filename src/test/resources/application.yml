@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: tpcms-web-admin-test
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: unit-test
+  mvc:
+    locale: en
+
+server:
+    port: 8080
+
+webmvc:
+  config:
+    file:
+      maxSize: 20848820
+

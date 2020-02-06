@@ -1,1 +1,3 @@
+com\tpcmswebadmin\infrastructure\client\TPCMSClients.class
+com\tpcmswebadmin\infrastructure\config\WebMvcConfig.class
 com\tpcmswebadmin\TpCmsWebAdminApplication.class
