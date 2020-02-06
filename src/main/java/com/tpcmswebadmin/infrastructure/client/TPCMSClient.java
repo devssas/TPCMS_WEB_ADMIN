@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class TPCMSClients {
+public class TPCMSClient {
 
     @Bean
-    public TPCMSCoreServicesServiceLocator dinarPayWebAdminClient() {
+    public TPCMSCoreServicesServiceLocator tpcmsWebAdminClient() {
         return new TPCMSCoreServicesServiceLocator();
     }
 
