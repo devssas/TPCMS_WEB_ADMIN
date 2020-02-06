@@ -1,11 +1,13 @@
 package com.tpcmswebadmin.service.authentication;
 
 import com.ssas.tpcms.engine.vo.request.OfficersLoginRequestVO;
-import com.tpcmswebadmin.domain.authentication.SignInPasscodeModel;
-import com.tpcmswebadmin.domain.authentication.SignInUsercodeModel;
-import com.tpcmswebadmin.domain.authentication.SignInUsernameModel;
+import com.tpcmswebadmin.service.authentication.domain.model.SignInPasscodeModel;
+import com.tpcmswebadmin.service.authentication.domain.model.SignInUsercodeModel;
+import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
+import com.tpcmswebadmin.service.credentials.CredentialsService;
+import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import org.springframework.stereotype.Service;
 
 import javax.xml.rpc.ServiceException;
@@ -20,13 +22,18 @@ public class AuthenticationService {
 
     private final TPCMSClient tpcmsClient;
 
-    public AuthenticationService(TPCMSClient tpcmsClient) {
+    private final CredentialsService credentialsService;
+
+    public AuthenticationService(TPCMSClient tpcmsClient, CredentialsService credentialsService) {
         this.tpcmsClient = tpcmsClient;
+        this.credentialsService = credentialsService;
     }
 
     public void signInUserName(SignInUsernameModel signInUsernameModel) {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setMobileAppUserName(signInUsernameModel.getUsername());
+
+        setCredentials(officersLoginRequestVO);
 
         try {
             logger.info(StringUtility.concat("SignIn userName request will be sent to client ", officersLoginRequestVO.getMobileAppUserName()));
@@ -34,12 +41,13 @@ public class AuthenticationService {
         } catch (RemoteException | ServiceException e) {
             logger.warning(StringUtility.concat("something wrong on signIn username request. " + officersLoginRequestVO.getMobileAppUserName()));
         }
-
     }
 
     public void signInUserCode(SignInUsercodeModel signInUsercodeModel) {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setUserCode(signInUsercodeModel.getUserCode());
+
+        setCredentials(officersLoginRequestVO);
 
         try {
             logger.info(StringUtility.concat("SignIn userCode request will be sent to client ", officersLoginRequestVO.getMobileAppUserName()));
@@ -53,6 +61,8 @@ public class AuthenticationService {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setPassCode(signInPasscodeModel.getPassCode());
 
+        setCredentials(officersLoginRequestVO);
+
         try {
             logger.info(StringUtility.concat("SignIn passCode request will be sent to client ", officersLoginRequestVO.getMobileAppUserName()));
             tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
@@ -60,4 +70,13 @@ public class AuthenticationService {
             logger.warning(StringUtility.concat("something wrong on signIn passCode request. " + officersLoginRequestVO.getMobileAppUserName()));
         }
     }
+
+    private void setCredentials(OfficersLoginRequestVO officersLoginRequestVO) {
+        TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
+        officersLoginRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
+        officersLoginRequestVO.setMobileAppDeviceId(credentials.getMobileAppDeviceId());
+        officersLoginRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
+        officersLoginRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
+    }
+
 }

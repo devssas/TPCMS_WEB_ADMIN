@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.domain.authentication;
+package com.tpcmswebadmin.service.authentication.domain.model;
 
 public class SignInUsernameModel {
 
