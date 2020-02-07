@@ -3,11 +3,11 @@
 //------------------------------------------------------------
 
 .form-container {
-  background-color: $color-white;
-  box-shadow: 0 44px 54px rgba(73, 88, 126, 0.1);
-  border-radius: 10px;
   &.login-form-contaier{
     display: inline-block;
+    background-color: $color-white;
+    border-radius: 10px;
+    box-shadow: 0 44px 54px rgba(73, 88, 126, 0.1);
     padding: 54px 50px;
     .form-group{
       margin: 0 -5px;
@@ -30,7 +30,7 @@
   .form-row{
     text-align: right;
     label{
-
+      width: 100%;
     }
     .label{
       display: block;
@@ -42,4 +42,44 @@
       margin-top: 57px;
     }
   }
+
+  .search-box{
+    display: flex;
+    margin: 0 -10px;
+    .form-row{
+      width: calc(100% - 170px);
+      padding: 0 10px;
+      margin-bottom: 20px;
+      &.submit-row{
+        width: 150px;
+      }
+    }
+    input{
+      width: 100%;
+      @extend %fs-16;
+      @include f-roboto(400);
+      height: 50px;
+      line-height: 50px;
+      color: $color-black;
+      background: transparent;
+      border: 1px solid rgba($color-black, 0.3);
+      border-radius: 8px;
+    }
+  }
+  .table-filter-inner{
+    display: flex;
+    .form-row{
+      label{
+        display: flex;
+        .label{
+          @extend %fs-14;
+          @include f-roboto(normal);
+        }
+      }
+    }
+    .right-fix{
+      margin-right: auto;
+    }
+  }
+
 }

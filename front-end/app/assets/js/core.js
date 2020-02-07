@@ -1,6 +1,19 @@
 "use strict";
 
 var main = {
+    init: function(){
+        // handlebars add URL
+
+        Handlebars.registerHelper("link", function(icon, url) {
+            var url = Handlebars.escapeExpression(url),
+                icon = Handlebars.escapeExpression(icon);
+            return new Handlebars.SafeString("<a href='" + url + "' class='button-v1 btn-color-1'><i class='" + icon + "'></i></a>");
+        });
+
+        Handlebars.registerHelper("inc", function(value, options){
+            return parseInt(value) + 1;
+        });
+    },
     cardTransactionLocations: function () {
 
         var markersPin = {
@@ -100,13 +113,78 @@ var main = {
             });
 
         }
+    },
+    selectbox: function () {
+        $("select").select2();
+    },
+    filterControl: function () {
+
+        if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url"))){
+
+            var _this = $(".dynamic-content"),
+                templateUrl = _this.data("template-url"),
+                jsonUrl = _this.data("json-url"),
+                jsonTemplate;
+
+
+            $.ajax({
+                url: templateUrl,
+                method: "GET"
+            })
+                .done(function (responseTemplate) {
+                    jsonTemplate = responseTemplate;
+
+                    if($("#filter-form").length){
+
+                        $( "#filter-form" ).submit(function( event ) {
+                            event.preventDefault();
+
+                            var filter = $("#filter-form").serialize();
+                            getJson(jsonUrl, jsonTemplate, filter);
+                        }).submit();
+
+                    } else {
+                        getJson(jsonUrl,jsonTemplate);
+                    }
+
+                });
+
+        }
+
+
+        function getJson(jsonUrl, jsonTemplate, filter) {
+
+            $('.dynamic-page').addClass("loading").find(".dynamic-content").html("");
+
+            $.ajax({
+                url: jsonUrl,
+                method: "GET",
+                dataType: "json",
+                data: filter,
+                async: false
+            })
+                .done(function (responseJson) {
+
+                    var template = Handlebars.compile(jsonTemplate),
+                        tableHTML = template(responseJson);
+
+                    $('.dynamic-content').html(tableHTML).parents(".dynamic-page").removeClass("loading");
+
+                });
+        }
+
     }
 }
 
 $(function () {
+    main.init();
     main.inputAction();
+    main.selectbox();
+    main.filterControl();
 });
 
 function initMap() {
-    main.cardTransactionLocations();
+    if($("#map").length){
+        main.cardTransactionLocations();
+    }
 }

@@ -5,10 +5,15 @@
 .button{
   text-align: center;
   border: none;
+  outline: none !important;
   &.full-width{
     width: 100%;
   }
+  &.fix-size-sml{
+    width: 150px;
+  }
 }
+
 .button-v1{
   @extend %fs-16;
   @include f-roboto(700);
@@ -17,6 +22,7 @@
   background: $color-1;
   border-radius: 10px;
 }
+
 .button-v2{
   @extend %fs-16;
   @include f-roboto(400);
@@ -26,4 +32,15 @@
   background: $color-white;
   border-radius: 12px;
   padding: 0 20px;
+}
+.button-v3{
+  display: inline-block;
+  @extend %fs-16;
+  @include f-roboto(400);
+  height: 50px;
+  line-height: 50px;
+  color: $color-black;
+  background: transparent;
+  border: 1px solid rgba($color-black, 0.3);
+  border-radius: 8px;
 }
