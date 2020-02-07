@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: tpcms-web-admin-test
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active: unit-test
+  mvc:
+    locale: en
+
+server:
+    port: 8080
+
+webmvc:
+  config:
+    file:
+      maxSize: 20848820
+
+tpcms:
+  credentials:
+    deviceId: hh554345dfgdfgdfg
+    appUserName: TPCMS_2020@LibYa
+    appPassword: a0f983787949b1089c85d013ad5d051b745ff15d
+    appSmartSecurityKey: 6a720256-552f-4dd8-a5ca-d6304374ab1c
+

@@ -1,1 +1,11 @@
+com\tpcmswebadmin\service\credentials\domain\TpCmsWebAdminAppCredentials$Builder.class
+com\tpcmswebadmin\infrastructure\config\WebMvcConfig.class
+com\tpcmswebadmin\service\authentication\domain\model\SignInPasscodeModel.class
+com\tpcmswebadmin\service\authentication\domain\model\SignInUsercodeModel.class
 com\tpcmswebadmin\TpCmsWebAdminApplication.class
+com\tpcmswebadmin\service\authentication\domain\model\SignInUsernameModel.class
+com\tpcmswebadmin\service\credentials\domain\TpCmsWebAdminAppCredentials.class
+com\tpcmswebadmin\service\credentials\CredentialsService.class
+com\tpcmswebadmin\infrastructure\client\TPCMSClient.class
+com\tpcmswebadmin\service\authentication\AuthenticationService.class
+com\tpcmswebadmin\infrastructure\utils\StringUtility.class
