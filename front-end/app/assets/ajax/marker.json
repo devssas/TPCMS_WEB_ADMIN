@@ -9,93 +9,78 @@
 		{
 			"title": "Akköprü",
 			"lat": 39.9501646,
-			"lng": 32.8371048,
-			"adress": "Varlık mh. Emniyet Çevik Kuvvet Girişi Akköprü/Ankara"
+			"lng": 32.8371048
 		},
 		{
 			"title": "Aşti",
 			"lat": 39.9182122,
-			"lng": 32.814424,
-			"adress": "Kırım Cad. No:93 Emek/Ankara"
+			"lng": 32.814424
 		},
 		{
 			"title": "Batıkent",
 			"lat": 39.9684335,
-			"lng": 32.7274293,
-			"adress": "Başkent Bulvarı Gimsa Market Önü Yenimahalle/Ankara"
+			"lng": 32.7274293
 		},
 		{
 			"title": "Beşevler",
 			"lat": 39.93268,
-			"lng": 32.82901,
-			"adress": "Dogöl Caddesi Anadolu Otelcilik ve Turizm Meslek Lisesi önü Beşevler/Ankara"
+			"lng": 32.82901
 		},
 		{
 			"title": "Beytepe",
 			"lat": 39.90674,
-			"lng": 32.73309,
-			"adress": "Dumlupınar Blv., Erler Mahallesi, 06790 Etimesgut/Ankara"
+			"lng": 32.73309
 		},
 		{
 			"title": "Demetevler",
 			"lat": 39.96533,
-			"lng": 32.79442,
-			"adress": "Demetevler 1. Cad. Yenimahalle/Ankara"
+			"lng": 32.79442
 		},
 		{
 			"title": "Dikimevi",
 			"lat": 39.9323639,
-			"lng": 32.8777456,
-			"adress": "Talat Paşa Bulvarı Tanyeli Sok No:1 Dikimevi/Ankara"
+			"lng": 32.8777456
 		},
 		{
 			"title": "Eryaman 1-2",
 			"lat": 39.98049,
-			"lng": 32.64786,
-			"adress": "Göksu mh. Selçuklular cd. Etimesgut/Ankara"
+			"lng": 32.64786
 		},
 		{
 			"title": "Hastane",
 			"lat": 39.9692,
-			"lng": 32.78318,
-			"adress": "Demetevler 12. Cad. Yenimahalle/Ankara"
+			"lng": 32.78318
 		},
 		{
 			"title": "İvedik",
 			"lat": 39.95722,
-			"lng": 32.81706,
-			"adress": "İvedik Kavşağı No:7, Gayret Mahallesi, 06170 Yenimahalle/Ankara"
+			"lng": 32.81706
 		},
 		{
 			"title": "Kızılay",
 			"lat": 39.92068,
-			"lng": 32.85402,
-			"adress": "Hürriyet Meydanı Güzergahı No:1 Kızılay/Ankara"
+			"lng": 32.85402
 		},
 		{
 			"title": "Koru",
 			"lat": 39.88757,
-			"lng": 32.68692,
-			"adress": "Koru mh. Banga Bandhu Şeyh Mucibur Rahman bulvarı Çankaya/Ankara"
+			"lng": 32.68692
 		},
 
 		{
 			"title": "Sıhhiye",
 			"lat": 39.92803,
-			"lng": 32.85476,
-			"adress": "Atatürk Bulvarı Necatibey Cad No:24  Sıhhıye/Ankara"
+			"lng": 32.85476
 		},
 		{
 			"title": "Ulus",
 			"lat": 39.93961,
-			"lng": 32.8506,
-			"adress": "İstanbul Cad. No:16 Ulus/Ankara"
+			"lng": 32.8506
 		},
 		{
 			"title": "Ümitköy",
 			"lat": 39.90539,
-			"lng": 32.70895,
-			"adress": "Ümit mh. Eskişehir yolu Çankaya/Ankara"
+			"lng": 32.70895
 		}
 
 	]
