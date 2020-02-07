@@ -58,20 +58,17 @@
                                 <div class="form-container login-form-contaier">
                                     <div class="form-row">
                                         <label>
-                                            <span class="label">Username *</span>
-                                            <form:form id="login" modelAttribute="signInUsernameModel" method="post">
-                                                <div class="form-group">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                </div>
-                                            </form:form>
+                                            <span class="label">SMS *</span>
+                                            <div class="form-group">
+                                                <input type="text" class="next-input-field" maxlength="1">
+                                                <input type="text" class="next-input-field" maxlength="1">
+                                                <input type="text" class="next-input-field" maxlength="1">
+                                                <input type="text" class="next-input-field" maxlength="1">
+                                            </div>
                                         </label>
                                     </div>
                                     <div class="form-row button-row">
-                                        <input type="submit" class="button button-v1 full-width" value="NEXT">
+                                        <input type="submit" class="button button-v1 full-width" value="VERIFY">
                                     </div>
                                 </div> <!-- form-container login-form-contaier -->
                             </form>
