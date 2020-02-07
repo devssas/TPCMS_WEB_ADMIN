@@ -1,0 +1,123 @@
+{
+	"maps": [
+		{
+			"title": "Dikimevi",
+			"lat": 39.93236,
+			"lng": 32.87774,
+			"type": "transactionCenter",
+			"adress": "Talat Paşa Bulvarı Tanyeli Sok No:1 Dikimevi/Ankara"
+		},
+		{
+			"title": "Akköprü",
+			"lat": 39.95016,
+			"lng": 32.8371,
+			"type": "transactionCenter",
+			"adress": "Varlık Mahallesi Emniyet Çevik Kuvvet Girişi Akköprü/Ankara"
+		},
+		{
+			"title": "Batıkent",
+			"lat": 39.96843,
+			"lng": 32.72742,
+			"type": null,
+			"adress": "Başkent Bulvarı Gimsa Market Önü Yenimahalle/Ankara"
+		},
+		{
+			"title": "Aşti",
+			"lat": 39.91821,
+			"lng": 32.81442,
+			"type": null,
+			"adress": "Kırım Cad. No:93 Emek/Ankara"
+		},
+		{
+			"title": "Tandoğan",
+			"lat": 39.93475,
+			"lng": 32.83699,
+			"type": null,
+			"adress": "Dogöl Caddesi Anıtkabir istikameti Tandoğan /Ankara"
+		},
+		{
+			"title": "Maltepe",
+			"lat": 39.93206,
+			"lng": 32.84302,
+			"type": null,
+			"adress": "Gazi Mustafa Kemal Bulvarı No:117"
+		},
+		{
+			"title": "Milli Kütüphane",
+			"lat": 39.91548,
+			"lng": 32.82673,
+			"type": null,
+			"adress": "Nasuh Akar mh. İsmet İnönü bulvarı Çankaya/Ankara"
+		},
+		{
+			"title": "Eryaman 5",
+			"lat": 39.98114,
+			"lng": 32.62743,
+			"type": null,
+			"adress": "Eryaman mh. 271 sk. Etimesgut/Ankara"
+		},
+		{
+			"title": "Fatih",
+			"lat": 39.98386,
+			"lng": 32.58512,
+			"type": null,
+			"adress": "Fatih mh. Çalkın cad.Etimesgut/Ankara"
+		},
+		{
+			"title": "Belediye",
+			"lat": 39.9778,
+			"lng": 32.86802,
+			"type": null,
+			"adress": "Güçlükaya Mah. Cumhuriyet Cad. Keçiören/Ankara"
+		},
+		{
+			"title": "Macunköy",
+			"lat": 39.97177,
+			"lng": 32.7668,
+			"type": null,
+			"adress": "Mehmet akif ersoy mh. Macunköy metro iç yolu Yenimahalle/Ankara"
+		},
+		{
+			"title": "Odtü",
+			"lat": 39.90862,
+			"lng": 32.78393,
+			"type": null,
+			"adress": "Mustafa Kemal mh. Eskişehir yolu yanyolu Çankaya/Ankara"
+		},
+		{
+			"title": "Beytepe",
+			"lat": 39.90674,
+			"lng": 32.73309,
+			"type": null,
+			"adress": "Erler mh. Eskişehir yolu Etimesgut/Ankara"
+		},
+		{
+			"title": "Söğütözü",
+			"lat": 39.91105,
+			"lng": 32.80821,
+			"type": null,
+			"adress": "Beştepe mh. Eskişehir yolu Yenimahalle/Ankara"
+		},
+		{
+			"title": "OSB",
+			"lat": 39.98775,
+			"lng": 32.55864,
+			"type": null,
+			"adress": "Törekent mh.249 sk. Sincan/Ankara"
+		},
+		{
+			"title": "Kurtuluş",
+			"lat": 39.92836,
+			"lng": 32.86854,
+			"type": null,
+			"adress": "Erzurum mh. Cemal gürsel cad. Çankaya/Ankara"
+		},
+		{
+			"title": "Yenimahalle",
+			"lat": 39.96205,
+			"lng": 32.80427,
+			"type": null,
+			"adress": "Gayret mh. Yenimahalle metro istasyonu Çankaya/Ankara"
+		}
+		]
+}
