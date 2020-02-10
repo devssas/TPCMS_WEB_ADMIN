@@ -58,7 +58,7 @@
                                 <div class="form-container login-form-contaier">
                                     <div class="form-row">
                                         <label>
-                                            <span class="label">SMS *</span>
+                                            <span class="label">Usercode *</span>
                                             <div class="form-group">
                                                 <input type="text" class="next-input-field" maxlength="1">
                                                 <input type="text" class="next-input-field" maxlength="1">
