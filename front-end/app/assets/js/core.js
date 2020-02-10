@@ -114,8 +114,135 @@ var main = {
 
         }
     },
-    selectbox: function () {
-        $("select").select2();
+    customSelectbox: function(){
+        if($(".select-not-find").length){
+            $(".select-not-find").each(function (index, element) {
+                if (!$('select', element).data('select2')) {
+                    $("select", element).select2({
+                        minimumResultsForSearch: -1,
+                        dropdownParent: $(element)
+                    }).off("select2:open").on("select2:open", function (e) {
+                        $(".select2-results .select2-results__options").niceScroll({
+                            autohidemode: false,
+                            cursorwidth: 4,
+                            cursorcolor: "#BCC3CA",
+                            cursorborder: 2,
+                            cursorborderradius: 2,
+                            horizrailenabled: true,
+                        });
+                    });
+                }
+            });
+        }
+
+        if($(".select-find").length){
+            $(".select-find").each(function (index, element) {
+                if (!$('select', element).data('select2')) {
+                    $("select", element).select2({
+                        ajax: {
+                            url: $(element).find("select").data("json-url"),
+                            data: function (params) {
+                                var query = {
+                                    search: params.term
+                                }
+                                return query;
+                            }
+                        },
+                        dropdownParent: $(element)
+                    }).off("select2:open").on("select2:open", function (e) {
+                        $(".select2-results .select2-results__options").niceScroll({
+                            autohidemode: false,
+                            cursorwidth: 4,
+                            cursorcolor: "#BCC3CA",
+                            cursorborder: 2,
+                            cursorborderradius: 2,
+                            horizrailenabled: true,
+                        });
+                    });
+                }
+            });
+        }
+
+        if($(".country-select")){
+            $(".country-select").each(function (index, element) {
+                $.ajax({
+                    url: $(this).data("url"),
+                    method: "get",
+                    dataType: "json",
+                }).done(function (response) {
+
+                    var template;
+
+                    for (var i = 0; i < response.length; i++){
+                        template += "<option value='" + response[i].name + "'>" + response[i].name + "</option>";
+                    }
+
+                    $(".country-select").append(template).select2({
+                        minimumResultsForSearch: -1
+                    }).off("select2:open").on("select2:open", function (e) {
+                        $(".select2-results .select2-results__options").niceScroll({
+                            autohidemode: false,
+                            cursorwidth: 4,
+                            cursorcolor: "#BCC3CA",
+                            cursorborder: 2,
+                            cursorborderradius: 2,
+                            horizrailenabled: true,
+                        });
+                    });
+
+                });
+            });
+        }
+
+        if($(".country-and-flag-select").length){
+
+            $(".country-and-flag-select").each(function () {
+
+                $.ajax({
+                    url: $(this).data("url"),
+                    method: "get",
+                    dataType: "json",
+                }).done(function (response) {
+                    var template;
+
+                    for (var i = 0; i < response.length; i++){
+                        template += "<option value='" + response[i].phone + "'>" + response[i].alpha_2 + "</option>";
+                    }
+
+                    $(".country-and-flag-select").append(template).select2({
+                        minimumResultsForSearch: -1,
+                        templateSelection: formatState,
+                        templateResult: formatState
+                    }).off("select2:open").on("select2:open", function (e) {
+                        $(".select2-results .select2-results__options").niceScroll({
+                            autohidemode: false,
+                            cursorwidth: 4,
+                            cursorcolor: "#BCC3CA",
+                            cursorborder: 2,
+                            cursorborderradius: 2,
+                            horizrailenabled: true,
+                        });
+                    });
+
+                    if($("[data-selected]").length){
+                        $("[data-selected]").each(function () {
+                            $(this).val($(this).attr("data-selected")).trigger('change.select2');
+                        });
+                    }
+
+                });
+            });
+
+
+        }
+
+        function formatState (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            var $state = $("<div><span class='flag flag-"+ state.text.toLowerCase() +"'></span>"+ state.id +"</div>");
+            return $state;
+        }
     },
     filterControl: function () {
 
@@ -170,16 +297,25 @@ var main = {
 
                     $('.dynamic-content').html(tableHTML).parents(".dynamic-page").removeClass("loading");
 
+                    main.fancybox();
+
                 });
         }
 
+    },
+    fancybox: function () {
+        if($("[data-fancybox-card]").length){
+            $("[data-fancybox-card]").fancybox({
+                smallBtn:false
+            });
+        }
     }
 }
 
 $(function () {
     main.init();
     main.inputAction();
-    main.selectbox();
+    main.customSelectbox();
     main.filterControl();
 });
 

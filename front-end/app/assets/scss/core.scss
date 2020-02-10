@@ -4,6 +4,7 @@
 // Base
 @import "bootstrap";
 @import "variables";
+@import "icons";
 @import "typography";
 @import "buttons";
 @import "forms";
@@ -64,7 +65,7 @@ body {
       background-color: $color-1;
     }
   }
-  .page-wrapper, .page-inner, .content-wrapper, .content-inner{
+  .page-wrapper, .page-inner {
     height: 100%;
   }
   &:not(.login-page){
@@ -244,6 +245,11 @@ header {
   border-radius: 20px;
   margin-bottom: 30px;
   overflow: hidden;
+  #map {
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+  }
 }
 
 .box-v1{
@@ -359,27 +365,159 @@ header {
     .th {
       @extend %fs-14;
       @include f-roboto(400);
+      height: 50px;
       display: table-cell;
-      color: rgba($color-black, 0.6);
-      padding: 5px 15px;
+      vertical-align: middle;
+      text-align: right;
+      color: $color-black;
+      padding: 12px 15px;
     }
 
     .td {
       @extend %fs-14;
       @include f-roboto(500);
       display: table-cell;
+      text-align: right;
       color: rgba($color-black, 0.5);
-      padding: 18px 15px;
+      padding: 12px 15px;
 
       &:last-child {
         white-space: nowrap;
+        display: flex;
       }
 
-      a {
-        + a {
-          margin-left: 10px;
+      a.button {
+        margin-left: 10px;
+        &:last-child{
+          margin-left: 0;
         }
       }
     }
   }
 }
+
+
+.fancybox-content{
+  padding: 0;
+  background-color: transparent;
+}
+
+.fancy-card-box-v1{
+  width: 461px;
+  background-color: $color-white;
+  border-radius: 30px;
+  overflow: hidden;
+  .fancy-top-content{
+    position: relative;
+    text-align: center;
+    padding: 25px 24px;
+    border-radius: 30px;
+    &:after, &:before{
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+    &:after{
+      z-index: 2;
+      background: url('../images/bg/bg-v1.jpg') no-repeat center / cover;
+      opacity: 0.4;
+    }
+    &:before{
+      z-index: 1;
+      background: $color-1;
+    }
+    .fancy-card-title{
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      h3{
+        @extend %fs-24;
+        @include f-roboto(500);
+        color: $color-white;
+      }
+      ul{
+        display: flex;
+        align-items: center;
+        li{
+          margin: 0 0 0 20px;
+          a{
+            color: $color-white;
+            i{
+              font-size: 20px;
+              &.icon-cancel{
+                font-size: 28px;
+              }
+            }
+          }
+        }
+      }
+    }
+    figure{
+      position: relative;
+      display: inline-block;
+      border: 8px solid $color-white;
+      border-radius: 18px;
+      z-index: 3;
+      img{
+        border-radius: 18px;
+      }
+      .icons{
+        position: absolute;
+        right: -32px;
+        bottom: -13px;
+        display: block;
+        width: 65px;
+        height: 65px;
+        text-align: center;
+        background-color: rgba($color-white,0.5);
+        border-radius: 50%;
+        i{
+          font-size: 50px;
+          line-height: 65px;
+          color: $color-1;
+        }
+      }
+    }
+    .form-content{
+      position: relative;
+      text-align: left;
+      z-index: 3;
+      margin-top: 50px;
+    }
+  }
+  .form-row{
+    label{
+      .label{
+        @extend %fs-14;
+        @include f-roboto(500);
+      }
+      span{
+
+      }
+    }
+  }
+}
+
+.divided-content{
+  display: flex;
+  &.flout-2{
+    margin: 0 -15px;
+    > *{
+      width: 100%;
+      padding: 0 15px;
+    }
+  }
+  &.flout{
+
+  }
+}
+
