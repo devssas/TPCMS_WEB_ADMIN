@@ -9,7 +9,7 @@
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>Tpcms Web Admin</name>
+    <name>tpcmsWebAdmin</name>
 
     <properties>
         <!-- Base -->

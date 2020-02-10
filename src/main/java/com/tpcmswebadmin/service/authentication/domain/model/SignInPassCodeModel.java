@@ -1,13 +1,13 @@
 package com.tpcmswebadmin.service.authentication.domain.model;
 
-public class SignInPasscodeModel {
+public class SignInPassCodeModel {
 
     private String passCode;
 
-    public SignInPasscodeModel() {
+    public SignInPassCodeModel() {
     }
 
-    public SignInPasscodeModel(String passCode) {
+    public SignInPassCodeModel(String passCode) {
         this.passCode = passCode;
     }
 

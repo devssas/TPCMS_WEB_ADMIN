@@ -1,8 +1,8 @@
 package com.tpcmswebadmin.service.authentication;
 
 import com.ssas.tpcms.engine.vo.request.OfficersLoginRequestVO;
-import com.tpcmswebadmin.service.authentication.domain.model.SignInPasscodeModel;
-import com.tpcmswebadmin.service.authentication.domain.model.SignInUsercodeModel;
+import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
+import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
@@ -43,7 +43,7 @@ public class AuthenticationService {
         }
     }
 
-    public void signInUserCode(SignInUsercodeModel signInUsercodeModel) {
+    public void signInUserCode(SignInUserCodeModel signInUsercodeModel) {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setUserCode(signInUsercodeModel.getUserCode());
 
@@ -57,7 +57,7 @@ public class AuthenticationService {
         }
     }
 
-    public void signInPassCode(SignInPasscodeModel signInPasscodeModel) {
+    public void signInPassCode(SignInPassCodeModel signInPasscodeModel) {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setPassCode(signInPasscodeModel.getPassCode());
 

@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class CredentialsService {
 
-    @Value("${tpcms.credentials.deviceId}")
-    private String deviceId;
-
     @Value("${tpcms.credentials.appUserName}")
     private String appUserName;
 
@@ -21,7 +18,7 @@ public class CredentialsService {
 
     public TpCmsWebAdminAppCredentials getCredentialsOfWebAdmin() {
         return new TpCmsWebAdminAppCredentials.Builder()
-                .mobileAppDeviceId(deviceId)
+                .mobileAppDeviceId(null)
                 .mobileAppUserName(appUserName)
                 .mobileAppPassword(appPassword)
                 .mobileAppSmartSecurityKey(appSmartSecurityKey)
