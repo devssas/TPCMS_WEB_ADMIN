@@ -45,12 +45,16 @@
   }
 }
 
+.nowrap{
+  white-space: nowrap;
+}
+
 html, body {
   height: 100%;
 }
 
 body {
-  direction: rtl;
+  direction: rtl !important;
   background-color: $color-3;
   &.login-page {
     position: relative;
@@ -216,12 +220,27 @@ header {
 
 .highlight{
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
   h2{
     @extend %fs-42;
     @include f-roboto(700);
+  }
+  .page-back{
+    text-align: right;
+    a{
+      @extend %fs-16;
+      @include f-roboto(500);
+      display: inline-block;
+      color: $color-black;
+      margin-bottom: 30px;
+      i{
+        display: inline-block;
+        font-size: 20px;
+        margin-left: 15px;
+        transform: rotate(-180deg);
+      }
+    }
   }
 }
 
@@ -399,6 +418,7 @@ header {
 
 .fancybox-content{
   padding: 0;
+  direction: rtl !important;
   background-color: transparent;
 }
 
@@ -410,8 +430,9 @@ header {
   .fancy-top-content{
     position: relative;
     text-align: center;
-    padding: 25px 24px;
+    padding: 20px;
     border-radius: 30px;
+    overflow: hidden;
     &:after, &:before{
       content: "";
       position: absolute;
@@ -438,7 +459,7 @@ header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       h3{
         @extend %fs-24;
         @include f-roboto(500);
@@ -491,17 +512,46 @@ header {
       position: relative;
       text-align: left;
       z-index: 3;
-      margin-top: 50px;
+      margin-top: 30px;
     }
   }
   .form-row{
+    text-align: right;
     label{
       .label{
-        @extend %fs-14;
-        @include f-roboto(500);
+        display: block;
+        @extend %fs-13;
+        @include f-roboto(600);
+        color: rgba($color-black,0.5);
+        margin-bottom: 5px;
       }
-      span{
-
+      .text{
+        @extend %fs-13;
+        @include f-roboto(600);
+        display: block;
+        line-height: 3.1rem;
+        color: $color-black;
+        background-color: rgba($color-6,0.2);
+        border-radius: 20px;
+        padding: 0 10px;
+        + .text{
+          margin-top: 20px;
+        }
+        &.big-size{
+          @extend %fs-16;
+          line-height: 3.1rem;
+        }
+      }
+    }
+  }
+  .content{
+    padding: 20px;
+    background: transparent url("../images/layout/logo-transparent.png") no-repeat center;
+    .qr{
+      text-align: center;
+      margin-top: 25px;
+      figure{
+        display: inline-block;
       }
     }
   }
@@ -515,9 +565,24 @@ header {
       width: 100%;
       padding: 0 15px;
     }
+    &.custom-size-v1{
+      > *{
+        width: 60%;
+        &:first-child{
+          width: 40%;
+        }
+      }
+    }
   }
-  &.flout{
-
+  &.flout-4{
+    margin: 0 -15px;
+    > *{
+      width: 100%;
+      padding: 0 15px;
+    }
+  }
+  + .divided-content{
+    margin-top: 15px;
   }
 }
 
