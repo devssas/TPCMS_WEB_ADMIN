@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.webpages.authentication;
+package com.tpcmswebadmin.webpages.authentication.controller;
 
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import org.springframework.stereotype.Controller;

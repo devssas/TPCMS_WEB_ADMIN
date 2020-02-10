@@ -54,27 +54,27 @@
                 <section class="login-verify">
                     <div class="container">
                         <div class="inner">
-                            <form action="">
+
+                            <form:form id="signInUsername" modelAttribute="signInUsernameModel" method="post">
                                 <div class="form-container login-form-contaier">
                                     <div class="form-row">
                                         <label>
-                                            <span class="label">Username *</span>
-                                            <form:form id="login" modelAttribute="signInUsernameModel" method="post">
-                                                <div class="form-group">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                    <input type="text" class="next-input-field" maxlength="1">
-                                                </div>
-                                            </form:form>
+                                            <div class="form-row">
+                                                <label>
+                                                    <span class="label">Username *</span>
+                                                    <form:input id="username" path="username"/>
+                                                    <form:errors id="username" path="username" cssClass="text-danger"/>
+                                                </label>
+                                            </div>
                                         </label>
                                     </div>
                                     <div class="form-row button-row">
                                         <input type="submit" class="button button-v1 full-width" value="NEXT">
                                     </div>
-                                </div> <!-- form-container login-form-contaier -->
-                            </form>
+                                </div>
+                                <!-- form-container login-form-contaier -->
+                            </form:form>
+
                         </div> <!-- inner -->
                     </div> <!-- container -->
                 </section> <!-- login-verify -->

@@ -1,6 +1,7 @@
 package com.tpcmswebadmin.service.authentication;
 
 import com.ssas.tpcms.engine.vo.request.OfficersLoginRequestVO;
+import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
@@ -37,7 +38,7 @@ public class AuthenticationService {
 
         try {
             logger.info(StringUtility.concat("SignIn userName request will be sent to client ", officersLoginRequestVO.getMobileAppUserName()));
-            tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
+            TPEngineResponse response = tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
         } catch (RemoteException | ServiceException e) {
             logger.warning(StringUtility.concat("something wrong on signIn username request. " + officersLoginRequestVO.getMobileAppUserName()));
         }
