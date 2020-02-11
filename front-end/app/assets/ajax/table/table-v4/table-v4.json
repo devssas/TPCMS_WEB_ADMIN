@@ -1,0 +1,72 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "thead": ["Case ID", "Case Date", "User ID", "Location", "Crime Type", "Status", "Actions"],
+    "tbody": [
+      {
+        "caseId": "1276581212",
+        "caseDate": "2019/12/09",
+        "userId": "username",
+        "location": "Address/City/State",
+        "crimeType": "Type 1",
+        "status": "Active",
+        "actions": "<a href='javascript:;' class='button button-v4'><i class='icon-view'></i></a>"
+      },
+      {
+        "caseId": "1276581212",
+        "caseDate": "2019/12/09",
+        "userId": "username",
+        "location": "Address/City/State",
+        "crimeType": "Type 1",
+        "status": "Active",
+        "actions": "<a href='javascript:;' class='button button-v4'><i class='icon-view'></i></a>"
+      },
+      {
+        "caseId": "1276581212",
+        "caseDate": "2019/12/09",
+        "userId": "username",
+        "location": "Address/City/State",
+        "crimeType": "Type 1",
+        "status": "Active",
+        "actions": "<a href='javascript:;' class='button button-v4'><i class='icon-view'></i></a>"
+      },
+      {
+        "caseId": "1276581212",
+        "caseDate": "2019/12/09",
+        "userId": "username",
+        "location": "Address/City/State",
+        "crimeType": "Type 1",
+        "status": "Active",
+        "actions": "<a href='javascript:;' class='button button-v4'><i class='icon-view'></i></a>"
+      },
+      {
+        "caseId": "1276581212",
+        "caseDate": "2019/12/09",
+        "userId": "username",
+        "location": "Address/City/State",
+        "crimeType": "Type 1",
+        "status": "Active",
+        "actions": "<a href='javascript:;' class='button button-v4'><i class='icon-view'></i></a>"
+      },
+      {
+        "caseId": "1276581212",
+        "caseDate": "2019/12/09",
+        "userId": "username",
+        "location": "Address/City/State",
+        "crimeType": "Type 1",
+        "status": "Active",
+        "actions": "<a href='javascript:;' class='button button-v4'><i class='icon-view'></i></a>"
+      },
+      {
+        "caseId": "1276581212",
+        "caseDate": "2019/12/09",
+        "userId": "username",
+        "location": "Address/City/State",
+        "crimeType": "Type 1",
+        "status": "Active",
+        "actions": "<a href='javascript:;' class='button button-v4'><i class='icon-view'></i></a>"
+      }
+    ]
+  }
+}

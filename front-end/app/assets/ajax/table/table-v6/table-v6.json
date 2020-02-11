@@ -1,0 +1,89 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "thead": ["Vehicle Id", "Type", "Plate Number", "City", "State", "Last Login",  "Status" ,"Actions"],
+    "tbody": [
+      {
+        "vehicleID": "1276581212",
+        "type": "SUV",
+        "plateNumber": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "vehicleID": "1276581212",
+        "type": "SUV",
+        "plateNumber": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "vehicleID": "1276581212",
+        "type": "SUV",
+        "plateNumber": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "vehicleID": "1276581212",
+        "type": "SUV",
+        "plateNumber": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "vehicleID": "1276581212",
+        "type": "SUV",
+        "plateNumber": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "vehicleID": "1276581212",
+        "type": "SUV",
+        "plateNumber": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "vehicleID": "1276581212",
+        "type": "SUV",
+        "plateNumber": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "vehicleID": "1276581212",
+        "type": "SUV",
+        "plateNumber": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      }
+    ]
+  }
+}
