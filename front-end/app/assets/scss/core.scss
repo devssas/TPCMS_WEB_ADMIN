@@ -18,6 +18,7 @@
 // = LIBRARY OVERRIDE
 //------------------------------------------------------------
 @import "../../../node_modules/jquery-ui-dist/jquery-ui.min";
+@import "../../../node_modules/dropzone/dist/min/dropzone.min";
 @import "../../../node_modules/select2/dist/css/select2.min";
 @import "../../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min";
 
@@ -746,5 +747,42 @@ header {
     z-index: 99;
   }
 
+}
+
+
+.dropzone {
+  position: relative;
+  height: 250px;
+  background: white;
+  border-radius: 5px;
+  border: 1px dashed #d6d3cc;
+  border-image: none;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  .remove-item {
+    //background: #f6f6f5 url(../images/icons/icon-23.svg) 50%/18px no-repeat;
+    opacity: 0.9;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+  }
+  &.error-validation{
+    border: 1px dashed #f00 !important;
+  }
+}
+
+#id_base64_name-error{
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  display: block;
+  font-size: 12px !important;
+  line-height: 14px !important;
+  color: #f00 !important;
+  margin-top: 5px !important;
 }
 

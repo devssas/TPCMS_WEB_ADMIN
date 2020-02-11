@@ -251,6 +251,89 @@ var main = {
         });
 
     },
+    dropzone: function () {
+        // var myDropzone = new Dropzone("div#myId", { url: ""});
+
+        if($(".photo-upload").length){
+
+        }
+
+        $("#js-tab4--upload").dropzone({
+            maxFiles: 1,
+            dictDefaultMessage: "",
+            clickable: '.js-tab4---dropzone',
+            url: "/file/post",
+            autoProcessQueue: false,
+            uploadMultiple: false,
+            thumbnailWidth: null,
+            thumbnailHeight: null,
+            acceptedFiles: ".jpg, .png",
+            maxFilesize: 3, //MB
+            accept: function (file) {
+                reader = new FileReader();
+                reader.onload = handleReaderLoad;
+                reader.readAsDataURL(file);
+
+                function handleReaderLoad(evt) {
+                    document.getElementById("id_base64_data")
+                        .setAttribute('value', evt.target.result);
+                    document.getElementById("id_base64_name")
+                        .setAttribute('value', file.name);
+                    document.getElementById("id_base64_content_type")
+                        .setAttribute('value', file.type);
+                }
+            },
+            // The setting up of the dropzone
+            init: function () {
+                var myDropzone = this;
+
+                this.on("thumbnail", function (file, dataUrl) {
+                    $('.dz-image').last().find('img').attr({ width: '100%', height: '100%' });
+                });
+
+                this.on("success", function (file) {
+                    $('.dz-image').css({ "width": "100%", "height": "auto" });
+                });
+
+                this.on("maxfilesexceeded", function (file) {
+                    this.removeAllFiles();
+                    this.addFile(file);
+                    $(".dz-preview").remove();
+                });
+
+                $('.remove-item').on("click", function () {
+                    myDropzone.removeAllFiles();
+                    $('.remove-item').hide();
+                    $('#js-tab4-dropzone-desc').show();
+                });
+
+                this.on("addedfile", function (files, response) {
+                    if (files.size > 3145728) {
+                        $(".custom-dz-error").css("display", "block");
+                    } else {
+                        $(".custom-dz-error").css("display", "none");
+
+                    }
+                    if ($(".dz-preview").length > 1) {
+                        $(".dz-preview")[0].remove();
+                    }
+                    $('.remove-item').show();
+                    $('#js-tab4-dropzone-desc').hide();
+                    $('.dz-image img').css('width', '100%');
+                });
+
+
+                this.on("error", function (files, response) {
+                    $(".dz-preview").remove();
+                });
+
+                this.on("success", function (files, response) {
+
+                });
+            }
+        });
+
+    },
     filterControl: function () {
 
         if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url"))){
@@ -324,6 +407,7 @@ $(function () {
     main.inputAction();
     main.customSelectbox();
     main.datepicker();
+    main.dropzone();
     main.filterControl();
 });
 

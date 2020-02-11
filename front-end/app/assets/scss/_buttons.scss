@@ -28,7 +28,6 @@
   background: $color-1;
   border-radius: 10px;
 }
-
 .button-v2{
   @extend %fs-16;
   @include f-roboto(400);
@@ -36,7 +35,7 @@
   line-height: 50px;
   color: $color-1;
   background: $color-white;
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 0 20px;
 }
 .button-v3{
@@ -48,27 +47,32 @@
   color: $color-black;
   background: transparent;
   border: 1px solid rgba($color-black, 0.3);
-  border-radius: 8px;
+  border-radius: 10px;
 }
 .button-v4{
-  display: block;
-  width: 28px;
-  height: 28px;
-  font-size: 12px;
-  line-height: 28px;
+  @extend %fs-16;
+  @include f-roboto(400);
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
-  color: $color-1;
-  background-color: rgba($color-1,0.15);
   border-radius: 4px;
-}
-.button-v5{
-  display: block;
-  width: 28px;
-  height: 28px;
-  font-size: 22px;
-  line-height: 28px;
-  text-align: center;
-  color: $color-4;
-  background-color: rgba($color-4,0.15);
-  border-radius: 4px;
+  padding: 0 20px;
+  &.sml-icon-btn{
+    display: block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0;
+  }
+  &.color-1{
+    font-size: 12px;
+    color: $color-1;
+    background-color: rgba($color-1,0.15);
+  }
+  &.color-2{
+    font-size: 22px;
+    color: $color-4;
+    background-color: rgba($color-4,0.15);
+  }
 }
