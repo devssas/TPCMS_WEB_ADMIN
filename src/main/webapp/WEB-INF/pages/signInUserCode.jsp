@@ -54,16 +54,17 @@
                 <section class="login-verify">
                     <div class="container">
                         <div class="inner">
-                            <form action="">
+                            <form:form id="signInUserCode" modelAttribute="signInUserCodeModel" method="post">
                                 <div class="form-container login-form-contaier">
                                     <div class="form-row">
                                         <label>
-                                            <span class="label">SMS *</span>
+                                            <span class="label">Usercode *</span>
                                             <div class="form-group">
-                                                <input type="text" class="next-input-field" maxlength="1">
-                                                <input type="text" class="next-input-field" maxlength="1">
-                                                <input type="text" class="next-input-field" maxlength="1">
-                                                <input type="text" class="next-input-field" maxlength="1">
+                                                <form:input id="signInUserCode1" cssClass="signInUserCode1 next-input-field" path="userCode1" maxlength="1"/>
+                                                <form:input id="signInUserCode2" cssClass="signInUserCode2 next-input-field" path="userCode2" maxlength="1"/>
+                                                <form:input id="signInUserCode3" cssClass="signInUserCode3 next-input-field" path="userCode3" maxlength="1"/>
+                                                <form:input id="signInUserCode4" cssClass="signInUserCode4 next-input-field" path="userCode4" maxlength="1"/>
+                                                <form:input id="signInUserCode5" cssClass="signInUserCode5 next-input-field" path="userCode5" maxlength="1"/>
                                             </div>
                                         </label>
                                     </div>
@@ -71,7 +72,7 @@
                                         <input type="submit" class="button button-v1 full-width" value="VERIFY">
                                     </div>
                                 </div> <!-- form-container login-form-contaier -->
-                            </form>
+                            </form:form>
                         </div> <!-- inner -->
                     </div> <!-- container -->
                 </section> <!-- login-verify -->

@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.webpages.dashboard;
+package com.tpcmswebadmin.webpages.dashboard.controller;
 
 import com.tpcmswebadmin.service.dashboard.domain.DashboardModel;
 import org.springframework.stereotype.Controller;
