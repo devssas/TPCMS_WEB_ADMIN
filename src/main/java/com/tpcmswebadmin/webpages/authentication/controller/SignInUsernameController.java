@@ -30,10 +30,13 @@ public class SignInUsernameController {
 
     @PostMapping("/signInUsername")
     public String signInWithUsername(@Valid @ModelAttribute("signInUsernameModel") SignInUsernameModel signInUsernameModel, BindingResult bindingResult, HttpServletRequest request) {
-        if (signInUsernameDelegate.signIn(signInUsernameModel)) {
+        if (signInUsernameDelegate.signInUsername(signInUsernameModel)) {
+            request.getSession().setAttribute("username", signInUsernameModel.getUsername());
+
             return "redirect:signInUserCode";
         } else {
             return "signInUsername";
         }
+
     }
 }
