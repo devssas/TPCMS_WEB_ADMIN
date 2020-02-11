@@ -163,7 +163,7 @@ var main = {
             });
         }
 
-        if($(".country-select")){
+      /*  if($(".country-select")){
             $(".country-select").each(function (index, element) {
                 $.ajax({
                     url: $(this).data("url"),
@@ -234,7 +234,7 @@ var main = {
             });
 
 
-        }
+        }*/
 
         function formatState (state) {
             if (!state.id) {
@@ -243,6 +243,13 @@ var main = {
             var $state = $("<div><span class='flag flag-"+ state.text.toLowerCase() +"'></span>"+ state.id +"</div>");
             return $state;
         }
+    },
+    datepicker: function () {
+
+        $(".datepicker").each( function () {
+            $(this).datepicker();
+        });
+
     },
     filterControl: function () {
 
@@ -316,6 +323,7 @@ $(function () {
     main.init();
     main.inputAction();
     main.customSelectbox();
+    main.datepicker();
     main.filterControl();
 });
 
