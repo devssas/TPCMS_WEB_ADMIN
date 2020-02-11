@@ -208,6 +208,9 @@ header {
             &:hover, &.active {
               opacity: 1;
             }
+            i{
+              margin-left: 10px;
+            }
           }
           &:last-child{
             margin-bottom: 0;
@@ -338,11 +341,15 @@ header {
   padding: 30px;
   i{
     display: inline-block;
+    font-size: 20px;
+    color: $color-1;
     width: 40px;
     height: 40px;
     background-color: rgba($color-1,0.1);
     border-radius: 50%;
     margin-bottom: 20px;
+    text-align: center;
+    line-height: 40px;
   }
   h3{
     @extend %fs-22;
