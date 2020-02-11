@@ -469,6 +469,12 @@
       "search": [
         "calender"
       ]
+    },
+    {
+      "uid": "f9c3205df26e7778abac86183aefdc99",
+      "css": "reload",
+      "code": 59412,
+      "src": "fontawesome"
     }
   ]
 }

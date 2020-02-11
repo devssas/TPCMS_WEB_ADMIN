@@ -1,0 +1,99 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "thead": ["Permit Id", "User Name", "Title", "City", "State", "Notification Date", "Priority", "Actions"],
+    "tbody": [
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      },
+      {
+        "permitId": "1276581212",
+        "userName": "User Name",
+        "title": "5-5241145",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "notificationDate": "2019/12/09 . 08:00AM",
+        "priority": "High",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v5'><i class='icon-cancel'></i></a>"
+      }
+    ]
+  }
+}
