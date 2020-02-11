@@ -208,6 +208,9 @@ header {
             &:hover, &.active {
               opacity: 1;
             }
+            i{
+              margin-left: 10px;
+            }
           }
           &:last-child{
             margin-bottom: 0;
@@ -240,6 +243,14 @@ header {
         margin-left: 15px;
         transform: rotate(-180deg);
       }
+    }
+  }
+  &.box-highlight{
+    h3{
+      @extend %fs-18;
+      @include f-roboto(700);
+      color: $color-black;
+      margin: 0;
     }
   }
 }
@@ -330,11 +341,15 @@ header {
   padding: 30px;
   i{
     display: inline-block;
+    font-size: 20px;
+    color: $color-1;
     width: 40px;
     height: 40px;
     background-color: rgba($color-1,0.1);
     border-radius: 50%;
     margin-bottom: 20px;
+    text-align: center;
+    line-height: 40px;
   }
   h3{
     @extend %fs-22;
@@ -349,6 +364,14 @@ header {
     margin: 0;
   }
 
+}
+.box-v3{
+  border: 1px solid rgba($color-black,0.3);
+  border-radius: 8px;
+  margin: 0 0 15px;
+  > .inner{
+    padding: 25px;
+  }
 }
 
 .table-filter{
