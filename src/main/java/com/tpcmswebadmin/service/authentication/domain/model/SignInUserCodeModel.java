@@ -14,16 +14,19 @@ public class SignInUserCodeModel {
 
     private String username;
 
+    private String userCodeFull;
+
     public SignInUserCodeModel() {
     }
 
-    public SignInUserCodeModel(String userCode1, String userCode2, String userCode3, String userCode4, String userCode5,  String username) {
+    public SignInUserCodeModel(String userCode1, String userCode2, String userCode3, String userCode4, String userCode5,  String username,  String userCodeFull) {
         this.userCode1 = userCode1;
         this.userCode2 = userCode2;
         this.userCode3 = userCode3;
         this.userCode4 = userCode4;
         this.userCode5 = userCode5;
         this.username = username;
+        this.userCodeFull = userCodeFull;
     }
 
     public String getUserCode1() {
@@ -72,5 +75,13 @@ public class SignInUserCodeModel {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUserCodeFull() {
+        return userCodeFull;
+    }
+
+    public void setUserCodeFull(String userCodeFull) {
+        this.userCodeFull = userCodeFull;
     }
 }

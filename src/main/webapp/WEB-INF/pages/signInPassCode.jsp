@@ -54,15 +54,15 @@
                 <section class="login-verify">
                     <div class="container">
                         <div class="inner">
-                            <form action="">
+                            <form:form id="signInPassCode" modelAttribute="signInPassCodeModel" method="post">
                                 <div class="form-container login-form-contaier">
                                     <div class="form-row">
                                         <label>
                                             <span class="label">Passcode *</span>
                                             <div class="form-group">
-                                                <input type="text" class="next-input-field" maxlength="1">
-                                                <input type="text" class="next-input-field" maxlength="1">
-                                                <input type="text" class="next-input-field" maxlength="1">
+                                                <form:input id="signInPassCode1" cssClass="signInPassCode1 next-input-field" path="passCode1" maxlength="1"/>
+                                                <form:input id="signInPassCode2" cssClass="signInPassCode2 next-input-field" path="passCode2" maxlength="1"/>
+                                                <form:input id="signInPassCode3" cssClass="signInPassCode3 next-input-field" path="passCode3" maxlength="1"/>
                                             </div>
                                         </label>
                                     </div>
@@ -70,7 +70,7 @@
                                         <input type="submit" class="button button-v1 full-width" value="Sign In">
                                     </div>
                                 </div> <!-- form-container login-form-contaier -->
-                            </form>
+                            </form:form>
                         </div> <!-- inner -->
                     </div> <!-- container -->
                 </section> <!-- login-verify -->

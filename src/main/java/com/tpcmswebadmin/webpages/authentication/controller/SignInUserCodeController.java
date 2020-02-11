@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.authentication.controller;
 
+import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.webpages.authentication.delegate.SignInUserCodeDelegate;
@@ -32,13 +33,23 @@ public class SignInUserCodeController {
 
     @PostMapping("/signInUserCode")
     public String signInWithUsername(@Valid @ModelAttribute("signInUserCodeModel") SignInUserCodeModel signInUserCodeModel, BindingResult bindingResult, HttpServletRequest request) {
+        String userCode = generateUserCode(signInUserCodeModel);
+
         signInUserCodeModel.setUsername((String) request.getSession().getAttribute("username"));
+        signInUserCodeModel.setUserCodeFull(userCode);
 
         if (signInUserCodeDelegate.signInUserCode(signInUserCodeModel)) {
+            request.getSession().setAttribute("userCode", userCode);
+
             return "redirect:signInPassCode";
         } else {
             return "signInUserCode";
         }
-
     }
+
+    private String generateUserCode(SignInUserCodeModel signInUserCodeModel) {
+        return StringUtility.concat(signInUserCodeModel.getUserCode1(), signInUserCodeModel.getUserCode2(), signInUserCodeModel.getUserCode3(), signInUserCodeModel.getUserCode4(),
+                                    signInUserCodeModel.getUserCode5());
+    }
+
 }
