@@ -208,6 +208,9 @@ header {
             &:hover, &.active {
               opacity: 1;
             }
+            i{
+              margin-left: 10px;
+            }
           }
           &:last-child{
             margin-bottom: 0;
