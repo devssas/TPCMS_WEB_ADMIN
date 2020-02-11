@@ -245,21 +245,6 @@ header {
       }
     }
   }
-  .sign-out{
-    text-align: right;
-    a{
-      @extend %fs-16;
-      @include f-roboto(400);
-      display: inline-block;
-      line-height: 50px;
-      i{
-        display: inline-block;
-        font-size: 20px;
-        margin-left: 10px;
-        transform: rotate(-180deg);
-      }
-    }
-  }
   &.box-highlight{
     h3{
       @extend %fs-18;

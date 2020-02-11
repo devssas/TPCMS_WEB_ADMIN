@@ -18,6 +18,12 @@
       font-size: 16px;
     }
   }
+  &.sign-out{
+    i{
+      display: inline-block;
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .button-v1{
