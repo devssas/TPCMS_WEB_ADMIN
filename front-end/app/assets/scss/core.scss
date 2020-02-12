@@ -18,7 +18,7 @@
 // = LIBRARY OVERRIDE
 //------------------------------------------------------------
 @import "../../../node_modules/jquery-ui-dist/jquery-ui.min";
-@import "../../../node_modules/dropzone/dist/min/dropzone.min";
+@import "../../../node_modules/dropzone/dist/dropzone";
 @import "../../../node_modules/select2/dist/css/select2.min";
 @import "../../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min";
 
@@ -322,6 +322,8 @@ header {
     color: $color-black;
   }
   i{
+    font-size: 20px;
+    color: $color-1;
     position: absolute;
     top: 20px;
     left: 25px;
@@ -330,6 +332,8 @@ header {
     height: 42px;
     background-color: rgba($color-1,0.1);
     border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
   }
 }
 .box-v2{
