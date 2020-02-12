@@ -1,3 +1,8 @@
+page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
 <section class="big-menu">
     <div class="inner">
         <div class="menu-top">
@@ -21,7 +26,7 @@
                 </div>
                 <nav class="menu">
                     <ul>
-                        <li class="${param.home}"><a href="${pageContext.request.contextPath}/dashboard" class="active"><i class="icon-home"></i>Dashboard</a></li>
+                        <li class="${param.home}"><a href="${pageContext.request.contextPath}/dashboard" class="active"><i class="icon-dashboard"></i>Dashboard</a></li>
                         <li class="${param.missionPermits}"><a href="javascript:;"><i class=""></i>Mission Permits</a></li>
                         <li class="${param.criminalDatabase}"><a href="javascript:;"><i class=""></i>Criminal Database</a></li>
                         <li class="${param.prosecutionOffice}"><a href="javascript:;"><i class=""></i>Prosecution Office</a></li>
