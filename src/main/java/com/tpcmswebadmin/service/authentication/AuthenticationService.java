@@ -76,8 +76,7 @@ public class AuthenticationService {
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
         } catch (RemoteException | ServiceException e) {
-            logger.warn(StringUtility.concat(
-                    "something wrong on signIn passCode request. " + officersLoginRequestVO.getMobileAppUserName()));
+            logger.warn(StringUtility.concat("Something wrong on signIn passCode request. " + officersLoginRequestVO.getMobileAppUserName()));
         }
 
         return null;

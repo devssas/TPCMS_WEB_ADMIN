@@ -21,11 +21,12 @@ public class SignInPassCodeDelegate {
 
     public SignInPassCodeDto signInPassCode(SignInPassCodeModel signInPassCodeModel) {
         TPEngineResponse response = authenticationService.signInPassCode(signInPassCodeModel);
-        SignInPassCodeDto signInPassCodeDto = new SignInPassCodeDto(false, null);
+        SignInPassCodeDto signInPassCodeDto = new SignInPassCodeDto();
 
         if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
             signInPassCodeDto.setHasResult(true);
             signInPassCodeDto.setOfficerCode(response.getOfficerCode());
+            signInPassCodeDto.setReportUnit(response.getOfficersProfileResponseVO().getReportingUnit());
         }
 
         return signInPassCodeDto;
