@@ -9,10 +9,11 @@ public class SignInPassCodeDto {
     private String reportUnit;
 
     public SignInPassCodeDto() {
+        this.hasResult = false;
     }
 
-    public SignInPassCodeDto(boolean hasResult, String officerCode, String reportUnit) {
-        this.hasResult = hasResult;
+    public SignInPassCodeDto(String officerCode, String reportUnit) {
+        this.hasResult = false;
         this.officerCode = officerCode;
         this.reportUnit = reportUnit;
     }
