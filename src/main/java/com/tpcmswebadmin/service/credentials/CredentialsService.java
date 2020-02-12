@@ -24,4 +24,5 @@ public class CredentialsService {
                 .mobileAppSmartSecurityKey(appSmartSecurityKey)
                 .build();
     }
+
 }

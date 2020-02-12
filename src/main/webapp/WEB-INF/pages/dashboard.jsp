@@ -95,7 +95,7 @@
 
                     <section class="highlight">
                         <h2>Dashboard</h2>
-                        <a href="javascript:;" class="button button-v2"><i class=""></i>Sign out</a>
+                        <a href="${pageContext.request.contextPath}/signInUsername" class="button button-v2"><i class=""></i>Sign out</a>
                     </section>
 
                     <section>

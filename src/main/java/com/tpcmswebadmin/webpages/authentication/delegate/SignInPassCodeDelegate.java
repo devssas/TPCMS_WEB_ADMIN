@@ -3,6 +3,7 @@ package com.tpcmswebadmin.webpages.authentication.delegate;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.service.authentication.AuthenticationService;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
+import com.tpcmswebadmin.webpages.authentication.domain.SignInPassCodeDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -18,13 +19,16 @@ public class SignInPassCodeDelegate {
         this.authenticationService = authenticationService;
     }
 
-    public boolean signInPassCode(SignInPassCodeModel signInPassCodeModel) {
+    public SignInPassCodeDto signInPassCode(SignInPassCodeModel signInPassCodeModel) {
         TPEngineResponse response = authenticationService.signInPassCode(signInPassCodeModel);
+        SignInPassCodeDto signInPassCodeDto = new SignInPassCodeDto(false, null);
 
-        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS"))
-            return true;
-        else
-            return false;
+        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
+            signInPassCodeDto.setHasResult(true);
+            signInPassCodeDto.setOfficerCode(response.getOfficerCode());
+        }
+
+        return signInPassCodeDto;
     }
 
 }
