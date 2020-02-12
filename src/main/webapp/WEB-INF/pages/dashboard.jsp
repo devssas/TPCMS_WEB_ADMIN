@@ -43,51 +43,9 @@
 
         <section class="content-wrapper">
 
-            <section class="big-menu">
-                <div class="inner">
-                    <div class="menu-top">
-                        <figure class="logo">
-                            <img src="assets/images/logo/logo.png" alt="">
-                        </figure>
-                        <figure class="figure-text-1">
-                            <img src="assets/images/text/header-title-text-2.png" alt="">
-                        </figure>
-                    </div>
-                    <div class="menu-center">
-                        <div class="inner">
-                            <div class="profile-description">
-                                <figure>
-                                    <img src="assets/images/layout/profile-foto.jpg" alt="">
-                                </figure>
-                                <div class="text">
-                                    <h3>Milad Gajam</h3>
-                                    <h4>System Administrator</h4>
-                                </div>
-                            </div>
-                            <nav class="menu">
-                                <ul>
-                                    <li><a href="javascript:;" class="active"><i class=""></i>Dashboard</a></li>
-                                    <li><a href="javascript:;"><i class=""></i>Mission Permits</a></li>
-                                    <li><a href="javascript:;"><i class=""></i>Criminal Database</a></li>
-                                    <li><a href="javascript:;"><i class=""></i>Prosecution Office</a></li>
-                                    <li><a href="javascript:;"><i class=""></i>Police Staff</a></li>
-                                    <li><a href="javascript:;"><i class=""></i>Police Vehicles</a></li>
-                                    <li><a href="javascript:;"><i class=""></i>Notifications</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="menu-bottom">
-                        <nav class="menu">
-                            <ul>
-                                <li><a href="javascript:;"><i class=""></i>System Administrator</a></li>
-                            </ul>
-                        </nav>
-                        <span class="description">Tripoli POLICE<br>Web Admin<br>v.1.0</span>
-                    </div>
-                </div>
-
-            </section>
+            <jsp:include page="big_main_menu_bar.jsp">
+                <jsp:param name="home" value="active" />
+            </jsp:include>
 
             <section class="content-inner">
 
