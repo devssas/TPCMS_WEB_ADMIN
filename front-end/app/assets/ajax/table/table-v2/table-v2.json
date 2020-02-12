@@ -1,0 +1,69 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "thead": ["National ID", "Criminal Name", "Address", "City", "State", "Wanted By", "Status", "Actions"],
+    "tbody": [
+      {
+        "nationalID": "1276581212",
+        "criminalName": "username",
+        "Address": "Libya St. 1889",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalID": "1276581212",
+        "criminalName": "username",
+        "Address": "Libya St. 1889",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalID": "1276581212",
+        "criminalName": "username",
+        "Address": "Libya St. 1889",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalID": "1276581212",
+        "criminalName": "username",
+        "Address": "Libya St. 1889",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalID": "1276581212",
+        "criminalName": "username",
+        "Address": "Libya St. 1889",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalID": "1276581212",
+        "criminalName": "username",
+        "Address": "Libya St. 1889",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1 manage-police-staff-view' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      }
+    ]
+  }
+}

@@ -66,7 +66,7 @@
                     <div class="menu-bottom">
                         <nav class="menu">
                             <ul>
-                                <li><a href="javascript:;"><i class=""></i>System Administrator</a></li>
+                                <li><a href="javascript:;"><i class="icon-system"></i>System Administrator</a></li>
                             </ul>
                         </nav>
                         <span class="description">Tripoli POLICE<br>Web Admin<br>v.1.0</span>
@@ -84,10 +84,27 @@
                             <a href="javascript:;" class=""><i class="icon-back"></i>Back to Overview</a>
                             <h2>Add New Officer</h2>
                         </div>
-                        <a href="javascript:;" class="button button-v2 button-icons">Sign out<i class="icon-logout"></i></a>
+                        <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
                     </section>
 
+<!--                    <form action="/file-upload" class="dropzone">-->
+<!--                        <div class="fallback">-->
+<!--                            <input name="file" type="file" multiple />-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                    <div id="dropzone"><form action="/upload" class="dropzone needsclick dz-clickable" id="demo-upload">-->
+
+<!--                        <div class="dz-message needsclick">-->
+<!--                            Drop files here or click to upload.<br>-->
+<!--                            <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>-->
+<!--                        </div>-->
+
+<!--                    </form></div>-->
+
                     <form action="">
+
+
+
                         <section class="content-box">
                             <div class="divided-content flout-2">
                                 <div>
@@ -97,6 +114,12 @@
                                                 <h3>IDENTITIY</h3>
                                             </div>
                                             <div class="form-container">
+                                                <div class="form-row single-photo-upload">
+                                                    <div class="photo-upload">
+                                                        <i class="icon-admin-profile"></i>
+                                                        <span>Upload Photo</span>
+                                                    </div>
+                                                </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">National ID *</span>
@@ -139,16 +162,17 @@
                                                         <input type="text" placeholder="Placeholder">
                                                     </label>
                                                 </div>
-                                                <div class="form-row date-of-birth-row">
+                                                <div class="form-row side-by-side-v1-row">
+                                                    <span class="label">Date of Birth</span>
                                                     <label>
-                                                        <span class="label">Date of Birth</span>
-                                                        <input type="text" placeholder="Select Date">
+                                                        <span class="icons-content">
+                                                            <input type="text" class="datepicker" placeholder="Select Date">
+                                                            <i class="icon-calender"></i>
+                                                        </span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row radio-btn-v1-row">
-                                                    <label>
-                                                        <span class="label">Gender</span>
-                                                    </label>
+                                                    <span class="label">Gender</span>
                                                     <div class="radio-btn-group">
                                                         <div>
                                                             <label>
@@ -172,10 +196,13 @@
                                                         <input type="text" placeholder="Placeholder">
                                                     </label>
                                                 </div>
-                                                <div class="form-row">
+                                                <div class="form-row phone-number-row">
                                                     <label>
                                                         <span class="label">Mobile Number *</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <span class="phone-number-content">
+                                                            <input type="text" placeholder="+218">
+                                                            <input type="text" placeholder="1234567890">
+                                                        </span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
@@ -194,9 +221,7 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row radio-btn-v1-row">
-                                                    <label>
-                                                        <span class="label">Permission to Carry</span>
-                                                    </label>
+                                                    <span class="label">Permission to Carry</span>
                                                     <div class="radio-btn-group">
                                                         <div>
                                                             <label>
@@ -214,7 +239,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-row">
+                                                <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Type</span>
                                                         <select name="" id="">
@@ -237,7 +262,7 @@
                                                 <h3>STATUS *</h3>
                                             </div>
                                             <div class="form-container">
-                                                <div class="form-row">
+                                                <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Type</span>
                                                         <select name="" id="">
@@ -258,8 +283,14 @@
                                             <div class="form-container">
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">SRL Number</span>
-                                                        <input type="text" placeholder="Type..">
+                                                        <span class="label">Contact Address*</span>
+                                                        <input type="text" placeholder="Placeholder">
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">City *</span>
+                                                        <input type="text" placeholder="Placeholder">
                                                     </label>
                                                 </div>
                                             </div>
@@ -268,10 +299,140 @@
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
-                                                <h3>WEAPONARY DETAILS</h3>
+                                                <h3>PROFILE CREDENTIALS</h3>
                                             </div>
                                             <div class="form-container">
-
+                                                <div class="form-row">
+                                                    <a href="javascript:;" class="button button-v4 color-2">Reset Password</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-v3">
+                                        <div class="inner">
+                                            <div class="highlight box-highlight">
+                                                <h3>PROFILE DETAILS</h3>
+                                            </div>
+                                            <div class="form-container">
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Reporting Officer *</span>
+                                                        <input type="text" placeholder="Placeholder">
+                                                    </label>
+                                                </div>
+                                                <div class="form-row select-not-find">
+                                                    <label>
+                                                        <span class="label">Officer Grade</span>
+                                                        <select name="" id="">
+                                                            <option value="">Grade 1/2/3 etc</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row select-not-find">
+                                                    <label>
+                                                        <span class="label">Officer Rank</span>
+                                                        <select name="" id="">
+                                                            <option value="">Lautinent, Carnel, etc</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row select-not-find">
+                                                    <label>
+                                                        <span class="label">Reporting Unit *</span>
+                                                        <select name="" id="">
+                                                            <option value="">105, 106 etc</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row select-not-find">
+                                                    <label>
+                                                        <span class="label">Access Role *</span>
+                                                        <select name="" id="">
+                                                            <option value="">Super-admin, admin, Officer (Mobile), etc</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Officer ID</span>
+                                                        <input type="text" placeholder="Placeholder">
+                                                    </label>
+                                                </div>
+                                                <div class="form-row side-by-side-v1-row">
+                                                    <span class="label">Employment Start Date</span>
+                                                    <label>
+                                                        <span class="icons-content">
+                                                            <input type="text" class="datepicker" placeholder="Select Date">
+                                                            <i class="icon-calender"></i>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row side-by-side-v1-row">
+                                                    <span class="label">Expiry Date</span>
+                                                    <label>
+                                                        <span class="icons-content">
+                                                            <input type="text" class="datepicker" placeholder="Select Date">
+                                                            <i class="icon-calender"></i>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-v3">
+                                        <div class="inner">
+                                            <div class="highlight box-highlight">
+                                                <h3>EMERGENCY</h3>
+                                            </div>
+                                            <div class="form-container">
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Next of Kin</span>
+                                                        <input type="text" placeholder="Placeholder">
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Emergency Contact Person</span>
+                                                        <input type="text" placeholder="Placeholder">
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Relationship with Contact Person</span>
+                                                        <input type="text" placeholder="Placeholder">
+                                                    </label>
+                                                </div>
+                                                <div class="form-row phone-number-row">
+                                                    <label>
+                                                        <span class="label">Emergency Contact Number 1</span>
+                                                        <span class="phone-number-content">
+                                                            <input type="text" placeholder="+218">
+                                                            <input type="text" placeholder="1234567890">
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row phone-number-row">
+                                                    <label>
+                                                        <span class="label">Emergency Contact Number 2</span>
+                                                        <span class="phone-number-content">
+                                                            <input type="text" placeholder="+218">
+                                                            <input type="text" placeholder="1234567890">
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Blood Group</span>
+                                                        <input type="text" placeholder="Placeholder">
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Visual Identification Mark</span>
+                                                        <textarea name="" id="" placeholder="placeholder"></textarea>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
