@@ -38,7 +38,7 @@
                         <figure class="figure-text-1">
                             <img src="assets/images/text/header-title-text-2.png" alt="">
                         </figure>
-                    </div>
+                    </div> <!-- menu-top -->
                     <div class="menu-center">
                         <div class="inner">
                             <div class="profile-description">
@@ -48,8 +48,8 @@
                                 <div class="text">
                                     <h3>Milad Gajam</h3>
                                     <h4>System Administrator</h4>
-                                </div>
-                            </div>
+                                </div> <!-- text -->
+                            </div> <!-- profile-description -->
                             <nav class="menu">
                                 <ul>
                                     <li><a href="javascript:;" class="active"><i class="icon-dashboard"></i>Dashboard</a></li>
@@ -61,8 +61,8 @@
                                     <li><a href="javascript:;"><i class="icon-notification"></i>Notifications</a></li>
                                 </ul>
                             </nav>
-                        </div>
-                    </div>
+                        </div> <!-- inner -->
+                    </div> <!-- menu-center -->
                     <div class="menu-bottom">
                         <nav class="menu">
                             <ul>
@@ -70,8 +70,8 @@
                             </ul>
                         </nav>
                         <span class="description">Tripoli POLICE<br>Web Admin<br>v.1.0</span>
-                    </div>
-                </div>
+                    </div> <!-- menu-bottom -->
+                </div> <!-- inner -->
 
             </section>
 
@@ -87,23 +87,7 @@
                         <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
                     </section>
 
-<!--                    <form action="/file-upload" class="dropzone">-->
-<!--                        <div class="fallback">-->
-<!--                            <input name="file" type="file" multiple />-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                    <div id="dropzone"><form action="/upload" class="dropzone needsclick dz-clickable" id="demo-upload">-->
-
-<!--                        <div class="dz-message needsclick">-->
-<!--                            Drop files here or click to upload.<br>-->
-<!--                            <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>-->
-<!--                        </div>-->
-
-<!--                    </form></div>-->
-
                     <form action="">
-
-
 
                         <section class="content-box">
                             <div class="divided-content flout-2">
@@ -115,9 +99,11 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row single-photo-upload">
-                                                    <div class="photo-upload">
+                                                    <div class="photo-upload" data-upload-url="/file/post" >
+                                                        <div class="photo-upload-inner"></div>
                                                         <i class="icon-admin-profile"></i>
-                                                        <span>Upload Photo</span>
+                                                        <span class="description">Upload Photo</span>
+                                                        <span class="delete-images" data-dz-remove><i class="icon-delete"></i></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
@@ -211,9 +197,9 @@
                                                         <input type="text" placeholder="Placeholder">
                                                     </label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
@@ -253,9 +239,9 @@
                                                         <input type="text" placeholder="Type..">
                                                     </label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
@@ -270,9 +256,9 @@
                                                         </select>
                                                     </label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
                                 </div>
                                 <div>
                                     <div class="box-v3">
@@ -293,9 +279,9 @@
                                                         <input type="text" placeholder="Placeholder">
                                                     </label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
@@ -305,9 +291,9 @@
                                                 <div class="form-row">
                                                     <a href="javascript:;" class="button button-v4 color-2">Reset Password</a>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
@@ -376,9 +362,9 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
@@ -433,15 +419,19 @@
                                                         <textarea name="" id="" placeholder="placeholder"></textarea>
                                                     </label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
                                 </div>
+                            </div> <!-- divided-content flout-2 -->
+                            <div class="button-row">
+                                <input type="submit" class="button button-v4 color-1 fix-size-sml" value="Create User">
+                                <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
-                        </section>
+                        </section> <!-- content-box -->
                     </form>
 
-                </section>
+                </section> <!-- content -->
 
 
 
