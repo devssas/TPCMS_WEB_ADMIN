@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class CriminalsDatabaseController {
+public class CriminalsDatabaseMenuController {
 
     @GetMapping("/criminals")
     public String getCriminalsDatabase() {
 
-        return "criminal_database";
+        return "criminal_database_menu";
     }
 }

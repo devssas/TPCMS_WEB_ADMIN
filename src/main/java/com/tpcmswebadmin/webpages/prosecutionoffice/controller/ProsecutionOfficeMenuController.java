@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ProsecutionOfficeController {
+public class ProsecutionOfficeMenuController {
 
     @GetMapping("/prosecutionOffice")
     public String getProsecutionOffice() {
 
-        return "prosecution_office";
+        return "prosecution_office_menu";
     }
 
 }
