@@ -328,12 +328,74 @@ var main = {
         }
 
     },
+    carousel: function (){
+        if($(".card-carousel").length){
+            $(".card-carousel").owlCarousel({
+                rtl: true,
+                margin: 15,
+                nav: true,
+                navText: ["<i class='icon-right-open'></i>","<i class='icon-left-open'></i>"],
+                dots: false
+            });
+        }
+    },
     fancybox: function () {
+
+        $.fancybox.defaults.touch = false;
+
         if($("[data-fancybox-card]").length){
             $("[data-fancybox-card]").fancybox({
                 smallBtn:false
+
             });
         }
+
+        // $(document).on('beforeLoad.fb', function( e, instance, slide ) {
+        //     alert();
+        //     console.log(e);
+        //     console.log(instance);
+        //     console.log(slide);
+        // });
+
+
+        $(document).on("beforeLoad.fb", function (event, instance, slide) {
+
+
+
+            // instance.$refs.container.addClass("_loading"); // needed for transition on side panel
+            //
+            // var clickedElement = slide.opts.$orig;
+            //
+            // if (clickedElement) {
+            //     var direction = clickedElement.data("direction");
+            //
+            //     if (direction) {
+            //         instance.$refs.container.addClass("side-" + direction);
+            //     }
+            // }
+        });
+
+        $(document).on("afterLoad.fb", function (event, instance) {
+            main.carousel();
+            // console.log(event);
+            // console.log(instance.$refs.container);
+            // instance.$refs.container.removeClass("_loading").addClass("_loaded"); // needed for transition on side panel
+            //
+            // main.customInputs();
+            // main.tooltip();
+            // main.mediaPlayer();
+            // main.comments.write();
+            // main.carDetails();
+            // main.compare.panel();
+            // main.board.question();
+            // main.messages.init();
+            // _this.shareWithFriend();
+            // _this.dashboardTour();
+            // _this.stockForm();
+            // _this.abandonForm();
+        });
+
+
     }
 }
 
@@ -343,6 +405,7 @@ $(function () {
     main.customSelectbox();
     main.datepicker();
     main.dropzone();
+    main.carousel();
     main.filterControl();
 });
 
