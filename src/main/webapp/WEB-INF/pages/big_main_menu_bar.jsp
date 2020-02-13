@@ -22,12 +22,12 @@
                 <nav class="menu">
                     <ul>
                         <li class="${param.home}"><a href="${pageContext.request.contextPath}/dashboard" class="active"><i class="icon-dashboard"></i>Dashboard</a></li>
-                        <li class="${param.missionPermits}"><a href="javascript:;"><i class=""></i>Mission Permits</a></li>
-                        <li class="${param.criminalDatabase}"><a href="javascript:;"><i class=""></i>Criminal Database</a></li>
-                        <li class="${param.prosecutionOffice}"><a href="javascript:;"><i class=""></i>Prosecution Office</a></li>
-                        <li class="${param.policeStaff}"><a href="javascript:;"><i class=""></i>Police Staff</a></li>
-                        <li class="${param.policeVehicles}"><a href="javascript:;"><i class=""></i>Police Vehicles</a></li>
-                        <li class="${param.notifications}" ><a href="javascript:;"><i class=""></i>Notifications</a></li>
+                        <li class="${param.missionPermits}"><a href="javascript:;"><i class="icon-mission-permits"></i>Mission Permits</a></li>
+                        <li class="${param.criminalDatabase}"><a href="javascript:;"><i class="icon-criminal-database"></i>Criminal Database</a></li>
+                        <li class="${param.prosecutionOffice}"><a href="javascript:;"><i class="icon-prosecution-office"></i>Prosecution Office</a></li>
+                        <li class="${param.policeStaff}"><a href="javascript:;"><i class="icon-police-staff"></i>Police Staff</a></li>
+                        <li class="${param.policeVehicles}"><a href="javascript:;"><i class="icon-police_vehicles"></i>Police Vehicles</a></li>
+                        <li class="${param.notifications}" ><a href="javascript:;"><i class="icon-notification"></i>Notifications</a></li>
                     </ul>
                 </nav>
             </div>
@@ -35,7 +35,7 @@
         <div class="menu-bottom">
             <nav class="menu">
                 <ul>
-                    <li class="${param.administrator}"><a href="javascript:;"><i class=""></i>System Administrator</a></li>
+                    <li class="${param.administrator}"><a href="javascript:;"><i class="icon-system"></i>System Administrator</a></li>
                 </ul>
             </nav>
             <span class="description">Tripoli POLICE<br>Web Admin<br>v.1.0</span>
