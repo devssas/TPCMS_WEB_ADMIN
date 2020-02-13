@@ -2,6 +2,8 @@ package com.tpcmswebadmin.webpages.authentication.controller;
 
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.webpages.authentication.delegate.SignInUsernameDelegate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +17,8 @@ import javax.validation.Valid;
 @Controller
 public class SignInUsernameController {
 
+    private static final Logger logger = LoggerFactory.getLogger(SignInUsernameController.class);
+
     private final SignInUsernameDelegate signInUsernameDelegate;
 
     public SignInUsernameController(SignInUsernameDelegate signInUsernameDelegate) {
@@ -22,20 +26,26 @@ public class SignInUsernameController {
     }
 
     @GetMapping("/signInUsername")
-    public String getSignInUsernamePage(Model model) {
+    public String getSignInUsername(Model model) {
         model.addAttribute("signInUsernameModel", new SignInUsernameModel());
 
-        return "signInUsername";
+        return "signin_username";
     }
 
     @PostMapping("/signInUsername")
     public String signInWithUsername(@Valid @ModelAttribute("signInUsernameModel") SignInUsernameModel signInUsernameModel, BindingResult bindingResult, HttpServletRequest request) {
+        if (bindingResult.hasErrors()) {
+            logger.warn("Errors {}", bindingResult.getAllErrors());
+
+            return "signin_username";
+        }
+
         if (signInUsernameDelegate.signInUsername(signInUsernameModel)) {
             request.getSession().setAttribute("username", signInUsernameModel.getUsername());
 
             return "redirect:signInUserCode";
         } else {
-            return "signInUsername";
+            return "redirect:signInUsername";
         }
 
     }

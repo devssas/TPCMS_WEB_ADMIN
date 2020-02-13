@@ -2,12 +2,14 @@ package com.tpcmswebadmin.webpages.authentication.controller;
 
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
-import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.webpages.authentication.delegate.SignInUserCodeDelegate;
-import com.tpcmswebadmin.webpages.authentication.delegate.SignInUsernameDelegate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,8 @@ import javax.validation.Valid;
 @Controller
 public class SignInUserCodeController {
 
+    private static final Logger logger = LoggerFactory.getLogger(SignInUserCodeController.class);
+
     private final SignInUserCodeDelegate signInUserCodeDelegate;
 
     public SignInUserCodeController(SignInUserCodeDelegate signInUserCodeDelegate) {
@@ -25,15 +29,24 @@ public class SignInUserCodeController {
     }
 
     @GetMapping("/signInUserCode")
-    public String getSignInUsernamePage(Model model) {
+    public String getSignInUserCode(Model model) {
         model.addAttribute("signInUserCodeModel", new SignInUserCodeModel());
 
-        return "signInUserCode";
+        return "signin_usercode";
     }
 
     @PostMapping("/signInUserCode")
-    public String signInWithUsername(@Valid @ModelAttribute("signInUserCodeModel") SignInUserCodeModel signInUserCodeModel, BindingResult bindingResult, HttpServletRequest request) {
+    public String signInWithUserCode(@Valid @ModelAttribute("signInUserCodeModel") SignInUserCodeModel signInUserCodeModel, BindingResult bindingResult, HttpServletRequest request) {
         String userCode = generateUserCode(signInUserCodeModel);
+
+        if (bindingResult.hasErrors()) {
+            logger.warn("Errors {}", bindingResult.getAllErrors());
+
+            SignInUserCodeModel emptyModel = new SignInUserCodeModel();
+            BeanUtils.copyProperties(emptyModel, signInUserCodeModel);
+
+            return "signin_usercode";
+        }
 
         signInUserCodeModel.setUsername((String) request.getSession().getAttribute("username"));
         signInUserCodeModel.setUserCodeFull(userCode);
@@ -41,9 +54,10 @@ public class SignInUserCodeController {
         if (signInUserCodeDelegate.signInUserCode(signInUserCodeModel)) {
             request.getSession().setAttribute("userCode", userCode);
 
-            return "redirect:signInPassCode";
+            return "redirect:/signInPassCode";
         } else {
-            return "signInUserCode";
+
+            return "signin_usercode";
         }
     }
 

@@ -5,10 +5,27 @@
 .button{
   text-align: center;
   border: none;
+  outline: none !important;
   &.full-width{
     width: 100%;
   }
+  &.fix-size-sml{
+    width: 150px;
+  }
+  &.button-icons{
+    i{
+      margin-right: 10px;
+      font-size: 16px;
+    }
+  }
+  &.sign-out{
+    i{
+      display: inline-block;
+      transform: rotate(180deg);
+    }
+  }
 }
+
 .button-v1{
   @extend %fs-16;
   @include f-roboto(700);
@@ -24,6 +41,47 @@
   line-height: 50px;
   color: $color-1;
   background: $color-white;
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 0 20px;
+}
+.button-v3{
+  @extend %fs-16;
+  @include f-roboto(400);
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  color: $color-black;
+  background: transparent;
+  border: 1px solid rgba($color-black, 0.3);
+  border-radius: 10px;
+}
+.button-v4{
+  @extend %fs-16;
+  @include f-roboto(400);
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  padding: 0 20px;
+  &.sml-icon-btn{
+    display: block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0;
+    &.color-1{
+      font-size: 12px;
+    }
+    &.color-2{
+      font-size: 22px;}
+  }
+  &.color-1{
+    color: $color-1;
+    background-color: rgba($color-1,0.15);
+  }
+  &.color-2{
+    color: $color-4;
+    background-color: rgba($color-4,0.15);
+  }
 }

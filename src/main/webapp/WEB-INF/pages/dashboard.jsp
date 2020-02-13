@@ -17,13 +17,13 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="assets/images/head/og-image.jpg">
 
-    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/core.css">
 
-    <link rel="shortcut icon" href="assets/images/head/favicon.png">
-    <link rel="apple-touch-icon" href="assets/images/head/60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/head/76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/head/120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/head/152x152.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/head/favicon.png">
+    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/assets/images/head/60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/head/76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/head/120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/head/152x152.png">
 
     <style>
         #map {
@@ -32,7 +32,6 @@
             background-color: grey;
         }
     </style>
-
 
 </head>
 <body>
@@ -53,7 +52,7 @@
 
                     <section class="highlight">
                         <h2>Dashboard</h2>
-                        <a href="${pageContext.request.contextPath}/signInUsername" class="button button-v2"><i class="icon-dashboard"></i>Sign out</a>
+                        <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
                     </section>
 
                     <section>
@@ -69,39 +68,39 @@
                                     <h3>Permits</h3>
                                     <p>86</p>
                                     <span>Valid Permits</span>
-                                    <i class=""></i>
+                                    <i class="icon-mission-permits"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:;" class="box-v1">
-                                    <h3>Permits</h3>
-                                    <p>86</p>
-                                    <span>Valid Permits</span>
-                                    <i class=""></i>
+                                    <h3>Cases</h3>
+                                    <p>31</p>
+                                    <span>Cases Added</span>
+                                    <i class="icon-manage-cases"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:;" class="box-v1">
-                                    <h3>Permits<span class="notification">1</span></h3>
-                                    <p>86</p>
-                                    <span>Valid Permits</span>
-                                    <i class=""></i>
+                                    <h3>Notifications<span class="notification">1</span></h3>
+                                    <p>20</p>
+                                    <span>Notifications</span>
+                                    <i class="icon-notification"></i>
                                 </a>
                             </li>
                             <li class="cols-2">
                                 <a href="javascript:;" class="box-v1">
-                                    <h3>Permits</h3>
-                                    <p>86</p>
-                                    <span>Valid Permits</span>
-                                    <i class=""></i>
+                                    <h3>SOS</h3>
+                                    <p>82</p>
+                                    <span>Log Sheet</span>
+                                    <i class="icon-sos"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:;" class="box-v1">
                                     <h3>Permits<span class="notification">1</span></h3>
-                                    <p>86</p>
-                                    <span>Valid Permits</span>
-                                    <i class=""></i>
+                                    <p>69</p>
+                                    <span>Live Alerts</span>
+                                    <i class="icon-sos"></i>
                                 </a>
                             </li>
                         </ul>
@@ -122,8 +121,8 @@
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
-<script src="assets/js/lib.min.js"></script>
-<script src="assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 
 
 </body>

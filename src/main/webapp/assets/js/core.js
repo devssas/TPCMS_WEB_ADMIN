@@ -1,6 +1,19 @@
 "use strict";
 
 var main = {
+    init: function(){
+        // handlebars add URL
+
+        Handlebars.registerHelper("link", function(icon, url) {
+            var url = Handlebars.escapeExpression(url),
+                icon = Handlebars.escapeExpression(icon);
+            return new Handlebars.SafeString("<a href='" + url + "' class='button-v1 btn-color-1'><i class='" + icon + "'></i></a>");
+        });
+
+        Handlebars.registerHelper("inc", function(value, options){
+            return parseInt(value) + 1;
+        });
+    },
     cardTransactionLocations: function () {
 
         var markersPin = {
@@ -100,13 +113,241 @@ var main = {
             });
 
         }
+    },
+    customSelectbox: function(){
+        if($(".select-not-find").length){
+            $(".select-not-find").each(function (index, element) {
+                if (!$('select', element).data('select2')) {
+                    $("select", element).select2({
+                        minimumResultsForSearch: -1,
+                        dropdownParent: $(element)
+                    }).off("select2:open").on("select2:open", function (e) {
+                        $(".select2-results .select2-results__options").niceScroll({
+                            autohidemode: false,
+                            cursorwidth: 4,
+                            cursorcolor: "#BCC3CA",
+                            cursorborder: 2,
+                            cursorborderradius: 2,
+                            horizrailenabled: true,
+                        });
+                    });
+                }
+            });
+        }
+
+        if($(".select-find").length){
+            $(".select-find").each(function (index, element) {
+                if (!$('select', element).data('select2')) {
+                    $("select", element).select2({
+                        ajax: {
+                            url: $(element).find("select").data("json-url"),
+                            data: function (params) {
+                                var query = {
+                                    search: params.term
+                                }
+                                return query;
+                            }
+                        },
+                        dropdownParent: $(element)
+                    }).off("select2:open").on("select2:open", function (e) {
+                        $(".select2-results .select2-results__options").niceScroll({
+                            autohidemode: false,
+                            cursorwidth: 4,
+                            cursorcolor: "#BCC3CA",
+                            cursorborder: 2,
+                            cursorborderradius: 2,
+                            horizrailenabled: true,
+                        });
+                    });
+                }
+            });
+        }
+
+      /*  if($(".country-select")){
+            $(".country-select").each(function (index, element) {
+                $.ajax({
+                    url: $(this).data("url"),
+                    method: "get",
+                    dataType: "json",
+                }).done(function (response) {
+
+                    var template;
+
+                    for (var i = 0; i < response.length; i++){
+                        template += "<option value='" + response[i].name + "'>" + response[i].name + "</option>";
+                    }
+
+                    $(".country-select").append(template).select2({
+                        minimumResultsForSearch: -1
+                    }).off("select2:open").on("select2:open", function (e) {
+                        $(".select2-results .select2-results__options").niceScroll({
+                            autohidemode: false,
+                            cursorwidth: 4,
+                            cursorcolor: "#BCC3CA",
+                            cursorborder: 2,
+                            cursorborderradius: 2,
+                            horizrailenabled: true,
+                        });
+                    });
+
+                });
+            });
+        }
+
+        if($(".country-and-flag-select").length){
+
+            $(".country-and-flag-select").each(function () {
+
+                $.ajax({
+                    url: $(this).data("url"),
+                    method: "get",
+                    dataType: "json",
+                }).done(function (response) {
+                    var template;
+
+                    for (var i = 0; i < response.length; i++){
+                        template += "<option value='" + response[i].phone + "'>" + response[i].alpha_2 + "</option>";
+                    }
+
+                    $(".country-and-flag-select").append(template).select2({
+                        minimumResultsForSearch: -1,
+                        templateSelection: formatState,
+                        templateResult: formatState
+                    }).off("select2:open").on("select2:open", function (e) {
+                        $(".select2-results .select2-results__options").niceScroll({
+                            autohidemode: false,
+                            cursorwidth: 4,
+                            cursorcolor: "#BCC3CA",
+                            cursorborder: 2,
+                            cursorborderradius: 2,
+                            horizrailenabled: true,
+                        });
+                    });
+
+                    if($("[data-selected]").length){
+                        $("[data-selected]").each(function () {
+                            $(this).val($(this).attr("data-selected")).trigger('change.select2');
+                        });
+                    }
+
+                });
+            });
+
+
+        }*/
+
+        function formatState (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            var $state = $("<div><span class='flag flag-"+ state.text.toLowerCase() +"'></span>"+ state.id +"</div>");
+            return $state;
+        }
+    },
+    datepicker: function () {
+
+        $(".datepicker").each( function () {
+            $(this).datepicker();
+        });
+
+    },
+    dropzone: function () {
+
+        if($(".photo-upload").length){
+
+            var uploadUrl = $(".photo-upload").data("upload-url");
+
+            $(".photo-upload-inner").dropzone({
+                url: uploadUrl,
+                maxFiles: 1,
+                thumbnailMethod: "contain"/*,
+                init: function() {
+                    this.on("addedfile", function(file) {
+                    });
+                }*/
+            });
+        }
+
+    },
+    filterControl: function () {
+
+        if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url"))){
+
+            var _this = $(".dynamic-content"),
+                templateUrl = _this.data("template-url"),
+                jsonUrl = _this.data("json-url"),
+                jsonTemplate;
+
+
+            $.ajax({
+                url: templateUrl,
+                method: "GET"
+            })
+                .done(function (responseTemplate) {
+                    jsonTemplate = responseTemplate;
+
+                    if($("#filter-form").length){
+
+                        $( "#filter-form" ).submit(function( event ) {
+                            event.preventDefault();
+
+                            var filter = $("#filter-form").serialize();
+                            getJson(jsonUrl, jsonTemplate, filter);
+                        }).submit();
+
+                    } else {
+                        getJson(jsonUrl,jsonTemplate);
+                    }
+
+                });
+
+        }
+
+
+        function getJson(jsonUrl, jsonTemplate, filter) {
+
+            $('.dynamic-page').addClass("loading").find(".dynamic-content").html("");
+
+            $.ajax({
+                url: jsonUrl,
+                method: "GET",
+                dataType: "json",
+                data: filter,
+                async: false
+            })
+                .done(function (responseJson) {
+
+                    var template = Handlebars.compile(jsonTemplate),
+                        tableHTML = template(responseJson);
+
+                    $('.dynamic-content').html(tableHTML).parents(".dynamic-page").removeClass("loading");
+
+                    main.fancybox();
+
+                });
+        }
+
+    },
+    fancybox: function () {
+        if($("[data-fancybox-card]").length){
+            $("[data-fancybox-card]").fancybox({
+                smallBtn:false
+            });
+        }
     }
 }
 
 $(function () {
+    main.init();
     main.inputAction();
+    main.customSelectbox();
+    main.datepicker();
+    main.dropzone();
+    main.filterControl();
 });
 
 function initMap() {
-    main.cardTransactionLocations();
+    if($("#map").length){
+        main.cardTransactionLocations();
+    }
 }

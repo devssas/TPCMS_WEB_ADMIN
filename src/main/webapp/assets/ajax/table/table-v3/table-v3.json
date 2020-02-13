@@ -1,0 +1,89 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "thead": ["National Id", "Criminal Name", "Address", "City", "State", "Wanted By", "Status", "Actions"],
+    "tbody": [
+      {
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-report-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-report-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-report-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-report-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-report-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-report-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-report-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      },
+      {
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-report-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
+      }
+    ]
+  }
+}
