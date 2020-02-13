@@ -17,13 +17,13 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="assets/images/head/og-image.jpg">
 
-    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/core.css">
 
-    <link rel="shortcut icon" href="assets/images/head/favicon.png">
-    <link rel="apple-touch-icon" href="assets/images/head/60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/head/76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/head/120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/head/152x152.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/head/favicon.png">
+    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/assets/images/head/60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/head/76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/head/120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/head/152x152.png">
 </head>
 <body class="login-page">
 
@@ -54,27 +54,25 @@
                 <section class="login-verify">
                     <div class="container">
                         <div class="inner">
-
-                            <form:form id="signInUsername" modelAttribute="signInUsernameModel" method="post">
+                            <form:form id="signInUserCode" modelAttribute="signInUserCodeModel" method="post">
                                 <div class="form-container login-form-contaier">
                                     <div class="form-row">
                                         <label>
-                                            <div class="form-row">
-                                                <label>
-                                                    <span class="label">Username *</span>
-                                                    <form:input id="username" path="username"/>
-                                                    <form:errors id="username" path="username" cssClass="text-danger"/>
-                                                </label>
+                                            <span class="label">Usercode *</span>
+                                            <div class="form-group">
+                                                <form:input id="signInUserCode1" cssClass="signInUserCode1 next-input-field" path="userCode1" maxlength="1"/>
+                                                <form:input id="signInUserCode2" cssClass="signInUserCode2 next-input-field" path="userCode2" maxlength="1"/>
+                                                <form:input id="signInUserCode3" cssClass="signInUserCode3 next-input-field" path="userCode3" maxlength="1"/>
+                                                <form:input id="signInUserCode4" cssClass="signInUserCode4 next-input-field" path="userCode4" maxlength="1"/>
+                                                <form:input id="signInUserCode5" cssClass="signInUserCode5 next-input-field" path="userCode5" maxlength="1"/>
                                             </div>
                                         </label>
                                     </div>
                                     <div class="form-row button-row">
-                                        <input type="submit" class="button button-v1 full-width" value="NEXT">
+                                        <input type="submit" class="button button-v1 full-width" value="VERIFY">
                                     </div>
-                                </div>
-                                <!-- form-container login-form-contaier -->
+                                </div> <!-- form-container login-form-contaier -->
                             </form:form>
-
                         </div> <!-- inner -->
                     </div> <!-- container -->
                 </section> <!-- login-verify -->

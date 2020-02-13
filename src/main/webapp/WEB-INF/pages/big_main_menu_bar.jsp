@@ -21,13 +21,13 @@
                 </div>
                 <nav class="menu">
                     <ul>
-                        <li class="${param.home}"><a href="${pageContext.request.contextPath}/dashboard" class="active"><i class="icon-dashboard"></i>Dashboard</a></li>
-                        <li class="${param.missionPermits}"><a href="javascript:;"><i class="icon-mission-permits"></i>Mission Permits</a></li>
-                        <li class="${param.criminalDatabase}"><a href="javascript:;"><i class="icon-criminal-database"></i>Criminal Database</a></li>
-                        <li class="${param.prosecutionOffice}"><a href="javascript:;"><i class="icon-prosecution-office"></i>Prosecution Office</a></li>
-                        <li class="${param.policeStaff}"><a href="javascript:;"><i class="icon-police-staff"></i>Police Staff</a></li>
-                        <li class="${param.policeVehicles}"><a href="javascript:;"><i class="icon-police_vehicles"></i>Police Vehicles</a></li>
-                        <li class="${param.notifications}" ><a href="javascript:;"><i class="icon-notification"></i>Notifications</a></li>
+                        <li><a href="${pageContext.request.contextPath}/dashboard" class="${param.home}"><i class="icon-dashboard"></i>Dashboard</a></li>
+                        <li><a href="${pageContext.request.contextPath}/missionPermits" class="${param.missionPermits}"><i class="icon-mission-permits"></i>Mission Permits</a></li>
+                        <li><a href="${pageContext.request.contextPath}/criminals" class="${param.criminalDatabase}"><i class="icon-criminal-database"></i>Criminal Database</a></li>
+                        <li><a href="${pageContext.request.contextPath}/prosecutionOffice" class="${param.prosecutionOffice}"><i class="icon-prosecution-office"></i>Prosecution Office</a></li>
+                        <li><a href="${pageContext.request.contextPath}/policeStaff" class="${param.staff}"><i class="icon-police-staff"></i>Police Staff</a></li>
+                        <li><a href="${pageContext.request.contextPath}/policeVehicles" class="${param.policeVehicles}"><i class="icon-police_vehicles"></i>Police Vehicles</a></li>
+                        <li><a href="${pageContext.request.contextPath}/notification" class="${param.notification}" ><i class="icon-notification"></i>Notifications</a></li>
                     </ul>
                 </nav>
             </div>
@@ -35,7 +35,7 @@
         <div class="menu-bottom">
             <nav class="menu">
                 <ul>
-                    <li class="${param.administrator}"><a href="javascript:;"><i class="icon-system"></i>System Administrator</a></li>
+                    <li><a href="${pageContext.request.contextPath}/systemAdministrator" class="${param.administrator}"><i class="icon-system"></i>System Administrator</a></li>
                 </ul>
             </nav>
             <span class="description">Tripoli POLICE<br>Web Admin<br>v.1.0</span>

@@ -17,13 +17,13 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="assets/images/head/og-image.jpg">
 
-    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/core.css">
 
-    <link rel="shortcut icon" href="assets/images/head/favicon.png">
-    <link rel="apple-touch-icon" href="assets/images/head/60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/head/76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/head/120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/head/152x152.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/head/favicon.png">
+    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/assets/images/head/60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/head/76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/head/120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/head/152x152.png">
 </head>
 <body class="login-page">
 
@@ -54,23 +54,27 @@
                 <section class="login-verify">
                     <div class="container">
                         <div class="inner">
-                            <form:form id="signInPassCode" modelAttribute="signInPassCodeModel" method="post">
+
+                            <form:form id="signInUsername" modelAttribute="signInUsernameModel" method="post">
                                 <div class="form-container login-form-contaier">
                                     <div class="form-row">
                                         <label>
-                                            <span class="label">Passcode *</span>
-                                            <div class="form-group">
-                                                <form:input id="signInPassCode1" cssClass="signInPassCode1 next-input-field" path="passCode1" maxlength="1"/>
-                                                <form:input id="signInPassCode2" cssClass="signInPassCode2 next-input-field" path="passCode2" maxlength="1"/>
-                                                <form:input id="signInPassCode3" cssClass="signInPassCode3 next-input-field" path="passCode3" maxlength="1"/>
+                                            <div class="form-row">
+                                                <label>
+                                                    <span class="label">Username *</span>
+                                                    <form:input id="username" path="username"/>
+                                                    <form:errors id="username" path="username" cssClass="text-danger"/>
+                                                </label>
                                             </div>
                                         </label>
                                     </div>
                                     <div class="form-row button-row">
-                                        <input type="submit" class="button button-v1 full-width" value="Sign In">
+                                        <input type="submit" class="button button-v1 full-width" value="NEXT">
                                     </div>
-                                </div> <!-- form-container login-form-contaier -->
+                                </div>
+                                <!-- form-container login-form-contaier -->
                             </form:form>
+
                         </div> <!-- inner -->
                     </div> <!-- container -->
                 </section> <!-- login-verify -->

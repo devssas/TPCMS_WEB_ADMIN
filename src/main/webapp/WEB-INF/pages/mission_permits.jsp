@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <!doctype html>
 <html>
@@ -25,14 +25,6 @@
     <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/head/120x120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/head/152x152.png">
 
-    <style>
-        #map {
-            width: 100%;
-            height: 400px;
-            background-color: grey;
-        }
-    </style>
-
 </head>
 <body>
 
@@ -43,7 +35,7 @@
         <section class="content-wrapper">
 
             <jsp:include page="big_main_menu_bar.jsp">
-                <jsp:param name="home" value="active" />
+                <jsp:param name="missionPermits" value="active" />
             </jsp:include>
 
             <section class="content-inner">
@@ -51,56 +43,24 @@
                 <section class="content">
 
                     <section class="highlight">
-                        <h2>Dashboard</h2>
+                        <h2>Mission Permits</h2>
                         <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
-                    </section>
-
-                    <section>
-                        <div class="maps">
-                            <div id="map"></div>
-                        </div>
                     </section>
 
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v1">
-                                    <h3>Permits</h3>
-                                    <p>86</p>
-                                    <span>Valid Permits</span>
-                                    <i class="icon-mission-permits"></i>
+                                <a href="javascript:;" class="box-v2">
+                                    <i class="icon-permits"></i>
+                                    <h3>Manage Permits</h3>
+                                    <p>In this Section, you can View and Manage Officers Permits.</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v1">
-                                    <h3>Cases</h3>
-                                    <p>31</p>
-                                    <span>Cases Added</span>
-                                    <i class="icon-manage-cases"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" class="box-v1">
-                                    <h3>Notifications<span class="notification">1</span></h3>
-                                    <p>20</p>
-                                    <span>Notifications</span>
-                                    <i class="icon-notification"></i>
-                                </a>
-                            </li>
-                            <li class="cols-2">
-                                <a href="javascript:;" class="box-v1">
-                                    <h3>SOS</h3>
-                                    <p>82</p>
-                                    <span>Log Sheet</span>
-                                    <i class="icon-sos"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" class="box-v1">
-                                    <h3>Permits<span class="notification">1</span></h3>
-                                    <p>69</p>
-                                    <span>Live Alerts</span>
-                                    <i class="icon-sos"></i>
+                                <a href="javascript:;" class="box-v2">
+                                    <i class="icon-plus"></i>
+                                    <h3>Create New Permits</h3>
+                                    <p>In this Section, you can Create New Officers Permits.</p>
                                 </a>
                             </li>
                         </ul>
@@ -121,8 +81,8 @@
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
-<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
+<script src="assets/js/lib.min.js"></script>
+<script src="assets/js/core.min.js"></script>
 
 
 </body>

@@ -22,10 +22,10 @@ public class SignInUsernameController {
     }
 
     @GetMapping("/signInUsername")
-    public String getSignInUsernamePage(Model model) {
+    public String getSignInUsername(Model model) {
         model.addAttribute("signInUsernameModel", new SignInUsernameModel());
 
-        return "signInUsername";
+        return "signin_username";
     }
 
     @PostMapping("/signInUsername")
@@ -35,7 +35,7 @@ public class SignInUsernameController {
 
             return "redirect:signInUserCode";
         } else {
-            return "signInUsername";
+            return "redirect:signInUsername";
         }
 
     }

@@ -2,7 +2,6 @@ package com.tpcmswebadmin.webpages.authentication.controller;
 
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
-import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import com.tpcmswebadmin.webpages.authentication.delegate.SignInPassCodeDelegate;
 import com.tpcmswebadmin.webpages.authentication.domain.SignInPassCodeDto;
 import org.springframework.stereotype.Controller;
@@ -25,14 +24,14 @@ public class SignInPassCodeController {
     }
 
     @GetMapping("/signInPassCode")
-    public String getSignInUsernamePage(Model model) {
+    public String getSignInPassCode(Model model) {
         model.addAttribute("signInPassCodeModel", new SignInPassCodeModel());
 
-        return "signInPassCode";
+        return "signin_passcode";
     }
 
     @PostMapping("/signInPassCode")
-    public String getSignInPassCodePage(@Valid @ModelAttribute("signInPassCodeModel") SignInPassCodeModel signInPassCodeModel, BindingResult bindingResult, HttpServletRequest request) {
+    public String getSignInPassCode(@Valid @ModelAttribute("signInPassCodeModel") SignInPassCodeModel signInPassCodeModel, BindingResult bindingResult, HttpServletRequest request) {
         signInPassCodeModel.setUserName((String) request.getSession().getAttribute("username"));
         signInPassCodeModel.setUserCode((String) request.getSession().getAttribute("userCode"));
 
@@ -45,9 +44,9 @@ public class SignInPassCodeController {
             request.getSession().setAttribute("officerCode", signInPassCodeDto.getOfficerCode());
             request.getSession().setAttribute("reportUnit", signInPassCodeDto.getReportUnit());
 
-            return "dashboard";
+            return "redirect:dashboard";
         } else {
-            return "redirect:signInPassCode";
+            return "redirect:signin_passcode";
         }
     }
 

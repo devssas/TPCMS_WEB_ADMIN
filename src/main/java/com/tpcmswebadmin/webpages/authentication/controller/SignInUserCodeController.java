@@ -2,9 +2,7 @@ package com.tpcmswebadmin.webpages.authentication.controller;
 
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
-import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.webpages.authentication.delegate.SignInUserCodeDelegate;
-import com.tpcmswebadmin.webpages.authentication.delegate.SignInUsernameDelegate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,14 +23,14 @@ public class SignInUserCodeController {
     }
 
     @GetMapping("/signInUserCode")
-    public String getSignInUsernamePage(Model model) {
+    public String getSignInUserCode(Model model) {
         model.addAttribute("signInUserCodeModel", new SignInUserCodeModel());
 
-        return "signInUserCode";
+        return "signin_usercode";
     }
 
     @PostMapping("/signInUserCode")
-    public String signInWithUsername(@Valid @ModelAttribute("signInUserCodeModel") SignInUserCodeModel signInUserCodeModel, BindingResult bindingResult, HttpServletRequest request) {
+    public String signInWithUserCode(@Valid @ModelAttribute("signInUserCodeModel") SignInUserCodeModel signInUserCodeModel, BindingResult bindingResult, HttpServletRequest request) {
         String userCode = generateUserCode(signInUserCodeModel);
 
         signInUserCodeModel.setUsername((String) request.getSession().getAttribute("username"));
@@ -43,7 +41,7 @@ public class SignInUserCodeController {
 
             return "redirect:signInPassCode";
         } else {
-            return "signInUserCode";
+            return "redirect:signInUserCode";
         }
     }
 
