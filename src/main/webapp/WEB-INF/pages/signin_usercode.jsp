@@ -67,6 +67,12 @@
                                                 <form:input id="signInUserCode5" cssClass="signInUserCode5 next-input-field" path="userCode5" maxlength="1"/>
                                             </div>
                                         </label>
+                                        <form:errors id="userCodeFull" path="userCodeFull" cssClass="text-danger" />
+                                        <form:errors id="userCode1" path="userCode1" cssClass="text-danger" />
+                                        <form:errors id="userCode2" path="userCode2" cssClass="text-danger" />
+                                        <form:errors id="userCode3" path="userCode3" cssClass="text-danger" />
+                                        <form:errors id="userCode4" path="userCode4" cssClass="text-danger" />
+                                        <form:errors id="userCode5" path="userCode5" cssClass="text-danger" />
                                     </div>
                                     <div class="form-row button-row">
                                         <input type="submit" class="button button-v1 full-width" value="VERIFY">
