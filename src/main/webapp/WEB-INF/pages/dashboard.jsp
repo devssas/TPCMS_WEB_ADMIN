@@ -4,7 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!doctype html>
-<html>
+<html lang="ar">
 <head>
     <title>TPcms</title>
 

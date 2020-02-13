@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <!doctype html>
-<html>
+<html lang="ar">
 <head>
     <title>TPcms</title>
 
