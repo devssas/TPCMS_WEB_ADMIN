@@ -42,15 +42,14 @@
 
                 <section class="content">
 
-                    <section class="highlight">
-                        <h2>Police Staff</h2>
-                        <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
-                    </section>
+                    <jsp:include page="highlight.jsp">
+                        <jsp:param name="header" value="Police Staff" />
+                    </jsp:include>
 
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/officerProfiles" class="box-v2">
                                     <i class="icon-police-staff"></i>
                                     <h3>Officers Profile</h3>
                                     <p>In this Section, you can View and Manage Officers Profiles.</p>

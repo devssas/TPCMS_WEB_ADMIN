@@ -26,7 +26,8 @@ public class SignInUsernameController {
     }
 
     @GetMapping("/signInUsername")
-    public String getSignInUsername(Model model) {
+    public String getSignInUsername(Model model, HttpServletRequest request) {
+        request.getSession().invalidate();
         model.addAttribute("signInUsernameModel", new SignInUsernameModel());
 
         return "signin_username";

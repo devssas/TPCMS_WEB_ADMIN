@@ -50,10 +50,9 @@
 
                 <section class="content">
 
-                    <section class="highlight">
-                        <h2>Dashboard</h2>
-                        <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
-                    </section>
+                    <jsp:include page="highlight.jsp">
+                        <jsp:param name="header" value="Dashboard" />
+                    </jsp:include>
 
                     <section>
                         <div class="maps">

@@ -9,6 +9,7 @@ public class PoliceStaffViewController {
     @GetMapping("/officerProfiles")
     public String getPoliceStaff() {
 
-        return "police_staff_menu";
+        return "police_staff_list_view";
     }
+
 }
