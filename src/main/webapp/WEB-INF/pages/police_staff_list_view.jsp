@@ -97,7 +97,7 @@
                                 </div>
                             </form>
                         </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v1/table-v1.html" data-json-url="assets/ajax/table/table-v1/table-v1.json"></section>
+                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v1/table-v1.html" data-json-url="/tpcmsWebAdmin/api/policeStaff"></section>
                     </section>
 
                 </section>
