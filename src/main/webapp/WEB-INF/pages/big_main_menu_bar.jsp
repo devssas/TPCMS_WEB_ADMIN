@@ -22,7 +22,7 @@
                 <nav class="menu">
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/dashboard" class="${param.home}"><i class="icon-dashboard"></i>Dashboard</a></li>
-                        <li><a href="${pageContext.request.contextPath}/missionPermits" class="${param.missionPermits}"><i class="icon-mission-permits"></i>Mission Permits</a></li>
+                        <li><a href="${pageContext.request.contextPath}/missionPermitsMenu" class="${param.missionPermits}"><i class="icon-mission-permits"></i>Mission Permits</a></li>
                         <li><a href="${pageContext.request.contextPath}/criminalsMenu" class="${param.criminalDatabase}"><i class="icon-criminal-database"></i>Criminal Database</a></li>
                         <li><a href="${pageContext.request.contextPath}/prosecutionOffice" class="${param.prosecutionOffice}"><i class="icon-prosecution-office"></i>Prosecution Office</a></li>
                         <li><a href="${pageContext.request.contextPath}/policeStaffMenu" class="${param.staff}"><i class="icon-police-staff"></i>Police Staff</a></li>

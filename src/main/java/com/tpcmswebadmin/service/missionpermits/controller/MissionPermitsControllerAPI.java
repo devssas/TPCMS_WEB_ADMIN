@@ -1,8 +1,8 @@
-package com.tpcmswebadmin.service.notification.controller;
+package com.tpcmswebadmin.service.missionpermits.controller;
 
 import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
-import com.tpcmswebadmin.service.notification.domain.NotificationDto;
-import com.tpcmswebadmin.service.notification.service.NotificationClientService;
+import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
+import com.tpcmswebadmin.service.missionpermits.service.MissionPermitsClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api")
-public class NotificationControllerAPI {
+public class MissionPermitsControllerAPI {
 
-    private final NotificationClientService notificationClientService;
+    private final MissionPermitsClientService missionPermitsClientService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("notification")
-    public ResponseDto<NotificationDto> getNotifications(HttpServletRequest httpServletRequest) {
-        return notificationClientService.getResponseDto(httpServletRequest);
+    @GetMapping("missionPermits")
+    public ResponseDto<MissionPermitsDto> getSpecialMissions(HttpServletRequest httpServletRequest) {
+        return missionPermitsClientService.getResponseDto(httpServletRequest);
     }
 }

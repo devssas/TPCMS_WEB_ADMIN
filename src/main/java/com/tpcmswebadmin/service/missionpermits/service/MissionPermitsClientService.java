@@ -1,6 +1,7 @@
-package com.tpcmswebadmin.service.notification.service;
+package com.tpcmswebadmin.service.missionpermits.service;
 
 import com.ssas.tpcms.engine.vo.request.ViewNotificationsRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewSpecialMissionRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -10,6 +11,8 @@ import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
+import com.tpcmswebadmin.service.missionpermits.service.mapper.MissionPermitsMapper;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import com.tpcmswebadmin.service.notification.service.mapper.NotificationMapper;
 import lombok.RequiredArgsConstructor;
@@ -25,14 +28,14 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class NotificationClientService implements ClientServiceAPI<NotificationDto, LoginUserDo, ViewNotificationsRequestVO> {
+public class MissionPermitsClientService implements ClientServiceAPI<MissionPermitsDto, LoginUserDo, ViewSpecialMissionRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
     @Override
-    public ResponseDto<NotificationDto> getResponseDto(HttpServletRequest request) {
+    public ResponseDto<MissionPermitsDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -40,13 +43,13 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()));
+        return prepareResponseDto(MissionPermitsMapper.makeMissionPermitsDtoList(response.getSpecialMissionList()));
     }
 
     @Override
-    public ResponseDto<NotificationDto> prepareResponseDto(List<NotificationDto> list) {
-        ResponseDto<NotificationDto> responseDto = new ResponseDto<>();
-        DataDto<NotificationDto> dataDto = new DataDto<>();
+    public ResponseDto<MissionPermitsDto> prepareResponseDto(List<MissionPermitsDto> list) {
+        ResponseDto<MissionPermitsDto> responseDto = new ResponseDto<>();
+        DataDto<MissionPermitsDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
@@ -60,26 +63,26 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
 
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
-        ViewNotificationsRequestVO viewNotificationsRequestVO = new ViewNotificationsRequestVO();
-        viewNotificationsRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewNotificationsRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
-        viewNotificationsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
-        viewNotificationsRequestVO.setNotificationSeeAll("Y");
+        ViewSpecialMissionRequestVO viewSpecialMissionRequestVO = new ViewSpecialMissionRequestVO();
+        viewSpecialMissionRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        viewSpecialMissionRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
+        viewSpecialMissionRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
+        viewSpecialMissionRequestVO.setSpecialMissionSeeAll("Y");
 
-        setCredentials(viewNotificationsRequestVO);
+        setCredentials(viewSpecialMissionRequestVO);
 
         try {
-            log.info("Get vehicle list request will be sent to client. {}", viewNotificationsRequestVO.getMobileAppUserName());
+            log.info("Get Special mission list request will be sent to client. {}", viewSpecialMissionRequestVO.getMobileAppUserName());
 
-            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getNotifications(viewNotificationsRequestVO);
+            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getSpecialMissionDetails(viewSpecialMissionRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on get vehicle list request. " + viewNotificationsRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on get Special mission list request. " + viewSpecialMissionRequestVO.getMobileAppUserName());
         }
         return null;
     }
 
     @Override
-    public void setCredentials(ViewNotificationsRequestVO requestVO) {
+    public void setCredentials(ViewSpecialMissionRequestVO requestVO) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
@@ -90,10 +93,11 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
 
     @Override
     public String prepareActionsColumn(Integer id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewNotification?notificationId={notificationId}' class='button-v1 btn-color-1'><i class='icon-eye'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateNotification?notificationId={notificationId}' class='button-v1 btn-color-1'><i class='icon-edit'></i></a>";
+        String actionView = "<a href='/tpcmsWebAdmin/viewMission?missionId={missionId}' class='button-v1 btn-color-1'><i class='icon-eye'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateMission?missionId={missionId}' class='button-v1 btn-color-1'><i class='icon-edit'></i></a>";
 
         return actionView.replace("{notificationId}", String.valueOf(id)) + actionUpdate.replace("{notificationId}", String.valueOf(id));
+
     }
 
     @Override
@@ -102,11 +106,11 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
 
         list.add("Permit ID");
         list.add("username");
-        list.add("Title");
+        list.add("Mobile Number");
         list.add("City");
         list.add("State");
-        list.add("Notification Date");
-        list.add("Priority");
+        list.add("Expiry Date");
+        list.add("Status");
         list.add("Actions");
 
         return list;

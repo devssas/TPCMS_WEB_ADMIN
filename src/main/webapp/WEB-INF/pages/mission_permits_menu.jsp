@@ -49,7 +49,7 @@
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/missionPermits" class="box-v2">
                                     <i class="icon-permits"></i>
                                     <h3>Manage Permits</h3>
                                     <p>In this Section, you can View and Manage Officers Permits.</p>
