@@ -1,6 +1,7 @@
 package com.tpcmswebadmin.service.criminals.service;
 
 import com.ssas.tpcms.engine.vo.request.ViewCrimeReportRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewCriminalProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -10,12 +11,12 @@ import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import com.tpcmswebadmin.service.criminals.domain.CasesDto;
 import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
 import com.tpcmswebadmin.service.criminals.service.mapper.CrimeReportsMapper;
+import com.tpcmswebadmin.service.criminals.service.mapper.CriminalProfileMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,14 +28,15 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CrimeReportsServiceAPI implements ClientServiceAPI<CrimeReportDto, LoginUserDo, ViewCrimeReportRequestVO> {
+public class CriminalProfileServiceAPI implements ClientServiceAPI<CasesDto, LoginUserDo, ViewCriminalProfileRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
+
     @Override
-    public ResponseDto<CrimeReportDto> getResponseDto(HttpServletRequest request) {
+    public ResponseDto<CasesDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -42,13 +44,13 @@ public class CrimeReportsServiceAPI implements ClientServiceAPI<CrimeReportDto, 
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(CrimeReportsMapper.makeCrimeReportDtoList(response.getCrimeReportList()));
+        return prepareResponseDto(CriminalProfileMapper.makeCasesDtoList(response.getCriminalProfileList()));
     }
 
     @Override
-    public ResponseDto<CrimeReportDto> prepareResponseDto(List<CrimeReportDto> list) {
-        ResponseDto<CrimeReportDto> responseDto = new ResponseDto<>();
-        DataDto<CrimeReportDto> dataDto = new DataDto<>();
+    public ResponseDto<CasesDto> prepareResponseDto(List<CasesDto> list) {
+        ResponseDto<CasesDto> responseDto = new ResponseDto<>();
+        DataDto<CasesDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
@@ -62,26 +64,26 @@ public class CrimeReportsServiceAPI implements ClientServiceAPI<CrimeReportDto, 
 
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
-        ViewCrimeReportRequestVO viewCrimeReportRequestVO = new ViewCrimeReportRequestVO();
-        viewCrimeReportRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewCrimeReportRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
-        viewCrimeReportRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
-        viewCrimeReportRequestVO.setCrimeReportSeeAll("Y");
+        ViewCriminalProfileRequestVO viewCriminalProfileRequestVO = new ViewCriminalProfileRequestVO();
+        viewCriminalProfileRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        viewCriminalProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
+        viewCriminalProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
+        viewCriminalProfileRequestVO.setCriminalsProfileSeeAll("Y");
 
-        setCredentials(viewCrimeReportRequestVO);
+        setCredentials(viewCriminalProfileRequestVO);
 
         try {
-            log.info("crimeReports request will be sent to client. {}", viewCrimeReportRequestVO.getMobileAppUserName());
+            log.info("criminal reports request will be sent to client. {}", viewCriminalProfileRequestVO.getMobileAppUserName());
 
-            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeReports(viewCrimeReportRequestVO);
+            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCriminalsProfile(viewCriminalProfileRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on crimeReports request. " + viewCrimeReportRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on criminal reports request. " + viewCriminalProfileRequestVO.getMobileAppUserName());
         }
         return null;
     }
 
     @Override
-    public void setCredentials(ViewCrimeReportRequestVO requestVO) {
+    public void setCredentials(ViewCriminalProfileRequestVO requestVO) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());

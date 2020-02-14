@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class CrimeReportsViewController {
+public class CriminalCasesViewController {
 
-    @GetMapping("/crimeReports")
+    @GetMapping("/criminalCases")
     public String getCriminalsDatabase() {
 
-        return "criminal_crime_reports_view";
+        return "criminal_manage_cases_view";
     }
 }

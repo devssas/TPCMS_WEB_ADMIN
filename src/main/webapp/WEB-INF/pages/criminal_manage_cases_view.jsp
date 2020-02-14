@@ -17,13 +17,13 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="assets/images/head/og-image.jpg">
 
-    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/core.css">
 
-    <link rel="shortcut icon" href="assets/images/head/favicon.png">
-    <link rel="apple-touch-icon" href="assets/images/head/60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/head/76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/head/120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/head/152x152.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/head/favicon.png">
+    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/assets/images/head/60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/head/76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/head/120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/head/152x152.png">
 
 </head>
 <body>
@@ -43,7 +43,7 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Manage Crime Reports" />
+                        <jsp:param name="header" value="Manage Cases" />
                     </jsp:include>
 
                     <section class="content-box">
@@ -80,7 +80,7 @@
                                 </div>
                             </form>
                         </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v3/table-v3.html" data-json-url="/tpcmsWebAdmin/api/crimeReports"></section>
+                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v2/table-v2.html" data-json-url="/tpcmsWebAdmin/api/criminalCases"></section>
                     </section>
 
                 </section>
