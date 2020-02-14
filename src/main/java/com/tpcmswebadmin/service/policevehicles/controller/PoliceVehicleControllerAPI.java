@@ -1,8 +1,8 @@
-package com.tpcmswebadmin.service.policestaff.controller;
+package com.tpcmswebadmin.service.policevehicles.controller;
 
 import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
-import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceStaffDto;
-import com.tpcmswebadmin.service.policestaff.service.PoliceStaffClientService;
+import com.tpcmswebadmin.service.policevehicles.domain.PoliceVehicleDto;
+import com.tpcmswebadmin.service.policevehicles.service.PoliceVehicleClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api")
-public class PoliceStaffControllerAPI {
+public class PoliceVehicleControllerAPI {
 
-    private final PoliceStaffClientService policeStaffServiceAPI;
+    private final PoliceVehicleClientService policeVehicleClientService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("policeStaff")
-    public ResponseDto<PoliceStaffDto> getPoliceOfficers(HttpServletRequest httpServletRequest) {
-        return policeStaffServiceAPI.getResponseDto(httpServletRequest);
+    @GetMapping("policeVehicle")
+    public ResponseDto<PoliceVehicleDto> getPoliceVehicles(HttpServletRequest httpServletRequest) {
+        return policeVehicleClientService.getResponseDto(httpServletRequest);
     }
 
 }

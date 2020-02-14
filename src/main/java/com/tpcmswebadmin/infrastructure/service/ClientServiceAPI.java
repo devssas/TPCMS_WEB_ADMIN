@@ -6,7 +6,7 @@ import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public interface ClientCallServiceAPI<T, K, E> {
+public interface ClientServiceAPI<T, K, E> {
 
     /**
      * Service interface for client calls. Each of the method should be implemented in order to make call to client.

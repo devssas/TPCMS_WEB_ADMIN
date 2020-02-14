@@ -4,12 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class NotificationMenuController {
+public class NotificationViewController {
 
-    @GetMapping("/notificationMenu")
+    @GetMapping("/notification")
     public String getNotifications() {
 
-        return "notification_menu";
+        return "notification_view";
     }
-
 }

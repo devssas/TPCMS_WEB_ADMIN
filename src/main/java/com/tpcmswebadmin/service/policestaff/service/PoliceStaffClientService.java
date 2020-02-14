@@ -7,15 +7,13 @@ import com.tpcmswebadmin.infrastructure.client.response.DataDto;
 import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
-import com.tpcmswebadmin.infrastructure.service.ClientCallServiceAPI;
+import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceStaffDto;
 import com.tpcmswebadmin.service.policestaff.service.mapper.PoliceStaffMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,9 +26,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PoliceStaffClientCallServiceAPI implements ClientCallServiceAPI<PoliceStaffDto, LoginUserDo, ViewOfficersProfileRequestVO> {
-
-    private static final Logger logger = LoggerFactory.getLogger(PoliceStaffClientCallServiceAPI.class);
+public class PoliceStaffClientService implements ClientServiceAPI<PoliceStaffDto, LoginUserDo, ViewOfficersProfileRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
@@ -60,11 +56,11 @@ public class PoliceStaffClientCallServiceAPI implements ClientCallServiceAPI<Pol
         setCredentials(viewOfficersProfileRequestVO);
 
         try {
-            logger.info("SignIn userName request will be sent to client. {}", viewOfficersProfileRequestVO.getMobileAppUserName());
+            log.info("SignIn userName request will be sent to client. {}", viewOfficersProfileRequestVO.getMobileAppUserName());
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getOfficersProfileList(viewOfficersProfileRequestVO);
         } catch (RemoteException | ServiceException e) {
-            logger.warn("Something wrong on signIn username request. " + viewOfficersProfileRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on signIn username request. " + viewOfficersProfileRequestVO.getMobileAppUserName());
         }
         return null;
     }

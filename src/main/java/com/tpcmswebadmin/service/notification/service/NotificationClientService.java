@@ -1,6 +1,7 @@
-package com.tpcmswebadmin.service.criminals.service;
+package com.tpcmswebadmin.service.notification.service;
 
-import com.ssas.tpcms.engine.vo.request.ViewCrimeReportRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewNotificationsRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewVehicleDetailsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -10,12 +11,12 @@ import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
-import com.tpcmswebadmin.service.criminals.service.mapper.CrimeReportsMapper;
+import com.tpcmswebadmin.service.notification.domain.NotificationDto;
+import com.tpcmswebadmin.service.notification.service.mapper.NotificationMapper;
+import com.tpcmswebadmin.service.policevehicles.domain.PoliceVehicleDto;
+import com.tpcmswebadmin.service.policevehicles.service.mapper.PoliceVehicleMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,16 +28,14 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CrimeReportsServiceAPI implements ClientServiceAPI<CrimeReportDto, LoginUserDo, ViewCrimeReportRequestVO> {
-
-    private static final Logger logger = LoggerFactory.getLogger(CrimeReportsServiceAPI.class);
+public class NotificationClientService implements ClientServiceAPI<NotificationDto, LoginUserDo, ViewNotificationsRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
     @Override
-    public ResponseDto<CrimeReportDto> getResponseDto(HttpServletRequest request) {
+    public ResponseDto<NotificationDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -44,13 +43,13 @@ public class CrimeReportsServiceAPI implements ClientServiceAPI<CrimeReportDto, 
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(CrimeReportsMapper.makeCrimeReportDtoList(response.getCrimeReportList()));
+        return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()));
     }
 
     @Override
-    public ResponseDto<CrimeReportDto> prepareResponseDto(List<CrimeReportDto> list) {
-        ResponseDto<CrimeReportDto> responseDto = new ResponseDto<>();
-        DataDto<CrimeReportDto> dataDto = new DataDto<>();
+    public ResponseDto<NotificationDto> prepareResponseDto(List<NotificationDto> list) {
+        ResponseDto<NotificationDto> responseDto = new ResponseDto<>();
+        DataDto<NotificationDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
@@ -64,26 +63,26 @@ public class CrimeReportsServiceAPI implements ClientServiceAPI<CrimeReportDto, 
 
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
-        ViewCrimeReportRequestVO viewCrimeReportRequestVO = new ViewCrimeReportRequestVO();
-        viewCrimeReportRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewCrimeReportRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
-        viewCrimeReportRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
-        viewCrimeReportRequestVO.setCrimeReportSeeAll("Y");
+        ViewNotificationsRequestVO viewNotificationsRequestVO = new ViewNotificationsRequestVO();
+        viewNotificationsRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        viewNotificationsRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
+        viewNotificationsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
+        viewNotificationsRequestVO.setNotificationSeeAll("Y");
 
-        setCredentials(viewCrimeReportRequestVO);
+        setCredentials(viewNotificationsRequestVO);
 
         try {
-            logger.info("crimeReports request will be sent to client. {}", viewCrimeReportRequestVO.getMobileAppUserName());
+            log.info("Get vehicle list request will be sent to client. {}", viewNotificationsRequestVO.getMobileAppUserName());
 
-            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeReports(viewCrimeReportRequestVO);
+            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getNotifications(viewNotificationsRequestVO);
         } catch (RemoteException | ServiceException e) {
-            logger.warn("Something wrong on crimeReports request. " + viewCrimeReportRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on get vehicle list request. " + viewNotificationsRequestVO.getMobileAppUserName());
         }
         return null;
     }
 
     @Override
-    public void setCredentials(ViewCrimeReportRequestVO requestVO) {
+    public void setCredentials(ViewNotificationsRequestVO requestVO) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
@@ -94,23 +93,24 @@ public class CrimeReportsServiceAPI implements ClientServiceAPI<CrimeReportDto, 
 
     @Override
     public String prepareActionsColumn(Integer id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewOfficer?officerId={officerId}' class='button-v1 btn-color-1'><i class='icon-eye'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateOfficer?officerId={officerId}' class='button-v1 btn-color-1'><i class='icon-edit'></i></a>";
+        String actionView = "<a href='/tpcmsWebAdmin/viewNotification?notificationId={notificationId}' class='button-v1 btn-color-1'><i class='icon-eye'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateNotification?notificationId={notificationId}' class='button-v1 btn-color-1'><i class='icon-edit'></i></a>";
 
-        return actionView.replace("{officerId}", String.valueOf(id)) + actionUpdate.replace("{officerId}", String.valueOf(id));
+        return actionView.replace("{notificationId}", String.valueOf(id)) + actionUpdate.replace("{notificationId}", String.valueOf(id));
+
     }
 
     @Override
     public List<String> setTableColumnNames() {
         List<String> list = new ArrayList<>();
 
-        list.add("National ID");
-        list.add("Criminal Name");
-        list.add("Address");
+        list.add("Permit ID");
+        list.add("username");
+        list.add("Title");
         list.add("City");
         list.add("State");
-        list.add("Wanted By");
-        list.add("Status");
+        list.add("Notification Date");
+        list.add("Priority");
         list.add("Actions");
 
         return list;

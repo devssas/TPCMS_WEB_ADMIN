@@ -3,8 +3,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
+
 <!doctype html>
-<html>
+<html lang="ar">
 <head>
     <title>TPcms</title>
 
@@ -15,7 +16,7 @@
     <meta property="og:title" content="TPcms">
     <meta property="og:description" content="TPcms">
     <meta property="og:url" content="">
-    <meta property="og:image" content="${pageContext.request.contextPath}/assets/images/head/og-image.jpg">
+    <meta property="og:image" content="assets/images/head/og-image.jpg">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/core.css">
 
@@ -35,7 +36,7 @@
         <section class="content-wrapper">
 
             <jsp:include page="big_main_menu_bar.jsp">
-                <jsp:param name="staff" value="active" />
+                <jsp:param name="notification" value="active" />
             </jsp:include>
 
             <section class="content-inner">
@@ -43,7 +44,7 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Manage Police Staff" />
+                        <jsp:param name="header" value="Manage Notifications" />
                     </jsp:include>
 
                     <section class="content-box">
@@ -67,37 +68,33 @@
                                                 <span class="label">User Type</span>
                                                 <select name="" id="select-1">
                                                     <option value="">All/Supervisors/Officers</option>
-                                                    <option value="1">All/Supervisors/Officers</option>
-                                                    <option value="2">All/Supervisors/Officers</option>
-                                                    <option value="3">All/Supervisors/Officers</option>
-                                                    <option value="4">All/Supervisors/Officers</option>
-                                                    <option value="5">All/Supervisors/Officers</option>
-                                                    <option value="6">All/Supervisors/Officers</option>
-                                                    <option value="7">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
                                                 </select>
                                             </label>
                                         </div>
                                         <div class="form-row select-not-find">
                                             <label>
-                                                <span class="label">User Type</span>
+                                                <span class="label">Status</span>
                                                 <select name="" id="select-2">
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="1">All/Supervisors/Officers</option>
-                                                    <option value="2">All/Supervisors/Officers</option>
-                                                    <option value="3">All/Supervisors/Officers</option>
-                                                    <option value="4">All/Supervisors/Officers</option>
-                                                    <option value="5">All/Supervisors/Officers</option>
-                                                    <option value="6">All/Supervisors/Officers</option>
-                                                    <option value="7">All/Supervisors/Officers</option>
+                                                    <option value="">All/Active/Inactive</option>
+                                                    <option value="">All/Active/Inactive</option>
+                                                    <option value="">All/Active/Inactive</option>
+                                                    <option value="">All/Active/Inactive</option>
+                                                    <option value="">All/Active/Inactive</option>
+                                                    <option value="">All/Active/Inactive</option>
                                                 </select>
                                             </label>
                                         </div>
-                                        <a href="${pageContext.request.contextPath}/policeStaffMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
+                                        <a href="${pageContext.request.contextPath}/notificationMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v1/table-v1.html" data-json-url="/tpcmsWebAdmin/api/policeStaff"></section>
+                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v8/table-v8.html" data-json-url="/tpcmsWebAdmin/api/notification"></section>
                     </section>
 
                 </section>

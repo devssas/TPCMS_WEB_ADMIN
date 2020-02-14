@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class PoliceVehicleMenuController {
+public class PoliceVehicleViewController {
 
-    @GetMapping("/policeVehiclesMenu")
+    @GetMapping("/policeVehicles")
     public String getPoliceVehicles() {
 
-        return "police_vehicle_menu";
+        return "police_vehicles_view";
     }
 }

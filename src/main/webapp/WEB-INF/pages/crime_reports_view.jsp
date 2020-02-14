@@ -75,7 +75,7 @@
                                                 </select>
                                             </label>
                                         </div>
-                                        <a href="javascript:;" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
+                                        <a href="${pageContext.request.contextPath}/criminalsMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                     </div>
                                 </div>
                             </form>
