@@ -4,14 +4,31 @@
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap&subset=latin-ext');
 
-@mixin fontsize($size:1, $line: $size * 1.4) {
-  font-size: $size + rem;
-  line-height: $line + rem;
+
+@font-face {
+  font-family: 'GESSTwoMedium-Medium';
+  src: url('../font/GESSTwoMedium-Medium.eot?#iefix') format('embedded-opentype'),
+  url('../font/GESSTwoMedium-Medium.otf')  format('opentype'),
+  url('../font/GESSTwoMedium-Medium.woff') format('woff'),
+  url('../font/GESSTwoMedium-Medium.ttf')  format('truetype'),
+  url('../font/GESSTwoMedium-Medium.svg#GESSTwoMedium-Medium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin f-gesstMedium() {
+  font-family: $font-3;
+  font-weight: normal;
 }
 
 @mixin f-roboto($font-weight) {
   font-family: $font-2;
   font-weight: $font-weight;
+}
+
+@mixin fontsize($size:1, $line: $size * 1.4) {
+  font-size: $size + rem;
+  line-height: $line + rem;
 }
 
 %fs-42{

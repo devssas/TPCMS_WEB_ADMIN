@@ -115,6 +115,7 @@ var main = {
         }
     },
     customSelectbox: function(){
+
         if($(".select-not-find").length){
             $(".select-not-find").each(function (index, element) {
                 if (!$('select', element).data('select2')) {
