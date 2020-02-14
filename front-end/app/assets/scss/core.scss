@@ -231,6 +231,10 @@ header {
   h2{
     @extend %fs-42;
     @include f-roboto(700);
+    &.highlight-button-row{
+      display: flex;
+      align-items: center;
+    }
   }
   .page-back{
     text-align: right;
