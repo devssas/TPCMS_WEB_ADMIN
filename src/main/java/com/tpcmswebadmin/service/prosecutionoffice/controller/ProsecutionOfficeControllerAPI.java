@@ -1,10 +1,9 @@
-package com.tpcmswebadmin.service.criminals.controller;
+package com.tpcmswebadmin.service.prosecutionoffice.controller;
 
 import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.service.criminals.domain.CasesDto;
-import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
-import com.tpcmswebadmin.service.criminals.service.CrimeReportsClientService;
 import com.tpcmswebadmin.service.criminals.service.CriminalProfileClientService;
+import com.tpcmswebadmin.service.prosecutionoffice.service.ProsecutionCriminalsProfileClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,21 +15,21 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api")
-public class CriminalsControllerAPI {
-
-    private final CrimeReportsClientService crimeReportsClientService;
+@RequestMapping("api/prosecution")
+public class ProsecutionOfficeControllerAPI {
 
     private final CriminalProfileClientService criminalProfileClientService;
 
+    private final ProsecutionCriminalsProfileClientService prosecutionCriminalsProfileClientService;
+
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("crimeReports")
-    public ResponseDto<CrimeReportDto> getPoliceOfficers(HttpServletRequest httpServletRequest) {
-        return crimeReportsClientService.getResponseDto(httpServletRequest);
+    @GetMapping("casesHistory")
+    public ResponseDto<CasesDto> getCasesHistory(HttpServletRequest httpServletRequest) {
+        return prosecutionCriminalsProfileClientService.getResponseDto(httpServletRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("criminalCases")
+    @GetMapping("cases")
     public ResponseDto<CasesDto> getManageCases(HttpServletRequest httpServletRequest) {
         return criminalProfileClientService.getResponseDto(httpServletRequest);
     }

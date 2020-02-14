@@ -1,6 +1,5 @@
-package com.tpcmswebadmin.service.criminals.service;
+package com.tpcmswebadmin.service.prosecutionoffice.service;
 
-import com.ssas.tpcms.engine.vo.request.ViewCrimeReportRequestVO;
 import com.ssas.tpcms.engine.vo.request.ViewCriminalProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
@@ -12,8 +11,6 @@ import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.criminals.domain.CasesDto;
-import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
-import com.tpcmswebadmin.service.criminals.service.mapper.CrimeReportsMapper;
 import com.tpcmswebadmin.service.criminals.service.mapper.CriminalProfileMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,15 +22,15 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CriminalProfileServiceAPI implements ClientServiceAPI<CasesDto, LoginUserDo, ViewCriminalProfileRequestVO> {
+public class ProsecutionCriminalsProfileClientService implements ClientServiceAPI<CasesDto, LoginUserDo, ViewCriminalProfileRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
-
 
     @Override
     public ResponseDto<CasesDto> getResponseDto(HttpServletRequest request) {
@@ -69,6 +66,7 @@ public class CriminalProfileServiceAPI implements ClientServiceAPI<CasesDto, Log
         viewCriminalProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewCriminalProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewCriminalProfileRequestVO.setCriminalsProfileSeeAll("Y");
+        viewCriminalProfileRequestVO.setStatusCode("CLOSED");
 
         setCredentials(viewCriminalProfileRequestVO);
 
