@@ -49,7 +49,7 @@
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/systemAdministrator" class="box-v2">
                                     <i class="icon-police-staff"></i>
                                     <h3>Admin Profile</h3>
                                     <p>In this Section, you can View and Manage Admin Users Profiles.</p>

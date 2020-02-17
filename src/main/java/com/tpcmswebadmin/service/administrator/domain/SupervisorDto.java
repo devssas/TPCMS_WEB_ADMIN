@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.service.criminals.domain;
+package com.tpcmswebadmin.service.administrator.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,18 +7,17 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CasesDto implements Serializable {
+public class SupervisorDto implements Serializable {
 
-    private static final long serialVersionUID = -3350024529200209952L;
+    private static final long serialVersionUID = -8253074461371388071L;
 
-    private String nationalId;
+    private String adminId;
 
-    private String criminalName;
+    private String adminName;
 
     private String address;
 
@@ -26,7 +25,7 @@ public class CasesDto implements Serializable {
 
     private String state;
 
-    private String wantedBy;
+    private String lastLogin;
 
     private String status;
 

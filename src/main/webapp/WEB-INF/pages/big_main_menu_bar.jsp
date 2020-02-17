@@ -35,7 +35,7 @@
         <div class="menu-bottom">
             <nav class="menu">
                 <ul>
-                    <li><a href="${pageContext.request.contextPath}/systemAdministrator" class="${param.administrator}"><i class="icon-system"></i>System Administrator</a></li>
+                    <li><a href="${pageContext.request.contextPath}/systemAdministratorMenu" class="${param.administrator}"><i class="icon-system"></i>System Administrator</a></li>
                 </ul>
             </nav>
             <span class="description">Tripoli POLICE<br>Web Admin<br>v.1.0</span>

@@ -27,8 +27,16 @@ public class CriminalProfileMapper {
                 .state(null)
                 .wantedBy(null)
                 .status(criminalsProfileResponseVO.getCrimianlStatusCode())
+                .actions(prepareActionsColumn(criminalsProfileResponseVO.getCriminalsId()))
                 .build();
     }
 
+    public static String prepareActionsColumn(String id) {
+        String actionView = "<a href='/tpcmsWebAdmin/viewCriminal?criminalId={criminalId}' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateCriminal?criminalId={criminalId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+        String actionDelete = "<a href='/tpcmsWebAdmin/deleteCriminal?criminalId={criminalId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
+
+        return actionView.replace("{criminalId}", id) + actionUpdate.replace("{criminalId}", id) + actionDelete.replace("{criminalId}", id);
+    }
 
 }

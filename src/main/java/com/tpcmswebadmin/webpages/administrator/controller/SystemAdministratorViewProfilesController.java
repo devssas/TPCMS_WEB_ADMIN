@@ -6,12 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class SystemAdministratorMenuController {
+public class SystemAdministratorViewProfilesController {
 
-    @GetMapping("/systemAdministratorMenu")
-    public String getSystemAdministrator(Model model) {
-        model.addAttribute("signInPassCodeModel", new SignInPassCodeModel());
+    @GetMapping("/systemAdministrator")
+    public String getSystemAdministrator() {
 
-        return "system_administrator_menu";
+        return "system_administrator_view_profiles";
     }
 }

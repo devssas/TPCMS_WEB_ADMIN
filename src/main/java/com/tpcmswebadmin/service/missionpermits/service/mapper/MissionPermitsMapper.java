@@ -29,7 +29,16 @@ public class MissionPermitsMapper {
                 .state(null)
                 .expiryDate(specialMissionResponseVO.getExpiryDate())
                 .status(specialMissionResponseVO.getStatusCode())
+                .actions(prepareActionsColumn(specialMissionResponseVO.getSpmissionId()))
                 .build();
+    }
+
+    public static String prepareActionsColumn(String id) {
+        String actionView = "<a href='/tpcmsWebAdmin/viewMission?missionId={missionId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateMission?missionId={missionId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+        String actionDelete = "<a href='/tpcmsWebAdmin/deleteMission?missionId={missionId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
+
+        return actionView.replace("{missionId}", id) + actionUpdate.replace("{missionId}", id) + actionDelete.replace("{missionId}", id);
     }
 
 }

@@ -29,7 +29,16 @@ public class NotificationMapper {
                 .state(null)
                 .notificationDate(generalAnnouncementResponseVO.getEffectiveDate())
                 .priority(generalAnnouncementResponseVO.getNatureOfAnnouncement())
+                .actions(prepareActionsColumn(generalAnnouncementResponseVO.getAnnouncementId()))
                 .build();
+    }
+
+    public static String prepareActionsColumn(String id) {
+        String actionView = "<a href='/tpcmsWebAdmin/viewNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+        String actionDelete = "<a href='/tpcmsWebAdmin/updateNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
+
+        return actionView.replace("{notificationId}", id) + actionUpdate.replace("{notificationId}", id) + actionDelete.replace("{notificationId}", id);
     }
 
 }

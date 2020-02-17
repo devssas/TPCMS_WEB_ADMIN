@@ -9,6 +9,6 @@ public class PoliceVehicleMenuController {
     @GetMapping("/policeVehiclesMenu")
     public String getPoliceVehicles() {
 
-        return "police_vehicle_menu";
+        return "police_vehicles_menu";
     }
 }

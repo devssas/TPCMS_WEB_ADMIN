@@ -92,15 +92,6 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
     }
 
     @Override
-    public String prepareActionsColumn(Integer id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewMission?missionId={missionId}' class='button-v1 btn-color-1'><i class='icon-eye'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateMission?missionId={missionId}' class='button-v1 btn-color-1'><i class='icon-edit'></i></a>";
-
-        return actionView.replace("{notificationId}", String.valueOf(id)) + actionUpdate.replace("{notificationId}", String.valueOf(id));
-
-    }
-
-    @Override
     public List<String> setTableColumnNames() {
         List<String> list = new ArrayList<>();
 

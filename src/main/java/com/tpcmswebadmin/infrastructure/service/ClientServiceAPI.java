@@ -26,8 +26,6 @@ public interface ClientServiceAPI<T, K, E> {
 
     void setCredentials(E requestVO);
 
-    String prepareActionsColumn(Integer id);
-
     List<String> setTableColumnNames();
 
 }

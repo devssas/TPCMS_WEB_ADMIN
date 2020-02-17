@@ -1,9 +1,6 @@
 package com.tpcmswebadmin.service.policevehicles.service.mapper;
 
-import com.ssas.tpcms.engine.vo.request.ViewVehicleDetailsRequestVO;
-import com.ssas.tpcms.engine.vo.response.OfficersProfileResponseVO;
 import com.ssas.tpcms.engine.vo.response.VehicleDetailsResponseVO;
-import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceStaffDto;
 import com.tpcmswebadmin.service.policevehicles.domain.PoliceVehicleDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -30,7 +27,16 @@ public class PoliceVehicleMapper {
                 .state(null)
                 .status(vehicleDetailsResponse.getStatusCode())
                 .lastLogin(null)
+                .action(prepareActionsColumn(vehicleDetailsResponse.getVehicleId()))
                 .build();
+    }
+
+    public static String prepareActionsColumn(String id) {
+        String actionView = "<a href='/tpcmsWebAdmin/viewVehicle?vehicleId={vehicleId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateVehicle?vehicleId={vehicleId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+        String actionDelete = "<a href='/tpcmsWebAdmin/deleteVehicle?vehicleId={vehicleId}'class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
+
+        return actionView.replace("{vehicleId}", id) + actionUpdate.replace("{vehicleId}", id) + actionDelete.replace("{vehicleId}", id);
     }
 
 }
