@@ -82,6 +82,60 @@
     &.button-row{
       margin-top: 57px;
     }
+    &.checkbox-row{
+      label{
+        width: 100%;
+        position: relative;
+        .label{
+          @extend %fs-16;
+          @include f-roboto(500);
+          background-color: $color-2;
+          width: 100%;
+          height: 50px;
+          line-height: 50px;
+          padding-right: 20px;
+          border-radius: 8px;
+        }
+        input{
+          position: absolute;
+          background-color: $color-1;
+          top: 13px;
+          left: 15px;
+          height: 24px;
+          width: 24px;
+          &:checked{
+            ~ .checkmark {
+              background-color: $color-1;
+              &:after {
+                visibility: visible;
+              }
+            }
+          }
+          &:disabled{
+            ~ .checkmark {
+              &:after {
+                cursor: not-allowed;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.form-with-icon{
+      label{
+        position: relative;
+        input{
+          padding: 0 20px 0 0;
+        }
+        i{
+          position: absolute;
+          top: 70%;
+          left: 20px;
+          font-size: 16px;
+          transform: translateY(-50%);
+        }
+      }
+    }
     &.search-row{
       label{
         position: relative;
@@ -395,6 +449,11 @@
       margin-right: auto;
     }
   }
+  hr{
+    opacity: 0.5;
+    margin-top: 5px;
+    margin-bottom: 25px;
+  }
 }
 
 .button-row{
@@ -407,8 +466,6 @@
     }
   }
 }
-
-
 
 //------------------------------------------------------------
 // = PLUGIN OVERRIDE STYLES
