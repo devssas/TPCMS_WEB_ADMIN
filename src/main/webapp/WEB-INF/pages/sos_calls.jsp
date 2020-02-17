@@ -80,7 +80,7 @@
                                 </div>
                             </form>
                         </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v3/table-v3.html" data-json-url="assets/ajax/table/table-v3/table-v3.json"></section>
+                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v3/table-v3.html" data-json-url="/tpcmsWebAdmin/api/sosCall"></section>
                     </section>
 
                 </section>

@@ -1,6 +1,7 @@
-package com.tpcmswebadmin.service.criminals.service;
+package com.tpcmswebadmin.service.sos.service;
 
-import com.ssas.tpcms.engine.vo.request.ViewCriminalProfileRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewOfficersProfileRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewSOSRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -10,8 +11,10 @@ import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.criminals.domain.CasesDto;
-import com.tpcmswebadmin.service.criminals.service.mapper.CriminalProfileMapper;
+import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceStaffDto;
+import com.tpcmswebadmin.service.policestaff.service.mapper.PoliceStaffMapper;
+import com.tpcmswebadmin.service.sos.domain.SosCallDto;
+import com.tpcmswebadmin.service.sos.service.mapper.SosCallsMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,14 +28,14 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CriminalProfileClientService implements ClientServiceAPI<CasesDto, LoginUserDo, ViewCriminalProfileRequestVO> {
+public class SosCallsClientService implements ClientServiceAPI<SosCallDto, LoginUserDo, ViewSOSRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
     @Override
-    public ResponseDto<CasesDto> getResponseDto(HttpServletRequest request) {
+    public ResponseDto<SosCallDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -40,13 +43,13 @@ public class CriminalProfileClientService implements ClientServiceAPI<CasesDto, 
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(CriminalProfileMapper.makeCasesDtoList(response.getCriminalProfileList()));
+        return prepareResponseDto(SosCallsMapper.makeSosCallDtoList(response.getSosRequestList()));
     }
 
     @Override
-    public ResponseDto<CasesDto> prepareResponseDto(List<CasesDto> list) {
-        ResponseDto<CasesDto> responseDto = new ResponseDto<>();
-        DataDto<CasesDto> dataDto = new DataDto<>();
+    public ResponseDto<SosCallDto> prepareResponseDto(List<SosCallDto> list) {
+        ResponseDto<SosCallDto> responseDto = new ResponseDto<>();
+        DataDto<SosCallDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
@@ -60,26 +63,27 @@ public class CriminalProfileClientService implements ClientServiceAPI<CasesDto, 
 
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
-        ViewCriminalProfileRequestVO viewCriminalProfileRequestVO = new ViewCriminalProfileRequestVO();
-        viewCriminalProfileRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewCriminalProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
-        viewCriminalProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
-        viewCriminalProfileRequestVO.setCriminalsProfileSeeAll("Y");
+        ViewSOSRequestVO viewSOSRequestVO = new ViewSOSRequestVO();
+        viewSOSRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        viewSOSRequestVO.setLoginOfficersUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
+        viewSOSRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
+        viewSOSRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
+        viewSOSRequestVO.setSosRequestSeeAll("Y");
 
-        setCredentials(viewCriminalProfileRequestVO);
+        setCredentials(viewSOSRequestVO);
 
         try {
-            log.info("criminal reports request will be sent to client. {}", viewCriminalProfileRequestVO.getMobileAppUserName());
+            log.info("SignIn userName request will be sent to client. {}", viewSOSRequestVO.getMobileAppUserName());
 
-            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCriminalsProfile(viewCriminalProfileRequestVO);
+            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getSOSRequestDetailsView(viewSOSRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on criminal reports request. " + viewCriminalProfileRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on signIn username request. " + viewSOSRequestVO.getMobileAppUserName());
         }
         return null;
     }
 
     @Override
-    public void setCredentials(ViewCriminalProfileRequestVO requestVO) {
+    public void setCredentials(ViewSOSRequestVO requestVO) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
@@ -92,11 +96,12 @@ public class CriminalProfileClientService implements ClientServiceAPI<CasesDto, 
     public List<String> setTableColumnNames() {
         List<String> list = new ArrayList<>();
 
-        list.add("National ID");
-        list.add("Criminal Name");
-        list.add("User Id");
-        list.add("Location");
-        list.add("Crime Type");
+        list.add("Request Number");
+        list.add("Request Date");
+        list.add("User ID");
+        list.add("emergency Location");
+        list.add("Phone");
+        list.add("Remarks");
         list.add("Status");
         list.add("Actions");
 

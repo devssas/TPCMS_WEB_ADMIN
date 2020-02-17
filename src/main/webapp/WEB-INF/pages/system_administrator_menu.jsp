@@ -43,7 +43,7 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Police Staff" />
+                        <jsp:param name="header" value="Administrator" />
                     </jsp:include>
 
                     <section>

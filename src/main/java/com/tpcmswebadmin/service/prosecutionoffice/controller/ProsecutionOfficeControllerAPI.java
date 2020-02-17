@@ -1,9 +1,9 @@
 package com.tpcmswebadmin.service.prosecutionoffice.controller;
 
 import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
-import com.tpcmswebadmin.service.criminals.domain.CasesDto;
-import com.tpcmswebadmin.service.criminals.service.CriminalProfileClientService;
-import com.tpcmswebadmin.service.prosecutionoffice.service.ProsecutionCriminalsProfileClientService;
+import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
+import com.tpcmswebadmin.service.prosecutionoffice.service.ProsecutionCasesHistoryClientService;
+import com.tpcmswebadmin.service.prosecutionoffice.service.ProsecutionManageCasesClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +18,19 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("api/prosecution")
 public class ProsecutionOfficeControllerAPI {
 
-    private final CriminalProfileClientService criminalProfileClientService;
+    private final ProsecutionCasesHistoryClientService prosecutionCasesHistoryClientService;
 
-    private final ProsecutionCriminalsProfileClientService prosecutionCriminalsProfileClientService;
+    private final ProsecutionManageCasesClientService prosecutionManageCasesClientService;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("casesHistory")
-    public ResponseDto<CasesDto> getCasesHistory(HttpServletRequest httpServletRequest) {
-        return prosecutionCriminalsProfileClientService.getResponseDto(httpServletRequest);
+    public ResponseDto<ProsecutionCasesDto> getCasesHistory(HttpServletRequest httpServletRequest) {
+        return prosecutionCasesHistoryClientService.getResponseDto(httpServletRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("cases")
-    public ResponseDto<CasesDto> getManageCases(HttpServletRequest httpServletRequest) {
-        return criminalProfileClientService.getResponseDto(httpServletRequest);
+    public ResponseDto<ProsecutionCasesDto> getManageCases(HttpServletRequest httpServletRequest) {
+        return prosecutionManageCasesClientService.getResponseDto(httpServletRequest);
     }
 }

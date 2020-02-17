@@ -12,6 +12,8 @@ import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.criminals.domain.CasesDto;
 import com.tpcmswebadmin.service.criminals.service.mapper.CriminalProfileMapper;
+import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
+import com.tpcmswebadmin.service.prosecutionoffice.service.mapper.ProsecutionProfileMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,14 +28,14 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProsecutionCriminalsProfileClientService implements ClientServiceAPI<CasesDto, LoginUserDo, ViewCriminalProfileRequestVO> {
+public class ProsecutionCasesHistoryClientService implements ClientServiceAPI<ProsecutionCasesDto, LoginUserDo, ViewCriminalProfileRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
     @Override
-    public ResponseDto<CasesDto> getResponseDto(HttpServletRequest request) {
+    public ResponseDto<ProsecutionCasesDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -41,13 +43,13 @@ public class ProsecutionCriminalsProfileClientService implements ClientServiceAP
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(CriminalProfileMapper.makeCasesDtoList(response.getCriminalProfileList()));
+        return prepareResponseDto(ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList()));
     }
 
     @Override
-    public ResponseDto<CasesDto> prepareResponseDto(List<CasesDto> list) {
-        ResponseDto<CasesDto> responseDto = new ResponseDto<>();
-        DataDto<CasesDto> dataDto = new DataDto<>();
+    public ResponseDto<ProsecutionCasesDto> prepareResponseDto(List<ProsecutionCasesDto> list) {
+        ResponseDto<ProsecutionCasesDto> responseDto = new ResponseDto<>();
+        DataDto<ProsecutionCasesDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
@@ -94,12 +96,11 @@ public class ProsecutionCriminalsProfileClientService implements ClientServiceAP
     public List<String> setTableColumnNames() {
         List<String> list = new ArrayList<>();
 
-        list.add("National ID");
-        list.add("Criminal Name");
-        list.add("Address");
-        list.add("City");
-        list.add("State");
-        list.add("Wanted By");
+        list.add("Case ID");
+        list.add("Case Date");
+        list.add("User Id");
+        list.add("Location");
+        list.add("Crime Type");
         list.add("Status");
         list.add("Actions");
 

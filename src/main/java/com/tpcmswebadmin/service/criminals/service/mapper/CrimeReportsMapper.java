@@ -30,16 +30,15 @@ public class CrimeReportsMapper {
                 .state(null)
                 .wantedBy(null)
                 .status(crimeReportResponseVOS.getCrimianlStatusCode())
-                .actions(prepareActionsColumn(crimeReportResponseVOS.getCaseId()))
+                .actions(prepareActionsColumn(crimeReportResponseVOS.getNationalIdNumber()))
                 .build();
     }
 
     public static String prepareActionsColumn(String id) {
         String actionView = "<a href='/tpcmsWebAdmin/viewCrimeReport?caseId={caseId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
         String actionUpdate = "<a href='/tpcmsWebAdmin/updateCrimeReport?caseId={caseId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
-        String actionDelete = "<a href='/tpcmsWebAdmin/deleteCrimeReport?caseId={caseId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 
-        return actionView.replace("{caseId}", id) + actionUpdate.replace("{caseId}", id) + actionDelete.replace("{caseId}", id);
+        return actionView.replace("{caseId}", id) + actionUpdate.replace("{caseId}", id);
     }
 
 }

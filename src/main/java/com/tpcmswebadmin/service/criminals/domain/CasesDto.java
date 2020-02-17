@@ -26,8 +26,6 @@ public class CasesDto implements Serializable {
 
     private String state;
 
-    private String wantedBy;
-
     private String status;
 
     private String actions;
