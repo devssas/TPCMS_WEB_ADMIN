@@ -245,12 +245,39 @@ var main = {
             return $state;
         }
     },
-    datepicker: function () {
+    datePicker: function () {
 
-        $(".datepicker").each( function () {
-            $(this).datepicker();
-        });
+        if($(".datepicker").length){
+            $(".datepicker").each( function () {
+                $(this).datepicker();
+            });
+        }
 
+        if($("#calendar").length){
+            var nextUrl = $("#calendar").data("next-url");
+
+            $( "#calendar" ).datepicker({
+                onSelect: function(date, datepicker) {
+                    console.log(date);
+                    window.location.href = nextUrl+"?"+date
+                },
+            });
+        }
+
+    },
+    timePicker: function(){
+      if($('.timepicker').length){
+          $('.timepicker').timepicker({
+              timeFormat: 'h:mm p',
+              interval: 60,
+              defaultTime: '11',
+              startTime: '10:00',
+              dynamic: false,
+              dropdown: true,
+              scrollbar: true,
+              zindex: 99999
+          });
+      }
     },
     dropzone: function () {
 
@@ -258,9 +285,23 @@ var main = {
 
             var uploadUrl = $(".photo-upload").data("upload-url");
 
-            $(".photo-upload-inner").dropzone({
+            $(".single-photo-upload .photo-upload-inner").dropzone({
                 url: uploadUrl,
                 maxFiles: 1,
+                thumbnailMethod: "contain"/*,
+                init: function() {
+                    this.on("addedfile", function(file) {
+                    });
+                }*/
+            });
+        }
+
+        if($(".multiple-photo-upload").length){
+            var uploadUrl = $(".photo-upload").data("upload-url");
+
+            $(".multiple-photo-upload .photo-upload-inner").dropzone({
+                url: uploadUrl,
+                maxFiles: 2,
                 thumbnailMethod: "contain"/*,
                 init: function() {
                     this.on("addedfile", function(file) {
@@ -378,6 +419,8 @@ var main = {
 
         $(document).on("afterLoad.fb", function (event, instance) {
             main.carousel();
+            main.timePicker();
+            main.dropzone();
             // console.log(event);
             // console.log(instance.$refs.container);
             // instance.$refs.container.removeClass("_loading").addClass("_loaded"); // needed for transition on side panel
@@ -404,7 +447,8 @@ $(function () {
     main.init();
     main.inputAction();
     main.customSelectbox();
-    main.datepicker();
+    main.datePicker();
+    main.timePicker();
     main.dropzone();
     main.carousel();
     main.filterControl();

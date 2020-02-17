@@ -22,6 +22,7 @@ const paths = {
 		jsLibPaths + 'modernizr-custom.js',
 		'node_modules/jquery/dist/jquery.min.js',
 		'node_modules/jquery-ui-dist/jquery-ui.min.js',
+		'node_modules/jquery-timepicker/jquery.timepicker.js',
 		'node_modules/dropzone/dist/min/dropzone.min.js',
 		'node_modules/handlebars/dist/handlebars.min.js',
 		'node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js',
