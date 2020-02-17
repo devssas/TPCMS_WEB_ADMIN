@@ -406,6 +406,32 @@
       padding: 0 10px;
     }
   }
+  .search-box-v2{
+    display: flex;
+    margin: 0 -10px;
+    .form-row{
+      width: calc(100% - 170px);
+      padding: 0 10px;
+      margin-bottom: 20px;
+      &.submit-row{
+        width: 150px;
+      }
+    }
+    input{
+      width: 100%;
+      @extend %fs-16;
+      @include f-roboto(400);
+      height: 50px;
+      line-height: 50px;
+      color: $color-4;
+      border: 1px solid rgba($color-black, 0.3);
+      border-radius: 8px;
+      padding: 0 10px;
+    }
+    button{
+      margin-top: 29px;
+    }
+  }
   .table-filter-inner{
     display: flex;
     .form-row{
