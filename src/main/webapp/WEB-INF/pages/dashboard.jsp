@@ -95,7 +95,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/dashboard" class="box-v1">
+                                <a href="${pageContext.request.contextPath}/sos" class="box-v1">
                                     <h3>SOS<span class="notification">1</span></h3>
                                     <p>${sosCount}</p>
                                     <span>Live Alerts</span>
