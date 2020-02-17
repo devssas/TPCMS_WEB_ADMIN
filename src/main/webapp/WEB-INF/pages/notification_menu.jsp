@@ -81,8 +81,8 @@
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
-<script src="assets/js/lib.min.js"></script>
-<script src="assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 
 
 </body>

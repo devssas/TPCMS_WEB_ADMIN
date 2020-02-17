@@ -6,7 +6,7 @@
 <!doctype html>
 <html lang="ar">
 <head>
-    <title>TPcms</title>
+    <title>404 Page Not Found</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,42 +34,19 @@
 
         <section class="content-wrapper">
 
-            <jsp:include page="big_main_menu_bar.jsp">
-                <jsp:param name="staff" value="active" />
-            </jsp:include>
+            <div class="container error-page">
 
-            <section class="content-inner">
+                <section class="not-found">
+                    <div class="inner">
+                        <h1><span>4</span><span>0</span><span>4</span></h1>
+                        <h3>We are sorry. The page you requested was not found.</h3>
+                        <a href="${pageContext.request.contextPath}/dashboard" class="button button-v2 button-icons sign-out">Home</a>
+                    </div> <!-- inner -->
+                </section> <!-- notfound-content -->
 
-                <section class="content">
+            </div> <!-- container -->
 
-                    <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Police Staff" />
-                    </jsp:include>
-
-                    <section>
-                        <ul class="horizontal-list v1">
-                            <li>
-                                <a href="${pageContext.request.contextPath}/officerProfiles" class="box-v2">
-                                    <i class="icon-police-staff"></i>
-                                    <h3>Officers Profile</h3>
-                                    <p>In this Section, you can View and Manage Officers Profiles.</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" class="box-v2">
-                                    <i class="icon-plus"></i>
-                                    <h3>Create New Officers</h3>
-                                    <p>In this Section, you can Create New Officers Profile.</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-
-                </section>
-
-
-
-            </section> <!-- content-inner -->
+        </section> <!-- content-inner -->
 
         </section> <!-- content-wrapper -->
 
@@ -77,12 +54,8 @@
 
 </div> <!-- page-wrapper -->
 
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
-
-
 </body>
 </html>
