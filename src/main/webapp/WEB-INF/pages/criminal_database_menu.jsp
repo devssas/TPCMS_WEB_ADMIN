@@ -49,14 +49,14 @@
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/crimeReports" class="box-v2">
                                     <i class="icon-manage-cases"></i>
                                     <h3>Manage Crime Reports</h3>
                                     <p>In this Section, you can View and Manage Cases filled by your Unit.</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/criminalCases" class="box-v2">
                                     <i class="icon-manage-criminals"></i>
                                     <h3>Manage Cases</h3>
                                     <p>In this Section, you can View and Manage Criminals and Wanted Persons Profiles.</p>

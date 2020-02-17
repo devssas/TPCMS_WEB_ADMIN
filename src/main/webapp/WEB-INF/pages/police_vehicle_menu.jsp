@@ -49,7 +49,7 @@
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/policeVehicles" class="box-v2">
                                     <i class="icon-manage-vehicle"></i>
                                     <h3>Manage Vehicles</h3>
                                     <p>In this Section, you can View and Manage Police Vehicles Permits.</p>
