@@ -80,7 +80,7 @@
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/notificationMenu" class="box-v1">
-                                    <h3>Notifications<span class="notification">1</span></h3>
+                                    <h3>Notifications<span class="notification">${notificationCount}</span></h3>
                                     <p>${notificationCount}</p>
                                     <span>Notifications</span>
                                     <i class="icon-notification"></i>
@@ -96,7 +96,7 @@
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/sos" class="box-v1">
-                                    <h3>SOS<span class="notification">1</span></h3>
+                                    <h3>SOS<span class="notification">${sosNotificationCount}</span></h3>
                                     <p>${sosCount}</p>
                                     <span>Live Alerts</span>
                                     <i class="icon-sos"></i>

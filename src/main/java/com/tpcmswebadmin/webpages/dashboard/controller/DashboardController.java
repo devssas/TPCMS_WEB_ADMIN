@@ -2,6 +2,7 @@ package com.tpcmswebadmin.webpages.dashboard.controller;
 
 import com.tpcmswebadmin.webpages.dashboard.delegate.DashboardDelegate;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardModel;
+import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardNotificationModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +19,15 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public String getDashboard(Model model, HttpServletRequest httpServletRequest) {
         DashboardModel dashboard = dashboardDelegate.getDashboard(httpServletRequest);
+        DashboardNotificationModel notificationModel = dashboardDelegate.getDashboardNotifications(httpServletRequest);
 
         model.addAttribute("missionPermitCount", dashboard.getMissionPermitCount());
         model.addAttribute("caseCount", dashboard.getCaseCount());
         model.addAttribute("notificationCount", dashboard.getNotificationCount());
         model.addAttribute("sosCount", dashboard.getSosCount());
+
+        model.addAttribute("sosNotificationCount", notificationModel.getSosCount());
+        model.addAttribute("notificationCount", notificationModel.getNotificationCount());
 
         return "dashboard";
     }
