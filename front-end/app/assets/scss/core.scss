@@ -480,6 +480,7 @@ header {
   padding: 0;
   direction: rtl !important;
   background-color: transparent;
+  overflow: visible;
 }
 
 
@@ -601,21 +602,8 @@ header {
         margin-bottom: 5px;
       }
       .text{
-        @extend %fs-13;
-        @include f-roboto(600);
-        display: block;
-        line-height: 3.1rem;
-        color: $color-black;
         background-color: rgba($color-6,0.2);
         border-radius: 20px;
-        padding: 0 10px;
-        + .text{
-          margin-top: 20px;
-        }
-        &.big-size{
-          @extend %fs-16;
-          line-height: 3.1rem;
-        }
       }
     }
   }
@@ -779,10 +767,10 @@ header {
   }
 }
 .fancy-card-box-v4 {
-  width: 461px;
+  width: 600px;
   background-color: $color-white;
   border-radius: 30px;
-  overflow: hidden;
+  overflow: visible;
   .content{
     padding: 20px 15px;
   }

@@ -258,7 +258,6 @@ var main = {
 
             $( "#calendar" ).datepicker({
                 onSelect: function(date, datepicker) {
-                    console.log(date);
                     window.location.href = nextUrl+"?"+date
                 },
             });
@@ -269,9 +268,6 @@ var main = {
       if($('.timepicker').length){
           $('.timepicker').timepicker({
               timeFormat: 'h:mm p',
-              interval: 60,
-              defaultTime: '11',
-              startTime: '10:00',
               dynamic: false,
               dropdown: true,
               scrollbar: true,
@@ -297,17 +293,61 @@ var main = {
         }
 
         if($(".multiple-photo-upload").length){
-            var uploadUrl = $(".photo-upload").data("upload-url");
+            var uploadUrl = $(".photo-upload").data("upload-url"),
+                deleteUrl = $(".photo-upload").data("delete-url");
+
+            /*$(".multiple-photo-upload .photo-upload-inner").dropzone({
+                url: uploadUrl,
+                maxFiles: 2,
+                thumbnailMethod: "contain"/!*,
+                init: function() {
+                    this.on("addedfile", function(file) {
+                    });
+                }*!/
+            });*/
 
             $(".multiple-photo-upload .photo-upload-inner").dropzone({
                 url: uploadUrl,
                 maxFiles: 2,
-                thumbnailMethod: "contain"/*,
-                init: function() {
-                    this.on("addedfile", function(file) {
+                addRemoveLinks: true,
+                removedfile: function(file) {
+                    var name = file.name;
+                    $.ajax({
+                        url: "delete",
+                        type: "POST",
+                        data: "id="+name,
+                        dataType: "html"
                     });
-                }*/
+                    var _ref;
+                    return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                },
+                maxfilesexceeded: function(file) {
+                    // this.removeAllFiles();
+                    // this.addFile(file);
+                },
+                thumbnailMethod: "contain",
+                // accept: function(file, done) {
+                //     // console.log("uploaded");
+                //     done();
+                // },
+                init: function() {
+                    // this.on("maxfilesexceeded", function(file){
+                    //     alert("No more files please!");
+                    // });
+                    this.on("addedfile", function() {
+                        if (this.files[2]!=null){
+                            this.removeFile(this.files[0]);
+                        }
+                    });
+                }
             });
+
+
+
+
+
+
+
         }
 
     },
@@ -387,8 +427,8 @@ var main = {
 
         if($("[data-fancybox-card]").length){
             $("[data-fancybox-card]").fancybox({
-                smallBtn:false
-
+                smallBtn: false,
+                toolbar: false
             });
         }
 
