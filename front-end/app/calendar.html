@@ -80,48 +80,16 @@
                 <section class="content">
 
                     <section class="highlight">
-                        <h2>Manage Cases</h2>
+                        <h2>Manage Notifications</h2>
                         <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
                     </section>
 
-                    <section class="content-box">
-                        <div class="table-filter">
-                            <form action="">
-                                <div class="form-container">
-                                    <div class="search-box">
-                                        <div class="form-row search-row">
-                                            <label>
-                                                <input type="text" placeholder="Search">
-                                                <i class="icon-search"></i>
-                                            </label>
-                                        </div>
-                                        <div class="form-row submit-row">
-                                            <button type="submit" class="button button-v3 button-icons fix-size-sml">Search <i class="icon-search"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="table-filter-inner">
-                                        <div class="form-row select-not-find">
-                                            <label>
-                                                <span class="label">Status</span>
-                                                <select name="" id="select-1">
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <a href="javascript:;" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v4/table-v4.html" data-json-url="assets/ajax/table/table-v4/table-v4.json"></section>
+                    <section>
+                        <div id="calendar" data-next-url="calendar-event.html"></div>
                     </section>
 
                 </section>
+
 
 
             </section> <!-- content-inner -->
@@ -132,11 +100,12 @@
 
 </div> <!-- page-wrapper -->
 
+<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
 <script src="assets/js/lib.min.js"></script>
 <script src="assets/js/core.min.js"></script>
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
+
 
 </body>
 </html>

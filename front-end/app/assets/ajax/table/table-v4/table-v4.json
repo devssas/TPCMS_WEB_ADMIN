@@ -2,70 +2,17 @@
   "status": true,
   "message": null,
   "data": {
-    "thead": ["Case ID", "Case Date", "User ID", "Location", "Crime Type", "Status", "Actions"],
+    "thead": ["National Id", "Criminal Name", "Address", "City", "State", "Wanted By", "Status", "Actions"],
     "tbody": [
       {
-        "caseId": "1276581212",
-        "caseDate": "2019/12/09",
-        "userId": "username",
-        "location": "Address/City/State",
-        "crimeType": "Type 1",
+        "nationalId": "1276581212",
+        "criminalName": "Name",
+        "address": "Libya St. 291",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "wantedBy": "unit 1/2/3/4",
         "status": "Active",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
-      },
-      {
-        "caseId": "1276581212",
-        "caseDate": "2019/12/09",
-        "userId": "username",
-        "location": "Address/City/State",
-        "crimeType": "Type 1",
-        "status": "Active",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
-      },
-      {
-        "caseId": "1276581212",
-        "caseDate": "2019/12/09",
-        "userId": "username",
-        "location": "Address/City/State",
-        "crimeType": "Type 1",
-        "status": "Active",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
-      },
-      {
-        "caseId": "1276581212",
-        "caseDate": "2019/12/09",
-        "userId": "username",
-        "location": "Address/City/State",
-        "crimeType": "Type 1",
-        "status": "Active",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
-      },
-      {
-        "caseId": "1276581212",
-        "caseDate": "2019/12/09",
-        "userId": "username",
-        "location": "Address/City/State",
-        "crimeType": "Type 1",
-        "status": "Active",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
-      },
-      {
-        "caseId": "1276581212",
-        "caseDate": "2019/12/09",
-        "userId": "username",
-        "location": "Address/City/State",
-        "crimeType": "Type 1",
-        "status": "Active",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
-      },
-      {
-        "caseId": "1276581212",
-        "caseDate": "2019/12/09",
-        "userId": "username",
-        "location": "Address/City/State",
-        "crimeType": "Type 1",
-        "status": "Active",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-cases-card.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-reload'></i></a>"
       }
     ]
   }
