@@ -2,6 +2,7 @@ package com.tpcmswebadmin.service.authentication;
 
 import com.ssas.tpcms.engine.vo.request.OfficersLoginRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
+import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
@@ -34,7 +35,7 @@ public class AuthenticationService {
     public TPEngineResponse signInUserName(SignInUsernameModel signInUsernameModel) {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setAdminUserName(signInUsernameModel.getUsername());
-        officersLoginRequestVO.setUserCode("57115"); //todo static in order to pass
+        officersLoginRequestVO.setUserCode(TpCmsConstants.USER_CODE); //todo static parameter pass
         setCredentials(officersLoginRequestVO);
 
         try {
@@ -86,7 +87,7 @@ public class AuthenticationService {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         officersLoginRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        officersLoginRequestVO.setMobileAppDeviceId("e369f536f443a91"); //todo static
+        officersLoginRequestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); // todo static parameter pass
         officersLoginRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         officersLoginRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }

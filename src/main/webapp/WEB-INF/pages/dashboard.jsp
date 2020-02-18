@@ -63,25 +63,25 @@
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v1">
+                                <a href="${pageContext.request.contextPath}/missionPermitsMenu" class="box-v1">
                                     <h3>Permits</h3>
-                                    <p>86</p>
+                                    <p>${missionPermitCount}</p>
                                     <span>Valid Permits</span>
                                     <i class="icon-mission-permits"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v1">
+                                <a href="${pageContext.request.contextPath}/criminalsMenu" class="box-v1">
                                     <h3>Cases</h3>
-                                    <p>31</p>
+                                    <p>${caseCount}</p>
                                     <span>Cases Added</span>
                                     <i class="icon-manage-cases"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v1">
+                                <a href="${pageContext.request.contextPath}/notificationMenu" class="box-v1">
                                     <h3>Notifications<span class="notification">1</span></h3>
-                                    <p>20</p>
+                                    <p>${notificationCount}</p>
                                     <span>Notifications</span>
                                     <i class="icon-notification"></i>
                                 </a>
@@ -95,9 +95,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v1">
-                                    <h3>Permits<span class="notification">1</span></h3>
-                                    <p>69</p>
+                                <a href="${pageContext.request.contextPath}/sos" class="box-v1">
+                                    <h3>SOS<span class="notification">1</span></h3>
+                                    <p>${sosCount}</p>
                                     <span>Live Alerts</span>
                                     <i class="icon-sos"></i>
                                 </a>

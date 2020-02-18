@@ -92,12 +92,12 @@
                                                 </select>
                                             </label>
                                         </div>
-                                        <a href="${pageContext.request.contextPath}/policeStaff" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
+                                        <a href="${pageContext.request.contextPath}/policeStaffMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v1/table-v1.html" data-json-url="assets/ajax/table/table-v1/table-v1.json"></section>
+                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v1/table-v1.html" data-json-url="/tpcmsWebAdmin/api/policeStaff"></section>
                     </section>
 
                 </section>
@@ -113,8 +113,8 @@
 </div> <!-- page-wrapper -->
 
 
-<script src="assets/js/lib.min.js"></script>
-<script src="assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
