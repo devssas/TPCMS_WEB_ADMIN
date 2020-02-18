@@ -76,6 +76,16 @@
     &.color-2{
       font-size: 22px;}
   }
+  &.icon-btn-with-text-v1{
+    i{
+      margin-left: 10px;
+    }
+  }
+  &.icon-btn-with-text-v2{
+    i{
+      margin-left: 10px;
+    }
+  }
   &.color-1{
     color: $color-1;
     background-color: rgba($color-1,0.15);
