@@ -82,6 +82,21 @@
     &.button-row{
       margin-top: 57px;
     }
+    &.text-row{
+      label{
+        @extend %fs-14;
+        @include f-roboto(normal);
+        line-height: 28px;
+        color: $color-black;
+        .label{
+          font-weight: bold;
+        }
+        .text-v1{
+          display: block;
+          opacity: 0.5;
+        }
+      }
+    }
     &.checkbox-row{
       label{
         width: 100%;
