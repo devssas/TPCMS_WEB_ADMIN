@@ -84,4 +84,12 @@
     color: $color-4;
     background-color: rgba($color-4,0.15);
   }
+  &.color-3{
+    color: $color-white;
+    background-color: $color-1;
+  }
+  &.color-4{
+    color: $color-white;
+    background-color:$color-4;
+  }
 }

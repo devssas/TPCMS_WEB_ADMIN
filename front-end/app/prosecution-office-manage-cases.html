@@ -38,7 +38,7 @@
                         <figure class="figure-text-1">
                             <img src="assets/images/text/header-title-text-2.png" alt="">
                         </figure>
-                    </div>
+                    </div> <!-- menu-top -->
                     <div class="menu-center">
                         <div class="inner">
                             <div class="profile-description">
@@ -48,8 +48,8 @@
                                 <div class="text">
                                     <h3>Milad Gajam</h3>
                                     <h4>System Administrator</h4>
-                                </div>
-                            </div>
+                                </div> <!-- text -->
+                            </div> <!-- profile-description -->
                             <nav class="menu">
                                 <ul>
                                     <li><a href="javascript:;" class="active"><i class="icon-dashboard"></i>Dashboard</a></li>
@@ -61,8 +61,8 @@
                                     <li><a href="javascript:;"><i class="icon-notification"></i>Notifications</a></li>
                                 </ul>
                             </nav>
-                        </div>
-                    </div>
+                        </div> <!-- inner -->
+                    </div> <!-- menu-center -->
                     <div class="menu-bottom">
                         <nav class="menu">
                             <ul>
@@ -70,8 +70,8 @@
                             </ul>
                         </nav>
                         <span class="description">Tripoli POLICE<br>Web Admin<br>v.1.0</span>
-                    </div>
-                </div>
+                    </div> <!-- menu-bottom -->
+                </div> <!-- inner -->
 
             </section>
 
@@ -80,48 +80,106 @@
                 <section class="content">
 
                     <section class="highlight">
-                        <h2>Manage Cases</h2>
+                        <div class="page-back">
+                            <a href="javascript:;" class=""><i class="icon-back"></i>Back to Overview</a>
+                            <h2>Manage Case</h2>
+                        </div>
                         <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
                     </section>
 
-                    <section class="content-box">
-                        <div class="table-filter">
-                            <form action="">
-                                <div class="form-container">
-                                    <div class="search-box">
-                                        <div class="form-row search-row">
-                                            <label>
-                                                <input type="text" placeholder="Search">
-                                                <i class="icon-search"></i>
-                                            </label>
-                                        </div>
-                                        <div class="form-row submit-row">
-                                            <button type="submit" class="button button-v3 button-icons fix-size-sml">Search <i class="icon-search"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="table-filter-inner">
-                                        <div class="form-row select-not-find">
-                                            <label>
-                                                <span class="label">Status</span>
-                                                <select name="" id="select-1">
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <a href="javascript:;" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v4/table-v4.html" data-json-url="assets/ajax/table/table-v4/table-v4.json"></section>
-                    </section>
+                    <form action="">
 
-                </section>
+                        <section class="content-box">
+                            <div class="divided-content flout-2">
+                                <div>
+                                    <div class="box-v3">
+                                        <div class="inner">
+                                            <div class="form-container">
+                                                <!-- TODO: label -->
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Officer Statment</span>
+                                                        <textarea name="" id="2" placeholder="Officer Statment"></textarea>
+                                                    </label>
+                                                </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
+                                </div>
+                                <div>
+                                    <div class="box-v3">
+                                        <div class="inner">
+                                            <div class="highlight box-highlight">
+                                                <h3>SUPPORTING STATMENTS</h3>
+                                            </div>
+                                            <div class="form-container">
+                                                <!-- TODO: caruesl -->
+                                                <div class="form-row">
+                                                    <div class="input-group-content">
+                                                        <label>
+                                                            <span class="label">Crime Type</span>
+                                                            <input type="text" placeholder="1 st Degree Murder">
+                                                        </label>
+                                                        <label>
+                                                            <span class="label">Crime Title</span>
+                                                            <input type="text" placeholder="Armed Burgulary">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="input-group-content">
+                                                        <label>
+                                                            <span class="label">Witness Statments</span>
+                                                            <input type="text" placeholder="1 st Degree Murder">
+                                                        </label>
+                                                        <label>
+                                                            <span class="label">Crime Title</span>
+                                                            <input type="text" placeholder="Surname">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label"></span>
+                                                        <textarea name="" id="2" placeholder="Statement"></textarea>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <span class="label"></span>
+                                                    <div class="input-group-content">
+                                                        <label>
+                                                            <input type="text" placeholder="Name">
+                                                        </label>
+                                                        <label>
+                                                            <input type="text" placeholder="Surname">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <label>
+                                                            <span class="label"></span>
+                                                            <textarea name="" id="2" placeholder="Statement"></textarea>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- form-container -->
+                                        </div> <!-- inner -->
+                                    </div> <!-- box-v3 -->
+                                </div>
+                            </div> <!-- divided-content flout-2 -->
+                            <div class="button-row">
+                                <input type="submit" class="button button-v4 color-1" value="Request More Evidence">
+                                <input type="submit" class="button button-v4 color-3 fix-size-sml" value="Approve">
+                                <input type="submit" class="button button-v4 color-4 fix-size-sml" value="Reject">
+                                <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
+                            </div>
+
+                            <section class="dynamic-content" data-template-url="assets/ajax/table/table-v11/table-v11.html" data-json-url="assets/ajax/table/table-v11/table-v11.json"></section>
+
+                        </section> <!-- content-box -->
+                    </form>
+
+
+                </section> <!-- content -->
 
 
 
@@ -132,8 +190,6 @@
     </div> <!-- page-inner -->
 
 </div> <!-- page-wrapper -->
-
-
 <script src="assets/js/lib.min.js"></script>
 <script src="assets/js/core.min.js"></script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
