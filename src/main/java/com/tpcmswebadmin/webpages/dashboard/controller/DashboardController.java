@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.dashboard.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.webpages.dashboard.delegate.DashboardDelegate;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardModel;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardNotificationModel;
@@ -28,6 +29,10 @@ public class DashboardController {
 
         model.addAttribute("sosNotificationCount", notificationModel.getSosCount());
         model.addAttribute("notificationCount", notificationModel.getNotificationCount());
+
+        model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
+        model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
+        model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));
 
         return "dashboard";
     }

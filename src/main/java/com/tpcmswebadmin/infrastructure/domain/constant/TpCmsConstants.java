@@ -9,6 +9,8 @@ public class TpCmsConstants {
     public static final String LOGIN_USER = "loginUser";
     public static final String OFFICER_CODE = "officerCode";
     public static final String REPORT_UNIT = "reportUnit";
+    public static final String USERNAME = "username";
+    public static final String USERCODE = "userCode";
 
     /**
      * static parameter pass for login calls
@@ -19,5 +21,12 @@ public class TpCmsConstants {
      * static user code for the signInUsername client call;
      */
     public static final String USER_CODE = "57115";
+
+    /**
+     * static parameter name, profile picture
+     */
+    public static final String OFFICER_NAME = "officerName";
+    public static final String OFFICER_PROFILE_PICTURE = "profilePicture";
+    public static final String ACCESS_ROLE = "accessRole";
 
 }
