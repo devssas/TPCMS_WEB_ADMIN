@@ -49,14 +49,14 @@
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/prosecutionManageCases" class="box-v2">
                                     <i class="icon-manage-cases"></i>
                                     <h3>Manage Cases</h3>
                                     <p>In this Section, you can View and Manage Open Cases.</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/prosecutionCasesHistory" class="box-v2">
                                     <i class="icon-history"></i>
                                     <h3>Cases History</h3>
                                     <p>In this Section, you can View Old Cases that are Closed and Archived.</p>
@@ -94,8 +94,8 @@
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
-<script src="assets/js/lib.min.js"></script>
-<script src="assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 
 
 </body>

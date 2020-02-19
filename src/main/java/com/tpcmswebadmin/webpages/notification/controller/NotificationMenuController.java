@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class NotificationMenuController {
 
-    @GetMapping("/notification")
+    @GetMapping("/notificationMenu")
     public String getNotifications() {
 
         return "notification_menu";

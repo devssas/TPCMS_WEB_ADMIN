@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PoliceStaffMenuController {
 
-    @GetMapping("/policeStaff")
+    @GetMapping("/policeStaffMenu")
     public String getPoliceStaff() {
 
         return "police_staff_menu";

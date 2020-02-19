@@ -1,7 +1,10 @@
-SERVER_PORT: 8082
+SERVER_PORT: 28081
 
 server:
   port: ${SERVER_PORT}
+  error:
+    whitelabel:
+      enabled: false
 
 logging:
   level:

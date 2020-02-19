@@ -49,7 +49,7 @@
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/missionPermits" class="box-v2">
                                     <i class="icon-permits"></i>
                                     <h3>Manage Permits</h3>
                                     <p>In this Section, you can View and Manage Officers Permits.</p>
@@ -80,8 +80,8 @@
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
-<script src="assets/js/lib.min.js"></script>
-<script src="assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 
 
 </body>

@@ -1,5 +1,7 @@
 package com.tpcmswebadmin.webpages.authentication.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
+import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
 import com.tpcmswebadmin.webpages.authentication.delegate.SignInPassCodeDelegate;
@@ -41,8 +43,9 @@ public class SignInPassCodeController {
         SignInPassCodeDto signInPassCodeDto = signInPassCodeDelegate.signInPassCode(signInPassCodeModel);
 
         if (signInPassCodeDto.isHasResult()) {
-            request.getSession().setAttribute("officerCode", signInPassCodeDto.getOfficerCode());
-            request.getSession().setAttribute("reportUnit", signInPassCodeDto.getReportUnit());
+            request.getSession().setAttribute(TpCmsConstants.OFFICER_CODE, signInPassCodeDto.getOfficerCode());
+            request.getSession().setAttribute(TpCmsConstants.REPORT_UNIT, signInPassCodeDto.getReportUnit());
+
 
             return "redirect:dashboard";
         } else {
