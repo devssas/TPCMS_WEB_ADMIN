@@ -1,13 +1,14 @@
 package com.tpcmswebadmin.webpages.authentication.delegate;
 
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
+import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.AuthenticationService;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
 import com.tpcmswebadmin.webpages.authentication.domain.SignInPassCodeDto;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.Base64;
 
 @Slf4j
 @Component
@@ -27,9 +28,15 @@ public class SignInPassCodeDelegate {
             signInPassCodeDto.setHasResult(true);
             signInPassCodeDto.setOfficerCode(response.getOfficerCode());
             signInPassCodeDto.setReportUnit(response.getOfficersProfileResponseVO().getReportingUnit());
+            signInPassCodeDto.setProfilePicture(convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
+            signInPassCodeDto.setOfficerName(StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
+            signInPassCodeDto.setAccessRole(response.getOfficersProfileResponseVO().getAccessRoleCode());
         }
 
         return signInPassCodeDto;
     }
 
+    private String convertToBase64image(byte[] image) {
+        return Base64.getEncoder().encodeToString(image);
+    }
 }

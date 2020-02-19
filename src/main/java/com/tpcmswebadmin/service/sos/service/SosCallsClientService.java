@@ -11,8 +11,6 @@ import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceStaffDto;
-import com.tpcmswebadmin.service.policestaff.service.mapper.PoliceStaffMapper;
 import com.tpcmswebadmin.service.sos.domain.SosCallDto;
 import com.tpcmswebadmin.service.sos.service.mapper.SosCallsMapper;
 import lombok.RequiredArgsConstructor;

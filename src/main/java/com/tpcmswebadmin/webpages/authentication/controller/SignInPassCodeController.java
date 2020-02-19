@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +35,8 @@ public class SignInPassCodeController {
 
     @PostMapping("/signInPassCode")
     public String getSignInPassCode(@Valid @ModelAttribute("signInPassCodeModel") SignInPassCodeModel signInPassCodeModel, BindingResult bindingResult, HttpServletRequest request) {
-        signInPassCodeModel.setUserName((String) request.getSession().getAttribute("username"));
-        signInPassCodeModel.setUserCode((String) request.getSession().getAttribute("userCode"));
+        signInPassCodeModel.setUserName((String) request.getSession().getAttribute(TpCmsConstants.USERNAME));
+        signInPassCodeModel.setUserCode((String) request.getSession().getAttribute(TpCmsConstants.USERCODE));
 
         String passCode = generatePassCode(signInPassCodeModel);
         signInPassCodeModel.setPassCodeFull(passCode);
@@ -45,7 +46,9 @@ public class SignInPassCodeController {
         if (signInPassCodeDto.isHasResult()) {
             request.getSession().setAttribute(TpCmsConstants.OFFICER_CODE, signInPassCodeDto.getOfficerCode());
             request.getSession().setAttribute(TpCmsConstants.REPORT_UNIT, signInPassCodeDto.getReportUnit());
-
+            request.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, signInPassCodeDto.getOfficerName());
+            request.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, signInPassCodeDto.getProfilePicture());
+            request.getSession().setAttribute(TpCmsConstants.ACCESS_ROLE, signInPassCodeDto.getAccessRole());
 
             return "redirect:dashboard";
         } else {

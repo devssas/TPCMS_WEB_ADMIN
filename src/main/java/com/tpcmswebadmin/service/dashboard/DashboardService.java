@@ -2,6 +2,7 @@ package com.tpcmswebadmin.service.dashboard;
 
 import com.ssas.tpcms.engine.vo.request.AdminDashBoardRequestVO;
 import com.ssas.tpcms.engine.vo.request.OfficersLoginRequestVO;
+import com.ssas.tpcms.engine.vo.request.PushNotificationsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
@@ -39,7 +40,24 @@ public class DashboardService {
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().adminDashboardRequest(adminDashBoardRequestVO);
         } catch (RemoteException | ServiceException e) {
-            logger.warn("Something wrong on signIn username request. {}", adminDashBoardRequestVO.getMobileAppUserName());
+            logger.warn("Something wrong on fetching dashboard. {}", adminDashBoardRequestVO.getMobileAppUserName());
+        }
+
+        return null;
+    }
+
+    public TPEngineResponse getAdminDashboardNotifications(HttpServletRequest httpServletRequest) {
+        PushNotificationsRequestVO pushNotificationsRequestVO = new PushNotificationsRequestVO();
+        pushNotificationsRequestVO.setLoginOfficersCode(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE)));
+        pushNotificationsRequestVO.setOfficerCode(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE)));
+        pushNotificationsRequestVO.setLoginOffierReportingUnit(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT)));
+
+        setCredentials(pushNotificationsRequestVO);
+
+        try {
+            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getPushNotifications(pushNotificationsRequestVO);
+        } catch (RemoteException | ServiceException e) {
+            logger.warn("Something wrong on fetching dashboard notifications request. {}", pushNotificationsRequestVO.getMobileAppUserName());
         }
 
         return null;
@@ -52,5 +70,14 @@ public class DashboardService {
         adminDashBoardRequestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo static
         adminDashBoardRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         adminDashBoardRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
+    }
+
+    private void setCredentials(PushNotificationsRequestVO pushNotificationsRequestVO) {
+        TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
+
+        pushNotificationsRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
+        pushNotificationsRequestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo static
+        pushNotificationsRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
+        pushNotificationsRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }
 }

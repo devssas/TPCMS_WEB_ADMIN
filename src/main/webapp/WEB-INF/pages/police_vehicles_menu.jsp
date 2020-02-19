@@ -36,6 +36,9 @@
 
             <jsp:include page="big_main_menu_bar.jsp">
                 <jsp:param name="policeVehicles" value="active" />
+                <jsp:param name="officerName" value="${officerName}" />
+                <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
+                <jsp:param name="accessRole" value="${accessRole}" />
             </jsp:include>
 
             <section class="content-inner">

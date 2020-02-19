@@ -1,9 +1,11 @@
 package com.tpcmswebadmin.webpages.dashboard.delegate;
 
 import com.ssas.tpcms.engine.vo.response.AdminDashBoardResponseVO;
+import com.ssas.tpcms.engine.vo.response.PushNotificationsResponseVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.service.dashboard.DashboardService;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardModel;
+import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardNotificationModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -33,4 +35,17 @@ public class DashboardDelegate {
                 .sosCount(clientResponse.getCountSOSVO().length == 0 ? "0" : clientResponse.getCountSOSVO()[0].getTotalSOSRequestCount())
                 .build();
     }
+
+    public DashboardNotificationModel getDashboardNotifications(HttpServletRequest httpServletRequest) {
+        TPEngineResponse response = dashboardService.getAdminDashboardNotifications(httpServletRequest);
+        PushNotificationsResponseVO[] clientResponse = response.getPushNotificationsList();
+
+        log.info("Dashboard notifications request to be returned for user {}", response.getOfficerCode());
+
+        return DashboardNotificationModel.builder()
+                .notificationCount(clientResponse[0].getTotalNotificationCount())
+                .sosCount(clientResponse[0].getTotalSOSCount())
+                .build();
+    }
+
 }

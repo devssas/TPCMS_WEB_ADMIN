@@ -94,11 +94,11 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
     public List<String> setTableColumnNames() {
         List<String> list = new ArrayList<>();
 
-        list.add("National ID");
-        list.add("Criminal Name");
+        list.add("Report ID");
+        list.add("Officer Name");
         list.add("Address");
         list.add("City");
-        list.add("State");
+        list.add("Created");
         list.add("Wanted By");
         list.add("Status");
         list.add("Actions");

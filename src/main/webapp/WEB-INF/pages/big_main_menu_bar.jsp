@@ -12,11 +12,11 @@
             <div class="inner">
                 <div class="profile-description">
                     <figure>
-                        <img src="assets/images/layout/profile-foto.jpg" alt="">
+                        <img src="data:image/png;base64,${param.officerProfilePicture}" alt="" width="20" height="35">
                     </figure>
                     <div class="text">
-                        <h3>Milad Gajam</h3>
-                        <h4>System Administrator</h4>
+                        <h3>${param.officerName}</h3>
+                        <h4>${param.accessRole}</h4>
                     </div>
                 </div>
                 <nav class="menu">

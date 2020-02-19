@@ -24,4 +24,5 @@ public class NotificationControllerAPI {
     public ResponseDto<NotificationDto> getNotifications(HttpServletRequest httpServletRequest) {
         return notificationClientService.getResponseDto(httpServletRequest);
     }
+
 }

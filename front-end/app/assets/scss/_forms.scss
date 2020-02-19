@@ -97,6 +97,103 @@
     &.button-row{
       margin-top: 57px;
     }
+    &.text-row{
+      label{
+        @extend %fs-14;
+        @include f-roboto(normal);
+        line-height: 28px;
+        color: $color-black;
+        .label{
+          font-weight: bold;
+        }
+        .text-v1{
+          display: block;
+          opacity: 0.5;
+        }
+      }
+    }
+    &.checkbox-row{
+      label{
+        width: 100%;
+        position: relative;
+        .label{
+          @extend %fs-16;
+          @include f-roboto(500);
+          background-color: $color-2;
+          width: 100%;
+          height: 50px;
+          line-height: 50px;
+          padding-right: 20px;
+          border-radius: 8px;
+        }
+        input{
+          position: absolute;
+          width: 0;
+          height: 0;
+          cursor: pointer;
+          opacity: 0;
+          &:checked{
+            ~ .checkmark {
+              background-color: $color-1;
+              &:after {
+                content: "";
+                margin-top: 5px;
+                margin-right: 7px;
+                width: 6px;
+                height: 10px;
+                border: solid white;
+                border-width: 0 3px 3px 0;
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+                display: block;
+              }
+            }
+          }
+          &:disabled{
+            ~ .checkmark {
+              &:after {
+                cursor: not-allowed;
+              }
+            }
+          }
+        }
+        .checkmark{
+          position: absolute;
+          top: 13px;
+          left: 13px;
+          height: 24px;
+          width: 24px;
+          border: 1px solid #eee;
+          border-radius: 6px;
+          background-color:rgba(0, 0, 0, 0.3);
+        }
+        &:hover{
+          input{
+            &:not([disabled]){
+              ~ .checkmark{
+                background-color: #ccc;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.form-with-icon{
+      label{
+        position: relative;
+        input{
+          padding: 0 20px 0 0;
+        }
+        i{
+          position: absolute;
+          top: 70%;
+          left: 20px;
+          font-size: 16px;
+          transform: translateY(-50%);
+        }
+      }
+    }
     &.search-row{
       label{
         position: relative;
@@ -470,6 +567,31 @@
       padding: 0 10px;
     }
   }
+  .search-box-v2{
+    display: flex;
+    margin: 0 -10px;
+    .form-row{
+      width: calc(100% - 170px);
+      padding: 0 10px;
+      margin-bottom: 20px;
+      &.submit-row{
+        width: 150px;
+      }
+    }
+    input{
+      width: 100%;
+      @extend %fs-16;
+      @include f-roboto(400);
+      height: 50px;
+      line-height: 50px;
+      color: $color-4;
+      border-radius: 8px;
+      padding: 0 10px;
+    }
+    button{
+      margin-top: 29px;
+    }
+  }
   .table-filter-inner{
     display: flex;
     .form-row{
@@ -513,20 +635,24 @@
       margin-right: auto;
     }
   }
+  hr{
+    opacity: 0.5;
+    margin-top: 5px;
+    margin-bottom: 25px;
+  }
 }
 
 .button-row{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 15px;
   > * {
     + *{
       margin-right: 30px;
     }
   }
 }
-
-
 
 //------------------------------------------------------------
 // = PLUGIN OVERRIDE STYLES

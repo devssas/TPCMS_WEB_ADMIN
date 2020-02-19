@@ -2,16 +2,19 @@ package com.tpcmswebadmin.service.criminals.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.CrimeReportResponseVO;
 import com.ssas.tpcms.engine.vo.response.OfficersProfileResponseVO;
+import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
 import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceStaffDto;
 import com.tpcmswebadmin.service.policestaff.service.mapper.PoliceStaffMapper;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CrimeReportsMapper {
 
@@ -22,13 +25,14 @@ public class CrimeReportsMapper {
     }
 
     public static CrimeReportDto makeCrimeReportDto(CrimeReportResponseVO crimeReportResponseVOS) {
+        log.info("{} . {}", crimeReportResponseVOS.getReportedDate(), crimeReportResponseVOS.getCrimeReportsId());
         return CrimeReportDto.builder()
-                .nationalId(crimeReportResponseVOS.getNationalIdNumber())
-                .criminalName(crimeReportResponseVOS.getReportingFirstName_Ar() + " " + crimeReportResponseVOS.getReportingLastName_Ar())
-                .address(crimeReportResponseVOS.getContactAddress())
-                .city(crimeReportResponseVOS.getCityName())
-                .state(null)
-                .wantedBy(null)
+                .reportId(crimeReportResponseVOS.getCrimeReportsId())
+                .officerName(crimeReportResponseVOS.getReportingFirstName_Ar() + " " + crimeReportResponseVOS.getReportingLastName_Ar())
+                .address(crimeReportResponseVOS.getCrimeScene())
+                .city(crimeReportResponseVOS.getCrimeLocation())
+                .created(DateUtility.convertDateToString(DateUtility.convertFromStringToDate(crimeReportResponseVOS.getReportedDate())))
+                .wantedBy("-")
                 .status(crimeReportResponseVOS.getCrimianlStatusCode())
                 .actions(prepareActionsColumn(crimeReportResponseVOS.getNationalIdNumber()))
                 .build();

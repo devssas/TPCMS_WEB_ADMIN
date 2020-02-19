@@ -15,15 +15,15 @@ public class CrimeReportDto implements Serializable {
 
     private static final long serialVersionUID = -6597756178901602557L;
 
-    private String nationalId;
+    private String reportId;
 
-    private String criminalName;
+    private String officerName;
 
     private String address;
 
     private String city;
 
-    private String state;
+    private String created;
 
     private String wantedBy;
 

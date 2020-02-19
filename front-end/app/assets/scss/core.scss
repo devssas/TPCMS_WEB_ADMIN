@@ -294,6 +294,9 @@ header {
     height: 400px;
     background-color: grey;
   }
+  &.mt-20{
+    margin-top: 20px;
+  }
 }
 
 .box-v1{
@@ -472,6 +475,9 @@ header {
         }
       }
     }
+  }
+  &.table-rounded{
+    border-radius: 20px;
   }
 }
 
