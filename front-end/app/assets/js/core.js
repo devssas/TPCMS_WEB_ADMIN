@@ -293,8 +293,9 @@ var main = {
         }
 
         if($(".multiple-photo-upload").length){
-            var uploadUrl = $(".photo-upload").data("upload-url"),
-                deleteUrl = $(".photo-upload").data("delete-url");
+            var photoUpload = $(".multiple-photo-upload .photo-upload"),
+                uploadUrl = photoUpload.data("upload-url"),
+                deleteUrl = photoUpload.data("delete-url");
 
             /*$(".multiple-photo-upload .photo-upload-inner").dropzone({
                 url: uploadUrl,
@@ -461,6 +462,13 @@ var main = {
             main.carousel();
             main.timePicker();
             main.dropzone();
+
+            // if($(".print-button").length){
+            //     $(".print-button").off("click").on({
+            //         click: function () {
+            //         }
+            //     })
+            // }
             // console.log(event);
             // console.log(instance.$refs.container);
             // instance.$refs.container.removeClass("_loading").addClass("_loaded"); // needed for transition on side panel

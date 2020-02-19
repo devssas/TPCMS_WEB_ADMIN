@@ -1152,3 +1152,13 @@ header {
   margin-top: 5px !important;
 }
 
+
+
+@media print {
+
+  .page-wrapper{
+    display: none;
+  }
+
+}
+

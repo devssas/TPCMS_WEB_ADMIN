@@ -40,6 +40,31 @@
     color: $color-white;
     background: $color-1;
   }
+  &.color-1{
+    color: $color-white;
+    background: $color-1;
+    &:hover{
+      color: $color-white;
+      background: $color-1;
+    }
+  }
+  &.color-2{
+    color: $color-white;
+    background: $color-4;
+    &:hover{
+      color: $color-white;
+      background: $color-4;
+    }
+  }
+  &.color-3{
+    color: $color-white;
+    background: $color-7;
+    &:hover{
+      color: $color-white;
+
+      background: $color-7;
+    }
+  }
 }
 .button-v2{
   @extend %fs-16;
