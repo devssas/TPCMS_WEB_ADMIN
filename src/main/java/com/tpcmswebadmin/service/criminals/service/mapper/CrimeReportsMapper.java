@@ -25,7 +25,6 @@ public class CrimeReportsMapper {
     }
 
     public static CrimeReportDto makeCrimeReportDto(CrimeReportResponseVO crimeReportResponseVOS) {
-        log.info("{} . {}", crimeReportResponseVOS.getReportedDate(), crimeReportResponseVOS.getCrimeReportsId());
         return CrimeReportDto.builder()
                 .reportId(crimeReportResponseVOS.getCrimeReportsId())
                 .officerName(crimeReportResponseVOS.getReportingFirstName_Ar() + " " + crimeReportResponseVOS.getReportingLastName_Ar())
@@ -34,15 +33,15 @@ public class CrimeReportsMapper {
                 .created(DateUtility.convertDateToString(DateUtility.convertFromStringToDate(crimeReportResponseVOS.getReportedDate())))
                 .wantedBy("-")
                 .status(crimeReportResponseVOS.getCrimianlStatusCode())
-                .actions(prepareActionsColumn(crimeReportResponseVOS.getNationalIdNumber()))
+                .actions(prepareActionsColumn(crimeReportResponseVOS.getCrimeReportsId()))
                 .build();
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewCrimeReport?caseId={caseId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateCrimeReport?caseId={caseId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+        String actionView = "<a href='/tpcmsWebAdmin/viewCrimeReport?reportId={reportId}' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateCrimeReport?reportId={reportId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
 
-        return actionView.replace("{caseId}", id) + actionUpdate.replace("{caseId}", id);
+        return actionView.replace("{reportId}", id) + actionUpdate.replace("{reportId}", id);
     }
 
 }

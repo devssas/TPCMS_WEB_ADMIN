@@ -38,8 +38,8 @@
 
                 <section class="not-found">
                     <div class="inner">
-                        <h1><span>4</span><span>0</span><span>4</span></h1>
-                        <h3>We are sorry. The page you requested was not found.</h3>
+                        <h1><span>4</span><span>0</span><span>1</span></h1>
+                        <h3>You dont have permission to view this page</h3>
                         <a href="${pageContext.request.contextPath}/dashboard" class="button button-v2 button-icons sign-out">Home</a>
                     </div> <!-- inner -->
                 </section> <!-- notfound-content -->
