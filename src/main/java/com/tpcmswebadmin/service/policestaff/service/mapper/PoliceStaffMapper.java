@@ -20,11 +20,11 @@ public class PoliceStaffMapper {
 
     public static PoliceStaffDto makePoliceStaffDto(OfficersProfileResponseVO officersProfileResponseVO) {
         return PoliceStaffDto.builder()
-                .officerId(officersProfileResponseVO.getOfficerProfileId())
+                .officerCode(officersProfileResponseVO.getOfficerCode())
                 .officerName(officersProfileResponseVO.getOfficer_FirstName_Ar() + " " + officersProfileResponseVO.getOfficer_LastName_Ar())
                 .address(officersProfileResponseVO.getContactAddress())
                 .city(officersProfileResponseVO.getLivingCity())
-                .state(null)
+                .accessRole(officersProfileResponseVO.getAccessRoleCode())
                 .status(officersProfileResponseVO.getStatusCode())
                 .lastLogin(null)
                 .actions(prepareActionsColumn(officersProfileResponseVO.getOfficerProfileId()))
@@ -32,7 +32,7 @@ public class PoliceStaffMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewOfficer?officerId={officerId}' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a>";
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/officerCard?officerId={officerId}'><i class='icon-view'></i></a>";
         String actionUpdate = "<a href='/tpcmsWebAdmin/updateOfficer?officerId={officerId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
         String actionDelete = "<a href='/tpcmsWebAdmin/deleteOfficer?officerId={officerId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 

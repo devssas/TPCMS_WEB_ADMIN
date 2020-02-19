@@ -18,6 +18,7 @@
 // = LIBRARY OVERRIDE
 //------------------------------------------------------------
 @import "../../../node_modules/jquery-ui-dist/jquery-ui.min";
+@import "../../../node_modules/jquery-timepicker/jquery.timepicker";
 @import "../../../node_modules/dropzone/dist/dropzone";
 @import "../../../node_modules/select2/dist/css/select2.min";
 @import "../../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min";
@@ -57,8 +58,14 @@ html, body {
 }
 
 body {
-  direction: rtl !important;
   background-color: $color-3;
+  direction: rtl !important;
+  //unicode-bidi: bidi-override !important;
+  * {
+    direction: rtl !important;
+    //text-align: right;
+    //unicode-bidi: bidi-override !important;
+  }
   &.login-page {
     position: relative;
     background: transparent url("../images/bg/bg-v1.jpg") no-repeat center / cover;
@@ -393,6 +400,25 @@ header {
   background: $color-white;
   border-radius: 15px;
   padding: 25px 28px;
+  .icon-content-box{
+    text-align: right;
+    margin-bottom: 20px;
+    ul{
+      li{
+        a{
+          width: 40px;
+          height: 40px;
+          display: inline-block;
+          text-align: center;
+          font-size: 25px;
+          line-height: 40px;
+          background: rgba($color-1,0.5);
+          color: $color-white;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
 }
 
 .table-v1 {
@@ -457,7 +483,7 @@ header {
 }
 
 
-.fancy-card-box-v1, .fancy-card-box-v2{
+.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3{
   width: 461px;
   background-color: $color-white;
   border-radius: 30px;
@@ -674,20 +700,125 @@ header {
     }
   }
 }
+.fancy-card-box-v3{
+  .fancy-top-content{
+    figure{
+      display: inline-block;
+      border: 1px solid $color-4;
+      border-radius: 85px;
+      padding: 35px;
+      margin-bottom: 10px;
+      img{
+        border-radius: 85px;
+      }
+    }
+    .divided-content{
+    }
+    .form-row{
+      label{
+        display: flex;
+        flex-direction: column;
+        > *{
+
+        }
+        .label{
+          @extend %fs-16;
+          @include f-gesstMedium;
+          color: rgba($color-black,0.7);
+        }
+        .text{
+          @extend %fs-18;
+          @include f-gesstMedium;
+          color: $color-black;
+        }
+      }
+    }
+  }
+  .content{
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    &:after, &:before{
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+    &:after{
+      z-index: 2;
+      background: url('../images/bg/bg-v1.jpg') no-repeat center / cover;
+      opacity: 0.4;
+    }
+    &:before{
+      z-index: 1;
+      background: $color-1;
+    }
+    .form-content{
+      position: relative;
+      z-index: 3;
+      .divided-content{
+        .form-row{
+          label{
+            display: flex;
+            > * {
+              width: 50%;
+              &.label{
+
+                @include f-gesstMedium;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.fancy-card-box-v4 {
+  width: 461px;
+  background-color: $color-white;
+  border-radius: 30px;
+  overflow: hidden;
+  .content{
+    padding: 20px 15px;
+  }
+}
 
 .divided-content{
   display: flex;
   &.flout-2{
     margin: 0 -15px;
     > *{
-      width: 100%;
+      width: 50%;
       padding: 0 15px;
+    }
+    &.wrap{
+      flex-wrap: wrap;
     }
     &.custom-size-v1{
       > *{
         width: 60%;
         &:first-child{
           width: 40%;
+        }
+      }
+    }
+    &.custom-size-v2{
+      justify-content: center;
+      >* {
+        width: auto;
+        padding: 0 15px;
+      }
+    }
+    &.custom-size-v3{
+      > *{
+        width: 30%;
+        &:first-child{
+          width: 70%;
         }
       }
     }
@@ -735,6 +866,85 @@ header {
 
         }
       }
+    }
+  }
+}
+
+#calendar{
+  .ui-datepicker-inline{
+    border: none;
+    box-shadow: none;
+    .ui-datepicker-header{
+      padding: 40px !important;
+      .ui-datepicker-title{
+        @extend %fs-22;
+        @include f-roboto(500);
+        color: rgba($color-black,0.7);
+      }
+      .ui-corner-all{
+        @extend [class^="icon-"];
+        @extend .icon-right-open;
+        width: 50px;
+        height: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        &:before{
+          font-size: 30px;
+        }
+        &.ui-datepicker-prev{
+        }
+        &.ui-datepicker-next{
+          //@extend .icon-right-open;
+        }
+      }
+    }
+    .ui-datepicker-calendar{
+      direction: rtl;
+      thead{
+        tr{
+          th{
+            padding: 0;
+            span{
+              @extend %fs-18;
+              @include f-roboto(500);
+              display: block;
+              text-align: center;
+              background-color: $color-3;
+              color: rgba($color-black,0.7);
+              padding: 40px;
+            }
+          }
+        }
+      }
+      tbody{
+        tr{
+          td{
+            text-align: center;
+            a{
+              @extend %fs-16;
+              @include f-roboto(400);
+              width: auto;
+              height: auto;
+              color: rgba($color-black,0.7);
+              padding: 40px;
+              &.ui-state-highlight {
+                color: $color-white;
+                &.ui-state-hover{
+                  background-color: $color-1;
+                }
+              }
+              &.ui-state-active{
+                color: $color-white;
+              }
+              &.ui-state-hover{
+                //background-color: rgba($color-5,0.3);
+                background-color: $color-3;
+              }
+            }
+          }
+        }
+      }
+
     }
   }
 }

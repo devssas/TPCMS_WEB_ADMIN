@@ -42,7 +42,6 @@ public class SupervisorClientService implements ClientServiceAPI<SupervisorDto, 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         return prepareResponseDto(AdministratorMapper.makeSupervisorDtoList(response.getOfficersProfileList()));
-
     }
 
     @Override
@@ -63,11 +62,12 @@ public class SupervisorClientService implements ClientServiceAPI<SupervisorDto, 
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         ViewOfficersProfileRequestVO viewOfficersProfileRequestVO = new ViewOfficersProfileRequestVO();
-        viewOfficersProfileRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewOfficersProfileRequestVO.setLoginOfficerUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
+        viewOfficersProfileRequestVO.setLoginOfficersCode("LYeGOV55397TP"); //todo test static and change
+        viewOfficersProfileRequestVO.setLoginOfficerUnitNumber("105"); //todo static and change
         viewOfficersProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewOfficersProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewOfficersProfileRequestVO.setOfficerProfileSeeAll("Y");
+        viewOfficersProfileRequestVO.setAccessRoleCode("ADMIN");
 
         setCredentials(viewOfficersProfileRequestVO);
 
@@ -99,7 +99,7 @@ public class SupervisorClientService implements ClientServiceAPI<SupervisorDto, 
         list.add("Name");
         list.add("Address");
         list.add("City");
-        list.add("State");
+        list.add("Access Role");
         list.add("Last Login");
         list.add("Status");
         list.add("Actions");

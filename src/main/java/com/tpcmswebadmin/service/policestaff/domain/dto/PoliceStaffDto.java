@@ -16,7 +16,7 @@ public class PoliceStaffDto implements Serializable {
 
     private static final long serialVersionUID = -8299257537137496834L;
 
-    private String officerId;
+    private String officerCode;
 
     private String officerName;
 
@@ -24,7 +24,7 @@ public class PoliceStaffDto implements Serializable {
 
     private String city;
 
-    private String state;
+    private String accessRole;
 
     private String lastLogin;
 

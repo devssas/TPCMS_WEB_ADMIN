@@ -38,4 +38,17 @@ public class DateUtility {
         }
         return date;
     }
+
+    public static String convertToFormat(String stringDate, String format) {
+        DateFormat dateFormat = new SimpleDateFormat(format);
+        Date date = new Date();
+
+        try {
+            date = dateFormat.parse(stringDate);
+        } catch (ParseException e) {
+            log.error("Error :", e);
+        }
+
+        return dateFormat.format(date);
+    }
 }

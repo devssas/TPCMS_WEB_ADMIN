@@ -24,7 +24,7 @@ public class AdministratorMapper {
                 .adminName(officersProfileResponseVO.getOfficer_FirstName_Ar() + " " + officersProfileResponseVO.getOfficer_LastName_Ar())
                 .address(officersProfileResponseVO.getContactAddress())
                 .city(officersProfileResponseVO.getLivingCity())
-                .state(null)
+                .accessRole(officersProfileResponseVO.getAccessRoleCode())
                 .lastLogin(null)
                 .status(officersProfileResponseVO.getStatusCode())
                 .actions(prepareActionsColumn(officersProfileResponseVO.getOfficerProfileId()))
