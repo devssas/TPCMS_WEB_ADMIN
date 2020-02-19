@@ -1,6 +1,7 @@
 package com.tpcmswebadmin.service.prosecutionoffice.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.CriminalsProfileResponseVO;
+import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.service.criminals.domain.CasesDto;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
 import lombok.AccessLevel;
@@ -22,7 +23,7 @@ public class ProsecutionProfileMapper {
     public static ProsecutionCasesDto makeProsecutionCasesDto(CriminalsProfileResponseVO criminalsProfileResponseVO) {
         return ProsecutionCasesDto.builder()
                 .caseId(criminalsProfileResponseVO.getCaseId())
-                .caseDate(null)
+                .caseDate(DateUtility.convertDateToString(DateUtility.convertFromStringToDate(criminalsProfileResponseVO.getArrestedDate())))
                 .userId(criminalsProfileResponseVO.getCriminalsId())
                 .location(criminalsProfileResponseVO.getCrimeLocation())
                 .crimeType(criminalsProfileResponseVO.getCrimeClassification())
