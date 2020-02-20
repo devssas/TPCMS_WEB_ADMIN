@@ -15,7 +15,7 @@
       display: block;
       margin-bottom: 10px;
     }
-    input[type="text"], input[type="password"], input[type="tel"], select, textarea{
+    input[type="text"], input[type="password"], input[type="tel"], input[type="email"], select, textarea{
       @extend %fs-14;
       @include f-roboto(400);
       width: 100%;
@@ -223,10 +223,6 @@
       }
     }
     &.radio-btn-v1-row{
-      //display: flex;
-      //> *{
-      //  width: 50%;
-      //}
       .radio-btn-group{
         display: flex;
         margin: 0 -15px;
@@ -304,6 +300,7 @@
         }
       }
     }
+
     &.single-photo-upload{
       .photo-upload {
         @extend .dropzone;
@@ -330,95 +327,9 @@
           height: 100%;
           cursor: pointer;
           .dz-preview{
+            position: static;
             display: flex !important;
             align-items: center;
-            justify-content: center;
-            .dz-image{
-              height: auto !important;
-            }
-          }
-          &.dz-started{
-            ~ i{
-              &.icon-admin-profile{
-                display: none;
-              }
-            }
-            ~ span{
-              &.description{
-                display: none;
-              }
-              &.delete-images{
-                display: block;
-              }
-            }
-          }
-          &.dz-max-files-reached{
-            pointer-events: none;
-            cursor: default;
-          }
-        }
-        i{
-          &.icon-admin-profile{
-            color: rgba($color-black, 0.5);
-            font-size: 48px;
-          }
-          &.icon-delete{
-            font-size: 15px;
-            line-height: 32px;
-            color: $color-white;
-          }
-        }
-        span{
-          &.description{
-            @extend %fs-13;
-            @include f-roboto(500);
-            color: rgba($color-black, 0.5);
-          }
-          &.delete-images{
-            position: absolute;
-            top: -13px;
-            right: -13px;
-            display: none;
-            width: 32px;
-            height: 32px;
-            text-align: center;
-            background-color: $color-4;
-            border-radius: 50%;
-          }
-        }
-      }
-    }
-    &.multiple-photo-upload{
-      .photo-upload{
-        @extend .dropzone;
-
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        flex-direction: column;
-        width: 100%;
-        height: 177px !important;
-        border: 1px solid rgba($color-black, 0.3) !important;
-        border-radius: 8px !important;
-        margin: 0 auto;
-        overflow: visible !important;
-        .photo-upload-inner{
-          position: absolute;
-          z-index: 5;
-          top: 0;
-          left: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 100%;
-          padding-right: 100px;
-          cursor: pointer;
-          .dz-preview{
-            position: relative;
-            display: flex !important;
-            align-items: center;
-            text-indent: -999999;
             justify-content: center;
             .dz-image{
               height: auto !important;
@@ -449,21 +360,89 @@
               }
             }
           }
-          &.dz-started{
-            ~ i{
-              &.icon-admin-profile{
-                //display: none;
-              }
-            }
-            ~ span{
-              &.description{
-                //display: none;
-              }
-            }
+        }
+        i{
+          color: rgba($color-black, 0.5);
+          font-size: 48px;
+        }
+        span{
+          &.description{
+            @extend %fs-13;
+            @include f-roboto(500);
+            color: rgba($color-black, 0.5);
           }
-          &.dz-max-files-reached{
-            //pointer-events: none;
-            //cursor: default;
+        }
+      }
+    }
+    &.multiple-photo-upload{
+      .photo-upload{
+        @extend .dropzone;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        max-width: 100% !important;
+        height: 200px !important;
+        border: 1px solid rgba($color-black, 0.3) !important;
+        border-radius: 8px !important;
+        margin: 0 auto;
+        .photo-upload-inner{
+          position: absolute;
+          z-index: 5;
+          top: 0;
+          left: 0;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 100%;
+          height: 100%;
+          padding: 0 130px 0 0;
+          cursor: pointer;
+          overflow-x: auto !important;
+          .dz-preview{
+            position: relative;
+            display: flex !important;
+            align-items: center;
+            height: 70%;
+            text-indent: -999999;
+            justify-content: center;
+            background-color: $color-white;
+            margin: 0;
+            padding: 0 15px;
+            .dz-image{
+              height: auto !important;
+            }
+            .dz-details{
+              top: 50%;
+              transform: translateY(-50%);
+              overflow: hidden;
+            }
+            .dz-error-message{
+              display: none !important;
+            }
+            .dz-remove{
+              @extend [class^="icon-"];
+              @extend .icon-delete;
+              position: absolute;
+              top: -13px;
+              left: -13px;
+              display: block;
+              width: 32px;
+              height: 32px;
+              font-size: 15px;
+              line-height: 32px;
+              color: $color-white;
+              text-align: center;
+              background-color: $color-4;
+              border-radius: 50%;
+              z-index: 9999;
+              overflow: hidden;
+              &:hover{
+                text-decoration: none;
+              }
+            }
           }
         }
         .custom-upload{
@@ -472,10 +451,8 @@
           justify-content: center;
           align-items: center;
           i{
-            &.icon-admin-profile{
-              color: rgba($color-black, 0.5);
-              font-size: 48px;
-            }
+            color: rgba($color-black, 0.5);
+            font-size: 48px;
           }
           span{
             &.description{

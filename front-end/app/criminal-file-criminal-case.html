@@ -82,7 +82,7 @@
                     <section class="highlight">
                         <div class="page-back">
                             <a href="javascript:;" class=""><i class="icon-back"></i>Back to Overview</a>
-                            <h2>File Criminal Case</h2><!-- TODO: Report ID:F187789 box -->
+                            <h2 class="highlight-button-row">File Criminal Case<span class="button button-v5">Case ID: <span>F187789</span></span></h2>
                         </div>
                         <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
                     </section>
@@ -99,11 +99,10 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row single-photo-upload">
-                                                    <div class="photo-upload" data-upload-url="/file/post" ><!-- TODO: photo gösterilecek -->
-                                                        <div class="photo-upload-inner"></div>
-                                                        <i class="icon-admin-profile"></i>
+                                                    <div class="photo-upload upload-view">
+                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
+                                                        <i class="icon-plus"></i>
                                                         <span class="description">Upload Photo</span>
-                                                        <span class="delete-images" data-dz-remove><i class="icon-delete"></i></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
@@ -350,12 +349,13 @@
                                                         <input type="email" placeholder="Placeholder">
                                                     </label>
                                                 </div>
-                                                <div class="form-row single-photo-upload">
-                                                    <div class="photo-upload" data-upload-url="/file/post" ><!-- TODO: align and icon-plus -->
-                                                        <div class="photo-upload-inner"></div>
-                                                        <i class="icon-admin-profile"></i>
-                                                        <span class="description">Upload Photo</span>
-                                                        <span class="delete-images" data-dz-remove><i class="icon-delete"></i></span>
+                                                <div class="form-row multiple-photo-upload">
+                                                    <div class="photo-upload upload-view">
+                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-multiple.json" ></div>
+                                                        <div class="custom-upload">
+                                                            <i class="icon-plus"></i>
+                                                            <span class="description">Upload Photo</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -410,34 +410,16 @@
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
-                                                <h3>CASE PHOTOS</h3><!-- TODO: carousel -->
+                                                <h3>CASE PHOTOS</h3>
                                             </div>
                                             <div class="form-container">
-                                                <div class="form-row checkbox-row">
-                                                    <label>
-                                                        <span class="label">Permission to Carry Weapon</span>
-                                                        <input type="checkbox" id="checkbox-1" class="checkbox-v1">
-                                                    </label>
-                                                </div>
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">carousel</span>
-                                                        <input type="text" placeholder="Placeholder">
-                                                    </label>
-                                                </div>
-                                                <div class="form-row form-with-icon">
-                                                    <label>
-                                                        <span class="label">Search input</span>
-                                                        <input type="text" placeholder="Placeholder">
-                                                        <i class="icon-search"></i>
-                                                    </label>
-                                                </div>
-                                                <div class="form-row single-photo-upload">
-                                                    <div class="photo-upload" data-upload-url="/file/post" ><!-- TODO: align and icon-plus -->
-                                                        <div class="photo-upload-inner"></div>
-                                                        <i class="icon-admin-profile"></i>
-                                                        <span class="description">Upload Photo</span>
-                                                        <span class="delete-images" data-dz-remove><i class="icon-delete"></i></span>
+                                                <div class="form-row multiple-photo-upload">
+                                                    <div class="photo-upload upload-view">
+                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-multiple.json" ></div>
+                                                        <div class="custom-upload">
+                                                            <i class="icon-plus"></i>
+                                                            <span class="description">Upload Photo</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div> <!-- form-container -->
