@@ -31,7 +31,7 @@ public class PoliceOfficerCardDto implements Serializable {
 
     private String weaponSrl;
 
-    private String isCarryWeapon;
+    private String isPermittedCarryWeapon;
 
     private String bloodGroup;
 

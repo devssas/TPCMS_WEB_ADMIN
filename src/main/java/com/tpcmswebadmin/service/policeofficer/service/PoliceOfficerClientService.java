@@ -67,7 +67,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
                 .rank(tpEngineResponse.getOfficersProfileList()[0].getOfficersRank())
                 .weaponType(tpEngineResponse.getOfficersProfileList()[0].getAllowedWeaponType())
                 .weaponSrl(tpEngineResponse.getOfficersProfileList()[0].getWeaponSerialNumber())
-                .isCarryWeapon(tpEngineResponse.getOfficersProfileList()[0].getPermissionToCarryWeapon())
+                .isPermittedCarryWeapon(tpEngineResponse.getOfficersProfileList()[0].getPermissionToCarryWeapon())
                 .bloodGroup(tpEngineResponse.getOfficersProfileList()[0].getBloogroup())
                 .image(ImageUtility.convertToBase64image(tpEngineResponse.getOfficersProfileList()[0].getProfilePhoto1()))
                 .build();

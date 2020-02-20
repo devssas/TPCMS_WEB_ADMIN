@@ -26,7 +26,7 @@ public class OfficerCardDelegate {
                 .rank(policeOfficerCardDto.getRank())
                 .weaponType(policeOfficerCardDto.getWeaponType())
                 .weaponSrl(policeOfficerCardDto.getWeaponSrl())
-                .isCarryWeapon(policeOfficerCardDto.getIsCarryWeapon())
+                .isCarryWeapon(policeOfficerCardDto.getIsPermittedCarryWeapon())
                 .bloodGroup(policeOfficerCardDto.getBloodGroup())
                 .image(policeOfficerCardDto.getImage())
                 .build();

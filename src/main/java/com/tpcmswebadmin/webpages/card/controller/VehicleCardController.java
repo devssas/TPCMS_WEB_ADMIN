@@ -17,8 +17,8 @@ public class VehicleCardController {
 
     private final VehicleCardDelegate vehicleCardDelegate;
 
-    @GetMapping("/vehicle/card")
-    public String getDashboard(@RequestParam("vehicleId") String vehicleId, HttpServletRequest httpServletRequest, Model model) {
+    @GetMapping("/card/vehicle")
+    public String getVehicleCard(@RequestParam("vehicleId") String vehicleId, HttpServletRequest httpServletRequest, Model model) {
         VehicleCardModel vehicleCardModel = vehicleCardDelegate.getVehicleDetailsByVehicleId(vehicleId, httpServletRequest);
 
         model.addAttribute("vehicleName", vehicleCardModel.getName());

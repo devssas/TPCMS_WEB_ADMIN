@@ -19,8 +19,8 @@ public class OfficerCardController {
 
     private final OfficerCardDelegate officerCardDelegate;
 
-    @GetMapping("/officer/card")
-    public String getDashboard(@RequestParam("officerId") String officerId, HttpServletRequest httpServletRequest, Model model) {
+    @GetMapping("/card/officer")
+    public String getOfficerCard(@RequestParam("officerId") String officerId, HttpServletRequest httpServletRequest, Model model) {
         OfficerCardModel officerCardModel = officerCardDelegate.getPoliceOfficerByOfficerId(officerId, httpServletRequest);
 
         model.addAttribute("commandCenter", officerCardModel.getCommandCenter());

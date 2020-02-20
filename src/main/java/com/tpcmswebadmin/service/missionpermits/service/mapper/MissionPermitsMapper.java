@@ -1,9 +1,7 @@
 package com.tpcmswebadmin.service.missionpermits.service.mapper;
 
-import com.ssas.tpcms.engine.vo.response.GeneralAnnouncementResponseVO;
 import com.ssas.tpcms.engine.vo.response.SpecialMissionResponseVO;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
-import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -25,20 +23,20 @@ public class MissionPermitsMapper {
                 .permitId(specialMissionResponseVO.getSpmissionId())
                 .username(specialMissionResponseVO.getFirstName_Ar() + " " + specialMissionResponseVO.getLastName_Ar())
                 .mobileNumber(specialMissionResponseVO.getSpecialMissionQRCode())
+                .missionQrCode(specialMissionResponseVO.getSpecialMissionQRCode())
                 .city(null)
-                .state(null)
                 .expiryDate(specialMissionResponseVO.getExpiryDate())
                 .status(specialMissionResponseVO.getStatusCode())
-                .actions(prepareActionsColumn(specialMissionResponseVO.getSpmissionId()))
+                .actions(prepareActionsColumn(specialMissionResponseVO.getSpmissionId(), specialMissionResponseVO.getSpecialMissionQRCode()))
                 .build();
     }
 
-    public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewMission?missionId={missionId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
+    public static String prepareActionsColumn(String id, String missionId) {
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/mission?missionId={missionId}&missionQrCode={missionQrCode}'><i class='icon-view'></i></a>";
         String actionUpdate = "<a href='/tpcmsWebAdmin/updateMission?missionId={missionId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
         String actionDelete = "<a href='/tpcmsWebAdmin/deleteMission?missionId={missionId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 
-        return actionView.replace("{missionId}", id) + actionUpdate.replace("{missionId}", id) + actionDelete.replace("{missionId}", id);
+        return actionView.replace("{missionId}", id).replace("{missionQrCode}", missionId) + actionUpdate.replace("{missionId}", id) + actionDelete.replace("{missionId}", id);
     }
 
 }
