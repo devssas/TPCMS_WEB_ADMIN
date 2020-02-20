@@ -10,8 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SignInUsernameDelegate {
 
-    private static final Logger logger = LoggerFactory.getLogger(SignInUsernameDelegate.class);
-
     private final AuthenticationService authenticationService;
 
     public SignInUsernameDelegate(AuthenticationService authenticationService) {

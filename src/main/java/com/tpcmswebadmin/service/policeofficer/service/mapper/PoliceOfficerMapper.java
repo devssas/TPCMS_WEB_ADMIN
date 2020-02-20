@@ -32,7 +32,7 @@ public class PoliceOfficerMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/officer/card?officerId={officerId}'><i class='icon-view'></i></a>";
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/officer?officerId={officerId}'><i class='icon-view'></i></a>";
         String actionUpdate = "<a href='/tpcmsWebAdmin/updateOfficer?officerId={officerId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
         String actionDelete = "<a href='/tpcmsWebAdmin/deleteOfficer?officerId={officerId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 

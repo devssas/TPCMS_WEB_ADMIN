@@ -32,7 +32,7 @@ public class PoliceVehicleMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/vehicle/card?vehicleId={vehicleId}'><i class='icon-view'></i></a>";
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/vehicle?vehicleId={vehicleId}'><i class='icon-view'></i></a>";
         String actionUpdate = "<a href='/tpcmsWebAdmin/updateVehicle?vehicleId={vehicleId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
         String actionDelete = "<a href='/tpcmsWebAdmin/deleteVehicle?vehicleId={vehicleId}'class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 
