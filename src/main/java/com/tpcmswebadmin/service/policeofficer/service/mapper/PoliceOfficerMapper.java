@@ -1,7 +1,7 @@
-package com.tpcmswebadmin.service.policestaff.service.mapper;
+package com.tpcmswebadmin.service.policeofficer.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.OfficersProfileResponseVO;
-import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceStaffDto;
+import com.tpcmswebadmin.service.policeofficer.domain.dto.PoliceOfficerDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -10,16 +10,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class PoliceStaffMapper {
+public class PoliceOfficerMapper {
 
-    public static List<PoliceStaffDto> makePoliceStaffDtoList(OfficersProfileResponseVO[] officersProfileList) {
+    public static List<PoliceOfficerDto> makePoliceStaffDtoList(OfficersProfileResponseVO[] officersProfileList) {
         return Arrays.stream(officersProfileList)
-                .map(PoliceStaffMapper::makePoliceStaffDto)
+                .map(PoliceOfficerMapper::makePoliceStaffDto)
                 .collect(Collectors.toList());
     }
 
-    public static PoliceStaffDto makePoliceStaffDto(OfficersProfileResponseVO officersProfileResponseVO) {
-        return PoliceStaffDto.builder()
+    public static PoliceOfficerDto makePoliceStaffDto(OfficersProfileResponseVO officersProfileResponseVO) {
+        return PoliceOfficerDto.builder()
                 .officerCode(officersProfileResponseVO.getOfficerCode())
                 .officerName(officersProfileResponseVO.getOfficer_FirstName_Ar() + " " + officersProfileResponseVO.getOfficer_LastName_Ar())
                 .address(officersProfileResponseVO.getContactAddress())
@@ -32,7 +32,7 @@ public class PoliceStaffMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/officerCard?officerId={officerId}'><i class='icon-view'></i></a>";
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/officer/card?officerId={officerId}'><i class='icon-view'></i></a>";
         String actionUpdate = "<a href='/tpcmsWebAdmin/updateOfficer?officerId={officerId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
         String actionDelete = "<a href='/tpcmsWebAdmin/deleteOfficer?officerId={officerId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 

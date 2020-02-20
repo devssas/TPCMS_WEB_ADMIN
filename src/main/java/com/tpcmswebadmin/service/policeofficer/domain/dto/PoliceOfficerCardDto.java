@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.service.policestaff.domain.dto;
+package com.tpcmswebadmin.service.policeofficer.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PoliceOfficerDto implements Serializable {
+public class PoliceOfficerCardDto implements Serializable {
 
     private static final long serialVersionUID = 1017384859489205961L;
 

@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.service.policestaff.service;
+package com.tpcmswebadmin.service.policeofficer.service;
 
 import com.ssas.tpcms.engine.vo.request.ViewOfficersProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
@@ -11,9 +11,9 @@ import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceOfficerDto;
-import com.tpcmswebadmin.service.policestaff.domain.dto.PoliceStaffDto;
-import com.tpcmswebadmin.service.policestaff.service.mapper.PoliceStaffMapper;
+import com.tpcmswebadmin.service.policeofficer.domain.dto.PoliceOfficerCardDto;
+import com.tpcmswebadmin.service.policeofficer.domain.dto.PoliceOfficerDto;
+import com.tpcmswebadmin.service.policeofficer.service.mapper.PoliceOfficerMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,13 +28,13 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PoliceStaffClientService implements ClientServiceAPI<PoliceStaffDto, LoginUserDo, ViewOfficersProfileRequestVO> {
+public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOfficerDto, LoginUserDo, ViewOfficersProfileRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
-    public PoliceOfficerDto getPoliceOfficerByOfficerId(String officerId, HttpServletRequest httpServletRequest) {
+    public PoliceOfficerCardDto getPoliceOfficerByOfficerId(String officerId, HttpServletRequest httpServletRequest) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -57,8 +57,8 @@ public class PoliceStaffClientService implements ClientServiceAPI<PoliceStaffDto
         return null;
     }
 
-    private PoliceOfficerDto preparePoliceOfficerDto(TPEngineResponse tpEngineResponse) {
-        return PoliceOfficerDto.builder()
+    private PoliceOfficerCardDto preparePoliceOfficerDto(TPEngineResponse tpEngineResponse) {
+        return PoliceOfficerCardDto.builder()
                 .commandCenter(tpEngineResponse.getOfficersProfileList()[0].getContactAddress())
                 .officerCode(tpEngineResponse.getOfficersProfileList()[0].getOfficerCode())
                 .officerName(tpEngineResponse.getOfficersProfileList()[0].getOfficer_FirstName_Ar() + " " + tpEngineResponse.getOfficersProfileList()[0].getOfficer_LastName_Ar())
@@ -74,7 +74,7 @@ public class PoliceStaffClientService implements ClientServiceAPI<PoliceStaffDto
     }
 
     @Override
-    public ResponseDto<PoliceStaffDto> getResponseDto(HttpServletRequest request) {
+    public ResponseDto<PoliceOfficerDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -82,7 +82,7 @@ public class PoliceStaffClientService implements ClientServiceAPI<PoliceStaffDto
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(PoliceStaffMapper.makePoliceStaffDtoList(response.getOfficersProfileList()));
+        return prepareResponseDto(PoliceOfficerMapper.makePoliceStaffDtoList(response.getOfficersProfileList()));
     }
 
     @Override
@@ -108,9 +108,9 @@ public class PoliceStaffClientService implements ClientServiceAPI<PoliceStaffDto
     }
 
     @Override
-    public ResponseDto<PoliceStaffDto> prepareResponseDto(List<PoliceStaffDto> list) {
-        ResponseDto<PoliceStaffDto> responseDto = new ResponseDto<>();
-        DataDto<PoliceStaffDto> dataDto = new DataDto<>();
+    public ResponseDto<PoliceOfficerDto> prepareResponseDto(List<PoliceOfficerDto> list) {
+        ResponseDto<PoliceOfficerDto> responseDto = new ResponseDto<>();
+        DataDto<PoliceOfficerDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());

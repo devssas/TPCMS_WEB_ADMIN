@@ -1,9 +1,7 @@
 package com.tpcmswebadmin.service.notification.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.GeneralAnnouncementResponseVO;
-import com.ssas.tpcms.engine.vo.response.VehicleDetailsResponseVO;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
-import com.tpcmswebadmin.service.policevehicles.domain.PoliceVehicleDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

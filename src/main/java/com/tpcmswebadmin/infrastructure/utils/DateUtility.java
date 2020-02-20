@@ -41,10 +41,11 @@ public class DateUtility {
 
     public static String convertToFormat(String stringDate, String format) {
         DateFormat dateFormat = new SimpleDateFormat(format);
+        DateFormat dateFormatOf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss");
         Date date = new Date();
 
         try {
-            date = dateFormat.parse(stringDate);
+            date = dateFormatOf.parse(stringDate);
         } catch (ParseException e) {
             log.error("Error :", e);
         }

@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Slf4j
+
 @Controller
 @RequiredArgsConstructor
 public class OfficerCardController {
 
     private final OfficerCardDelegate officerCardDelegate;
 
-    @GetMapping("/officerCard")
+    @GetMapping("/officer/card")
     public String getDashboard(@RequestParam("officerId") String officerId, HttpServletRequest httpServletRequest, Model model) {
         OfficerCardModel officerCardModel = officerCardDelegate.getPoliceOfficerByOfficerId(officerId, httpServletRequest);
 
@@ -35,7 +35,7 @@ public class OfficerCardController {
         model.addAttribute("bloodGroup", officerCardModel.getBloodGroup().toUpperCase());
         model.addAttribute("image", officerCardModel.getImage());
 
-        return "officer_card";
+        return "card_officer";
     }
 }
 

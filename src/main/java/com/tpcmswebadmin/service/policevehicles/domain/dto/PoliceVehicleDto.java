@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.service.policevehicles.domain;
+package com.tpcmswebadmin.service.policevehicles.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
