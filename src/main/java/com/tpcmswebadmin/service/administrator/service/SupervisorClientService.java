@@ -1,6 +1,5 @@
 package com.tpcmswebadmin.service.administrator.service;
 
-import com.ssas.tpcms.engine.vo.request.ViewNotificationsRequestVO;
 import com.ssas.tpcms.engine.vo.request.ViewOfficersProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
@@ -9,6 +8,9 @@ import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
+import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
+import com.tpcmswebadmin.infrastructure.utils.StringUtility;
+import com.tpcmswebadmin.service.administrator.domain.SupervisorCardDto;
 import com.tpcmswebadmin.service.administrator.domain.SupervisorDto;
 import com.tpcmswebadmin.service.administrator.service.mapper.AdministratorMapper;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
@@ -31,6 +33,36 @@ public class SupervisorClientService implements ClientServiceAPI<SupervisorDto, 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
+
+    public SupervisorCardDto getSupervisorBySupervisorId(String supervisorId, HttpServletRequest httpServletRequest) {
+        ViewOfficersProfileRequestVO viewOfficersProfileRequestVO = new ViewOfficersProfileRequestVO();
+        viewOfficersProfileRequestVO.setLoginOfficersCode("LYeGOV55397TP"); //todo test static and change
+        viewOfficersProfileRequestVO.setLoginOfficerUnitNumber("105"); //todo static and change
+        viewOfficersProfileRequestVO.setOfficerProfileId(supervisorId);
+
+        setCredentials(viewOfficersProfileRequestVO);
+
+        try {
+            log.info("Get Officers Profile list request will be sent to client. {}", viewOfficersProfileRequestVO.getMobileAppUserName());
+
+            return prepareSupervisorCardDto(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getOfficersProfileList(viewOfficersProfileRequestVO));
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on Officers Profile list request. " + viewOfficersProfileRequestVO.getMobileAppUserName());
+        }
+        return null;
+    }
+
+    private SupervisorCardDto prepareSupervisorCardDto(TPEngineResponse officersProfileList) {
+        return SupervisorCardDto.builder()
+                .officerName(StringUtility.makeFullName(officersProfileList.getOfficersProfileList()[0].getOfficer_FirstName_Ar(), officersProfileList.getOfficersProfileList()[0].getOfficer_LastName_Ar()))
+                .officerId(officersProfileList.getOfficersProfileList()[0].getOfficerProfileId())
+                .commandCenter(officersProfileList.getOfficersProfileList()[0].getContactAddress())
+                .rank(officersProfileList.getOfficersProfileList()[0].getOfficersRank())
+                .unit(officersProfileList.getOfficersProfileList()[0].getReportingUnit())
+                .expiryDate(officersProfileList.getOfficersProfileList()[0].getExpiryDate())
+                .image(ImageUtility.convertToBase64image(officersProfileList.getOfficersProfileList()[0].getProfilePhoto1()))
+                .build();
+    }
 
     @Override
     public ResponseDto<SupervisorDto> getResponseDto(HttpServletRequest request) {
@@ -106,4 +138,6 @@ public class SupervisorClientService implements ClientServiceAPI<SupervisorDto, 
 
         return list;
     }
+
+
 }

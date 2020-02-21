@@ -4,7 +4,6 @@ import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.webpages.card.delegate.OfficerCardDelegate;
 import com.tpcmswebadmin.webpages.card.domain.OfficerCardModel;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

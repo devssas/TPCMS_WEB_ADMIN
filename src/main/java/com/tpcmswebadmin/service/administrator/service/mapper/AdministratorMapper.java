@@ -32,10 +32,12 @@ public class AdministratorMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewSupervisor?supervisorId={supervisorId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
+        String superVisorId = "{supervisorId}";
+
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/supervisor?supervisorId={supervisorId}'><i class='icon-view'></i></a>";
         String actionUpdate = "<a href='/tpcmsWebAdmin/updateSupervisor?supervisorId={supervisorId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
         String actionDelete = "<a href='/tpcmsWebAdmin/deleteSupervisor?supervisorId={supervisorId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 
-        return actionView.replace("{supervisorId}", id) + actionUpdate.replace("{supervisorId}", id) + actionDelete.replace("{supervisorId}", id);
+        return actionView.replace(superVisorId, id) + actionUpdate.replace(superVisorId, id) + actionDelete.replace(superVisorId, id);
     }
 }
