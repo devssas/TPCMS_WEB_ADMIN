@@ -127,8 +127,7 @@ var main = {
 
                         if(_value.length >= _minLength){
                             $.ajax({
-                                url: _url,
-                                data: _value,
+                                url: _url+_value,
                                 method: "get",
                                 dataType: "json",
                             }).done(function (response) {
