@@ -1,0 +1,49 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "thead": ["Staff Name", "Remarks Date", "Remarks"],
+    "tbody": [
+      {
+        "officerID": "staffname1",
+        "officerName": "09/20/2019 09:15AM",
+        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est."
+      },
+      {
+        "officerID": "staffname1",
+        "officerName": "09/20/2019 09:15AM",
+        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est."
+      },
+      {
+        "officerID": "staffname1",
+        "officerName": "09/20/2019 09:15AM",
+        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est."
+      },
+      {
+        "officerID": "staffname1",
+        "officerName": "09/20/2019 09:15AM",
+        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est."
+      },
+      {
+        "officerID": "staffname1",
+        "officerName": "09/20/2019 09:15AM",
+        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est."
+      },
+      {
+        "officerID": "staffname1",
+        "officerName": "09/20/2019 09:15AM",
+        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est."
+      },
+      {
+        "officerID": "staffname1",
+        "officerName": "09/20/2019 09:15AM",
+        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est."
+      },
+      {
+        "officerID": "staffname1",
+        "officerName": "09/20/2019 09:15AM",
+        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est."
+      }
+    ]
+  }
+}
