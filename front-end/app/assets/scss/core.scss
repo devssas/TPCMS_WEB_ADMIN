@@ -480,64 +480,6 @@ header {
     border-radius: 20px;
   }
 }
-.table-v2 {
-  display: table;
-  width: 100%;
-  background-color: $color-white;
-  overflow: hidden;
-
-  .thead {
-    display: table-header-group;
-    background: $color-2;
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .tbody {
-    display: table-row-group;
-  }
-
-  .tr {
-    display: table-row;
-
-    .th {
-      @extend %fs-14;
-      @include f-roboto(400);
-      height: 50px;
-      display: table-cell;
-      vertical-align: middle;
-      text-align: right;
-      color: $color-black;
-      padding: 12px 15px;
-    }
-
-    .td {
-      @extend %fs-14;
-      @include f-roboto(500);
-      display: table-cell;
-      text-align: right;
-      color: rgba($color-black, 0.5);
-      padding: 12px 15px;
-
-      &:last-child {
-        white-space: nowrap;
-        display: flex;
-      }
-
-      a.button {
-        margin-left: 10px;
-        &:last-child{
-          margin-left: 0;
-        }
-      }
-    }
-  }
-  &.table-rounded{
-    border-radius: 20px;
-  }
-}
-
-
 .fancybox-content{
   padding: 0;
   direction: rtl !important;

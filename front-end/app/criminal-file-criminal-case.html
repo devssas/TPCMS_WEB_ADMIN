@@ -209,7 +209,7 @@
                                                         <span class="label">Personal ID Card</span>
                                                         <input type="email" placeholder="Placeholder">
                                                     </label>
-                                                </div>s
+                                                </div>
                                                 <div class="form-row">
                                                     <span class="label">Flaged Date</span>
                                                     <label>
@@ -371,8 +371,9 @@
                                         <div class="inner">
                                             <div class="highlight box-highlight">
                                                 <h3>SUPPORTING STATMENTS</h3>
+                                                <a href="javascript:;" class="button button-v4 color-1" id="witness"><i class="icon-plus"></i></a>
                                             </div>
-                                            <div class="form-container">
+                                            <div class="form-container" id="witness-container">
                                                 <div class="form-row">
                                                     <span class="label">Witness Statments</span>
                                                     <div class="input-group-content">
@@ -414,7 +415,7 @@
                                 </div>
                             </div> <!-- divided-content flout-2 -->
                             <div class="button-row">
-                                <input type="submit" class="button button-v4 color-3 fix-size-sml" value="Submit to Prosecution">
+                                <input type="submit" class="button button-v4 color-3" value="Submit to Prosecution">
                                 <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
                         </section> <!-- content-box -->
@@ -435,6 +436,31 @@
 <script src="assets/js/core.min.js"></script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
+
+<script>
+    $("#witness").click(function () {
+        alert();
+        $("#witness-container").append("<div class=\"form-row\">\n" +
+            "                                                    <span class=\"label\">Witness Statments</span>\n" +
+            "                                                    <div class=\"input-group-content\">\n" +
+            "                                                        <label>\n" +
+            "                                                            <input type=\"text\" placeholder=\"Name\">\n" +
+            "                                                        </label>\n" +
+            "                                                        <label>\n" +
+            "                                                            <input type=\"text\" placeholder=\"Surname\">\n" +
+            "                                                        </label>\n" +
+            "                                                    </div>\n" +
+            "                                                    <div class=\"form-row\">\n" +
+            "                                                        <label>\n" +
+            "                                                            <span class=\"label\"></span>\n" +
+            "                                                            <textarea name=\"\" id=\"2\" placeholder=\"Statement\"></textarea>\n" +
+            "                                                        </label>\n" +
+            "                                                    </div>\n" +
+            "                                                </div>");
+    });
+
+</script>
+
 
 </body>
 </html>

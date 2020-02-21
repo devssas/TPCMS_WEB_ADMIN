@@ -2,55 +2,57 @@
   "status": true,
   "message": null,
   "data": {
-    "thead": ["Staff Name", "Remarks Date", "Remarks",""],
+    "thead": ["Name", "National ID", "Criminal Code"],
     "tbody": [
       {
-        "officerID": "staffname1",
-        "officerName": "09/20/2019 09:15AM",
-        "Address": "add Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/add-case-update.html'><i class='icon-view'></i></a>"
+        "officerID": "John",
+        "officerName": "2315465152",
+        "Address": "989898988989"
       },
       {
-        "officerID": "staffname1",
-        "officerName": "09/20/2019 09:15AM",
-        "Address": "view Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/view-case-update.html'><i class='icon-view'></i></a>"
+        "officerID": "test",
+        "officerName": "321321321",
+        "Address": "1664498789156878"
       },
       {
-        "officerID": "staffname1",
-        "officerName": "09/20/2019 09:15AM",
-        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/calendar-pop-up.html'><i class='icon-view'></i></a>"
+        "officerID": "John",
+        "officerName": "2315465152",
+        "Address": "989898988989"
       },
       {
-        "officerID": "staffname1",
-        "officerName": "09/20/2019 09:15AM",
-        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/calendar-pop-up-2.html'><i class='icon-view'></i></a>"
+        "officerID": "test",
+        "officerName": "321321321",
+        "Address": "1664498789156878"
       },
       {
-        "officerID": "staffname1",
-        "officerName": "09/20/2019 09:15AM",
-        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
+        "officerID": "John",
+        "officerName": "2315465152",
+        "Address": "989898988989"
       },
       {
-        "officerID": "staffname1",
-        "officerName": "09/20/2019 09:15AM",
-        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/previous-case.html'><i class='icon-view'></i></a>"
+        "officerID": "test",
+        "officerName": "321321321",
+        "Address": "1664498789156878"
       },
       {
-        "officerID": "staffname1",
-        "officerName": "09/20/2019 09:15AM",
-        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "officerID": "John",
+        "officerName": "2315465152",
+        "Address": "989898988989"
       },
       {
-        "officerID": "staffname1",
-        "officerName": "09/20/2019 09:15AM",
-        "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "officerID": "test",
+        "officerName": "321321321",
+        "Address": "1664498789156878"
+      },
+      {
+        "officerID": "John",
+        "officerName": "2315465152",
+        "Address": "989898988989"
+      },
+      {
+        "officerID": "test",
+        "officerName": "321321321",
+        "Address": "1664498789156878"
       }
     ]
   }
