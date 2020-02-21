@@ -134,6 +134,14 @@
     color: $color-white;
     background-color:$color-4;
   }
+  &.color-5{
+    color: $color-white;
+    background: $color-7;
+    &:hover{
+      color: $color-white;
+      background-color: rgba($color-7,0.9);
+    }
+  }
 }
 .button-v5{
   @extend %fs-16;

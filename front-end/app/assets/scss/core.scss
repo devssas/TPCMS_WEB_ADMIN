@@ -480,6 +480,62 @@ header {
     border-radius: 20px;
   }
 }
+.table-v2 {
+  display: table;
+  width: 100%;
+  background-color: $color-white;
+  overflow: hidden;
+
+  .thead {
+    display: table-header-group;
+    background: $color-2;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .tbody {
+    display: table-row-group;
+  }
+
+  .tr {
+    display: table-row;
+
+    .th {
+      @extend %fs-14;
+      @include f-roboto(400);
+      height: 50px;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: right;
+      color: $color-black;
+      padding: 12px 15px;
+    }
+
+    .td {
+      @extend %fs-14;
+      @include f-roboto(500);
+      display: table-cell;
+      text-align: right;
+      color: rgba($color-black, 0.5);
+      padding: 12px 15px;
+
+      &:last-child {
+        white-space: nowrap;
+        display: flex;
+      }
+
+      a.button {
+        margin-left: 10px;
+        &:last-child{
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  &.table-rounded{
+    border-radius: 20px;
+  }
+}
 
 
 .fancybox-content{
@@ -490,7 +546,7 @@ header {
 }
 
 
-.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3, .fancy-card-box-v5{
+.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3, .fancy-card-box-v5, .fancy-card-box-v6{
   width: 461px;
   background-color: $color-white;
   border-radius: 30px;
@@ -806,8 +862,21 @@ header {
 }
 .fancy-card-box-v5{
   width: 700px;
+  &.width-sml{
+    width:400px;
+  }
   .fancy-top-content{
     .fancy-card-title{
+      .icon-box{
+        position: absolute;
+        font-size: 16px;
+        line-height: 32px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color:rgba($color-4,0.2);
+        color: $color-4;
+      }
       h2{
         @extend %fs-14;
         @include f-roboto(500);
@@ -818,6 +887,24 @@ header {
       h3{
         @extend %fs-36;
         @include f-roboto(500);
+      }
+      h4{
+        margin-right: 50px;
+        @extend %fs-36;
+        @include f-roboto(500);
+      }
+      h5{
+        margin-right: 50px;
+        @extend %fs-14;
+        @include f-roboto(500);
+        position: absolute;
+        top:36px;
+        opacity: 0.5;
+      }
+      .date{
+        position: absolute;
+        top:30px;
+        left: 0;
       }
     }
     .fancy-card-case-id-box{
@@ -879,9 +966,46 @@ header {
           }
         }
       }
+      .x-row{
+        display: flex;
+        align-items: right;
+        a{
+          @extend %fs-18;
+          color: $color-black;
+        }
+      }
     }
   }
 }
+.fancy-card-box-v6{
+  width: 1000px;
+  .fancy-top-content{
+    .fancy-card-title{
+      h2{
+        @extend %fs-14;
+        @include f-roboto(500);
+        position: absolute;
+        top:36px;
+        opacity: 0.5;
+      }
+      h3{
+        @extend %fs-36;
+        @include f-roboto(500);
+      }
+    }
+  }
+  .content{
+    padding: 0 20px 20px 20px;
+    .form-content{
+      position: relative;
+      z-index: 3;
+      .table-container{
+        height: 300px;
+      }
+    }
+  }
+}
+
 
 .divided-content{
   display: flex;

@@ -206,59 +206,61 @@ var main = {
                     deleteUrl = _this.data("delete-url"),
                     maxFiles = _this.data("max-files") ? _this.data("max-files") : null ;
 
-                _this.dropzone({
-                    url: uploadUrl,
-                    maxFiles: maxFiles,
-                    addRemoveLinks: true,
-                    dictRemoveFile: "",
-                    thumbnailMethod: "contain",
-                    dictDefaultMessage: null,
-                    removedfile: function(file) {
-                        var name = file.name;
-                        $.ajax({
-                            url: deleteUrl,
-                            type: "POST",
-                            data: "id=" + name,
-                            dataType: "html"
-                        });
-                        var _ref;
-                        return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
-                    },
-                    init: function() {
-
-                        var _initThis = this;
-
-                        _initThis.on("addedfile", function(file) {
-                            if (_initThis.files[maxFiles]!=null){
-                                _initThis.removeFile(_initThis.files[0]);
-                            }
-                        });
-
-                        if(_this.parents(".photo-upload").hasClass("upload-view")){
-                            var uploadAjaxUrl = _this.data("upload-ajax-url");
-
+                if(!_this.hasClass("dz-started")){
+                    _this.dropzone({
+                        url: uploadUrl,
+                        maxFiles: maxFiles,
+                        addRemoveLinks: true,
+                        dictRemoveFile: "",
+                        thumbnailMethod: "contain",
+                        dictDefaultMessage: null,
+                        removedfile: function(file) {
+                            var name = file.name;
                             $.ajax({
-                                url: uploadAjaxUrl
-                            })
-                                .done(function (response) {
+                                url: deleteUrl,
+                                type: "POST",
+                                data: "id=" + name,
+                                dataType: "html"
+                            });
+                            var _ref;
+                            return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                        },
+                        init: function() {
 
-                                    for(var i = 0; i < response.data.length ; i++){
+                            var _initThis = this;
 
-                                        _initThis.files.push(response.data[i]);
-                                        _initThis.emit('addedfile', response.data[i]);
-                                        _initThis.emit("thumbnail", response.data[i], response.data[i].url);
-                                        _initThis.emit('complete', response.data[i]);
-                                        response.data[i].previewElement.classList.add('dz-success');
-                                        response.data[i].previewElement.classList.add('dz-complete')
+                            _initThis.on("addedfile", function(file) {
+                                if (_initThis.files[maxFiles]!=null){
+                                    _initThis.removeFile(_initThis.files[0]);
+                                }
+                            });
 
-                                    }
+                            if(_this.parents(".photo-upload").hasClass("upload-view")){
+                                var uploadAjaxUrl = _this.data("upload-ajax-url");
 
-                                });
+                                $.ajax({
+                                    url: uploadAjaxUrl
+                                })
+                                    .done(function (response) {
+
+                                        for(var i = 0; i < response.data.length ; i++){
+
+                                            _initThis.files.push(response.data[i]);
+                                            _initThis.emit('addedfile', response.data[i]);
+                                            _initThis.emit("thumbnail", response.data[i], response.data[i].url);
+                                            _initThis.emit('complete', response.data[i]);
+                                            response.data[i].previewElement.classList.add('dz-success');
+                                            response.data[i].previewElement.classList.add('dz-complete')
+
+                                        }
+
+                                    });
+
+                            }
 
                         }
-
-                    }
-                });
+                    });
+                }
 
             });
         }
