@@ -1,7 +1,7 @@
 package com.tpcmswebadmin.service.policevehicles.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.VehicleDetailsResponseVO;
-import com.tpcmswebadmin.service.policevehicles.domain.PoliceVehicleDto;
+import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -32,11 +32,13 @@ public class PoliceVehicleMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewVehicle?vehicleId={vehicleId}' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a>";
+        String vehicleId = "{vehicleId}";
+
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/vehicle?vehicleId={vehicleId}'><i class='icon-view'></i></a>";
         String actionUpdate = "<a href='/tpcmsWebAdmin/updateVehicle?vehicleId={vehicleId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
         String actionDelete = "<a href='/tpcmsWebAdmin/deleteVehicle?vehicleId={vehicleId}'class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 
-        return actionView.replace("{vehicleId}", id) + actionUpdate.replace("{vehicleId}", id) + actionDelete.replace("{vehicleId}", id);
+        return actionView.replace(vehicleId, id) + actionUpdate.replace(vehicleId, id) + actionDelete.replace(vehicleId, id);
     }
 
 }

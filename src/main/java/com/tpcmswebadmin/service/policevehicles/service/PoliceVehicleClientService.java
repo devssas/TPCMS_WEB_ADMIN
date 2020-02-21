@@ -8,9 +8,11 @@ import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
+import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.policevehicles.domain.PoliceVehicleDto;
+import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleCardDto;
+import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleDto;
 import com.tpcmswebadmin.service.policevehicles.service.mapper.PoliceVehicleMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +32,49 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
+
+    public PoliceVehicleCardDto getPoliceVehiclesByVehicleId(String vehicleId, HttpServletRequest httpServletRequest) {
+        LoginUserDo loginUserDo = LoginUserDo.builder()
+                .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
+                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .build();
+
+        ViewVehicleDetailsRequestVO viewVehicleDetailsRequestVO = new ViewVehicleDetailsRequestVO();
+        viewVehicleDetailsRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        viewVehicleDetailsRequestVO.setUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
+        viewVehicleDetailsRequestVO.setVehicleId(vehicleId);
+
+        setCredentials(viewVehicleDetailsRequestVO);
+
+        try {
+            log.info("Police vehicle details request will be sent to client. {}", viewVehicleDetailsRequestVO.getMobileAppUserName());
+
+            return prepareVehicleCardDto(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getVehicleDetails(viewVehicleDetailsRequestVO));
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on police vehicle details request. " + viewVehicleDetailsRequestVO.getMobileAppUserName());
+        }
+
+        return null;
+    }
+
+    private PoliceVehicleCardDto prepareVehicleCardDto(TPEngineResponse vehicleDetails) {
+        return PoliceVehicleCardDto.builder()
+                .vehicleId(vehicleDetails.getVehicleDetailsList()[0].getVehicleId())
+                .name(vehicleDetails.getVehicleDetailsList()[0].getVehicleName())
+                .commandCenter(vehicleDetails.getVehicleDetailsList()[0].getCommandCenter())
+                .unit(vehicleDetails.getVehicleDetailsList()[0].getUnitNumber())
+                .plateNumber(vehicleDetails.getVehicleDetailsList()[0].getPlateNumber())
+                .expiryDate(vehicleDetails.getVehicleDetailsList()[0].getExpiryDate())
+                .weaponType(vehicleDetails.getVehicleDetailsList()[0].getAllowedWeaponType1())
+                .weaponSrl(vehicleDetails.getVehicleDetailsList()[0].getWeaponSerialNumber1())
+                .isCarryWeapon(vehicleDetails.getVehicleDetailsList()[0].getPermissionToCarryWeapon())
+                .isNightPatrol(vehicleDetails.getVehicleDetailsList()[0].getPermissionForNightPatrol())
+                .isCarryCivilians(vehicleDetails.getVehicleDetailsList()[0].getPermissionToCarryCivilians())
+                .isCarryPrisoners(vehicleDetails.getVehicleDetailsList()[0].getPermissionToCarryPrisoners())
+                .isDriverOutsideCity(vehicleDetails.getVehicleDetailsList()[0].getPermissionToDriverOutsideCity())
+                .image(ImageUtility.convertToBase64image(vehicleDetails.getVehicleDetailsList()[0].getVehiclePhoto1()))
+                .build();
+    }
 
     @Override
     public ResponseDto<PoliceVehicleDto> getResponseDto(HttpServletRequest request) {
@@ -60,20 +105,20 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
 
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
-        ViewVehicleDetailsRequestVO viewOfficersProfileRequestVO = new ViewVehicleDetailsRequestVO();
-        viewOfficersProfileRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewOfficersProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
-        viewOfficersProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
-        viewOfficersProfileRequestVO.setVehicleDetailsSeeAll("Y");
+        ViewVehicleDetailsRequestVO viewVehicleDetailsRequestVO = new ViewVehicleDetailsRequestVO();
+        viewVehicleDetailsRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        viewVehicleDetailsRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
+        viewVehicleDetailsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
+        viewVehicleDetailsRequestVO.setVehicleDetailsSeeAll("Y");
 
-        setCredentials(viewOfficersProfileRequestVO);
+        setCredentials(viewVehicleDetailsRequestVO);
 
         try {
-            log.info("Get vehicle list request will be sent to client. {}", viewOfficersProfileRequestVO.getMobileAppUserName());
+            log.info("Get vehicle list request will be sent to client. {}", viewVehicleDetailsRequestVO.getMobileAppUserName());
 
-            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getVehicleDetails(viewOfficersProfileRequestVO);
+            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getVehicleDetails(viewVehicleDetailsRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on get vehicle list request. " + viewOfficersProfileRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on get vehicle list request. " + viewVehicleDetailsRequestVO.getMobileAppUserName());
         }
         return null;
     }

@@ -23,7 +23,7 @@ public class SupervisorDto implements Serializable {
 
     private String city;
 
-    private String state;
+    private String accessRole;
 
     private String lastLogin;
 

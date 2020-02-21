@@ -1,7 +1,7 @@
 package com.tpcmswebadmin.service.policevehicles.controller;
 
 import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
-import com.tpcmswebadmin.service.policevehicles.domain.PoliceVehicleDto;
+import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleDto;
 import com.tpcmswebadmin.service.policevehicles.service.PoliceVehicleClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

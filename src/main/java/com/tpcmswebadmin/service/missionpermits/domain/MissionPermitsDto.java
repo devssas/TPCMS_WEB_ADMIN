@@ -21,9 +21,9 @@ public class MissionPermitsDto implements Serializable {
 
     private String mobileNumber;
 
-    private String city;
+    private String missionQrCode;
 
-    private String state;
+    private String city;
 
     private String expiryDate;
 

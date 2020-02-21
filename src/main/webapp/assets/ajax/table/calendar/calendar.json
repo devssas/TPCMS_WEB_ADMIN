@@ -1,0 +1,19 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "thead": ["Officer ID", "Officer Name", "Address", "City", "State", "Last Login", "Status", "Actions"],
+    "tbody": [
+      {
+        "officerID": "1276581212",
+        "officerName": "username",
+        "Address": "Libya St. 1889",
+        "city": "Tripoli",
+        "state": "Tripoli",
+        "lastLogin": "2019/12/09 . 08:00AM",
+        "status": "Active",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/calendar-add-event.html'><i class='icon-view'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a><a href='javascript:;' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>"
+      }
+    ]
+  }
+}

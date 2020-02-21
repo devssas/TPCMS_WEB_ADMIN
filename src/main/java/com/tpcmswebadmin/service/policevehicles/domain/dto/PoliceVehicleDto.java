@@ -1,5 +1,4 @@
-package com.tpcmswebadmin.service.policestaff.domain.dto;
-
+package com.tpcmswebadmin.service.policevehicles.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,15 +11,15 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PoliceStaffDto implements Serializable {
+public class PoliceVehicleDto implements Serializable {
 
-    private static final long serialVersionUID = -8299257537137496834L;
+    private static final long serialVersionUID = -1267620138715050415L;
 
-    private String officerId;
+    private String vehicleId;
 
-    private String officerName;
+    private String type;
 
-    private String address;
+    private String plateNumber;
 
     private String city;
 
@@ -30,6 +29,6 @@ public class PoliceStaffDto implements Serializable {
 
     private String status;
 
-    private String actions;
+    private String action;
 
 }
