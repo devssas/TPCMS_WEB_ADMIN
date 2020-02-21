@@ -64,7 +64,7 @@
                                                 <div class="form-row form-with-icon">
                                                     <label>
                                                         <span class="label">Officer ID *</span>
-                                                        <form:input id="officerId" class="officerId-call" path="officerId" placeholder="Ex:123456" data-url="${pageContext.request.contextPath}/api/merchant/validation/branding-name/" data-min-lenght="3" />
+                                                        <form:input id="officerId" class="officerId-call" path="officerId" placeholder="Ex:123456" data-url="${pageContext.request.contextPath}/api/reporting-officer/" data-min-lenght="3" />
                                                         <i class="icon-search"></i>
                                                     </label>
                                                     <form:errors id="officerId" path="officerId" cssClass="text-danger" />
@@ -72,7 +72,7 @@
                                                 <div class="form-row form-with-icon">
                                                     <label>
                                                         <span class="label">Officer Name *</span>
-                                                        <form:input id="officerName" class="officerName-call" path="officerName" placeholder="Ex:Test test" data-url="${pageContext.request.contextPath}/api/merchant/validation/branding-name/" data-min-lenght="3"/>
+                                                        <form:input id="officerName" class="officerName-call" path="officerName" placeholder="Ex:Test test" data-url="${pageContext.request.contextPath}/api/reporting-officer/" data-min-lenght="3"/>
                                                         <i class="icon-search"></i>
                                                     </label>
                                                     <form:errors id="officerName" path="officerName" cssClass="text-danger" />

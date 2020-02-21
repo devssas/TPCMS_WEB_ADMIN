@@ -113,6 +113,40 @@ var main = {
             });
 
         }
+
+        if($(".field-query").length){
+            $(".field-query").each(function () {
+
+                $(this).on({
+                    keyup: function () {
+
+                        var _this = $(this),
+                            _minLength = _this.data("min-lenght"),
+                            _url = _this.data("url"),
+                            _value = _this.val();
+
+                        if(_value.length >= _minLength){
+                            $.ajax({
+                                url: _url+_value,
+                                method: "get",
+                                dataType: "json",
+                            }).done(function (response) {
+                                if(!response.status && response.message){
+                                    _this.parents(".form-row").addClass("error").find(".text-danger").remove();
+                                    _this.parent().append("<span class='text-danger'>"+ response.message +"</span>");
+                                } else {
+                                    _this.parents(".form-row").removeClass("error").find(".text-danger").remove();
+                                }
+                            });
+                        }
+
+                    }
+                });
+
+            });
+
+
+        }
     },
     customSelectbox: function(){
 

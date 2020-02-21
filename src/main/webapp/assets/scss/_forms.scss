@@ -485,6 +485,14 @@
         padding: 0 8px;
       }
     }
+    &.error{
+      .label{
+        color: $color-4;
+      }
+      input{
+        border: 1px solid $color-4;
+      }
+    }
   }
   &.login-form-contaier{
     display: inline-block;
@@ -631,6 +639,13 @@
   }
 }
 
+.text-danger{
+  display: block;
+  @extend %fs-13;
+  @include f-roboto(600);
+  color: $color-4;
+  margin-top: 2px;
+}
 //------------------------------------------------------------
 // = PLUGIN OVERRIDE STYLES
 //------------------------------------------------------------
