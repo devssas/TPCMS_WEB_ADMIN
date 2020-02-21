@@ -18,4 +18,5 @@ public class MissionPermitsViewController {
 
         return "mission_permits_view";
     }
+
 }

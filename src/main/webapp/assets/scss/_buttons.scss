@@ -3,6 +3,7 @@
 //------------------------------------------------------------
 
 .button{
+  display: inline-block;
   text-align: center;
   border: none;
   outline: none !important;
@@ -30,9 +31,40 @@
   @extend %fs-16;
   @include f-roboto(700);
   height: 55px;
+  line-height: 55px;
   color: $color-white;
   background: $color-1;
   border-radius: 10px;
+  transition: $transition;
+  &:hover{
+    color: $color-white;
+    background: $color-1;
+  }
+  &.color-1{
+    color: $color-white;
+    background: $color-1;
+    &:hover{
+      color: $color-white;
+      background: $color-1;
+    }
+  }
+  &.color-2{
+    color: $color-white;
+    background: $color-4;
+    &:hover{
+      color: $color-white;
+      background: $color-4;
+    }
+  }
+  &.color-3{
+    color: $color-white;
+    background: $color-7;
+    &:hover{
+      color: $color-white;
+
+      background: $color-7;
+    }
+  }
 }
 .button-v2{
   @extend %fs-16;
@@ -76,6 +108,16 @@
     &.color-2{
       font-size: 22px;}
   }
+  &.icon-btn-with-text-v1{
+    i{
+      margin-left: 10px;
+    }
+  }
+  &.icon-btn-with-text-v2{
+    i{
+      margin-left: 10px;
+    }
+  }
   &.color-1{
     color: $color-1;
     background-color: rgba($color-1,0.15);
@@ -83,6 +125,14 @@
   &.color-2{
     color: $color-4;
     background-color: rgba($color-4,0.15);
+  }
+  &.color-3{
+    color: $color-white;
+    background-color: $color-1;
+  }
+  &.color-4{
+    color: $color-white;
+    background-color:$color-4;
   }
 }
 .button-v5{
