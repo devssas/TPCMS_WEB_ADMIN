@@ -1,0 +1,10 @@
+{
+  "data" : [
+    {
+      "name": "myimage.jpg",
+      "size": 12345,
+      "type": "image/jpeg",
+      "url": "http://someserver.com/myimage.jpg"
+    }
+  ]
+}

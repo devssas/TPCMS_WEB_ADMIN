@@ -59,7 +59,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/missionPermitsNew" class="box-v2">
                                     <i class="icon-plus"></i>
                                     <h3>Create New Permits</h3>
                                     <p>In this Section, you can Create New Officers Permits.</p>

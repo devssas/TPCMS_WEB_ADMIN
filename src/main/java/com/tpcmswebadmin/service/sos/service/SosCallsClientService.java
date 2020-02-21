@@ -1,6 +1,5 @@
 package com.tpcmswebadmin.service.sos.service;
 
-import com.ssas.tpcms.engine.vo.request.ViewOfficersProfileRequestVO;
 import com.ssas.tpcms.engine.vo.request.ViewSOSRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
