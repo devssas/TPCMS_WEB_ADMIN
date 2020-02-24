@@ -1,7 +1,7 @@
 package com.tpcmswebadmin.webpages.card.controller;
 
 import com.tpcmswebadmin.infrastructure.utils.DateUtility;
-import com.tpcmswebadmin.webpages.card.delegate.CrimeReportDelegate;
+import com.tpcmswebadmin.webpages.card.delegate.CrimeReportCardDelegate;
 import com.tpcmswebadmin.webpages.card.domain.CrimeReportCardModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class CrimeReportCardController {
 
-    private final CrimeReportDelegate crimeReportDelegate;
+    private final CrimeReportCardDelegate crimeReportCardDelegate;
 
     @GetMapping("/card/crime-report")
     public String getCrimeReportCard(@RequestParam("crimeReportId") String crimeReportId, HttpServletRequest httpServletRequest, Model model) {
-        CrimeReportCardModel crimeReportCardModel = crimeReportDelegate.getCrimeReportCardByCrimeReportId(crimeReportId, httpServletRequest);
+        CrimeReportCardModel crimeReportCardModel = crimeReportCardDelegate.getCrimeReportCardByCrimeReportId(crimeReportId, httpServletRequest);
 
         model.addAttribute("crimeTitle", crimeReportCardModel.getCrimeTitle());
         model.addAttribute("reportId", crimeReportCardModel.getReportId());

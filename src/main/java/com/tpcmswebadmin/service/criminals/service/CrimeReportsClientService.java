@@ -67,7 +67,7 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
                                       ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto5()), ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto6()),
                                       ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto7()), ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto8()),
                                       ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto9()), ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto10())))
-                .caseBrief(tpEngineResponse.getCrimeReportList()[0].getOtherNotes())
+                .caseBrief(tpEngineResponse.getCrimeReportList()[0].getCaseBriefDesc())
                 .build();
     }
 

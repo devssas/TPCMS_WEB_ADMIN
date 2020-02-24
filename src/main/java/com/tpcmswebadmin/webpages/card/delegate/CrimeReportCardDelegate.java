@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component
 @RequiredArgsConstructor
-public class CrimeReportDelegate {
+public class CrimeReportCardDelegate {
 
     private final CrimeReportsClientService crimeReportsClientService;
 
