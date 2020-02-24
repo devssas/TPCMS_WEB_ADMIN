@@ -8,8 +8,11 @@ import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
+import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
+import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import com.tpcmswebadmin.service.criminals.domain.CrimeReportCardDto;
 import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
 import com.tpcmswebadmin.service.criminals.service.mapper.CrimeReportsMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -32,6 +36,40 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
+
+    public CrimeReportCardDto getCrimeReportCardByCrimeReportId(String crimeReportId, HttpServletRequest httpServletRequest) {
+        ViewCrimeReportRequestVO viewCrimeReportRequestVO = new ViewCrimeReportRequestVO();
+        viewCrimeReportRequestVO.setLoginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE));
+        viewCrimeReportRequestVO.setCrimeReportsId(crimeReportId);
+
+        setCredentials(viewCrimeReportRequestVO);
+
+        try {
+            log.info("CrimeReportCard ById Request will be sent to client. {}", viewCrimeReportRequestVO.getMobileAppUserName());
+
+            return prepareResponse(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeReports(viewCrimeReportRequestVO));
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on CrimeReportCard ById request. " + viewCrimeReportRequestVO.getMobileAppUserName());
+        }
+        return null;
+    }
+
+    private CrimeReportCardDto prepareResponse(TPEngineResponse tpEngineResponse) {
+        return CrimeReportCardDto.builder()
+                .crimeTitle(tpEngineResponse.getCrimeReportList()[0].getCrimeName())
+                .reportId(tpEngineResponse.getCrimeReportList()[0].getCrimeReportsId())
+                .status(tpEngineResponse.getCrimeReportList()[0].getCrimianlStatusCode())
+                .crimeScene(tpEngineResponse.getCrimeReportList()[0].getCrimeScene())
+                .suspects(tpEngineResponse.getCrimeReportList()[0].getListOfSuspects())
+                .reportedDate(tpEngineResponse.getCrimeReportList()[0].getReportedDate())
+                .images(Arrays.asList(ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto1()), ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto2()),
+                                      ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto3()), ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto4()),
+                                      ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto5()), ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto6()),
+                                      ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto7()), ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto8()),
+                                      ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto9()), ImageUtility.convertToBase64image(tpEngineResponse.getCrimeReportList()[0].getCasePhoto10())))
+                .caseBrief(tpEngineResponse.getCrimeReportList()[0].getCaseBriefDesc())
+                .build();
+    }
 
     @Override
     public ResponseDto<CrimeReportDto> getResponseDto(HttpServletRequest request) {
@@ -105,4 +143,5 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
 
         return list;
     }
+
 }

@@ -9,6 +9,9 @@ import java.util.Base64;
 public class ImageUtility {
 
     public static String convertToBase64image(byte[] image) {
+        if(image == null)
+            return null;
+
         return Base64.getEncoder().encodeToString(image);
     }
 }

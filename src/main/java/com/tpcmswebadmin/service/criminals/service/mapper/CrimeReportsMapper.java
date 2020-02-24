@@ -35,10 +35,12 @@ public class CrimeReportsMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewCrimeReport?reportId={reportId}' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateCrimeReport?reportId={reportId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+        String crimeReportId = "{crimeReportId}";
 
-        return actionView.replace("{reportId}", id) + actionUpdate.replace("{reportId}", id);
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/crime-report?crimeReportId={crimeReportId}'><i class='icon-view'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateCrimeReport?crimeReportId={crimeReportId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+
+        return actionView.replace(crimeReportId, id) + actionUpdate.replace(crimeReportId, id);
     }
 
 }

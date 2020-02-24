@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class CrimeReportsViewController {
+public class CrimeReportViewController {
 
     @GetMapping("/crimeReports")
     public String getCriminalsDatabase(Model model, HttpServletRequest httpServletRequest) {

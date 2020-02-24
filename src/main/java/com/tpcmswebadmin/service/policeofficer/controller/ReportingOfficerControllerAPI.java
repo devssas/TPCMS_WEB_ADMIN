@@ -18,7 +18,7 @@ public class ReportingOfficerControllerAPI {
 
     private final ReportingOfficerClientService reportingOfficerClientService;
 
-    @PostMapping("reporting-officer/{name}")
+    @PostMapping("/reporting-officer/{name}")
     public ResponseDto<ReportingOfficerDto> getByName(@PathVariable("name") String name, HttpServletRequest httpServletRequest) {
         return reportingOfficerClientService.getResponseDto(name, httpServletRequest);
     }

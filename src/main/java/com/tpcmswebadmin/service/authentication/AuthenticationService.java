@@ -35,7 +35,7 @@ public class AuthenticationService {
     public TPEngineResponse signInUserName(SignInUsernameModel signInUsernameModel) {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setAdminUserName(signInUsernameModel.getUsername());
-        officersLoginRequestVO.setUserCode(TpCmsConstants.USER_CODE); //todo static parameter pass
+        officersLoginRequestVO.setRequestChannel(TpCmsConstants.REQUEST_CHANNEL);
         setCredentials(officersLoginRequestVO);
 
         try {

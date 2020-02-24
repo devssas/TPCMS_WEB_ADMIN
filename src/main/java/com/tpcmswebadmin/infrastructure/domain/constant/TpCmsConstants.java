@@ -12,6 +12,11 @@ public class TpCmsConstants {
     public static final String USERNAME = "username";
     public static final String USERCODE = "userCode";
 
+
+    /**
+     * static parameter pass for request Channel on webAdmin
+     */
+    public static final String REQUEST_CHANNEL = "TPCMS_WEBADMIN";
     /**
      * static parameter pass for login calls
      */
