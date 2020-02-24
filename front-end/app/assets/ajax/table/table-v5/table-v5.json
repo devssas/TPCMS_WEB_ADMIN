@@ -8,67 +8,73 @@
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "documentId": "1276581212",
         "uploadDate": "2019/12/09",
         "documentTitle": "Document_Title_pdf",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
+      },
+      {
+        "documentId": "1276581212",
+        "uploadDate": "2019/12/09",
+        "documentTitle": "Document_Title_pdf",
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       }
     ]
   }

@@ -99,10 +99,10 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row single-photo-upload">
-                                                    <div class="form-row single-photo-upload">
-                                                        <figure>
-                                                            <img src="assets/images/layout/card-figure-v3.jpg" alt="">
-                                                        </figure>
+                                                    <div class="photo-upload upload-view">
+                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
+                                                        <i class="icon-admin-profile"></i>
+                                                        <span class="description">Upload Photo</span>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
@@ -402,14 +402,17 @@
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
-                                                <h3>CASE PHOTOS</h3><!-- TODO: carousel -->
+                                                <h3>CASE PHOTOS</h3>
                                             </div>
                                             <div class="form-container">
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">caruesel</span>
-                                                        <input type="text" placeholder="Placeholder">
-                                                    </label>
+                                                <div class="form-row multiple-photo-upload">
+                                                    <div class="photo-upload upload-view">
+                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-multiple.json" ></div>
+                                                        <div class="custom-upload">
+                                                            <i class="icon-plus"></i>
+                                                            <span class="description">Upload Photo</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div> <!-- form-container -->
                                         </div> <!-- inner -->
