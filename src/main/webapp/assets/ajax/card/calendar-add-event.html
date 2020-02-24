@@ -18,14 +18,14 @@
                     <div>
                         <div class="form-row">
                             <label>
-                                <input type="text" class="timepicker">
+                                <input type="text" class="timepicker" placeholder="11:00 AM">
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <label>
-                        <span class="span">06/02/2020, Thursday</span>
+                        <span class="text big-size">06/02/2020, Thursday</span>
                     </label>
                 </div>
                 <div class="form-row">
@@ -34,17 +34,17 @@
                     </label>
                 </div>
                 <div class="form-row multiple-photo-upload">
-                    <div class="photo-upload" data-upload-url="/file/post" >
-                        <div class="photo-upload-inner"></div>
-                        <i class="icon-admin-profile"></i>
-                        <span class="description">Upload Photo</span>
-                        <span class="delete-images" data-dz-remove><i class="icon-delete"></i></span>
+                    <div class="photo-upload upload-view">
+                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-multiple.json" ></div>
+                        <div class="custom-upload">
+                            <i class="icon-plus"></i>
+                            <span class="description">Upload Photo</span>
+                        </div>
                     </div>
                 </div>
-                <div class="submit-row">
-                    <label>
-
-                    </label>
+                <div class="form-row button-row">
+                    <a href="javascript:;" class="button button-v1 color-3 fix-size-sml" data-fancybox-close>Close</a>
+                    <input type="submit" class="button button-v1 color-1 fix-size-sml" value="Create">
                 </div>
             </div>
         </form>
