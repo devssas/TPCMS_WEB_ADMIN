@@ -793,7 +793,7 @@ header {
     }
   }
 }
-.fancy-card-box-v4 {
+.fancy-card-box-v4{
   width: 600px;
   background-color: $color-white;
   border-radius: 30px;
@@ -910,7 +910,7 @@ header {
       }
       .x-row{
         display: flex;
-        align-items: right;
+        align-items: flex-end;
         a{
           @extend %fs-18;
           color: $color-black;
@@ -943,6 +943,9 @@ header {
       z-index: 3;
       .table-container{
         height: 300px;
+        margin: 0 0 30px;
+        overflow-x: hidden;
+        overflow-y: auto;
       }
     }
   }
@@ -1108,6 +1111,13 @@ header {
 
     }
   }
+}
+
+.witness-container{
+  max-height: 500px;
+  padding-left: 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 //------------------------------------------------------------

@@ -123,12 +123,13 @@ var main = {
                         var _this = $(this),
                             _minLength = _this.data("min-lenght"),
                             _url = _this.data("url"),
+                            _method = _this.data("method"),
                             _value = _this.val();
 
                         if(_value.length >= _minLength){
                             $.ajax({
                                 url: _url+_value,
-                                method: "get",
+                                method: _method,
                                 dataType: "json",
                             }).done(function (response) {
                                 if(!response.status && response.message){
@@ -198,6 +199,26 @@ var main = {
             });
         }
 
+    },
+    addWitness: function(){
+        if($(".addWitness").length){
+            var index = 1;
+
+            $(".addWitness").on({
+                click: function () {
+                    var addWitnessHtml = "<div class='form-row'><span class='label'>Witness Statments</span><div class='input-group-content'><label><input type='text' name='witnessName"+index+"' placeholder='Name'></label><label><input type='text' name='witnessSurname"+index+"' placeholder='Surname'></label></div><div class='form-row'><label><span class='label'></span><textarea name='witnessStatement"+index+"' placeholder='Statement'></textarea></label></div></div>";
+                    $(".witness-container").append(addWitnessHtml);
+                    index++;
+
+                    $(".removeWitness").off("click").on({
+                        click: function () {
+                            $(this).parents(".form-row").remove();
+                        }
+                    });
+
+                }
+            });
+        }
     },
     datePicker: function () {
 
@@ -302,60 +323,61 @@ var main = {
     },
     filterControl: function () {
 
-        if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url"))){
+        if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url")) && $(".dynamic-content").is(':empty')){
 
-            var _this = $(".dynamic-content"),
-                templateUrl = _this.data("template-url"),
-                jsonUrl = _this.data("json-url"),
-                jsonTemplate;
+            $(".dynamic-content").each(function () {
+                var _this = $(this),
+                    templateUrl = _this.data("template-url"),
+                    jsonUrl = _this.data("json-url"),
+                    jsonTemplate;
 
+                $.ajax({
+                    url: templateUrl,
+                    method: "GET"
+                })
+                    .done(function (responseTemplate) {
+                        jsonTemplate = responseTemplate;
 
-            $.ajax({
-                url: templateUrl,
-                method: "GET"
-            })
-                .done(function (responseTemplate) {
-                    jsonTemplate = responseTemplate;
+                        if($("#filter-form").length){
 
-                    if($("#filter-form").length){
+                            $( "#filter-form" ).submit(function( event ) {
+                                event.preventDefault();
 
-                        $( "#filter-form" ).submit(function( event ) {
-                            event.preventDefault();
+                                var filter = $("#filter-form").serialize();
+                                getJson(jsonUrl, jsonTemplate, _this, filter);
+                            }).submit();
 
-                            var filter = $("#filter-form").serialize();
-                            getJson(jsonUrl, jsonTemplate, filter);
-                        }).submit();
+                        } else {
+                            getJson(jsonUrl, jsonTemplate, _this);
+                        }
 
-                    } else {
-                        getJson(jsonUrl,jsonTemplate);
-                    }
+                    });
+            });
 
-                });
+            function getJson(jsonUrl, jsonTemplate, _this, filter) {
 
-        }
+                $('.dynamic-page').addClass("loading");
+                _this.html("");
 
+                $.ajax({
+                    url: jsonUrl,
+                    method: "GET",
+                    dataType: "json",
+                    data: filter,
+                    async: false
+                })
+                    .done(function (responseJson) {
 
-        function getJson(jsonUrl, jsonTemplate, filter) {
+                        var template = Handlebars.compile(jsonTemplate),
+                            tableHTML = template(responseJson);
 
-            $('.dynamic-page').addClass("loading").find(".dynamic-content").html("");
+                        _this.html(tableHTML).parents(".dynamic-page").removeClass("loading");
 
-            $.ajax({
-                url: jsonUrl,
-                method: "GET",
-                dataType: "json",
-                data: filter,
-                async: false
-            })
-                .done(function (responseJson) {
+                        main.fancybox();
 
-                    var template = Handlebars.compile(jsonTemplate),
-                        tableHTML = template(responseJson);
+                    });
+            }
 
-                    $('.dynamic-content').html(tableHTML).parents(".dynamic-page").removeClass("loading");
-
-                    main.fancybox();
-
-                });
         }
 
     },
@@ -410,6 +432,7 @@ var main = {
             main.carousel();
             main.timePicker();
             main.dropzone();
+            main.validationsCommon();
 
             // if($(".print-button").length){
             //     $(".print-button").off("click").on({
@@ -423,18 +446,199 @@ var main = {
         });
 
 
-    }
+    },
+    validationMethods: function () {
+
+        $('.no-paste').bind('cut copy paste', function (e) {
+            e.preventDefault(); //disable cut,copy,paste
+        });
+
+        //only number
+        $(".only-number").on({
+            keydown: function (event) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(event.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                    // Allow: Ctrl+A, Command+A
+                    (event.keyCode == 65 && (event.ctrlKey === true || event.metaKey === true)) ||
+                    // Allow: home, end, left, right, down, up
+                    (event.keyCode >= 35 && event.keyCode <= 40)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+
+                // Ensure that it is a number and stop the keypress
+                if ((event.shiftKey || (event.keyCode < 48 || event.keyCode > 57)) && (event.keyCode < 96 || event.keyCode > 105)) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+        //only string
+        $.validator.addMethod("lettersonly", function (value, element) {
+            return this.optional(element) || /^[a-z ğüöçıİş]+$/i.test(value);
+        });
+
+    },
+    validationsCommon: function () {
+
+        /*var $success,
+            $error;
+
+        if ($("form").length) {
+            $("form").each(function (index, element) {
+                $success = $(".form-general-success", element);
+                $error = $(".form-general-error", element);
+            });
+        }*/
+
+        //message lang control
+        // function validationLang (msgTr,msgEn){
+        //     var langTr = $("html").attr("lang") == "tr";
+        //     if(langTr == true) {
+        //         return msgTr
+        //     } else {
+        //         return msgEn
+        //     }
+        // }
+
+        // Google Recaptcha
+        // $.validator.addMethod('reCaptchaMethod', function (value, element, param) {
+        //     if (grecaptcha.getResponse() == ''){
+        //         return false;
+        //     } else {
+        //         // I would like also to check server side if the recaptcha response is good
+        //         return true
+        //     }
+        // }, 'You must complete the antispam verification');
+
+
+
+
+        var defaults = {
+            ignore: ".skip-validation, .dynamic-skip-validation",
+            errorElement: "span",
+            errorPlacement: function (error, element) {
+                error.addClass("text-danger").appendTo(element.parents(".form-row"));
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).parents(".form-row").removeClass(validClass).addClass(errorClass);
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).parents(".form-row").removeClass(errorClass).addClass(validClass);
+            },
+            submitHandler: function (form) {
+
+                // $success.hide();
+                // $error.hide();
+
+                if ($(form).data("url")) {
+
+                    var url = $(form).data("url"),
+                        type = $(form).attr("method") || "GET",
+                        enctype = $(form).attr("enctype"),
+                        data = $(form).serialize();
+
+                    var ajaxOptions = {
+                        url: url,
+                        type: type,
+                        dataType: "json",
+                        data: data,
+                        cache: false,
+                        timeout: 900000
+                    };
+
+                    // buttonLoading(form);
+
+                    if (enctype === "multipart/form-data") {
+                        $.extend(ajaxOptions, {
+                            processData: false,
+                            contentType: false,
+                            timeout: 60000,
+                            data: new FormData(form)
+                        });
+                    }
+
+                    $.ajax(ajaxOptions)
+                        .done(function (response) {
+
+                            if (!response.status) {
+                                if (response.message) {
+                                    $(form).find(".form-general-error .alert-title").text(response.message);
+                                    $(form).find(".form-general-error").show();
+                                }
+                            } else {
+
+                                if ($(form).hasClass("previousCase")) {
+                                    var templateUrl = $(form).data("template-url");
+
+                                    $.ajax({
+                                        url: templateUrl,
+                                        method: "GET"
+                                    })
+                                        .done(function (responseTemplate) {
+
+                                            $(form).find(".dynamic-content").addClass("loading");
+
+                                            var template = Handlebars.compile(responseTemplate),
+                                                tableHTML = template(response);
+
+                                            $(form).find(".dynamic-content").html(tableHTML).removeClass("loading");
+
+                                            $(".previous-case-id").off("click").on({
+                                                click: function () {
+                                                    var _this = $(this),
+                                                        caseId = _this.data("case-id");
+
+                                                    $(".add-previous-case-id").val(caseId);
+
+                                                    $.fancybox.close();
+                                                }
+                                            })
+
+                                        });
+
+                                } else {
+                                    if (response.nextUrl) {
+                                        window.location.href = response.nextUrl;
+                                    }
+                                }
+                                // buttonLoading(form);
+                            }
+                        });
+
+                } else {
+                    form.submit();
+                }
+            }
+        };
+
+        //
+        // function buttonLoading (form) {
+        //     $(form).find("button.button-1").toggleClass("btn-loading")
+        // }
+
+        // criminal Previous Case
+        var previousCase = $(".previousCase");
+        if (previousCase.length) {
+            var options = $.extend({}, defaults);
+            previousCase.validate(options);
+        }
+
+    },
 }
 
 $(function () {
     main.init();
     main.inputAction();
     main.customSelectbox();
+    main.addWitness();
     main.datePicker();
     main.timePicker();
     main.dropzone();
     main.carousel();
     main.filterControl();
+    main.validationMethods();
+    main.validationsCommon();
 });
 
 function initMap() {

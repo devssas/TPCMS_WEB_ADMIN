@@ -2,57 +2,48 @@
   "status": true,
   "message": null,
   "data": {
-    "thead": ["Name", "National ID", "Criminal Code"],
     "tbody": [
       {
-        "officerID": "John",
-        "officerName": "2315465152",
-        "Address": "989898988989"
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
       },
       {
-        "officerID": "test",
-        "officerName": "321321321",
-        "Address": "1664498789156878"
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
       },
       {
-        "officerID": "John",
-        "officerName": "2315465152",
-        "Address": "989898988989"
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
       },
       {
-        "officerID": "test",
-        "officerName": "321321321",
-        "Address": "1664498789156878"
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
       },
       {
-        "officerID": "John",
-        "officerName": "2315465152",
-        "Address": "989898988989"
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
       },
       {
-        "officerID": "test",
-        "officerName": "321321321",
-        "Address": "1664498789156878"
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
       },
       {
-        "officerID": "John",
-        "officerName": "2315465152",
-        "Address": "989898988989"
-      },
-      {
-        "officerID": "test",
-        "officerName": "321321321",
-        "Address": "1664498789156878"
-      },
-      {
-        "officerID": "John",
-        "officerName": "2315465152",
-        "Address": "989898988989"
-      },
-      {
-        "officerID": "test",
-        "officerName": "321321321",
-        "Address": "1664498789156878"
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
       }
     ]
   }

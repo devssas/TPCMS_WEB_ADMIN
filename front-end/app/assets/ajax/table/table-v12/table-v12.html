@@ -9,9 +9,13 @@
     <div class="tbody">
         {{#each data.tbody}}
         <div class="tr">
-            {{#each this}}
-            <div class="td">{{{this}}}</div>
-            {{/each}}
+            <div class="td">
+                <a href="javascript:;" class="previous-case-id" data-case-id="{{criminalId}}">
+                    Name: {{name}}
+                    <span>National ID: {{nationalID}}</span>
+                </a>
+            </div>
+            <div class="td"><a href="javascript:;" class="previous-case-id" data-case-id="{{criminalId}}">Criminal Code: {{{criminalCode}}}</a></div>
         </div>
         {{/each}}
     </div>
