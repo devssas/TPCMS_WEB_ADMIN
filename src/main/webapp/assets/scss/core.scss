@@ -294,6 +294,9 @@ header {
     height: 400px;
     background-color: grey;
   }
+  &.mt-20{
+    margin-top: 20px;
+  }
 }
 
 .box-v1{
@@ -473,6 +476,9 @@ header {
       }
     }
   }
+  &.table-rounded{
+    border-radius: 20px;
+  }
 }
 
 
@@ -480,10 +486,11 @@ header {
   padding: 0;
   direction: rtl !important;
   background-color: transparent;
+  overflow: visible;
 }
 
 
-.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3{
+.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3, .fancy-card-box-v5{
   width: 461px;
   background-color: $color-white;
   border-radius: 30px;
@@ -601,21 +608,8 @@ header {
         margin-bottom: 5px;
       }
       .text{
-        @extend %fs-13;
-        @include f-roboto(600);
-        display: block;
-        line-height: 3.1rem;
-        color: $color-black;
         background-color: rgba($color-6,0.2);
         border-radius: 20px;
-        padding: 0 10px;
-        + .text{
-          margin-top: 20px;
-        }
-        &.big-size{
-          @extend %fs-16;
-          line-height: 3.1rem;
-        }
       }
     }
   }
@@ -752,7 +746,7 @@ header {
     &:after{
       z-index: 2;
       background: url('../images/bg/bg-v1.jpg') no-repeat center / cover;
-      opacity: 0.4;
+      opacity: 0.7;
     }
     &:before{
       z-index: 1;
@@ -762,16 +756,39 @@ header {
       position: relative;
       z-index: 3;
       .divided-content{
+        margin: 30px;
+        &.bordered{
+          border-bottom:  1px solid rgba(0, 0, 0, 0.2);
+          padding-bottom: 10px;
+          margin-bottom: 10px;
+        }
         .form-row{
+          text-align: right;
           label{
             display: flex;
             > * {
               width: 50%;
               &.label{
-
                 @include f-gesstMedium;
               }
             }
+          }
+        }
+      }
+      .form-row-v2{
+        margin: 0 30px 30px 30px;
+        label{
+          @extend %fs-13;
+          text-align: right;
+          .label{
+            @include f-gesstMedium;
+            line-height: 25px;
+            display: block;
+            width: 100%;
+            color: rgba($color-black,0.7);
+          }
+          .text{
+            @include f-roboto(500);
           }
         }
       }
@@ -779,12 +796,88 @@ header {
   }
 }
 .fancy-card-box-v4 {
-  width: 461px;
+  width: 600px;
   background-color: $color-white;
   border-radius: 30px;
-  overflow: hidden;
+  overflow: visible;
   .content{
-    padding: 20px 15px;
+    padding: 45px 15px;
+  }
+}
+.fancy-card-box-v5{
+  width: 700px;
+  .fancy-top-content{
+    padding-bottom: 0;
+    .fancy-card-title{
+      h2{
+        @extend %fs-14;
+        @include f-roboto(500);
+        position: absolute;
+        top:36px;
+        opacity: 0.5;
+      }
+      h3{
+        @extend %fs-36;
+        @include f-roboto(500);
+      }
+    }
+    .fancy-card-case-id-box{
+      margin-top: 30px;
+      display: block;
+      text-align: left;
+      label{
+        @extend %fs-13;
+        @include f-roboto(500);
+        .label{
+          color: $color-black;
+          margin-right: 10px;
+        }
+        .text{
+          color: rgba($color-black,0.5);
+        }
+        .date{
+          position: absolute;
+          right: 20px;
+          color: rgba($color-black,0.5);
+        }
+      }
+    }
+  }
+  .content{
+    padding: 20px;
+    .photo-content{
+      width: 100%;
+      height: 225px;
+      background-color: $color-6;
+      margin-bottom: 20px;
+    }
+    .form-content{
+      position: relative;
+      z-index: 3;
+      .form-row{
+        text-align: right;
+        margin-bottom: 20px;
+        label{
+          display: flex;
+          .text{
+            @extend %fs-14;
+            @include f-roboto(500);
+            line-height: 22px;
+          }
+          textarea{
+            @extend %fs-14;
+            @include f-roboto(500);
+            background-color: $color-6;
+            resize: none;
+            border-radius: 15px;
+            padding: 15px;
+            width: 100%;
+            height: 400px;
+            color: $color-black;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -1162,5 +1255,15 @@ header {
   line-height: 14px !important;
   color: #f00 !important;
   margin-top: 5px !important;
+}
+
+
+
+@media print {
+
+  .page-wrapper{
+    display: none;
+  }
+
 }
 

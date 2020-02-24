@@ -113,6 +113,40 @@ var main = {
             });
 
         }
+
+        if($(".field-query").length){
+            $(".field-query").each(function () {
+
+                $(this).on({
+                    keyup: function () {
+
+                        var _this = $(this),
+                            _minLength = _this.data("min-lenght"),
+                            _url = _this.data("url"),
+                            _value = _this.val();
+
+                        if(_value.length >= _minLength){
+                            $.ajax({
+                                url: _url+_value,
+                                method: "get",
+                                dataType: "json",
+                            }).done(function (response) {
+                                if(!response.status && response.message){
+                                    _this.parents(".form-row").addClass("error").find(".text-danger").remove();
+                                    _this.parent().append("<span class='text-danger'>"+ response.message +"</span>");
+                                } else {
+                                    _this.parents(".form-row").removeClass("error").find(".text-danger").remove();
+                                }
+                            });
+                        }
+
+                    }
+                });
+
+            });
+
+
+        }
     },
     customSelectbox: function(){
 
@@ -164,86 +198,6 @@ var main = {
             });
         }
 
-      /*  if($(".country-select")){
-            $(".country-select").each(function (index, element) {
-                $.ajax({
-                    url: $(this).data("url"),
-                    method: "get",
-                    dataType: "json",
-                }).done(function (response) {
-
-                    var template;
-
-                    for (var i = 0; i < response.length; i++){
-                        template += "<option value='" + response[i].name + "'>" + response[i].name + "</option>";
-                    }
-
-                    $(".country-select").append(template).select2({
-                        minimumResultsForSearch: -1
-                    }).off("select2:open").on("select2:open", function (e) {
-                        $(".select2-results .select2-results__options").niceScroll({
-                            autohidemode: false,
-                            cursorwidth: 4,
-                            cursorcolor: "#BCC3CA",
-                            cursorborder: 2,
-                            cursorborderradius: 2,
-                            horizrailenabled: true,
-                        });
-                    });
-
-                });
-            });
-        }
-
-        if($(".country-and-flag-select").length){
-
-            $(".country-and-flag-select").each(function () {
-
-                $.ajax({
-                    url: $(this).data("url"),
-                    method: "get",
-                    dataType: "json",
-                }).done(function (response) {
-                    var template;
-
-                    for (var i = 0; i < response.length; i++){
-                        template += "<option value='" + response[i].phone + "'>" + response[i].alpha_2 + "</option>";
-                    }
-
-                    $(".country-and-flag-select").append(template).select2({
-                        minimumResultsForSearch: -1,
-                        templateSelection: formatState,
-                        templateResult: formatState
-                    }).off("select2:open").on("select2:open", function (e) {
-                        $(".select2-results .select2-results__options").niceScroll({
-                            autohidemode: false,
-                            cursorwidth: 4,
-                            cursorcolor: "#BCC3CA",
-                            cursorborder: 2,
-                            cursorborderradius: 2,
-                            horizrailenabled: true,
-                        });
-                    });
-
-                    if($("[data-selected]").length){
-                        $("[data-selected]").each(function () {
-                            $(this).val($(this).attr("data-selected")).trigger('change.select2');
-                        });
-                    }
-
-                });
-            });
-
-
-        }*/
-
-        function formatState (state) {
-            if (!state.id) {
-                return state.text;
-            }
-            var $state = $("<div><span class='flag flag-"+ state.text.toLowerCase() +"'></span>"+ state.id +"</div>");
-            return $state;
-        }
     },
     datePicker: function () {
 
@@ -258,7 +212,6 @@ var main = {
 
             $( "#calendar" ).datepicker({
                 onSelect: function(date, datepicker) {
-                    console.log(date);
                     window.location.href = nextUrl+"?"+date
                 },
             });
@@ -269,9 +222,6 @@ var main = {
       if($('.timepicker').length){
           $('.timepicker').timepicker({
               timeFormat: 'h:mm p',
-              interval: 60,
-              defaultTime: '11',
-              startTime: '10:00',
               dynamic: false,
               dropdown: true,
               scrollbar: true,
@@ -283,30 +233,67 @@ var main = {
 
         if($(".photo-upload").length){
 
-            var uploadUrl = $(".photo-upload").data("upload-url");
+            $(".photo-upload").each(function () {
 
-            $(".single-photo-upload .photo-upload-inner").dropzone({
-                url: uploadUrl,
-                maxFiles: 1,
-                thumbnailMethod: "contain"/*,
-                init: function() {
-                    this.on("addedfile", function(file) {
-                    });
-                }*/
-            });
-        }
+                var _this = $(this).find(".photo-upload-inner"),
+                    uploadUrl = _this.data("upload-url"),
+                    deleteUrl = _this.data("delete-url"),
+                    maxFiles = _this.data("max-files") ? _this.data("max-files") : null ;
 
-        if($(".multiple-photo-upload").length){
-            var uploadUrl = $(".photo-upload").data("upload-url");
+                _this.dropzone({
+                    url: uploadUrl,
+                    maxFiles: maxFiles,
+                    addRemoveLinks: true,
+                    dictRemoveFile: "",
+                    thumbnailMethod: "contain",
+                    dictDefaultMessage: null,
+                    removedfile: function(file) {
+                        var name = file.name;
+                        $.ajax({
+                            url: deleteUrl,
+                            type: "POST",
+                            data: "id=" + name,
+                            dataType: "html"
+                        });
+                        var _ref;
+                        return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                    },
+                    init: function() {
 
-            $(".multiple-photo-upload .photo-upload-inner").dropzone({
-                url: uploadUrl,
-                maxFiles: 2,
-                thumbnailMethod: "contain"/*,
-                init: function() {
-                    this.on("addedfile", function(file) {
-                    });
-                }*/
+                        var _initThis = this;
+
+                        _initThis.on("addedfile", function(file) {
+                            if (_initThis.files[maxFiles]!=null){
+                                _initThis.removeFile(_initThis.files[0]);
+                            }
+                        });
+
+                        if(_this.parents(".photo-upload").hasClass("upload-view")){
+                            var uploadAjaxUrl = _this.data("upload-ajax-url");
+
+                            $.ajax({
+                                url: uploadAjaxUrl
+                            })
+                                .done(function (response) {
+
+                                    for(var i = 0; i < response.data.length ; i++){
+
+                                        _initThis.files.push(response.data[i]);
+                                        _initThis.emit('addedfile', response.data[i]);
+                                        _initThis.emit("thumbnail", response.data[i], response.data[i].url);
+                                        _initThis.emit('complete', response.data[i]);
+                                        response.data[i].previewElement.classList.add('dz-success');
+                                        response.data[i].previewElement.classList.add('dz-complete')
+
+                                    }
+
+                                });
+
+                        }
+
+                    }
+                });
+
             });
         }
 
@@ -387,8 +374,8 @@ var main = {
 
         if($("[data-fancybox-card]").length){
             $("[data-fancybox-card]").fancybox({
-                smallBtn:false
-
+                smallBtn: false,
+                toolbar: false
             });
         }
 
@@ -421,22 +408,16 @@ var main = {
             main.carousel();
             main.timePicker();
             main.dropzone();
+
+            // if($(".print-button").length){
+            //     $(".print-button").off("click").on({
+            //         click: function () {
+            //         }
+            //     })
+            // }
             // console.log(event);
             // console.log(instance.$refs.container);
             // instance.$refs.container.removeClass("_loading").addClass("_loaded"); // needed for transition on side panel
-            //
-            // main.customInputs();
-            // main.tooltip();
-            // main.mediaPlayer();
-            // main.comments.write();
-            // main.carDetails();
-            // main.compare.panel();
-            // main.board.question();
-            // main.messages.init();
-            // _this.shareWithFriend();
-            // _this.dashboardTour();
-            // _this.stockForm();
-            // _this.abandonForm();
         });
 
 
