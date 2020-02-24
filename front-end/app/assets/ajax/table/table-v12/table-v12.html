@@ -1,4 +1,4 @@
-<div class="table-v1">
+<div class="table-v2">
     <div class="thead">
         <div class="tr">
             {{#each data.thead}}
@@ -11,11 +11,11 @@
         <div class="tr">
             <div class="td">
                 <a href="javascript:;" class="previous-case-id" data-case-id="{{criminalId}}">
-                    Name: {{name}}
-                    <span>National ID: {{nationalID}}</span>
+                    <span> Name: {{name}}</span>
+                    <span> National ID: {{nationalID}}</span>
                 </a>
             </div>
-            <div class="td"><a href="javascript:;" class="previous-case-id" data-case-id="{{criminalId}}">Criminal Code: {{{criminalCode}}}</a></div>
+            <div class="td" ><a href="javascript:;" class="previous-case-id" data-case-id="{{criminalId}}">{{{criminalCode}}} : Criminal Code</a></div>
         </div>
         {{/each}}
     </div>

@@ -206,7 +206,7 @@ var main = {
 
             $(".addWitness").on({
                 click: function () {
-                    var addWitnessHtml = "<div class='form-row'><span class='label'>Witness Statments</span><div class='input-group-content'><label><input type='text' name='witnessName"+index+"' placeholder='Name'></label><label><input type='text' name='witnessSurname"+index+"' placeholder='Surname'></label></div><div class='form-row'><label><span class='label'></span><textarea name='witnessStatement"+index+"' placeholder='Statement'></textarea></label></div></div>";
+                    var addWitnessHtml = "<div class='form-row'><a href='javascript:;' class='button button-v4 color-1 line-height-sml removeWitness'><i class='icon-cancel'></i></a><span class='label witness-label'>Witness Statments</span><div class='input-group-content'><label><input type='text' name='witnessName"+index+"' placeholder='Name'></label><label><input type='text' name='witnessSurname"+index+"' placeholder='Surname'></label></div><div class='form-row'><label><span class='label'></span><textarea name='witnessStatement"+index+"' placeholder='Statement'></textarea></label></div></div>";
                     $(".witness-container").append(addWitnessHtml);
                     index++;
 

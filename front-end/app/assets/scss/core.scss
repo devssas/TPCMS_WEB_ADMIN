@@ -487,6 +487,69 @@ header {
   overflow: visible;
 }
 
+.table-v2 {
+  display: table;
+  width: 100%;
+  background-color: $color-white;
+  overflow: hidden;
+
+  .thead {
+    display: table-header-group;
+    background: $color-2;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .tbody {
+    display: table-row-group;
+  }
+
+  .tr {
+    display: table-row;
+
+    .th {
+      @extend %fs-14;
+      @include f-roboto(400);
+      height: 50px;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: right;
+      color: $color-black;
+      padding: 12px 15px;
+    }
+
+    .td {
+      @extend %fs-14;
+      @include f-roboto(500);
+      display: table-cell;
+      text-align: right;
+      color: rgba($color-black, 0.5);
+      padding: 12px 15px;
+
+      &:last-child {
+        text-align: left;
+        a{
+          color: $color-1;
+        }
+      }
+
+      a {
+        height: 50px;
+        color: $color-black;
+        span{
+          display: block;
+        }
+      }
+    }
+  }
+}
+.fancybox-content{
+  padding: 0;
+  direction: rtl !important;
+  background-color: transparent;
+  overflow: visible;
+}
+
 
 .fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3, .fancy-card-box-v5, .fancy-card-box-v6{
   width: 461px;
@@ -1118,6 +1181,14 @@ header {
   padding-left: 15px;
   overflow-x: hidden;
   overflow-y: auto;
+  .witness-label {
+    height: 30px;
+    margin-bottom: 0;
+  }
+  a{
+    width: 50px;
+    float: left;
+  }
 }
 
 //------------------------------------------------------------
