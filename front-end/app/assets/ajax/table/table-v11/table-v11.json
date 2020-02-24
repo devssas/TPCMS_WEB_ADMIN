@@ -2,7 +2,7 @@
   "status": true,
   "message": null,
   "data": {
-    "thead": ["Staff Name", "Remarks Date", "Remarks","<a href='javascript:;' class='button button-v4 icon-btn-with-text-v2 color-1' data-src='../../card/add-case-update.html'><i class='icon-plus'></i>Add Update</a>"],
+    "thead": ["Staff Name", "Remarks Date", "Remarks","<a href='javascript:;' class='button button-v4 icon-btn-with-text-v2 color-1 line-height-sml' data-src='../../card/add-case-update.html'><i class='icon-plus'></i>Add Update</a>"],
     "tbody": [
       {
         "officerID": "staffname1",

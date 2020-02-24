@@ -96,6 +96,10 @@
   text-align: center;
   border-radius: 4px;
   padding: 0 20px;
+  &.line-height-sml{
+    height: 30px;
+    line-height: 30px;
+  }
   &.sml-icon-btn{
     display: block;
     width: 28px;
