@@ -14,9 +14,9 @@ public class TpCmsConstants {
 
 
     /**
-     * static parameter pass for webAdmin
+     * static parameter pass for request Channel on webAdmin
      */
-    public static final String WEB_ADMIN = "TPCMS_WEBADMIN";
+    public static final String REQUEST_CHANNEL = "TPCMS_WEBADMIN";
     /**
      * static parameter pass for login calls
      */
