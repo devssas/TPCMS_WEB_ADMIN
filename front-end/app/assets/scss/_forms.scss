@@ -199,6 +199,8 @@
         position: relative;
         input{
           padding: 0 45px 0 0;
+          height: 50px;
+          line-height: 50px;
         }
         i{
           position: absolute;
@@ -559,6 +561,14 @@
       width: calc(100% - 170px);
       padding: 0 10px;
       margin-bottom: 20px;
+      &.search-row{
+        label{
+          input{
+            height: 50px;
+            color: $color-4;
+          }
+        }
+      }
       &.submit-row{
         width: 150px;
       }

@@ -1,0 +1,18 @@
+<div class="table-v1">
+    <div class="thead">
+        <div class="tr">
+            {{#each data.thead}}
+            <div class="th">{{{this}}}</div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="tbody">
+        {{#each data.tbody}}
+        <div class="tr">
+            {{#each this}}
+            <div class="td">{{{this}}}</div>
+            {{/each}}
+        </div>
+        {{/each}}
+    </div>
+</div>
