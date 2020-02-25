@@ -64,6 +64,10 @@
                                                 <form:input id="signInPassCode2" cssClass="signInPassCode2 next-input-field" path="passCode2" maxlength="1"/>
                                                 <form:input id="signInPassCode3" cssClass="signInPassCode3 next-input-field" path="passCode3" maxlength="1"/>
                                             </div>
+                                            <form:errors id="passCodeFull" path="passCodeFull" cssClass="text-danger" />
+                                            <form:errors id="signInPassCode1" path="passCode1" cssClass="text-danger" />
+                                            <form:errors id="signInPassCode2" path="passCode2" cssClass="text-danger" />
+                                            <form:errors id="signInPassCode3" path="passCode3" cssClass="text-danger" />
                                         </label>
                                     </div>
                                     <div class="form-row button-row">
