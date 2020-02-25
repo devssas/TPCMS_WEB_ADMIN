@@ -34,6 +34,7 @@ public class ReportingOfficerClientService  {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         TPEngineResponse response = makeClientCall(name, loginUserDo);
@@ -62,6 +63,7 @@ public class ReportingOfficerClientService  {
         reportingOfficerRequestVO.setLoginOfficerUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
         reportingOfficerRequestVO.setOfficersFirstNameAr(name);
 
+        reportingOfficerRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(reportingOfficerRequestVO);
 
         try {
@@ -78,7 +80,6 @@ public class ReportingOfficerClientService  {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        requestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo constant pass
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }

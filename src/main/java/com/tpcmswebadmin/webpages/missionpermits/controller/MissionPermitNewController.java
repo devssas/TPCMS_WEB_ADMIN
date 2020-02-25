@@ -46,7 +46,7 @@ public class MissionPermitNewController {
             return "mission_permits_new";
         }
 
-        missionPermitNewDelegate.createNewMissionCard(missionPermitCardCreateModel);
+        missionPermitNewDelegate.createNewMissionCard(missionPermitCardCreateModel, request);
 
         return "redirect:missionPermits";
     }

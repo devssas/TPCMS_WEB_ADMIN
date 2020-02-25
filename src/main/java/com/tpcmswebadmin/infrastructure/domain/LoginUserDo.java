@@ -15,4 +15,6 @@ public class LoginUserDo extends PaginationDo {
 
     private String loginOfficerUnitNumber;
 
+    private String mobileAppDeviceId;
+
 }

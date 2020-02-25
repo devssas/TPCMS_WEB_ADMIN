@@ -78,6 +78,7 @@
                                                 </select>
                                             </label>
                                         </div>
+                                        <a href="${pageContext.request.contextPath}/fileCriminalCase" class="button button-v1 fix-size-sml">File Criminal Case</a>
                                         <a href="${pageContext.request.contextPath}/criminalsMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                     </div>
                                 </div>
