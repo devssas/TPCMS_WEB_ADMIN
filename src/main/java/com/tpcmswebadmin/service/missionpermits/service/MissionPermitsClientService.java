@@ -36,7 +36,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
 
     private final CredentialsService credentialsService;
 
-    public TPEngineResponse createNewMissionCard(MissionPermitCardCreateModel missionPermitCardCreateModel) {
+    public TPEngineResponse createNewMissionCard(MissionPermitCardCreateModel missionPermitCardCreateModel, HttpServletRequest httpServletRequest) {
         SpecialMissionRequestVO specialMissionRequestVO = new SpecialMissionRequestVO();
         specialMissionRequestVO.setMissionDescription(missionPermitCardCreateModel.getMissionDescription());
         specialMissionRequestVO.setMissionType(missionPermitCardCreateModel.getMissionType());
@@ -46,6 +46,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         specialMissionRequestVO.setExpiryDate(missionPermitCardCreateModel.getExpiryDate());
         specialMissionRequestVO.setAdditionalRemarks(missionPermitCardCreateModel.getAdditionalRemarks());
 
+        specialMissionRequestVO.setMobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
         setCredentials(specialMissionRequestVO);
 
         try {
@@ -62,8 +63,8 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
     public MissionCardDto getSpecialMissionsByMissionId(String missionId, String missionQrCode, HttpServletRequest httpServletRequest) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber(
-                        (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         ViewSpecialMissionRequestVO viewSpecialMissionRequestVO = new ViewSpecialMissionRequestVO();
@@ -105,6 +106,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         TPEngineResponse response = makeClientCall(loginUserDo);
@@ -135,6 +137,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         viewSpecialMissionRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewSpecialMissionRequestVO.setSpecialMissionSeeAll("Y");
 
+        viewSpecialMissionRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewSpecialMissionRequestVO);
 
         try {
@@ -152,7 +155,6 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        requestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo constant pass
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }
@@ -161,7 +163,6 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         specialMissionRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        specialMissionRequestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo constant pass
         specialMissionRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         specialMissionRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }

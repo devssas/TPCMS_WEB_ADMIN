@@ -36,6 +36,7 @@ public class SosCallsClientService implements ClientServiceAPI<SosCallDto, Login
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         TPEngineResponse response = makeClientCall(loginUserDo);
@@ -67,6 +68,7 @@ public class SosCallsClientService implements ClientServiceAPI<SosCallDto, Login
         viewSOSRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewSOSRequestVO.setSosRequestSeeAll("Y");
 
+        viewSOSRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewSOSRequestVO);
 
         try {
@@ -84,7 +86,6 @@ public class SosCallsClientService implements ClientServiceAPI<SosCallDto, Login
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        requestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo constant pass
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }

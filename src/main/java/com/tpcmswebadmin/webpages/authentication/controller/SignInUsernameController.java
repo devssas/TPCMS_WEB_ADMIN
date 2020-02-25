@@ -41,9 +41,7 @@ public class SignInUsernameController {
             return "signin_username";
         }
 
-        if (signInUsernameDelegate.signInUsername(signInUsernameModel)) {
-            request.getSession().setAttribute("username", signInUsernameModel.getUsername());
-
+        if (signInUsernameDelegate.signInUsername(signInUsernameModel, request)) {
             return "redirect:signInUserCode";
         } else {
             return "redirect:signInUsername";

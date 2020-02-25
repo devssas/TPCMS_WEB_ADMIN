@@ -17,7 +17,7 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="assets/images/head/og-image.jpg">
 
-    <link rel="stylesheet" href="assets/css/core.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/core.css">
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/head/favicon.png">
     <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/assets/images/head/60x60.png">

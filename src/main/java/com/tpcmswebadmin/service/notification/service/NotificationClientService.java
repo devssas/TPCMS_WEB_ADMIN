@@ -37,6 +37,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         PushNotificationsRequestVO pushNotificationsRequestVO = new PushNotificationsRequestVO();
         pushNotificationsRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         pushNotificationsRequestVO.setOfficerCode(loginUserDo.getLoginOfficersCode());
+        pushNotificationsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
 
         if(NotificationType.NOTIFICATION.equals(type)) {
             log.info("update notifications. {}", pushNotificationsRequestVO.getMobileAppUserName());
@@ -62,7 +63,6 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        requestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo constant pass
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }
@@ -72,6 +72,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         TPEngineResponse response = makeClientCall(loginUserDo);
@@ -102,6 +103,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         viewNotificationsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewNotificationsRequestVO.setNotificationSeeAll("Y");
 
+        viewNotificationsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewNotificationsRequestVO);
 
         try {
@@ -119,7 +121,6 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        requestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo constant pass
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }
