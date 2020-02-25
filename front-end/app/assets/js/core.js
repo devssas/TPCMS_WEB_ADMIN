@@ -636,6 +636,7 @@ $(function () {
     main.timePicker();
     main.dropzone();
     main.carousel();
+    main.fancybox();
     main.filterControl();
     main.validationMethods();
     main.validationsCommon();
