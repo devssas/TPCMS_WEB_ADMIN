@@ -554,7 +554,7 @@ header {
 }
 
 
-.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3, .fancy-card-box-v5, .fancy-card-box-v6{
+.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3, .fancy-card-box-v5, .fancy-card-box-v6 , .fancy-card-box-v7,.fancy-card-box-v8{
   width: 461px;
   background-color: $color-white;
   border-radius: 30px;
@@ -1016,6 +1016,66 @@ header {
     }
   }
 }
+.fancy-card-box-v7{
+  padding: 25px;
+  text-align: center;
+  line-height: 50px;
+  i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+    line-height: 125px;
+    color:$color-white;
+    &:before {
+      position: relative;
+      top: 0;
+      left: auto;
+      width: 125px;
+      height: 125px;
+      background-color: $color-8;
+      border-radius: 50%;
+      margin: 0 0 0 -7px;
+      z-index: 1;
+    }
+  }
+  h2{
+    font-size: 25px;
+  }
+  p{
+    font-size: 20px;
+  }
+}
+.fancy-card-box-v8{
+  padding: 25px;
+  text-align: center;
+  line-height: 50px;
+  i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+    line-height: 125px;
+    color:$color-white;
+    &:before {
+      position: relative;
+      top: 0;
+      left: auto;
+      width: 125px;
+      height: 125px;
+      background-color: $color-9;
+      border-radius: 50%;
+      margin: 0 0 0 -7px;
+      z-index: 1;
+    }
+  }
+  h2{
+    font-size: 25px;
+  }
+  p{
+    font-size: 20px;
+  }
+}
 
 
 .divided-content{
@@ -1194,6 +1254,28 @@ header {
   }
 }
 
+.alertify{
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  display: none;
+  max-width: 250px;
+  padding: 10px 15px;
+  border: 1px solid;
+  p{
+    @extend %fs-16;
+    @include f-roboto(400);
+    color: $color-black;
+  }
+  &.error{
+    background-color: rgba($color-8,0.5);
+    border-color: $color-8;
+  }
+  &.success{
+    background-color: rgba($color-9,0.5);
+    border-color: $color-9;
+  }
+}
 //------------------------------------------------------------
 // = plugins
 //------------------------------------------------------------

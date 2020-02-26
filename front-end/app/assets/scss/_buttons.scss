@@ -177,3 +177,37 @@
     background-color: $color-1;
   }
 }
+
+.button-v7{
+  @extend %fs-16;
+  @include f-roboto(normal);
+  display: inline-block;
+  margin:auto;
+  width: 80%;
+  line-height: 40px;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  padding: 0 7px;
+  transition: $transition;
+  outline: none;
+  &.color-1{
+    color: $color-white;
+    background-color: $color-8;
+    &:hover{
+      color: $color-white;
+      background-color: rgba($color-8, 0.80);
+      text-decoration: none;
+    }
+  }
+  &.color-2{
+    color: $color-white;
+    background-color: $color-9;
+    &:hover{
+      color: $color-white;
+      background-color: rgba($color-9, 0.80);
+      text-decoration: none;
+    }
+  }
+}
+
