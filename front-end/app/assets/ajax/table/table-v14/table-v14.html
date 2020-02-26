@@ -1,0 +1,27 @@
+<div class="table-v1">
+    <div class="thead">
+        <div class="tr">
+            {{#each data.thead}}
+            <div class="th">{{this}}</div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="tbody">
+        {{#each data.tbody}}
+        <div class="tr">
+            <div class="td">
+                <a href="javascript:;" class="previous-case-id" data-case-id="{{this.crimeScene}}">{{{reportID}}}</a>
+            </div>
+            <div class="td">
+                <a href="javascript:;" class="previous-case-id" data-case-id="{{this.crimeScene}}">{{{suspects}}}</a>
+            </div>
+            <div class="td">
+                <a href="javascript:;" class="previous-case-id" data-case-id="{{this.crimeScene}}">{{{crimeTitle}}}</a>
+            </div>
+            <div class="td">
+                <a href="javascript:;" class="previous-case-id" data-case-id="{{this.crimeScene}}">{{{crimeScene}}}</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
