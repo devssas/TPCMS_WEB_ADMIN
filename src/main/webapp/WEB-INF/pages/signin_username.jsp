@@ -63,9 +63,9 @@
                                                 <label>
                                                     <span class="label">Username *</span>
                                                     <form:input id="username" path="username"/>
-                                                    <form:errors id="username" path="username" cssClass="text-danger"/>
                                                 </label>
                                             </div>
+                                            <form:errors id="username" path="username" cssClass="text-danger"/>
                                         </label>
                                     </div>
                                     <div class="form-row button-row">

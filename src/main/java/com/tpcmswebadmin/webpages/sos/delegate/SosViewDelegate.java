@@ -21,6 +21,7 @@ public class SosViewDelegate {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         notificationClientService.updateNotifications(loginUserDo, NotificationType.SOS);

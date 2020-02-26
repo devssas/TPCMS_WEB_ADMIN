@@ -36,7 +36,7 @@ public class SignInUsernameController {
     @PostMapping("/signInUsername")
     public String signInWithUsername(@Valid @ModelAttribute("signInUsernameModel") SignInUsernameModel signInUsernameModel, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            logger.warn("Errors {}", bindingResult.getAllErrors());
+            logger.warn("Error signin username. No name is present. {}", bindingResult.getAllErrors());
 
             return "signin_username";
         }
@@ -44,7 +44,9 @@ public class SignInUsernameController {
         if (signInUsernameDelegate.signInUsername(signInUsernameModel, request)) {
             return "redirect:signInUserCode";
         } else {
-            return "redirect:signInUsername";
+            logger.error("Errors on signin username. username cant be found {} ", signInUsernameModel.getUsername());
+
+            return "signin_username";
         }
 
     }
