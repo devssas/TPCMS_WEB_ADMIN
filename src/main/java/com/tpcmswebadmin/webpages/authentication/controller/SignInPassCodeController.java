@@ -1,6 +1,7 @@
 package com.tpcmswebadmin.webpages.authentication.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
@@ -34,7 +35,7 @@ public class SignInPassCodeController {
     public String getSignInPassCode(Model model) {
         model.addAttribute("signInPassCodeModel", new SignInPassCodeModel());
 
-        return "signin_passcode";
+        return Pages.SIGN_IN_PASSCODE;
     }
 
     @PostMapping("/signInPassCode")
@@ -45,7 +46,7 @@ public class SignInPassCodeController {
             SignInPassCodeModel emptyModel = new SignInPassCodeModel();
             BeanUtils.copyProperties(emptyModel, signInPassCodeModel);
 
-            return "signin_passcode";
+            return Pages.SIGN_IN_PASSCODE;
         }
 
         signInPassCodeModel.setUserName((String) request.getSession().getAttribute(TpCmsConstants.USERNAME));
@@ -64,9 +65,9 @@ public class SignInPassCodeController {
             request.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, signInPassCodeDto.getProfilePicture());
             request.getSession().setAttribute(TpCmsConstants.ACCESS_ROLE, signInPassCodeDto.getAccessRole());
 
-            return "redirect:dashboard";
+            return Pages.REDIRECT_DASHBOARD;
         } else {
-            return "signin_passcode";
+            return Pages.SIGN_IN_PASSCODE;
         }
     }
 

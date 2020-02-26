@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.dashboard.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.webpages.dashboard.delegate.DashboardDelegate;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardModel;
@@ -34,7 +35,7 @@ public class DashboardController {
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
         model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));
 
-        return "dashboard";
+        return Pages.DASHBOARD;
     }
 
 }

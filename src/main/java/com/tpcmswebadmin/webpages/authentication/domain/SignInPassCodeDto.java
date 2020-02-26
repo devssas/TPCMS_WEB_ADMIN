@@ -1,10 +1,13 @@
 package com.tpcmswebadmin.webpages.authentication.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@AllArgsConstructor
 public class SignInPassCodeDto {
 
     private boolean hasResult;
@@ -21,21 +24,6 @@ public class SignInPassCodeDto {
 
     public SignInPassCodeDto() {
         this.hasResult = false;
-    }
-
-    public SignInPassCodeDto(String officerCode, String reportUnit) {
-        this.hasResult = false;
-        this.officerCode = officerCode;
-        this.reportUnit = reportUnit;
-    }
-
-    public SignInPassCodeDto(String officerCode, String reportUnit, String officerName, String profilePicture, String accessRole) {
-        this.hasResult = false;
-        this.officerCode = officerCode;
-        this.reportUnit = reportUnit;
-        this.officerName = officerName;
-        this.profilePicture = profilePicture;
-        this.accessRole = accessRole;
     }
 
 }
