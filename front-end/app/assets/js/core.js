@@ -630,6 +630,17 @@ var main = {
         }
 
     },
+
+    alertify: function (status, message, time) {
+        var html = "<div class='alertify "+ status +"'><p class='message'>"+ message +"</p></div>"
+        $("body").append(html);
+        $(".alertify").fadeIn(300);
+        setInterval(function () {
+            $(".alertify").fadeOut(300, function () {
+                $(this).remove();
+            });
+        }, time)
+    }
 }
 
 $(function () {
