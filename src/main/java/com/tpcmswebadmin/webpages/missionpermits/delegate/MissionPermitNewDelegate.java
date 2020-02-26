@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Slf4j
 @Component
@@ -15,8 +17,8 @@ public class MissionPermitNewDelegate {
 
     private final MissionPermitsClientService missionPermitsClientService;
 
-    public boolean createNewMissionCard(MissionPermitCardCreateModel missionPermitCardCreateModel) {
-        TPEngineResponse response = missionPermitsClientService.createNewMissionCard(missionPermitCardCreateModel);
+    public boolean createNewMissionCard(MissionPermitCardCreateModel missionPermitCardCreateModel, HttpServletRequest request) {
+        TPEngineResponse response = missionPermitsClientService.createNewMissionCard(missionPermitCardCreateModel, request);
 
         if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
             log.info("New mission permit card created {}", response.getResponseCodeVO().getResponseCode());

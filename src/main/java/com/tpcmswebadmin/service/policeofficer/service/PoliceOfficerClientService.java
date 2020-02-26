@@ -38,6 +38,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         ViewOfficersProfileRequestVO viewOfficersProfileRequestVO = new ViewOfficersProfileRequestVO();
@@ -45,6 +46,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
         viewOfficersProfileRequestVO.setLoginOfficerUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
         viewOfficersProfileRequestVO.setOfficerProfileId(officerId);
 
+        viewOfficersProfileRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewOfficersProfileRequestVO);
 
         try {
@@ -78,6 +80,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         TPEngineResponse response = makeClientCall(loginUserDo);
@@ -95,6 +98,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
         viewOfficersProfileRequestVO.setOfficerProfileSeeAll("Y");
         viewOfficersProfileRequestVO.setAccessRoleCode("OFFICER");
 
+        viewOfficersProfileRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewOfficersProfileRequestVO);
 
         try {
@@ -127,7 +131,6 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         viewOfficersProfileRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        viewOfficersProfileRequestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo constant pass
         viewOfficersProfileRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         viewOfficersProfileRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }

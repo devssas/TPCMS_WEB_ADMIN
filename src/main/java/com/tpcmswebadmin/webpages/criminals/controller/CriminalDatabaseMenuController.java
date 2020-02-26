@@ -7,15 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
-public class CrimeReportsViewController {
 
-    @GetMapping("/crimeReports")
+@Controller
+public class CriminalDatabaseMenuController {
+
+    @GetMapping("/criminalsMenu")
     public String getCriminalsDatabase(Model model, HttpServletRequest httpServletRequest) {
         model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
         model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));
 
-        return "criminal_crime_reports_view";
+        return "criminal_database_menu";
     }
 }

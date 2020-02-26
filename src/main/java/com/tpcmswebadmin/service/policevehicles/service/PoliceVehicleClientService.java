@@ -37,6 +37,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         ViewVehicleDetailsRequestVO viewVehicleDetailsRequestVO = new ViewVehicleDetailsRequestVO();
@@ -44,6 +45,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         viewVehicleDetailsRequestVO.setUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
         viewVehicleDetailsRequestVO.setVehicleId(vehicleId);
 
+        viewVehicleDetailsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewVehicleDetailsRequestVO);
 
         try {
@@ -81,6 +83,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
 
         TPEngineResponse response = makeClientCall(loginUserDo);
@@ -111,6 +114,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         viewVehicleDetailsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewVehicleDetailsRequestVO.setVehicleDetailsSeeAll("Y");
 
+        viewVehicleDetailsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewVehicleDetailsRequestVO);
 
         try {
@@ -128,7 +132,6 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        requestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo constant pass
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }

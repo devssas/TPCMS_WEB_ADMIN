@@ -34,6 +34,7 @@ public class DashboardService {
         AdminDashBoardRequestVO adminDashBoardRequestVO = new AdminDashBoardRequestVO();
         adminDashBoardRequestVO.setLoginOfficersCode(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE)));
         adminDashBoardRequestVO.setReportingUnit(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT)));
+        adminDashBoardRequestVO.setMobileAppDeviceId(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID)));
 
         setCredentials(adminDashBoardRequestVO);
 
@@ -51,6 +52,7 @@ public class DashboardService {
         pushNotificationsRequestVO.setLoginOfficersCode(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE)));
         pushNotificationsRequestVO.setOfficerCode(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE)));
         pushNotificationsRequestVO.setLoginOffierReportingUnit(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT)));
+        pushNotificationsRequestVO.setMobileAppDeviceId(((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID)));
 
         setCredentials(pushNotificationsRequestVO);
 
@@ -67,7 +69,6 @@ public class DashboardService {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         adminDashBoardRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        adminDashBoardRequestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo static
         adminDashBoardRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         adminDashBoardRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }
@@ -76,7 +77,6 @@ public class DashboardService {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         pushNotificationsRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        pushNotificationsRequestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); //todo static
         pushNotificationsRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         pushNotificationsRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }

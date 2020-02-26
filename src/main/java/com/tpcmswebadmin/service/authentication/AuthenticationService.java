@@ -35,7 +35,7 @@ public class AuthenticationService {
     public TPEngineResponse signInUserName(SignInUsernameModel signInUsernameModel) {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setAdminUserName(signInUsernameModel.getUsername());
-        officersLoginRequestVO.setUserCode(TpCmsConstants.USER_CODE); //todo static parameter pass
+        officersLoginRequestVO.setRequestChannel(TpCmsConstants.REQUEST_CHANNEL);
         setCredentials(officersLoginRequestVO);
 
         try {
@@ -52,6 +52,7 @@ public class AuthenticationService {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setAdminUserName(signInUserCodeModel.getUsername());
         officersLoginRequestVO.setUserCode(signInUserCodeModel.getUserCodeFull());
+        officersLoginRequestVO.setMobileAppDeviceId(signInUserCodeModel.getMobileAppDeviceId());
         setCredentials(officersLoginRequestVO);
 
         try {
@@ -70,6 +71,7 @@ public class AuthenticationService {
         officersLoginRequestVO.setPassCode(signInPasscodeModel.getPassCodeFull());
         officersLoginRequestVO.setAdminUserName(signInPasscodeModel.getUserName());
         officersLoginRequestVO.setUserCode(signInPasscodeModel.getUserCode());
+        officersLoginRequestVO.setMobileAppDeviceId(signInPasscodeModel.getMobileAppDeviceId());
         setCredentials(officersLoginRequestVO);
 
         try {
@@ -87,7 +89,6 @@ public class AuthenticationService {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
         officersLoginRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        officersLoginRequestVO.setMobileAppDeviceId(TpCmsConstants.MOBILE_DEVICE_ID); // todo static parameter pass
         officersLoginRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         officersLoginRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }

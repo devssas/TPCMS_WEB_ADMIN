@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.authentication.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.webpages.authentication.delegate.SignInUsernameDelegate;
 import org.slf4j.Logger;
@@ -30,23 +31,23 @@ public class SignInUsernameController {
         request.getSession().invalidate();
         model.addAttribute("signInUsernameModel", new SignInUsernameModel());
 
-        return "signin_username";
+        return Pages.SIGN_IN_USERNAME;
     }
 
     @PostMapping("/signInUsername")
     public String signInWithUsername(@Valid @ModelAttribute("signInUsernameModel") SignInUsernameModel signInUsernameModel, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            logger.warn("Errors {}", bindingResult.getAllErrors());
+            logger.warn("Error signin username. No name is present. {}", bindingResult.getAllErrors());
 
-            return "signin_username";
+            return Pages.SIGN_IN_USERNAME;
         }
 
-        if (signInUsernameDelegate.signInUsername(signInUsernameModel)) {
-            request.getSession().setAttribute("username", signInUsernameModel.getUsername());
-
-            return "redirect:signInUserCode";
+        if (signInUsernameDelegate.signInUsername(signInUsernameModel, request)) {
+            return Pages.REDIRECT_SIGN_IN_USERCODE;
         } else {
-            return "redirect:signInUsername";
+            logger.error("Errors on signin username. username cant be found {} ", signInUsernameModel.getUsername());
+
+            return Pages.SIGN_IN_USERNAME;
         }
 
     }

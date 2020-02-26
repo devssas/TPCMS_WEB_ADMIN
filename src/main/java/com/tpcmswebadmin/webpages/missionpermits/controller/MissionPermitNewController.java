@@ -40,14 +40,13 @@ public class MissionPermitNewController {
     @PostMapping("missionPermitsNew")
     public String newMissionCardPage(@Valid @ModelAttribute("newMissionPermit") MissionPermitCardCreateModel missionPermitCardCreateModel,
                                                  BindingResult bindingResult, Model model, HttpServletRequest request) {
-
         if (bindingResult.hasErrors()) {
             log.warn("Errors {}", bindingResult.getAllErrors());
 
             return "mission_permits_new";
         }
 
-        missionPermitNewDelegate.createNewMissionCard(missionPermitCardCreateModel);
+        missionPermitNewDelegate.createNewMissionCard(missionPermitCardCreateModel, request);
 
         return "redirect:missionPermits";
     }

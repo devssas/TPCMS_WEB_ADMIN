@@ -1,5 +1,7 @@
 package com.tpcmswebadmin.webpages.authentication.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
+import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import com.tpcmswebadmin.webpages.authentication.delegate.SignInUserCodeDelegate;
@@ -32,7 +34,7 @@ public class SignInUserCodeController {
     public String getSignInUserCode(Model model) {
         model.addAttribute("signInUserCodeModel", new SignInUserCodeModel());
 
-        return "signin_usercode";
+        return Pages.SIGN_IN_USERCODE;
     }
 
     @PostMapping("/signInUserCode")
@@ -45,19 +47,20 @@ public class SignInUserCodeController {
             SignInUserCodeModel emptyModel = new SignInUserCodeModel();
             BeanUtils.copyProperties(emptyModel, signInUserCodeModel);
 
-            return "signin_usercode";
+            return Pages.SIGN_IN_USERCODE;
         }
 
-        signInUserCodeModel.setUsername((String) request.getSession().getAttribute("username"));
+        signInUserCodeModel.setUsername((String) request.getSession().getAttribute(TpCmsConstants.USERNAME));
+        signInUserCodeModel.setMobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
         signInUserCodeModel.setUserCodeFull(userCode);
 
         if (signInUserCodeDelegate.signInUserCode(signInUserCodeModel)) {
-            request.getSession().setAttribute("userCode", userCode);
+            request.getSession().setAttribute(TpCmsConstants.USERCODE, userCode);
 
-            return "redirect:/signInPassCode";
+            return Pages.REDIRECT_SIGN_IN_PASSCODE;
         } else {
 
-            return "signin_usercode";
+            return Pages.SIGN_IN_USERCODE;
         }
     }
 
