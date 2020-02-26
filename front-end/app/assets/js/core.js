@@ -403,30 +403,35 @@ var main = {
             });
         }
 
-        // $(document).on('beforeLoad.fb', function( e, instance, slide ) {
-        //     alert();
-        //     console.log(e);
-        //     console.log(instance);
-        //     console.log(slide);
-        // });
+        if($("[data-fancybox-search]").length){
+            $("[data-fancybox-search]").fancybox({
+                smallBtn: false,
+                toolbar: false,
+                beforeLoad: function (e,i,s) {
+                    var clickedElement = s.opts.$orig;
 
+                    if(clickedElement){
+                        clickedElement.parents(".search-box-v2").addClass("fancy-click-element");
+                    }
+                }
+            });
+        }
 
-        $(document).on("beforeLoad.fb", function (event, instance, slide) {
-
-
+        // $(document).on("beforeLoad.fb", function (event, instance, slide) {
 
             // instance.$refs.container.addClass("_loading"); // needed for transition on side panel
             //
             // var clickedElement = slide.opts.$orig;
-            //
+
             // if (clickedElement) {
-            //     var direction = clickedElement.data("direction");
-            //
-            //     if (direction) {
-            //         instance.$refs.container.addClass("side-" + direction);
-            //     }
+            //     clickedElement.addClass("melih");
+                // var direction = clickedElement.data("direction");
+
+                // if (direction) {
+                //     instance.$refs.container.addClass("side-" + direction);
+                // }
             // }
-        });
+        // });
 
         $(document).on("afterLoad.fb", function (event, instance) {
             main.carousel();
@@ -589,7 +594,7 @@ var main = {
                                                     var _this = $(this),
                                                         caseId = _this.data("case-id");
 
-                                                    $(".add-previous-case-id").val(caseId);
+                                                    $(".fancy-click-element").find(".add-previous-case-id").val(caseId);
 
                                                     $.fancybox.close();
                                                 }
