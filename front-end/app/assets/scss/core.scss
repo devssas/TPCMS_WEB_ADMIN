@@ -554,7 +554,7 @@ header {
 }
 
 
-.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3, .fancy-card-box-v5, .fancy-card-box-v6{
+.fancy-card-box-v1, .fancy-card-box-v2, .fancy-card-box-v3, .fancy-card-box-v5, .fancy-card-box-v6 , .fancy-card-box-v7,.fancy-card-box-v8{
   width: 461px;
   background-color: $color-white;
   border-radius: 30px;
@@ -1014,6 +1014,66 @@ header {
         overflow-y: auto;
       }
     }
+  }
+}
+.fancy-card-box-v7{
+  padding: 25px;
+  text-align: center;
+  line-height: 50px;
+  i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+    line-height: 125px;
+    color:$color-white;
+    &:before {
+      position: relative;
+      top: 0;
+      left: auto;
+      width: 125px;
+      height: 125px;
+      background-color: $color-8;
+      border-radius: 50%;
+      margin: 0 0 0 -7px;
+      z-index: 1;
+    }
+  }
+  h2{
+    font-size: 25px;
+  }
+  p{
+    font-size: 20px;
+  }
+}
+.fancy-card-box-v8{
+  padding: 25px;
+  text-align: center;
+  line-height: 50px;
+  i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 75px;
+    line-height: 125px;
+    color:$color-white;
+    &:before {
+      position: relative;
+      top: 0;
+      left: auto;
+      width: 125px;
+      height: 125px;
+      background-color: $color-9;
+      border-radius: 50%;
+      margin: 0 0 0 -7px;
+      z-index: 1;
+    }
+  }
+  h2{
+    font-size: 25px;
+  }
+  p{
+    font-size: 20px;
   }
 }
 
