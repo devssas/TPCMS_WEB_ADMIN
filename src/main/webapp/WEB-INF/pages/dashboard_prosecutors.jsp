@@ -42,7 +42,7 @@
 
         <section class="content-wrapper">
 
-            <jsp:include page="big_main_menu_bar.jsp">
+            <jsp:include page="menu_bar_prosecutor_dashboard.jsp">
                 <jsp:param name="home" value="active" />
                 <jsp:param name="officerName" value="${officerName}" />
                 <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
@@ -109,8 +109,6 @@
                     </section>
 
                 </section>
-
-
 
             </section> <!-- content-inner -->
 

@@ -13,7 +13,8 @@ public class Pages {
     public static final String SIGN_IN_USERCODE = "signin_usercode";
     public static final String SIGN_IN_PASSCODE = "signin_passcode";
 
-    public static final String DASHBOARD = "dashboard";
+    public static final String DASHBOARD_ADMIN = "dashboard_admin";
+    public static final String DASHBOARD_PROSECUTOR = "dashboard_prosecutor";
 
     /**
      * Redirect
@@ -23,4 +24,9 @@ public class Pages {
     public static final String REDIRECT_SIGN_IN_PASSCODE = "redirect:/signInPassCode";
 
     public static final String REDIRECT_DASHBOARD = "redirect:/dashboard";
+
+    /**
+     * Error
+     */
+    public static final String ERROR_500 = "error_500";
 }
