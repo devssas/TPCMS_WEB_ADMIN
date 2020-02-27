@@ -18,11 +18,19 @@ public class TpCmsConstants {
     public static final String OFFICER_NAME = "officerName";
     public static final String OFFICER_PROFILE_PICTURE = "profilePicture";
     public static final String ACCESS_ROLE = "accessRole";
+    public static final String PROSECUTOR_NAME = "prosecutorName";
+    public static final String PROSECUTOR_PROFILE_PICTURE = "prosecutorProfilePicture";
 
     /**
      * static parameter pass for request Channel on webAdmin
      */
     public static final String REQUEST_CHANNEL = "TPCMS_WEBADMIN";
+
+    public static final String LIST_DISABLE = "display: none;";
+
+
+
+
 
 
 

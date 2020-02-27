@@ -34,7 +34,7 @@
 
         <section class="content-wrapper">
 
-            <jsp:include page="big_main_menu_bar.jsp">
+            <jsp:include page="menu_bar_dashboard.jsp">
                 <jsp:param name="administrator" value="active" />
                 <jsp:param name="officerName" value="${officerName}" />
                 <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />

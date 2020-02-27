@@ -34,11 +34,12 @@
 
         <section class="content-wrapper">
 
-            <jsp:include page="big_main_menu_bar.jsp">
+            <jsp:include page="menu_bar_dashboard.jsp">
                 <jsp:param name="staff" value="active" />
                 <jsp:param name="officerName" value="${officerName}" />
                 <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
                 <jsp:param name="accessRole" value="${accessRole}" />
+                <jsp:param name="disabled" value="${disabled}" />
             </jsp:include>
 
             <section class="content-inner">

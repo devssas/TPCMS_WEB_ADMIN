@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
+
 @Controller
 @RequiredArgsConstructor
 public class CrimeReportReviewController {
@@ -19,11 +21,16 @@ public class CrimeReportReviewController {
 
     @GetMapping("/crimeReport")
     public String getCriminalsDatabase(@RequestParam("reportId") String reportId, Model model, HttpServletRequest httpServletRequest) {
-        CrimeReportModel crimeReportModel = crimeReportDelegate.getCrimeReportByReportId(reportId, httpServletRequest);
+        crimeReportDelegate.getCrimeReportByReportId(reportId, httpServletRequest);
 
         model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
-        model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));
+
+        String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
+        model.addAttribute("accessRole", adminRole);
+
+        if(adminRole.equals(ADMIN.name()))
+            model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
 
         return "criminal_crime_reports_view";
     }
