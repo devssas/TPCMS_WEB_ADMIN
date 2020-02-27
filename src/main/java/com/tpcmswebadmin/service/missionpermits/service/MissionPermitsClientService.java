@@ -72,6 +72,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         viewSpecialMissionRequestVO.setSpmissionId(missionId);
         viewSpecialMissionRequestVO.setSpecialMissionQRCode(missionQrCode);
 
+        viewSpecialMissionRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewSpecialMissionRequestVO);
 
         try {
