@@ -67,42 +67,27 @@
                         <ul class="horizontal-list v1">
                             <li>
                                 <a href="${pageContext.request.contextPath}/missionPermitsMenu" class="box-v1">
-                                    <h3>Permits</h3>
+                                    <h3>Request For Evidence</h3>
                                     <p>${missionPermitCount}</p>
-                                    <span>Valid Permits</span>
+                                    <span>Cases Pending Review<</span>
                                     <i class="icon-mission-permits"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/criminalsMenu" class="box-v1">
-                                    <h3>Cases</h3>
+                                    <h3>Submitted For Review</h3>
                                     <p>${caseCount}</p>
                                     <span>Cases Added</span>
                                     <i class="icon-manage-cases"></i>
                                 </a>
                             </li>
+
                             <li>
                                 <a href="${pageContext.request.contextPath}/notificationMenu" class="box-v1">
                                     <h3>Notifications<c:if test="${!notificationCount.equals('0')}"><span class="notification">${notificationCount}</span></c:if></h3>
                                     <p>${notificationCount}</p>
                                     <span>Notifications</span>
                                     <i class="icon-notification"></i>
-                                </a>
-                            </li>
-                            <li class="cols-2">
-                                <a href="javascript:;" class="box-v1">
-                                    <h3>SOS</h3>
-                                    <p>82</p>
-                                    <span>Log Sheet</span>
-                                    <i class="icon-sos"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/sos" class="box-v1">
-                                    <h3>SOS<c:if test="${!sosNotificationCount.equals('0')}"><span class="notification">${sosNotificationCount}</span></c:if></h3>
-                                    <p>${sosCount}</p>
-                                    <span>Live Alerts</span>
-                                    <i class="icon-sos"></i>
                                 </a>
                             </li>
                         </ul>
