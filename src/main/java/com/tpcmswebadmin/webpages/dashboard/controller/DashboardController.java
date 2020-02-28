@@ -48,10 +48,6 @@ public class DashboardController {
                     model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
 
                 return Pages.DASHBOARD_ADMIN;
-            case "PROSECUTION":
-                model.addAttribute("prosecutorName", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_NAME));
-                model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE));
-                return Pages.DASHBOARD_PROSECUTOR;
             default:
                 return Pages.ERROR_500;
         }

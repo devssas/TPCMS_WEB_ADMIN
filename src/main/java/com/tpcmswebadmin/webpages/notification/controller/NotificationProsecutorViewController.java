@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.webpages.prosecutionoffice.controller;
+package com.tpcmswebadmin.webpages.notification.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
@@ -8,16 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
-public class ProsecutionOfficeMenuController {
+import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
 
-    @GetMapping("/prosecutionOfficeMenu")
-    public String getProsecutionOffice(Model model, HttpServletRequest httpServletRequest) {
+@Controller
+public class NotificationProsecutorViewController {
+
+    @GetMapping("/notificationProsecutor")
+    public String getNotifications(Model model, HttpServletRequest httpServletRequest) {
         model.addAttribute("prosecutorName", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_NAME));
         model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE));
-        model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));
 
-        return Pages.PROSECUTION_OFFICE_MENU;
+        String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
+        model.addAttribute("accessRole", adminRole);
+
+        return Pages.NOTIFICATION_PROSECUTOR;
     }
-
 }

@@ -3,6 +3,7 @@ package com.tpcmswebadmin.service.notification.controller;
 import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import com.tpcmswebadmin.service.notification.service.NotificationClientService;
+import com.tpcmswebadmin.service.notification.service.NotificationProsecutorClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +15,23 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api")
+@RequestMapping("api/notification")
 public class NotificationControllerAPI {
 
     private final NotificationClientService notificationClientService;
 
+    private final NotificationProsecutorClientService notificationProsecutorClientService;
+
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("notification")
+    @GetMapping
     public ResponseDto<NotificationDto> getNotifications(HttpServletRequest httpServletRequest) {
         return notificationClientService.getResponseDto(httpServletRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("prosecutor")
+    public ResponseDto<NotificationDto> getProsecutorNotifications(HttpServletRequest httpServletRequest) {
+        return notificationProsecutorClientService.getResponseDto(httpServletRequest);
     }
 
 }

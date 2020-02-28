@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page contentType="text/html;charset=UTF-8"  %>
+
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <!doctype html>
 <html lang="ar">
@@ -46,7 +47,7 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Manage Cases" />
+                        <jsp:param name="header" value="Manage Notifications" />
                     </jsp:include>
 
                     <section class="content-box">
@@ -67,8 +68,21 @@
                                     <div class="table-filter-inner">
                                         <div class="form-row select-not-find">
                                             <label>
-                                                <span class="label">Status</span>
+                                                <span class="label">User Type</span>
                                                 <select name="" id="select-1">
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                    <option value="">All/Supervisors/Officers</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                        <div class="form-row select-not-find">
+                                            <label>
+                                                <span class="label">Status</span>
+                                                <select name="" id="select-2">
                                                     <option value="">All/Active/Inactive</option>
                                                     <option value="">All/Active/Inactive</option>
                                                     <option value="">All/Active/Inactive</option>
@@ -78,12 +92,12 @@
                                                 </select>
                                             </label>
                                         </div>
-                                        <a href="${pageContext.request.contextPath}/prosecutionOfficeMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
+                                        <a href="${pageContext.request.contextPath}/dashboardProsecutor" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v4/table-v4.html" data-json-url="/tpcmsWebAdmin/api/prosecution/cases"></section>
+                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v8/table-v8.html" data-json-url="/tpcmsWebAdmin/api/notification/prosecutor"></section>
                     </section>
 
                 </section>

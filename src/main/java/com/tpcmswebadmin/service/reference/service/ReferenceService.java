@@ -2,6 +2,7 @@ package com.tpcmswebadmin.service.reference.service;
 
 import com.ssas.tpcms.engine.vo.response.AllowedWeaponTypesConfigResponseVO;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
+import com.tpcmswebadmin.service.reference.domain.ClientStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ import java.util.stream.Collectors;
 public class ReferenceService {
 
     private final TPCMSClient tpcmsClient;
+
+    public List<String> getClientStatus() {
+        return Arrays.stream(ClientStatus.values()).map(ClientStatus::getClientName).collect(Collectors.toList());
+    }
 
     public List<String> getWeaponTypes() {
         try {

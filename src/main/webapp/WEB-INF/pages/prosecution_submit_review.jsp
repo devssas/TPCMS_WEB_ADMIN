@@ -46,7 +46,7 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Manage Cases" />
+                        <jsp:param name="header" value="Prosecution Submit Review" />
                     </jsp:include>
 
                     <section class="content-box">
@@ -78,12 +78,12 @@
                                                 </select>
                                             </label>
                                         </div>
-                                        <a href="${pageContext.request.contextPath}/prosecutionOfficeMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
+                                        <a href="${pageContext.request.contextPath}/dashboardProsecutor" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v4/table-v4.html" data-json-url="/tpcmsWebAdmin/api/prosecution/cases"></section>
+                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v4/table-v4.html" data-json-url="/tpcmsWebAdmin/api/prosecution/cases/review"></section>
                     </section>
 
                 </section>
