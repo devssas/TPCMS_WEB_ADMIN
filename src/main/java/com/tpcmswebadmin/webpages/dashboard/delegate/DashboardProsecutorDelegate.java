@@ -8,11 +8,14 @@ import com.tpcmswebadmin.service.dashboard.DashboardService;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardModel;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardNotificationModel;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardProsecutorModel;
+import com.tpcmswebadmin.webpages.notification.delegate.NotificationDelegate;
+import com.tpcmswebadmin.webpages.reference.delegate.ReferenceDelegate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -20,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 public class DashboardProsecutorDelegate {
 
     private final DashboardProsecutorService dashboardProsecutorService;
+
+    private final ReferenceDelegate referenceDelegate;
 
     public DashboardProsecutorModel getDashboardProsecutor(HttpServletRequest httpServletRequest) {
         TPEngineResponse response = dashboardProsecutorService.getProsecutorDashboard(httpServletRequest);
@@ -43,4 +48,5 @@ public class DashboardProsecutorDelegate {
                 .sosCount(clientResponse[0].getTotalSOSCount())
                 .build();
     }
+
 }

@@ -68,19 +68,6 @@
                                     <div class="table-filter-inner">
                                         <div class="form-row select-not-find">
                                             <label>
-                                                <span class="label">User Type</span>
-                                                <select name="" id="select-1">
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <div class="form-row select-not-find">
-                                            <label>
                                                 <span class="label">Status</span>
                                                 <select name="" id="select-2">
                                                     <option value="">All/Active/Inactive</option>

@@ -33,6 +33,7 @@ public class DashboardProsecutorController {
         model.addAttribute("prosecutorName", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_NAME));
         model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE));
 
+
         return Pages.DASHBOARD_PROSECUTOR;
     }
 }

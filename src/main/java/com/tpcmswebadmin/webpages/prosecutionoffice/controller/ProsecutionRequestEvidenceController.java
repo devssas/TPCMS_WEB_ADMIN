@@ -1,6 +1,8 @@
 package com.tpcmswebadmin.webpages.prosecutionoffice.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
+@RequiredArgsConstructor
 public class ProsecutionRequestEvidenceController {
 
     @GetMapping("/prosecutionRequestEvidence")
@@ -16,6 +19,6 @@ public class ProsecutionRequestEvidenceController {
         model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE));
         model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));
 
-        return "prosecution_request_evidence";
+        return Pages.PROSECUTION_REQUEST_EVIDENCE;
     }
 }

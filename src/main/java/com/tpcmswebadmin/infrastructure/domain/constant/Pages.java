@@ -20,6 +20,9 @@ public class Pages {
 
     public static final String NOTIFICATION_PROSECUTOR = "notification_prosecutor_view";
 
+    public static final String PROSECUTION_REQUEST_EVIDENCE = "prosecution_request_evidence";
+    public static final String PROSECUTION_SUBMIT_REVIEW = "prosecution_submit_review";
+
     /**
      * Redirect
      */
