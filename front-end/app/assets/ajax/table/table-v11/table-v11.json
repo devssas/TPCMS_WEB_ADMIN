@@ -44,7 +44,7 @@
         "officerID": "staffname1",
         "officerName": "09/20/2019 09:15AM",
         "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-cases-card.html'><i class='icon-view'></i></a>"
       },
       {
         "officerID": "staffname1",
