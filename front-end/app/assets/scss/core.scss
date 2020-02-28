@@ -462,10 +462,6 @@ header {
       text-align: right;
       color: rgba($color-black, 0.5);
       padding: 12px 15px;
-      a{
-        color: $color-black;
-      }
-
       &:last-child {
         white-space: nowrap;
         display: flex;
