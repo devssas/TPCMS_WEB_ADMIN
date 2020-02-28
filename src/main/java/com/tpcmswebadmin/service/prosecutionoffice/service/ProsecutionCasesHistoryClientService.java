@@ -10,8 +10,6 @@ import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.criminals.domain.CasesDto;
-import com.tpcmswebadmin.service.criminals.service.mapper.CriminalProfileMapper;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
 import com.tpcmswebadmin.service.prosecutionoffice.service.mapper.ProsecutionProfileMapper;
 import lombok.RequiredArgsConstructor;
@@ -69,7 +67,7 @@ public class ProsecutionCasesHistoryClientService implements ClientServiceAPI<Pr
         viewCriminalProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewCriminalProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewCriminalProfileRequestVO.setCriminalsProfileSeeAll("Y");
-        viewCriminalProfileRequestVO.setStatusCode("CLOSED");
+        viewCriminalProfileRequestVO.setIsProsecutionViewHistory("Y");
 
         viewCriminalProfileRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewCriminalProfileRequestVO);
