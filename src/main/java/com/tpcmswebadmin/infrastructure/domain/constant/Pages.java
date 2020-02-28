@@ -16,6 +16,8 @@ public class Pages {
     public static final String DASHBOARD_ADMIN = "dashboard_admin";
     public static final String DASHBOARD_PROSECUTOR = "dashboard_prosecutor";
 
+    public static final String PROSECUTION_OFFICE_MENU = "prosecution_office_menu";
+
     /**
      * Redirect
      */
@@ -24,6 +26,7 @@ public class Pages {
     public static final String REDIRECT_SIGN_IN_PASSCODE = "redirect:/signInPassCode";
 
     public static final String REDIRECT_DASHBOARD = "redirect:/dashboard";
+    public static final String REDIRECT_PROSECUTOR_DASHBOARD = "redirect:/dashboardProsecutor";
 
     /**
      * Error

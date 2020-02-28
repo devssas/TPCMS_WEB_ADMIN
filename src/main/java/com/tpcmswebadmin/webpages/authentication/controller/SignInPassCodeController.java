@@ -61,11 +61,18 @@ public class SignInPassCodeController {
         if (signInPassCodeDto.isHasResult()) {
             request.getSession().setAttribute(TpCmsConstants.OFFICER_CODE, signInPassCodeDto.getOfficerCode());
             request.getSession().setAttribute(TpCmsConstants.REPORT_UNIT, signInPassCodeDto.getReportUnit());
-            request.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, signInPassCodeDto.getOfficerName());
-            request.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, signInPassCodeDto.getProfilePicture());
+
+            if(signInPassCodeDto.getAccessRole().equals("PROSECUTION")) {
+                request.getSession().setAttribute(TpCmsConstants.PROSECUTOR_NAME, signInPassCodeDto.getOfficerName());
+                request.getSession().setAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE, signInPassCodeDto.getProfilePicture());
+            } else {
+                request.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, signInPassCodeDto.getOfficerName());
+                request.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, signInPassCodeDto.getProfilePicture());
+            }
+
             request.getSession().setAttribute(TpCmsConstants.ACCESS_ROLE, signInPassCodeDto.getAccessRole());
 
-            return Pages.REDIRECT_DASHBOARD;
+            return signInPassCodeDto.getAccessRole().equals("PROSECUTION") ? Pages.REDIRECT_PROSECUTOR_DASHBOARD : Pages.REDIRECT_DASHBOARD;
         } else {
             return Pages.SIGN_IN_PASSCODE;
         }

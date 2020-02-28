@@ -54,29 +54,21 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Dashboard" />
+                        <jsp:param name="header" value="Prosecutor Dashboard" />
                     </jsp:include>
-
-                    <section>
-                        <div class="maps">
-                            <div id="map"></div>
-                        </div>
-                    </section>
 
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
                                 <a href="${pageContext.request.contextPath}/missionPermitsMenu" class="box-v1">
                                     <h3>Request For Evidence</h3>
-                                    <p>${missionPermitCount}</p>
-                                    <span>Cases Pending Review<</span>
+                                    <span>Cases Pending Review</span>
                                     <i class="icon-mission-permits"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/criminalsMenu" class="box-v1">
                                     <h3>Submitted For Review</h3>
-                                    <p>${caseCount}</p>
                                     <span>Cases Added</span>
                                     <i class="icon-manage-cases"></i>
                                 </a>
@@ -103,12 +95,8 @@
 
 </div> <!-- page-wrapper -->
 
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
-
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
-
 
 </body>
 </html>

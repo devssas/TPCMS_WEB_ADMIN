@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.prosecutionoffice.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +13,11 @@ public class ProsecutionOfficeMenuController {
 
     @GetMapping("/prosecutionOfficeMenu")
     public String getProsecutionOffice(Model model, HttpServletRequest httpServletRequest) {
-        model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
-        model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
+        model.addAttribute("prosecutorName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
+        model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
         model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));
 
-        return "prosecution_office_menu";
+        return Pages.PROSECUTION_OFFICE_MENU;
     }
 
 }

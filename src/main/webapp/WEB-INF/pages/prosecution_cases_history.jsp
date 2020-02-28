@@ -34,10 +34,10 @@
 
         <section class="content-wrapper">
 
-            <jsp:include page="menu_bar_dashboard.jsp">
-                <jsp:param name="prosecutionOffice" value="active" />
-                <jsp:param name="officerName" value="${officerName}" />
-                <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
+            <jsp:include page="menu_bar_prosecutor_dashboard.jsp">
+                <jsp:param name="home" value="active" />
+                <jsp:param name="prosecutorName" value="${prosecutorName}" />
+                <jsp:param name="prosecutorProfilePicture" value="${prosecutorProfilePicture}" />
                 <jsp:param name="accessRole" value="${accessRole}" />
             </jsp:include>
 
