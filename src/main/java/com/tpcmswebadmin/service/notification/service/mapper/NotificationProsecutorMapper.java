@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class NotificationMapper {
+public class NotificationProsecutorMapper {
 
     public static List<NotificationDto> makeNotificationDtoList(GeneralAnnouncementResponseVO[] generalAnnouncementResponseArray) {
         return Arrays.stream(generalAnnouncementResponseArray)
-                .map(NotificationMapper::makeNotificationDto)
+                .map(NotificationProsecutorMapper::makeNotificationDto)
                 .collect(Collectors.toList());
     }
 
@@ -33,12 +33,9 @@ public class NotificationMapper {
 
     public static String prepareActionsColumn(String id) {
         String notificationId = "{notificationId}";
-
         String actionView = "<a href='/tpcmsWebAdmin/viewNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
-        String actionDelete = "<a href='/tpcmsWebAdmin/updateNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 
-        return actionView.replace(notificationId, id) + actionUpdate.replace(notificationId, id) + actionDelete.replace(notificationId, id);
+        return actionView.replace(notificationId, id);
     }
 
 }

@@ -60,14 +60,14 @@
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="${pageContext.request.contextPath}/missionPermitsMenu" class="box-v1">
+                                <a href="${pageContext.request.contextPath}/prosecutionRequestEvidence" class="box-v1">
                                     <h3>Request For Evidence</h3>
                                     <span>Cases Pending Review</span>
                                     <i class="icon-mission-permits"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/criminalsMenu" class="box-v1">
+                                <a href="${pageContext.request.contextPath}/prosecutionSubmitForReview" class="box-v1">
                                     <h3>Submitted For Review</h3>
                                     <span>Cases Added</span>
                                     <i class="icon-manage-cases"></i>
@@ -75,7 +75,7 @@
                             </li>
 
                             <li>
-                                <a href="${pageContext.request.contextPath}/notificationMenu" class="box-v1">
+                                <a href="${pageContext.request.contextPath}/notificationProsecutor" class="box-v1">
                                     <h3>Notifications<c:if test="${!notificationCount.equals('0')}"><span class="notification">${notificationCount}</span></c:if></h3>
                                     <p>${notificationCount}</p>
                                     <span>Notifications</span>

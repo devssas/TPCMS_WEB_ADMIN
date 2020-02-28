@@ -68,7 +68,7 @@
                             <li>
                                 <a href="javascript:;" class="box-v2">
                                     <i class="icon-library"></i>
-                                    <h3>File Criminal Case to Prosecution Office</h3>
+                                    <h3>Library</h3>
                                     <p>In this Section, you can View Prosecution Library, including Important Laws, Circulars, Legal Papers and Legal References.</p>
                                 </a>
                             </li>

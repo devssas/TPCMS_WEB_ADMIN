@@ -18,6 +18,8 @@ public class Pages {
 
     public static final String PROSECUTION_OFFICE_MENU = "prosecution_office_menu";
 
+    public static final String NOTIFICATION_PROSECUTOR = "notification_prosecutor_view";
+
     /**
      * Redirect
      */

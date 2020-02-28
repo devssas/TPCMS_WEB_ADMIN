@@ -12,6 +12,7 @@ import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
 import com.tpcmswebadmin.service.prosecutionoffice.service.mapper.ProsecutionProfileMapper;
+import com.tpcmswebadmin.service.reference.domain.ClientStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProsecutionManageCasesClientService implements ClientServiceAPI<ProsecutionCasesDto, LoginUserDo, ViewCriminalProfileRequestVO> {
+public class ProsecutionCasesSubmitReviewClientService implements ClientServiceAPI<ProsecutionCasesDto, LoginUserDo, ViewCriminalProfileRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
@@ -43,6 +43,7 @@ public class ProsecutionManageCasesClientService implements ClientServiceAPI<Pro
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         return prepareResponseDto(ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList()));
+
     }
 
     @Override
@@ -67,7 +68,7 @@ public class ProsecutionManageCasesClientService implements ClientServiceAPI<Pro
         viewCriminalProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewCriminalProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewCriminalProfileRequestVO.setCriminalsProfileSeeAll("Y");
-        viewCriminalProfileRequestVO.setStatusCode("Y");
+        viewCriminalProfileRequestVO.setStatusCode(ClientStatus.SUBMIT_FOR_CASE_REVIEW.getClientName());
 
         viewCriminalProfileRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewCriminalProfileRequestVO);

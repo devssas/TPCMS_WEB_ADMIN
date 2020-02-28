@@ -12,6 +12,10 @@ public class ReferenceDelegate {
 
     private final ReferenceService referenceService;
 
+    public List<String> getClientStatus() {
+        return referenceService.getClientStatus();
+    }
+
     public List<String> getAllWeaponTypes() {
         return referenceService.getWeaponTypes();
     }
