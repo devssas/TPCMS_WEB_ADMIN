@@ -634,14 +634,17 @@ header {
         }
       }
     }
-    figure{
+    .figure{
       position: relative;
       display: inline-block;
-      border: 8px solid $color-white;
-      border-radius: 18px;
       z-index: 3;
-      img{
+      figure{
+        border: 8px solid $color-white;
         border-radius: 18px;
+        overflow: hidden;
+        img {
+          width: 270px;
+        }
       }
       .icons{
         position: absolute;
@@ -768,6 +771,7 @@ header {
       margin-bottom: 10px;
       img{
         border-radius: 85px;
+        width: 200px;
       }
     }
     .divided-content{
