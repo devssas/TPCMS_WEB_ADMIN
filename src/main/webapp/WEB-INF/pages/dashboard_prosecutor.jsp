@@ -62,6 +62,7 @@
                             <li>
                                 <a href="${pageContext.request.contextPath}/prosecutionRequestEvidence" class="box-v1">
                                     <h3>Request For Evidence</h3>
+                                    <p>${totalEvidenceCount}</p>
                                     <span>Cases Pending Review</span>
                                     <i class="icon-mission-permits"></i>
                                 </a>

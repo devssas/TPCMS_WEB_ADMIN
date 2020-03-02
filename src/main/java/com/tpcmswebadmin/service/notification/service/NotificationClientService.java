@@ -129,13 +129,10 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
     public List<String> setTableColumnNames() {
         List<String> list = new ArrayList<>();
 
-        list.add("Permit ID");
-        list.add("username");
-        list.add("Title");
-        list.add("City");
-        list.add("State");
+        list.add("Notification Code");
+        list.add("Nature of Announcement");
         list.add("Notification Date");
-        list.add("Priority");
+        list.add("Nature of Announcement");
         list.add("Actions");
 
         return list;

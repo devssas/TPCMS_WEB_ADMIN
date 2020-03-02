@@ -22,7 +22,7 @@
                 <nav class="menu">
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/dashboardProsecutor" class="${param.home}"><i class="icon-dashboard"></i>Dashboard</a></li>
-                        <li><a href="${pageContext.request.contextPath}/prosecutionOfficeMenu" class="${param.prosecutionOffice}"><i class="icon-criminal-database"></i>Prosecution Office</a></li>
+                        <li><a href="${pageContext.request.contextPath}/prosecutionOfficeMenu" class="${param.prosecutionOffice}"><i class="icon-prosecution-office"></i>Prosecution Office</a></li>
                     </ul>
                 </nav>
             </div>

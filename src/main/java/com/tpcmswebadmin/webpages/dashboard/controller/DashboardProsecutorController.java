@@ -22,17 +22,14 @@ public class DashboardProsecutorController {
     @GetMapping("/dashboardProsecutor")
     public String getDashboard(Model model, HttpServletRequest httpServletRequest) {
         DashboardProsecutorModel dashboard = dashboardProsecutorDelegate.getDashboardProsecutor(httpServletRequest);
-        DashboardNotificationModel notificationModel = dashboardProsecutorDelegate.getDashboardProsecutorNotifications(httpServletRequest);
 
         model.addAttribute("totalEvidenceCount", dashboard.getTotalEvidenceCount());
-        model.addAttribute("sosNotificationCount", notificationModel.getSosCount());
-        model.addAttribute("notificationCount", notificationModel.getNotificationCount());
+        model.addAttribute("notificationCount", dashboard.getNotificationCount());
 
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);
         model.addAttribute("prosecutorName", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_NAME));
         model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE));
-
 
         return Pages.DASHBOARD_PROSECUTOR;
     }

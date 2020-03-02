@@ -1,6 +1,8 @@
 package com.tpcmswebadmin.service.notification.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.GeneralAnnouncementResponseVO;
+import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
+import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -20,13 +22,10 @@ public class NotificationProsecutorMapper {
 
     public static NotificationDto makeNotificationDto(GeneralAnnouncementResponseVO generalAnnouncementResponseVO) {
         return NotificationDto.builder()
-                .permitId(generalAnnouncementResponseVO.getAnnouncementId())
-                .username(generalAnnouncementResponseVO.getAnnouncementCode())
-                .title(generalAnnouncementResponseVO.getCrimeName_Ar())
-                .city(null)
-                .state(null)
-                .notificationDate(generalAnnouncementResponseVO.getEffectiveDate())
-                .priority(generalAnnouncementResponseVO.getNatureOfAnnouncement())
+                .notificationCode(generalAnnouncementResponseVO.getAnnouncementCode())
+                .crimeName(generalAnnouncementResponseVO.getCrimeName_Ar())
+                .notificationDate(DateUtility.convertToFormat(generalAnnouncementResponseVO.getEffectiveDate(), TpCmsConstants.SCREEN_DATE_FORMAT))
+                .natureOfAnnouncement(generalAnnouncementResponseVO.getNatureOfAnnouncement())
                 .actions(prepareActionsColumn(generalAnnouncementResponseVO.getAnnouncementId()))
                 .build();
     }

@@ -429,7 +429,6 @@ header {
   width: 100%;
   background-color: $color-white;
   overflow: hidden;
-
   .thead {
     display: table-header-group;
     background: $color-2;
@@ -461,6 +460,7 @@ header {
       display: table-cell;
       text-align: right;
       color: rgba($color-black, 0.5);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
       padding: 12px 15px;
       &:last-child {
         white-space: nowrap;
@@ -479,6 +479,7 @@ header {
     border-radius: 20px;
   }
 }
+
 .fancybox-content{
   padding: 0;
   direction: rtl !important;
@@ -873,8 +874,14 @@ header {
   &.width-sml{
     width:400px;
   }
+  &.width-md{
+    width:500px;
+  }
   .fancy-top-content{
     .fancy-card-title{
+      &.mb-0{
+        margin-bottom: 0;
+      }
       .icon-box{
         position: absolute;
         font-size: 16px;
@@ -909,10 +916,22 @@ header {
         top:36px;
         opacity: 0.5;
       }
+      h6{
+        margin-right: 50px;
+        @extend %fs-24;
+        @include f-roboto(500);
+      }
       .date{
         position: absolute;
         top:30px;
         left: 0;
+      }
+      .date-v2{
+        @extend %fs-14;
+        @include f-roboto(500);
+        position: absolute;
+        top:5px;
+        left: 5px;
       }
     }
     .fancy-card-case-id-box{
