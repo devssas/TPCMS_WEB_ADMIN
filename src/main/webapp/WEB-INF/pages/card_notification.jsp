@@ -1,12 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="fancy-card-box-v5 width-sml">
     <div class="fancy-top-content">
-        <div class="fancy-card-title">
+        <div class="fancy-card-title mb-0">
             <div class="icon-box">
                 <img src="data:image/png;base64,${crimeTypeLogo1}" alt="" />
             </div>
-            <h4>${natureOfAnnouncement}</h4>
-            <div class="date">${notificationDate}</div>
+            <h6>${natureOfAnnouncement}</h6>
+            <span class="date-v2">${notificationDate}</span>
         </div>
     </div>
     <div class="content">
