@@ -28,12 +28,13 @@ public class ProsecutionProfileMapper {
                 .location(criminalsProfileResponseVO.getCrimeLocation())
                 .crimeType(criminalsProfileResponseVO.getCrimeClassification())
                 .status(criminalsProfileResponseVO.getCrimianlStatusCode())
-                .actions(prepareActionsColumn(criminalsProfileResponseVO.getCriminalsId()))
+                .actions(prepareActionsColumn(criminalsProfileResponseVO.getCriminalsCode()))
+                .criminalsCode(criminalsProfileResponseVO.getCriminalsCode())
                 .build();
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewProsecutionCase?caseId={caseId}' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/officer-card.html'><i class='icon-view'></i></a>";
+        String actionView = "<a href='/tpcmsWebAdmin/prosecutionManageCrimeFile?caseId={caseId}'  class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
 
         return actionView.replace("{caseId}", id);
     }

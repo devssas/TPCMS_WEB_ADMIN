@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.service.prosecutionoffice.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,4 +29,8 @@ public class ProsecutionCasesDto implements Serializable {
     private String status;
 
     private String actions;
+
+    @JsonIgnore
+    private String criminalsCode;
+
 }
