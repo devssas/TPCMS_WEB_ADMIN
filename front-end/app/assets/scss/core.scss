@@ -429,7 +429,6 @@ header {
   width: 100%;
   background-color: $color-white;
   overflow: hidden;
-
   .thead {
     display: table-header-group;
     background: $color-2;
@@ -461,6 +460,7 @@ header {
       display: table-cell;
       text-align: right;
       color: rgba($color-black, 0.5);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
       padding: 12px 15px;
       &:last-child {
         white-space: nowrap;
@@ -479,6 +479,7 @@ header {
     border-radius: 20px;
   }
 }
+
 .fancybox-content{
   padding: 0;
   direction: rtl !important;
