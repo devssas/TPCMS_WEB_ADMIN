@@ -28,6 +28,11 @@ public class TpCmsConstants {
 
     public static final String LIST_DISABLE = "display: none;";
 
+    /**
+     * Date formats
+     */
+    public static final String SCREEN_DATE_FORMAT = "dd/MM/YYYY";
+
 
 
 

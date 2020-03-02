@@ -1,0 +1,50 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "tbody": [
+      {
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
+      },
+      {
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
+      },
+      {
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
+      },
+      {
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
+      },
+      {
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
+      },
+      {
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
+      },
+      {
+        "name": "John",
+        "nationalID": "2315465152",
+        "criminalCode": "989898988989",
+        "criminalId": "254646"
+      }
+    ]
+  }
+}

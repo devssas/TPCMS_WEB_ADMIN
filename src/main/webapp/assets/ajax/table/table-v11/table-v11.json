@@ -2,7 +2,7 @@
   "status": true,
   "message": null,
   "data": {
-    "thead": ["Staff Name", "Remarks Date", "Remarks",""],
+    "thead": ["Staff Name", "Remarks Date", "Remarks","<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 icon-btn-with-text-v2 color-1 line-height-sml' data-src='assets/ajax/card/add-case-update.html'><i class='icon-plus'></i>Add Update</a>"],
     "tbody": [
       {
         "officerID": "staffname1",
@@ -20,31 +20,31 @@
         "officerID": "staffname1",
         "officerName": "09/20/2019 09:15AM",
         "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/calendar-pop-up.html'><i class='icon-view'></i></a>"
       },
       {
         "officerID": "staffname1",
         "officerName": "09/20/2019 09:15AM",
         "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/calendar-pop-up-2.html'><i class='icon-view'></i></a>"
       },
       {
         "officerID": "staffname1",
         "officerName": "09/20/2019 09:15AM",
         "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/document-card.html'><i class='icon-view'></i></a>"
       },
       {
         "officerID": "staffname1",
         "officerName": "09/20/2019 09:15AM",
         "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/previous-case.html'><i class='icon-view'></i></a>"
       },
       {
         "officerID": "staffname1",
         "officerName": "09/20/2019 09:15AM",
         "Address": "Est sint Lorem Lorem ad aute culpa cillum culpa est velit non est.",
-        "actions": "<a href='javascript:;' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>"
+        "actions": "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='assets/ajax/card/crime-cases-card.html'><i class='icon-view'></i></a>"
       },
       {
         "officerID": "staffname1",

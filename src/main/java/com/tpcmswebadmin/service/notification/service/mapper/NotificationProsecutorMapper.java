@@ -33,7 +33,7 @@ public class NotificationProsecutorMapper {
 
     public static String prepareActionsColumn(String id) {
         String notificationId = "{notificationId}";
-        String actionView = "<a href='/tpcmsWebAdmin/viewNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/notification?notificationId={notificationId}'><i class='icon-view'></i></a>";
 
         return actionView.replace(notificationId, id);
     }
