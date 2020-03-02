@@ -24,8 +24,6 @@ public class DashboardProsecutorDelegate {
 
     private final DashboardProsecutorService dashboardProsecutorService;
 
-    private final ReferenceDelegate referenceDelegate;
-
     public DashboardProsecutorModel getDashboardProsecutor(HttpServletRequest httpServletRequest) {
         TPEngineResponse response = dashboardProsecutorService.getProsecutorDashboard(httpServletRequest);
         log.info("Dashboard Prosecutor request to be returned for user {}", response.getOfficerCode());
@@ -34,18 +32,8 @@ public class DashboardProsecutorDelegate {
                 .transactionId(response.getTransactionId())
                 .officerCode(response.getOfficerCode())
                 .reportingUnit(response.getOfficerCode())
-                .build();
-    }
-
-    public DashboardNotificationModel getDashboardProsecutorNotifications(HttpServletRequest httpServletRequest) {
-        TPEngineResponse response = dashboardProsecutorService.getProsecutorDashboardNotifications(httpServletRequest);
-        PushNotificationsResponseVO[] clientResponse = response.getPushNotificationsList();
-
-        log.info("Dashboard Prosecutor notifications request to be returned for user {}", response.getOfficerCode());
-
-        return DashboardNotificationModel.builder()
-                .notificationCount(clientResponse[0].getTotalNotificationCount())
-                .sosCount(clientResponse[0].getTotalSOSCount())
+                .totalEvidenceCount(response.getProsecutionDashBoardResponseVO().getCountRequestForEvidenceList()[0].getTotalEvidenseCount())
+                .notificationCount(response.getProsecutionDashBoardResponseVO().getCountNotificationsList()[0].getTotalNotificationsCount())
                 .build();
     }
 

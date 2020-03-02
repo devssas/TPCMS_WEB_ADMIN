@@ -17,5 +17,8 @@ public class DashboardProsecutorModel {
 
     private String reportingUnit;
 
-    private int totalEvidenceCount;
+    private String totalEvidenceCount;
+
+    private String notificationCount;
+
 }
