@@ -107,11 +107,11 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         setCredentials(viewNotificationsRequestVO);
 
         try {
-            log.info("Get vehicle list request will be sent to client. {}", viewNotificationsRequestVO.getMobileAppUserName());
+            log.info("Get notification list request will be sent to client. {}", viewNotificationsRequestVO.getMobileAppUserName());
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getNotifications(viewNotificationsRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on get vehicle list request. " + viewNotificationsRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on get notification list request. " + viewNotificationsRequestVO.getMobileAppUserName());
         }
         return null;
     }
