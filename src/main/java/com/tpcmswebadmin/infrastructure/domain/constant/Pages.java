@@ -37,4 +37,11 @@ public class Pages {
      * Error
      */
     public static final String ERROR_500 = "error_500";
+
+    /**
+     * Json Page For FE
+     */
+
+    public static final String DASHBOARD_ADMIN_JSON = "dashboard";
+    public static final String DASHBOARD_PROSECUTOR_JSON = "dashboardProsecutor";
 }

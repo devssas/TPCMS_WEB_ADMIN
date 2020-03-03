@@ -54,31 +54,33 @@
                 <section class="login-verify">
                     <div class="container">
                         <div class="inner">
-                            <form:form id="signInUserCode" modelAttribute="signInUserCodeModel" method="post">
+                            <form action="" class="login-user-code" data-url="${pageContext.request.contextPath}/api/signInUserCode">
                                 <div class="form-container login-form-contaier">
+                                    <div class="form-general-error alert alert-danger">
+                                        <i class="icon-cancel"></i>
+                                        <p class="alert-title"></p>
+                                    </div>
+                                    <div class="form-general-success alert alert-danger">
+                                        <i class="icon-check"></i>
+                                        <p class="alert-title"></p>
+                                    </div>
                                     <div class="form-row">
                                         <label>
                                             <span class="label">Usercode *</span>
                                             <div class="form-group">
-                                                <form:input id="signInUserCode1" cssClass="signInUserCode1 next-input-field" path="userCode1" maxlength="1"/>
-                                                <form:input id="signInUserCode2" cssClass="signInUserCode2 next-input-field" path="userCode2" maxlength="1"/>
-                                                <form:input id="signInUserCode3" cssClass="signInUserCode3 next-input-field" path="userCode3" maxlength="1"/>
-                                                <form:input id="signInUserCode4" cssClass="signInUserCode4 next-input-field" path="userCode4" maxlength="1"/>
-                                                <form:input id="signInUserCode5" cssClass="signInUserCode5 next-input-field" path="userCode5" maxlength="1"/>
+                                                <input type="text" id="signInUserCode1" name="userCode1" class="signInUserCode1 next-input-field only-number" maxlength="1">
+                                                <input type="text" id="signInUserCode2" name="userCode2" class="signInUserCode2 next-input-field only-number" maxlength="1">
+                                                <input type="text" id="signInUserCode3" name="userCode3" class="signInUserCode3 next-input-field only-number" maxlength="1">
+                                                <input type="text" id="signInUserCode4" name="userCode4" class="signInUserCode4 next-input-field only-number" maxlength="1">
+                                                <input type="text" id="signInUserCode5" name="userCode5" class="signInUserCode5 next-input-field only-number" maxlength="1">
                                             </div>
-                                            <form:errors id="userCodeFull" path="userCodeFull" cssClass="text-danger" />
-                                            <form:errors id="userCode1" path="userCode1" cssClass="text-danger" />
-                                            <form:errors id="userCode2" path="userCode2" cssClass="text-danger" />
-                                            <form:errors id="userCode3" path="userCode3" cssClass="text-danger" />
-                                            <form:errors id="userCode4" path="userCode4" cssClass="text-danger" />
-                                            <form:errors id="userCode5" path="userCode5" cssClass="text-danger" />
                                         </label>
                                     </div>
                                     <div class="form-row button-row">
                                         <input type="submit" class="button button-v1 full-width" value="VERIFY">
                                     </div>
                                 </div> <!-- form-container login-form-contaier -->
-                            </form:form>
+                            </form>
                         </div> <!-- inner -->
                     </div> <!-- container -->
                 </section> <!-- login-verify -->

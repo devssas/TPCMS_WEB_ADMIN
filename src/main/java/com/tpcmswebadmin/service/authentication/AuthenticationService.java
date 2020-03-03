@@ -2,7 +2,9 @@ package com.tpcmswebadmin.service.authentication;
 
 import com.ssas.tpcms.engine.vo.request.OfficersLoginRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
+import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
@@ -11,6 +13,7 @@ import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.response.SignInResponse;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import com.tpcmswebadmin.webpages.authentication.domain.SignInPassCodeDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,8 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
+
+import static com.tpcmswebadmin.infrastructure.domain.constant.Pages.*;
 
 
 @Service
@@ -80,7 +85,7 @@ public class AuthenticationService {
             return SignInResponse.builder()
                     .message(null)
                     .status(true)
-                    .nextUrl("signInUserCode")
+                    .nextUrl("signInPassCode")
                     .build();
         } else {
             return SignInResponse.builder()
@@ -107,6 +112,46 @@ public class AuthenticationService {
         }
 
         return null;
+    }
+
+    public SignInResponse signInWithPassCode(SignInPassCodeModel signInPassCodeModel, HttpServletRequest httpServletRequest) {
+        TPEngineResponse response = signInPassCode(signInPassCodeModel);
+
+
+        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
+            httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_CODE, response.getOfficerCode());
+            httpServletRequest.getSession().setAttribute(TpCmsConstants.REPORT_UNIT, response.getOfficersProfileResponseVO().getReportingUnit());
+
+            String accessRole = response.getOfficersProfileResponseVO().getAccessRoleCode();
+            httpServletRequest.getSession().setAttribute(TpCmsConstants.ACCESS_ROLE, accessRole);
+
+            if(accessRole.equals("PROSECUTION")) {
+                httpServletRequest.getSession().setAttribute(TpCmsConstants.PROSECUTOR_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
+                httpServletRequest.getSession().setAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
+
+                return SignInResponse.builder()
+                        .message(null)
+                        .status(true)
+                        .nextUrl(DASHBOARD_PROSECUTOR_JSON)
+                        .build();
+            } else {
+                httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
+                httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
+
+                return SignInResponse.builder()
+                        .message(null)
+                        .status(true)
+                        .nextUrl(DASHBOARD_ADMIN_JSON)
+                        .build();
+            }
+
+        } else {
+            return SignInResponse.builder()
+                    .message("Failure")
+                    .status(false)
+                    .nextUrl(null)
+                    .build();
+        }
     }
 
     public TPEngineResponse signInPassCode(SignInPassCodeModel signInPasscodeModel) {

@@ -2,6 +2,7 @@ package com.tpcmswebadmin.service.authentication;
 
 
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
+import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.service.authentication.domain.response.SignInResponse;
@@ -28,21 +29,25 @@ public class AuthenticationControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("signInUserCode")
-    public SignInResponse signInUserCode(@RequestParam("userCode") String userCode, HttpServletRequest httpServletRequest) {
+    public SignInResponse signInUserCode(@RequestParam("code") String code, HttpServletRequest httpServletRequest) {
         SignInUserCodeModel signInUserCodeModel = new SignInUserCodeModel();
 
         signInUserCodeModel.setUsername((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.USERNAME));
         signInUserCodeModel.setMobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
-        signInUserCodeModel.setUserCodeFull(userCode);
+        signInUserCodeModel.setUserCodeFull(code);
 
         return authenticationService.signInWithUserCode(signInUserCodeModel, httpServletRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("signInPassCode")
-    public SignInResponse signInPasscode(@RequestParam("passcode") String passcode, HttpServletRequest httpServletRequest) {
-        SignInUsernameModel signInUsernameModel = new SignInUsernameModel(passcode);
+    public SignInResponse signInPasscode(@RequestParam("code") String code, HttpServletRequest httpServletRequest) {
+        SignInPassCodeModel signInPassCodeModel = new SignInPassCodeModel();
+        signInPassCodeModel.setPassCodeFull(code);
+        signInPassCodeModel.setUserName((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.USERNAME));
+        signInPassCodeModel.setUserCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.USERCODE));
+        signInPassCodeModel.setMobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
 
-        return authenticationService.signInWithUserName(signInUsernameModel, httpServletRequest);
+        return authenticationService.signInWithPassCode(signInPassCodeModel, httpServletRequest);
     }
 }

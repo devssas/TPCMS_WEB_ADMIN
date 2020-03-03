@@ -54,27 +54,33 @@
                 <section class="login-verify">
                     <div class="container">
                         <div class="inner">
-                            <form:form id="signInPassCode" modelAttribute="signInPassCodeModel" method="post">
+
+                            <form action="" class="login-pass-code" data-url="${pageContext.request.contextPath}/api/signInPassCode">
                                 <div class="form-container login-form-contaier">
+                                    <div class="form-general-error alert alert-danger">
+                                        <i class="icon-cancel"></i>
+                                        <p class="alert-title"></p>
+                                    </div>
+                                    <div class="form-general-success alert alert-danger">
+                                        <i class="icon-check"></i>
+                                        <p class="alert-title"></p>
+                                    </div>
                                     <div class="form-row">
                                         <label>
                                             <span class="label">Passcode *</span>
                                             <div class="form-group">
-                                                <form:input id="signInPassCode1" cssClass="signInPassCode1 next-input-field" path="passCode1" maxlength="1"/>
-                                                <form:input id="signInPassCode2" cssClass="signInPassCode2 next-input-field" path="passCode2" maxlength="1"/>
-                                                <form:input id="signInPassCode3" cssClass="signInPassCode3 next-input-field" path="passCode3" maxlength="1"/>
+                                                <input type="text" id="signInPassCode1" name="passCode1" class="signInPassCode1 next-input-field only-number" maxlength="1">
+                                                <input type="text" id="signInPassCode2" name="passCode2" class="signInPassCode2 next-input-field only-number" maxlength="1">
+                                                <input type="text" id="signInPassCode3" name="passCode3" class="signInPassCode3 next-input-field only-number" maxlength="1">
                                             </div>
-                                            <form:errors id="passCodeFull" path="passCodeFull" cssClass="text-danger" />
-                                            <form:errors id="signInPassCode1" path="passCode1" cssClass="text-danger" />
-                                            <form:errors id="signInPassCode2" path="passCode2" cssClass="text-danger" />
-                                            <form:errors id="signInPassCode3" path="passCode3" cssClass="text-danger" />
                                         </label>
                                     </div>
                                     <div class="form-row button-row">
                                         <input type="submit" class="button button-v1 full-width" value="Sign In">
                                     </div>
                                 </div> <!-- form-container login-form-contaier -->
-                            </form:form>
+                            </form>
+
                         </div> <!-- inner -->
                     </div> <!-- container -->
                 </section> <!-- login-verify -->
