@@ -233,7 +233,7 @@ var main = {
 
             $( "#calendar" ).datepicker({
                 onSelect: function(date, datepicker) {
-                    window.location.href = nextUrl+"?"+date
+                    window.location.href = nextUrl+"?date="+date
                 },
             });
         }

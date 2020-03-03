@@ -49,6 +49,7 @@
                     <jsp:include page="highlight_back_to_overview.jsp">
                         <jsp:param name="header" value="Create Mission Card" />
                         <jsp:param name="redirect" value="missionPermitsMenu" />
+                        <jsp:param name="pageName" value="Overview" />
                     </jsp:include>
 
                     <form:form id="create-misison-card-form" modelAttribute="newMissionPermit" method="post" >

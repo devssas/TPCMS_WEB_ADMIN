@@ -48,6 +48,7 @@
                     <jsp:include page="highlight_back_to_overview.jsp">
                         <jsp:param name="header" value="Manage Crime File" />
                         <jsp:param name="redirect" value="dashboardProsecutor" />
+                        <jsp:param name="redirect" value="dashboardProsecutor" />
                     </jsp:include>
 
                     <form action="">

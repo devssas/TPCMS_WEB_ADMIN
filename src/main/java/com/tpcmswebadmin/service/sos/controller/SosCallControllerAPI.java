@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api")
-public class SosCallController {
+public class SosCallControllerAPI {
 
     private final SosCallsClientService sosCallsClientService;
 

@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html lang="ar">
 <head>
@@ -45,46 +45,22 @@
 
                 <section class="content">
 
-                    <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Prosecution Office" />
+                    <jsp:include page="highlight_back_to_overview.jsp">
+                        <jsp:param name="header" value="Calendar" />
+                        <jsp:param name="redirect" value="calendar" />
+                        <jsp:param name="pageName" value="calendar" />
                     </jsp:include>
 
-                    <section>
-                        <ul class="horizontal-list v1">
-                            <li>
-                                <a href="${pageContext.request.contextPath}/prosecutionManageCases" class="box-v2">
-                                    <i class="icon-manage-cases"></i>
-                                    <h3>Manage Cases</h3>
-                                    <p>In this Section, you can View and Manage Open Cases.</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/prosecutionCasesHistory" class="box-v2">
-                                    <i class="icon-history"></i>
-                                    <h3>Cases History</h3>
-                                    <p>In this Section, you can View Old Cases that are Closed and Archived.</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" class="box-v2">
-                                    <i class="icon-library"></i>
-                                    <h3>Library</h3>
-                                    <p>In this Section, you can View Prosecution Library, including Important Laws, Circulars, Legal Papers and Legal References.</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/calendar" class="box-v2">
-                                    <i class="icon-calender"></i>
-                                    <h3>Calender</h3>
-                                    <p>In this Section, you can log in all your Meeting and Important Events log in Calender System for Reminder.</p>
-                                </a>
-                            </li>
-                        </ul>
+                    <section class="content-box">
+                        <div class="icon-content-box">
+                            <ul>
+                                <li><a href="javascript:;" data-fancybox-card data-type='ajax' data-src='assets/ajax/card/calendar-add-event.html'><i class="icon-calender"></i></a></li>
+                            </ul>
+                        </div>
+                        <section class="dynamic-content" data-template-url="assets/ajax/table/calendar/calendar.html" data-json-url="/tpcmsWebAdmin/api/calendarEvent"></section>
                     </section>
 
                 </section>
-
-
 
             </section> <!-- content-inner -->
 

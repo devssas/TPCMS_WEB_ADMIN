@@ -1,7 +1,15 @@
 package com.tpcmswebadmin.infrastructure.client.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIgnoreProperties
 public class ResponseDto<T> {
 
@@ -11,36 +19,9 @@ public class ResponseDto<T> {
 
     private DataDto<T> data;
 
-    public ResponseDto() {
-    }
-
-    public ResponseDto(String status, String message, DataDto<T> data) {
+    public ResponseDto(String status, String message) {
         this.status = status;
         this.message = message;
-        this.data = data;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public DataDto<T> getData() {
-        return data;
-    }
-
-    public void setData(DataDto<T> data) {
-        this.data = data;
-    }
 }

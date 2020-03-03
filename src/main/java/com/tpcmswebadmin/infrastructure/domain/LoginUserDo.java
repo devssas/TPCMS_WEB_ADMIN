@@ -17,4 +17,6 @@ public class LoginUserDo extends PaginationDo {
 
     private String mobileAppDeviceId;
 
+    private String calenderDate;
+
 }
