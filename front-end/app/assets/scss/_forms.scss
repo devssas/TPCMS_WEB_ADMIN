@@ -655,6 +655,71 @@
   color: $color-4;
   margin-top: 2px;
 }
+
+.form-general-error,
+.form-general-success {
+  display: none;
+  margin-bottom: 25px;
+
+  .icon-cancel, .icon-check{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    padding: 0;
+    border-radius: 50%;
+  }
+  .icon-cancel{
+    color: $color-4;
+    border: 2px solid $color-4;
+  }
+  .icon-check{
+    color: $color-8;
+    border: 2px solid $color-8;
+  }
+  .alert-title{
+    @extend %fs-14;
+    @include f-roboto(700);
+    min-height: 60px;
+    text-align: left;
+    color: $color-black;
+    margin: 0;
+    padding: 15px 15px 15px 65px;
+  }
+}
+
+.form-general-error{
+  border-color: $color-4 #EAEAEA #EAEAEA #EAEAEA;
+  background-color: rgba($color-4,0.2) !important;
+}
+.form-general-success{
+  border-color: $color-8 #EAEAEA #EAEAEA #EAEAEA;
+  background-color: rgba($color-8,0.2) !important;
+}
+
+.alert{
+  position: relative;
+  color: #65676A;
+  background: #fff;
+  border-width: 3px 1px 1px 1px;
+  border-style: solid;
+  border-radius: 0;
+  padding: 0;
+  .media{
+    display: flex;
+    align-items: flex-start;
+
+    .media-body{
+      max-width: 100%;
+    }
+
+  }
+}
+
+
 //------------------------------------------------------------
 // = PLUGIN OVERRIDE STYLES
 //------------------------------------------------------------

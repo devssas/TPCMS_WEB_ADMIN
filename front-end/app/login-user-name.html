@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="tr">
 <head>
 	<title>TPcms</title>
 
@@ -49,12 +49,20 @@
 				<section class="login-verify">
 					<div class="container">
 						<div class="inner">
-							<form action="">
+							<form action="" class="login-user-name" data-url="assets/ajax/form-request/branding-name-call.json">
 								<div class="form-container login-form-contaier">
+									<div class="form-general-error alert alert-danger">
+										<i class="icon-cancel"></i>
+										<p class="alert-title"></p>
+									</div>
+									<div class="form-general-success alert alert-danger">
+										<i class="icon-check"></i>
+										<p class="alert-title"></p>
+									</div>
 									<div class="form-row">
 										<label>
 											<span class="label">Username *</span>
-											<input type="text">
+											<input type="text" name="username" id="username">
 										</label>
 									</div>
 									<div class="form-row button-row">
