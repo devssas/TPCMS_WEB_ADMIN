@@ -233,7 +233,7 @@ var main = {
 
             $( "#calendar" ).datepicker({
                 onSelect: function(date, datepicker) {
-                    window.location.href = nextUrl+"?date="+date
+                    window.location.href = nextUrl+"?calendarDate="+date
                 },
             });
         }
@@ -326,10 +326,16 @@ var main = {
         if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url")) && $(".dynamic-content").is(':empty')){
 
             $(".dynamic-content").each(function () {
-                var _this = $(this),
+                var windowUrl = window.location.href,
+                    _this = $(this),
                     templateUrl = _this.data("template-url"),
                     jsonUrl = _this.data("json-url"),
                     jsonTemplate;
+
+                if(windowUrl.indexOf("?calendarDate") > 0){
+                    var date  = windowUrl.split("?");
+                    templateUrl += "?" + date[1]
+                }
 
                 $.ajax({
                     url: templateUrl,
