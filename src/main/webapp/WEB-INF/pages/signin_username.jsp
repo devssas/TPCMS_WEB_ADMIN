@@ -54,26 +54,31 @@
                 <section class="login-verify">
                     <div class="container">
                         <div class="inner">
-
-                            <form:form id="signInUsername" modelAttribute="signInUsernameModel" method="post">
+                            <form action="" class="login-user-name" data-url="${pageContext.request.contextPath}/api/signInUsername">
                                 <div class="form-container login-form-contaier">
+                                    <div class="form-general-error alert alert-danger">
+                                        <i class="icon-cancel"></i>
+                                        <p class="alert-title"></p>
+                                    </div>
+                                    <div class="form-general-success alert alert-danger">
+                                        <i class="icon-check"></i>
+                                        <p class="alert-title"></p>
+                                    </div>
                                     <div class="form-row">
                                         <label>
-                                            <div class="form-row">
-                                                <label>
-                                                    <span class="label">Username *</span>
-                                                    <form:input id="username" path="username"/>
-                                                </label>
-                                            </div>
-                                            <form:errors id="username" path="username" cssClass="text-danger"/>
+                                            <span class="label">Username *</span>
+                                            <input type="text" name="username" id="username">
                                         </label>
                                     </div>
                                     <div class="form-row button-row">
                                         <input type="submit" class="button button-v1 full-width" value="NEXT">
                                     </div>
-                                </div>
-                                <!-- form-container login-form-contaier -->
-                            </form:form>
+                                </div> <!-- form-container login-form-contaier -->
+                            </form>
+
+<%--                            <form:form  id="signInUsername" modelAttribute="signInUsernameModel" method="post">--%>
+
+<%--                            </form:form>--%>
 
                         </div> <!-- inner -->
                     </div> <!-- container -->

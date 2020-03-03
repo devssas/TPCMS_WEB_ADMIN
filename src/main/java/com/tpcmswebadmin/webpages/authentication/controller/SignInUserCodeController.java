@@ -38,17 +38,8 @@ public class SignInUserCodeController {
     }
 
     @PostMapping("/signInUserCode")
-    public String signInWithUserCode(@Valid @ModelAttribute("signInUserCodeModel") SignInUserCodeModel signInUserCodeModel, BindingResult bindingResult, HttpServletRequest request) {
+    public String signInWithUserCode(@Valid @ModelAttribute("signInUserCodeModel") SignInUserCodeModel signInUserCodeModel, HttpServletRequest request) {
         String userCode = generateUserCode(signInUserCodeModel);
-
-        if (bindingResult.hasErrors()) {
-            logger.warn("Errors {}", bindingResult.getAllErrors());
-
-            SignInUserCodeModel emptyModel = new SignInUserCodeModel();
-            BeanUtils.copyProperties(emptyModel, signInUserCodeModel);
-
-            return Pages.SIGN_IN_USERCODE;
-        }
 
         signInUserCodeModel.setUsername((String) request.getSession().getAttribute(TpCmsConstants.USERNAME));
         signInUserCodeModel.setMobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));

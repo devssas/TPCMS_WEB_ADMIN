@@ -554,7 +554,18 @@ var main = {
                     var url = $(form).data("url"),
                         type = $(form).attr("method") || "GET",
                         enctype = $(form).attr("enctype"),
-                        data = $(form).serialize();
+                        data = $(form).serialize(),
+                        newData = "";
+
+                    if($(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")){
+                        $(form).find("input[type='text']").each(function () {
+                            var _this = $(this),
+                                val = _this.val();
+                            newData += val;
+                        });
+
+                        data = "code=" + newData;
+                    }
 
                     var ajaxOptions = {
                         url: url,

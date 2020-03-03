@@ -39,16 +39,7 @@ public class SignInPassCodeController {
     }
 
     @PostMapping("/signInPassCode")
-    public String getSignInPassCode(@Valid @ModelAttribute("signInPassCodeModel") SignInPassCodeModel signInPassCodeModel, BindingResult bindingResult, HttpServletRequest request) {
-        if (bindingResult.hasErrors()) {
-            log.warn("Errors {}", bindingResult.getAllErrors());
-
-            SignInPassCodeModel emptyModel = new SignInPassCodeModel();
-            BeanUtils.copyProperties(emptyModel, signInPassCodeModel);
-
-            return Pages.SIGN_IN_PASSCODE;
-        }
-
+    public String getSignInPassCode(@Valid @ModelAttribute("signInPassCodeModel") SignInPassCodeModel signInPassCodeModel, HttpServletRequest request) {
         signInPassCodeModel.setUserName((String) request.getSession().getAttribute(TpCmsConstants.USERNAME));
         signInPassCodeModel.setUserCode((String) request.getSession().getAttribute(TpCmsConstants.USERCODE));
         signInPassCodeModel.setMobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));

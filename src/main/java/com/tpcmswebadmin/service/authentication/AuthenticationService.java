@@ -8,12 +8,14 @@ import com.tpcmswebadmin.service.authentication.domain.model.SignInUserCodeModel
 import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
+import com.tpcmswebadmin.service.authentication.domain.response.SignInResponse;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 
@@ -32,6 +34,27 @@ public class AuthenticationService {
         this.credentialsService = credentialsService;
     }
 
+    public SignInResponse signInWithUserName(SignInUsernameModel signInUsernameModel, HttpServletRequest httpServletRequest) {
+        TPEngineResponse response = signInUserName(signInUsernameModel);
+
+        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
+            httpServletRequest.getSession().setAttribute(TpCmsConstants.USERNAME, signInUsernameModel.getUsername());
+            httpServletRequest.getSession().setAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID, response.getOfficersProfileResponseVO().getMobileDeviceId());
+
+            return SignInResponse.builder()
+                    .message(null)
+                    .status(true)
+                    .nextUrl("signInUserCode")
+                    .build();
+        } else {
+            return SignInResponse.builder()
+                    .message("Failure")
+                    .status(false)
+                    .nextUrl(null)
+                    .build();
+        }
+    }
+
     public TPEngineResponse signInUserName(SignInUsernameModel signInUsernameModel) {
         OfficersLoginRequestVO officersLoginRequestVO = new OfficersLoginRequestVO();
         officersLoginRequestVO.setAdminUserName(signInUsernameModel.getUsername());
@@ -46,6 +69,26 @@ public class AuthenticationService {
             logger.warn("Something wrong on signIn username request. " + officersLoginRequestVO.getMobileAppUserName());
         }
         return null;
+    }
+
+    public SignInResponse signInWithUserCode(SignInUserCodeModel signInUserCodeModel, HttpServletRequest httpServletRequest) {
+        TPEngineResponse response = signInUserCode(signInUserCodeModel);
+
+        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
+            httpServletRequest.getSession().setAttribute(TpCmsConstants.USERCODE, signInUserCodeModel.getUserCodeFull());
+
+            return SignInResponse.builder()
+                    .message(null)
+                    .status(true)
+                    .nextUrl("signInUserCode")
+                    .build();
+        } else {
+            return SignInResponse.builder()
+                    .message("Failure")
+                    .status(false)
+                    .nextUrl(null)
+                    .build();
+        }
     }
 
     public TPEngineResponse signInUserCode(SignInUserCodeModel signInUserCodeModel) {
