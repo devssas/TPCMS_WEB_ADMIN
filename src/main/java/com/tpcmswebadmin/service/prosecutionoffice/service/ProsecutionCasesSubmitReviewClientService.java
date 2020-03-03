@@ -43,7 +43,6 @@ public class ProsecutionCasesSubmitReviewClientService implements ClientServiceA
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         return prepareResponseDto(ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList()));
-
     }
 
     @Override
