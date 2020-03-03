@@ -49,15 +49,23 @@
 				<section class="login-verify">
 					<div class="container">
 						<div class="inner">
-							<form action="">
+							<form action="" class="login-pass-code" data-url="assets/ajax/form-request/branding-name-call.json">
 								<div class="form-container login-form-contaier">
+									<div class="form-general-error alert alert-danger">
+										<i class="icon-cancel"></i>
+										<p class="alert-title"></p>
+									</div>
+									<div class="form-general-success alert alert-danger">
+										<i class="icon-check"></i>
+										<p class="alert-title"></p>
+									</div>
 									<div class="form-row">
 										<label>
 											<span class="label">Passcode *</span>
 											<div class="form-group">
-												<input type="text" class="next-input-field" maxlength="1">
-												<input type="text" class="next-input-field" maxlength="1">
-												<input type="text" class="next-input-field" maxlength="1">
+												<input type="text" id="signInPassCode1" name="passCode1" class="signInPassCode1 next-input-field" maxlength="1">
+												<input type="text" id="signInPassCode2" name="passCode2" class="signInPassCode2 next-input-field" maxlength="1">
+												<input type="text" id="signInPassCode3" name="passCode3" class="signInPassCode3 next-input-field" maxlength="1">
 											</div>
 										</label>
 									</div>
