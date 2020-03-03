@@ -52,7 +52,7 @@
                     </jsp:include>
 
                     <section>
-                        <div id="calendar" data-next-url="/tpcmsWebAdmin/calenderEvent"></div>
+                        <div id="calendar" data-next-url="/tpcmsWebAdmin/calendarEvent"></div>
                     </section>
 
                 </section>

@@ -1,4 +1,5 @@
 {
-  "status": false,
-  "message": "custom message"
+  "status": true,
+  "message": null,
+  "nextUrl" :"login-user-code.html"
 }

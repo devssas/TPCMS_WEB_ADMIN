@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CalenderDto implements Serializable {
+public class CalendarDto implements Serializable {
 
     private static final long serialVersionUID = -6192765017688184563L;
 

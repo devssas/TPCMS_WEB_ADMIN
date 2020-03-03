@@ -18,10 +18,8 @@ public class CalenderEventController {
 
     private final CalenderEventDelegate calenderEventDelegate;
 
-    @GetMapping("/calenderEvent")
-    public String getCalender(@RequestParam("date") String date, Model model, HttpServletRequest httpServletRequest) {
-    //    List<CalenderEventModel> list =  calenderEventDelegate.getEventsOnDate(date, httpServletRequest);
-
+    @GetMapping("/calendarEvent")
+    public String getCalender(@RequestParam("calendarDate") String calendarDate, Model model, HttpServletRequest httpServletRequest) {
         model.addAttribute("prosecutorName", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_NAME));
         model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE));
         model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));

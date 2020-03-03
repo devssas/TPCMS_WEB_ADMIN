@@ -63,7 +63,8 @@ public class ProsecutionCasesRequestEvidenceClientService implements ClientServi
                 .crimeLocation(criminalsProfile.getCriminalProfileList()[0].getCrimeLocation())
                 .status(criminalsProfile.getCriminalProfileList()[0].getCrimianlStatusCode())
                 .suspects(Collections.singletonList(StringUtility.makeFullName(criminalsProfile.getCriminalProfileList()[0].getFirstName_Ar() + " " + criminalsProfile.getCriminalProfileList()[0].getLastName_Ar())))
-                .images(Arrays.asList(ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto1()),
+                .images(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0] == null ? null :
+                                (Arrays.asList(ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto1()),
                                       ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto2()),
                                       ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto3()),
                                       ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto4()),
@@ -72,7 +73,7 @@ public class ProsecutionCasesRequestEvidenceClientService implements ClientServi
                                       ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto7()),
                                       ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto8()),
                                       ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto9()),
-                                      ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto10())))
+                                      ImageUtility.convertToBase64image(criminalsProfile.getCriminalProfileList()[0].getCriminalWitnessResponseVOArr()[0].getEvidencePhoto10()))))
                 .crimeType(criminalsProfile.getCriminalProfileList()[0].getTypeOfCrime())
                 .crimeTitle(criminalsProfile.getCriminalProfileList()[0].getCrimeName())
                 .crimeClassification(criminalsProfile.getCriminalProfileList()[0].getCrimeClassification())

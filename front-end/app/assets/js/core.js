@@ -332,11 +332,6 @@ var main = {
                     jsonUrl = _this.data("json-url"),
                     jsonTemplate;
 
-                if(windowUrl.indexOf("?calendarDate") > 0){
-                    var date  = windowUrl.split("?");
-                    templateUrl += "?" + date[1]
-                }
-
                 $.ajax({
                     url: templateUrl,
                     method: "GET"
@@ -354,7 +349,14 @@ var main = {
                             }).submit();
 
                         } else {
-                            getJson(jsonUrl, jsonTemplate, _this);
+
+                            if(windowUrl.indexOf("?calendarDate") > 0){
+                                var date  = windowUrl.split("?");
+                                getJson(jsonUrl, jsonTemplate, _this, date[1]);
+                            } else {
+                                getJson(jsonUrl, jsonTemplate, _this);
+                            }
+
                         }
 
                     });

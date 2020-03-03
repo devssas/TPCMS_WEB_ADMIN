@@ -1,7 +1,6 @@
 package com.tpcmswebadmin.service.calender.service;
 
 import com.ssas.tpcms.engine.vo.request.AdminAppointmentRequestVO;
-import com.ssas.tpcms.engine.vo.request.ViewCriminalProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -9,13 +8,10 @@ import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
-import com.tpcmswebadmin.service.calender.domain.CalenderDto;
+import com.tpcmswebadmin.service.calender.domain.CalendarDto;
 import com.tpcmswebadmin.service.calender.service.mapper.CalenderEventMapper;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.criminals.domain.CasesDto;
-import com.tpcmswebadmin.service.criminals.service.mapper.CriminalProfileMapper;
-import com.tpcmswebadmin.service.sos.domain.SosCallDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,20 +20,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CalenderEventService implements ClientServiceAPI<CalenderDto, LoginUserDo, AdminAppointmentRequestVO> {
+public class CalendarEventService implements ClientServiceAPI<CalendarDto, LoginUserDo, AdminAppointmentRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
-    public ResponseDto<CalenderDto> getResponseDto(String date, HttpServletRequest request) {
-        ResponseDto<CalenderDto> initialResponse = new ResponseDto<>();
+    public ResponseDto<CalendarDto> getResponseDto(String date, HttpServletRequest request) {
+        ResponseDto<CalendarDto> initialResponse = new ResponseDto<>();
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -51,15 +46,15 @@ public class CalenderEventService implements ClientServiceAPI<CalenderDto, Login
     }
 
     @Override
-    public ResponseDto<CalenderDto> getResponseDto(HttpServletRequest request) {
+    public ResponseDto<CalendarDto> getResponseDto(HttpServletRequest request) {
         log.info("Dummy method, no use");
         return null;
     }
 
     @Override
-    public ResponseDto<CalenderDto> prepareResponseDto(List<CalenderDto> list) {
-        ResponseDto<CalenderDto> responseDto = new ResponseDto<>();
-        DataDto<CalenderDto> dataDto = new DataDto<>();
+    public ResponseDto<CalendarDto> prepareResponseDto(List<CalendarDto> list) {
+        ResponseDto<CalendarDto> responseDto = new ResponseDto<>();
+        DataDto<CalendarDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());

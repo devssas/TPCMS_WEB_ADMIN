@@ -233,7 +233,7 @@ var main = {
 
             $( "#calendar" ).datepicker({
                 onSelect: function(date, datepicker) {
-                    window.location.href = nextUrl+"?date="+date
+                    window.location.href = nextUrl+"?calendarDate="+date
                 },
             });
         }
@@ -326,7 +326,8 @@ var main = {
         if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url")) && $(".dynamic-content").is(':empty')){
 
             $(".dynamic-content").each(function () {
-                var _this = $(this),
+                var windowUrl = window.location.href,
+                    _this = $(this),
                     templateUrl = _this.data("template-url"),
                     jsonUrl = _this.data("json-url"),
                     jsonTemplate;
@@ -348,7 +349,14 @@ var main = {
                             }).submit();
 
                         } else {
-                            getJson(jsonUrl, jsonTemplate, _this);
+
+                            if(windowUrl.indexOf("?calendarDate") > 0){
+                                var date  = windowUrl.split("?");
+                                getJson(jsonUrl, jsonTemplate, _this, date[1]);
+                            } else {
+                                getJson(jsonUrl, jsonTemplate, _this);
+                            }
+
                         }
 
                     });
@@ -486,7 +494,7 @@ var main = {
     },
     validationsCommon: function () {
 
-        /*var $success,
+        var $success,
             $error;
 
         if ($("form").length) {
@@ -494,17 +502,20 @@ var main = {
                 $success = $(".form-general-success", element);
                 $error = $(".form-general-error", element);
             });
-        }*/
+        }
 
-        //message lang control
-        // function validationLang (msgTr,msgEn){
-        //     var langTr = $("html").attr("lang") == "tr";
-        //     if(langTr == true) {
-        //         return msgTr
-        //     } else {
-        //         return msgEn
-        //     }
-        // }
+        // message lang control
+        function validationLang (msgTr,msgEn,msgAr){
+            var lang = $("html").attr("lang");
+
+            if(lang == "tr"){
+                return msgTr
+            } else if(lang == "en"){
+                return msgEn
+            } else if(lang == "ar"){
+                return msgAr
+            }
+        }
 
         // Google Recaptcha
         // $.validator.addMethod('reCaptchaMethod', function (value, element, param) {
@@ -515,8 +526,6 @@ var main = {
         //         return true
         //     }
         // }, 'You must complete the antispam verification');
-
-
 
 
         var defaults = {
@@ -533,8 +542,12 @@ var main = {
             },
             submitHandler: function (form) {
 
-                // $success.hide();
-                // $error.hide();
+                $success.hide();
+                $error.hide();
+
+                if($(form).hasClass("login-user-name") || $(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")){
+                    $(form).find(".form-container").addClass("loading");
+                }
 
                 if ($(form).data("url")) {
 
@@ -571,44 +584,15 @@ var main = {
                                     $(form).find(".form-general-error .alert-title").text(response.message);
                                     $(form).find(".form-general-error").show();
                                 }
-                            } else {
 
-                                if ($(form).hasClass("previousCase")) {
-                                    var templateUrl = $(form).data("template-url");
-
-                                    $.ajax({
-                                        url: templateUrl,
-                                        method: "GET"
-                                    })
-                                        .done(function (responseTemplate) {
-
-                                            $(form).find(".dynamic-content").addClass("loading");
-
-                                            var template = Handlebars.compile(responseTemplate),
-                                                tableHTML = template(response);
-
-                                            $(form).find(".dynamic-content").html(tableHTML).removeClass("loading");
-
-                                            $(".previous-case-id").off("click").on({
-                                                click: function () {
-                                                    var _this = $(this),
-                                                        caseId = _this.data("case-id");
-
-                                                    $(".fancy-click-element").find(".add-previous-case-id").val(caseId);
-
-                                                    $.fancybox.close();
-                                                }
-                                            })
-
-                                        });
-
-                                } else {
-                                    if (response.nextUrl) {
-                                        window.location.href = response.nextUrl;
-                                    }
+                                if($(form).hasClass("login-user-name") || $(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")){
+                                    $(form).find(".form-container").removeClass("loading");
                                 }
-                                // buttonLoading(form);
+
+                            } else if(response.nextUrl){
+                                window.location.href = response.nextUrl;
                             }
+                            // buttonLoading(form);
                         });
 
                 } else {
@@ -629,8 +613,103 @@ var main = {
             previousCase.validate(options);
         }
 
-    },
+        var loginUserName = $(".login-user-name");
+        if (loginUserName.length) {
+            var options = $.extend({}, defaults, {
+                rules: {
+                    username: {
+                        required: true
+                    }
+                },
+                messages: {
+                    username:{
+                        required: "Bu alan boş geçilemez."
+                    }
 
+                }
+            });
+            loginUserName.validate(options);
+        }
+
+
+        var loginUserCode = $(".login-user-code");
+        if (loginUserCode.length) {
+            var options = $.extend({}, defaults, {
+                groups: {
+                    inputGroup: "userCode1 userCode2 userCode3 userCode4 userCode5",
+                },
+                rules: {
+                    userCode1: {
+                        required: true
+                    },
+                    userCode2: {
+                        required: true
+                    },
+                    userCode3: {
+                        required: true
+                    },
+                    userCode4: {
+                        required: true
+                    },
+                    userCode5: {
+                        required: true
+                    }
+                },
+                messages: {
+                    userCode1: {
+                        required: "Bu alan boş geçilemez."
+                    },
+                    userCode2: {
+                        required: "Bu alan boş geçilemez."
+                    },
+                    userCode3: {
+                        required: "Bu alan boş geçilemez."
+                    },
+                    userCode4: {
+                        required: "Bu alan boş geçilemez."
+                    },
+                    userCode5: {
+                        required: "Bu alan boş geçilemez."
+                    }
+                }
+            });
+            loginUserCode.validate(options);
+        }
+
+
+        var loginPassCode = $(".login-pass-code");
+        if (loginPassCode.length) {
+            var options = $.extend({}, defaults, {
+                groups: {
+                    inputGroup: "passCode1 passCode2 passCode3",
+                },
+                rules: {
+                    passCode1: {
+                        required: true
+                    },
+                    passCode2: {
+                        required: true
+                    },
+                    passCode3: {
+                        required: true
+                    }
+                },
+                messages: {
+                    passCode1: {
+                        required: "Bu alan boş geçilemez."
+                    },
+                    passCode2: {
+                        required: "Bu alan boş geçilemez."
+                    },
+                    passCode3: {
+                        required: "Bu alan boş geçilemez."
+                    }
+                }
+            });
+            loginPassCode.validate(options);
+        }
+
+    },
     alertify: function (status, message, time) {
         var html = "<div class='alertify "+ status +"'><p class='message'>"+ message +"</p></div>"
         $("body").append(html);

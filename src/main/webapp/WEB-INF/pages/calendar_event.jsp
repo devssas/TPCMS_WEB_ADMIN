@@ -48,7 +48,7 @@
                     <jsp:include page="highlight_back_to_overview.jsp">
                         <jsp:param name="header" value="Calendar" />
                         <jsp:param name="redirect" value="calendar" />
-                        <jsp:param name="pageName" value="calendar" />
+                        <jsp:param name="pageName" value="Calendar" />
                     </jsp:include>
 
                     <section class="content-box">
