@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.webpages.policestaff.controller;
+package com.tpcmswebadmin.webpages.policeofficer.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
 
 @Controller
-public class PoliceStaffViewController {
+public class PoliceOfficerViewController {
 
     @GetMapping("/officerProfiles")
     public String getPoliceStaff(Model model, HttpServletRequest httpServletRequest) {
