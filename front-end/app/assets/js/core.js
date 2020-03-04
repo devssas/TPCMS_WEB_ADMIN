@@ -29,16 +29,18 @@ var main = {
             markers = [],
             markersList;
 
+
         function markerList() {
 
             $.ajax({
                 type: "GET",
-                url: "assets/ajax/marker.json"
+                url: "assets/ajax/dashboard/dashboard.json"
             })
                 .done(function (response) {
                     markersList = response;
                     createdMap();
                 });
+
         }
 
         function createdMap() {
@@ -50,19 +52,39 @@ var main = {
                 fullscreenControl: false
             });
 
+            refreshMap();
+        }
+
+        function refreshMap() {
+
+            $.ajax({
+                url: "assets/ajax/dashboard/dashboard.html",
+                type: "GET"
+            })
+                .done(function (jsonTemplate) {
+                    var template = Handlebars.compile(jsonTemplate),
+                        tableHTML = template(markersList);
+
+                    $(".horizontal-list.v1").html(tableHTML);
+
+                });
+
             if (mapMarkersList) {
                 mapMarkersList.clearMarkers();
                 markers = [];
             }
 
             for (var i = 0; i < markersList.data.length; ++i) {
-                var latLng = new google.maps.LatLng(markersList.data[i].lat, markersList.data[i].lng);
+                newsMarkerList(markersList.data[i])
+            }
 
+            function newsMarkerList (newsMarkersList) {
+                var latLng = new google.maps.LatLng(newsMarkersList.lat, newsMarkersList.lng);
                 var marker = new google.maps.Marker({
                     position: latLng,
                     icon: markersPin,
-                    markerLat: markersList.data[i].lat,
-                    markerLng: markersList.data[i].lng,
+                    markerLat: newsMarkersList.lat,
+                    markerLng: newsMarkersList.lng,
                     selectedId: i,
                     selectedState: false
                 });
@@ -81,9 +103,14 @@ var main = {
                     }
                 ]
             });
+
         }
 
         markerList();
+
+        setInterval(function () {
+            markerList();
+        },300000);
 
     },
     inputAction: function () {
