@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.webpages.missionpermits.domain.model;
+package com.tpcmswebadmin.webpages.missionpermits.model;
 
 import lombok.*;
 
@@ -13,7 +13,6 @@ public class MissionPermitCardCreateModel {
     @NotEmpty(message = "{error.missionPermit.notNull}")
     private String officerId;
 
-    @NotEmpty(message = "{error.missionPermit.notNull}")
     private String officerName;
 
     @NotEmpty(message = "{error.missionPermit.notNull}")

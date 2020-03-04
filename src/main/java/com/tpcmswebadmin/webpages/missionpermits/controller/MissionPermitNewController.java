@@ -2,7 +2,7 @@ package com.tpcmswebadmin.webpages.missionpermits.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.webpages.missionpermits.delegate.MissionPermitNewDelegate;
-import com.tpcmswebadmin.webpages.missionpermits.domain.model.MissionPermitCardCreateModel;
+import com.tpcmswebadmin.webpages.missionpermits.model.MissionPermitCardCreateModel;
 import com.tpcmswebadmin.webpages.reference.delegate.ReferenceDelegate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +42,6 @@ public class MissionPermitNewController {
 
         return "mission_permits_new";
     }
-
 
     @PostMapping("missionPermitsNew")
     public String newMissionCardPage(@Valid @ModelAttribute("newMissionPermit") MissionPermitCardCreateModel missionPermitCardCreateModel,

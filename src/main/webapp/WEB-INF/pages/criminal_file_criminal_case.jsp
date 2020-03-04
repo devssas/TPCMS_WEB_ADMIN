@@ -45,8 +45,10 @@
 
                 <section class="content">
 
-                    <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Manage Criminals" />
+                    <jsp:include page="highlight_back_to_overview.jsp">
+                        <jsp:param name="header" value="Add New Officer" />
+                        <jsp:param name="redirect" value="criminalsMenu" />
+                        <jsp:param name="pageName" value="Criminal Database" />
                     </jsp:include>
 
                     <form action="">

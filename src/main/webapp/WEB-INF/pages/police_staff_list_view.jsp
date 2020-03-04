@@ -4,7 +4,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
-<html>
+<html lang="ar">
 <head>
     <title>TPcms</title>
 
@@ -70,21 +70,6 @@
                                             <label>
                                                 <span class="label">User Type</span>
                                                 <select name="" id="select-1">
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="1">All/Supervisors/Officers</option>
-                                                    <option value="2">All/Supervisors/Officers</option>
-                                                    <option value="3">All/Supervisors/Officers</option>
-                                                    <option value="4">All/Supervisors/Officers</option>
-                                                    <option value="5">All/Supervisors/Officers</option>
-                                                    <option value="6">All/Supervisors/Officers</option>
-                                                    <option value="7">All/Supervisors/Officers</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <div class="form-row select-not-find">
-                                            <label>
-                                                <span class="label">User Type</span>
-                                                <select name="" id="select-2">
                                                     <option value="">All/Supervisors/Officers</option>
                                                     <option value="1">All/Supervisors/Officers</option>
                                                     <option value="2">All/Supervisors/Officers</option>
