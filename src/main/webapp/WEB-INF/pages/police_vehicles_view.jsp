@@ -68,29 +68,10 @@
                                     <div class="table-filter-inner">
                                         <div class="form-row select-not-find">
                                             <label>
-                                                <span class="label">User Type</span>
-                                                <select name="" id="select-1">
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <div class="form-row select-not-find">
-                                            <label>
                                                 <span class="label">Status</span>
-                                                <select name="" id="select-2">
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                    <option value="">All/Active/Inactive</option>
-                                                </select>
+                                                <form:select id="statuses" path="statuses" type="text" items="${statuses}"/>
                                             </label>
+                                            <form:errors id="statuses" path="statuses" cssClass="text-danger" />
                                         </div>
                                         <a href="${pageContext.request.contextPath}/policeVehiclesMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                     </div>

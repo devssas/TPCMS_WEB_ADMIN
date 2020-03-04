@@ -1,6 +1,8 @@
 package com.tpcmswebadmin.webpages.policevehicles.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
+import com.tpcmswebadmin.webpages.policevehicles.delegate.PoliceVehicleViewDelegate;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
 
 @Controller
+@RequiredArgsConstructor
 public class PoliceVehicleViewController {
+
+    private final PoliceVehicleViewDelegate policeVehicleViewDelegate;
 
     @GetMapping("/policeVehicles")
     public String getPoliceVehicles(Model model, HttpServletRequest httpServletRequest) {
@@ -22,6 +27,8 @@ public class PoliceVehicleViewController {
 
         if(adminRole.equals(ADMIN.name()))
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
+
+        model.addAttribute("statuses", policeVehicleViewDelegate.getPoliceVehicleStatuses(httpServletRequest));
 
         return "police_vehicles_view";
     }
