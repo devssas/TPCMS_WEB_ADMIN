@@ -9,6 +9,7 @@ import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
+import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
@@ -69,7 +70,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
                 .rank(specialMissionDetails.getSpecialMissionList()[0].getOfficersRank())
                 .unit(specialMissionDetails.getSpecialMissionList()[0].getReportingUnit())
                 .officerId(specialMissionDetails.getSpecialMissionList()[0].getOfficersProfileId())
-                .expiryDate(specialMissionDetails.getSpecialMissionList()[0].getExpiryDate())
+                .expiryDate(DateUtility.convertToFormat(specialMissionDetails.getSpecialMissionList()[0].getExpiryDate(), TpCmsConstants.SCREEN_DATE_FORMAT))
                 .isPermittedCarryWeapon(specialMissionDetails.getSpecialMissionList()[0].getPermissionToCarryWeapon())
                 .weaponType(specialMissionDetails.getSpecialMissionList()[0].getAllowedWeaponType())
                 .missionType(specialMissionDetails.getSpecialMissionList()[0].getMissionType())
@@ -150,8 +151,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
 
         list.add("Permit ID");
         list.add("username");
-        list.add("Mobile Number");
-        list.add("City");
+        list.add("Mission Type");
         list.add("Mission QrCode");
         list.add("Expiry Date");
         list.add("Status");

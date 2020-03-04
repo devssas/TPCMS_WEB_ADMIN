@@ -1,6 +1,8 @@
 package com.tpcmswebadmin.service.missionpermits.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.SpecialMissionResponseVO;
+import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
+import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -22,10 +24,9 @@ public class MissionPermitsMapper {
         return MissionPermitsDto.builder()
                 .permitId(specialMissionResponseVO.getSpmissionId())
                 .username(specialMissionResponseVO.getFirstName_Ar() + " " + specialMissionResponseVO.getLastName_Ar())
-                .mobileNumber(specialMissionResponseVO.getSpecialMissionQRCode())
+                .missionType(specialMissionResponseVO.getMissionType())
                 .missionQrCode(specialMissionResponseVO.getSpecialMissionQRCode())
-                .city(null)
-                .expiryDate(specialMissionResponseVO.getExpiryDate())
+                .expiryDate(DateUtility.convertToFormat(specialMissionResponseVO.getExpiryDate(), TpCmsConstants.SCREEN_DATE_FORMAT))
                 .status(specialMissionResponseVO.getStatusCode())
                 .actions(prepareActionsColumn(specialMissionResponseVO.getSpmissionId(), specialMissionResponseVO.getSpecialMissionQRCode()))
                 .build();
