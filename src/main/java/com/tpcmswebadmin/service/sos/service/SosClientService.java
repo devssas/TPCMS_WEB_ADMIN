@@ -25,7 +25,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class SosCallsClientService implements ClientServiceAPI<SosCallDto, LoginUserDo, ViewSOSRequestVO> {
+public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserDo, ViewSOSRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 

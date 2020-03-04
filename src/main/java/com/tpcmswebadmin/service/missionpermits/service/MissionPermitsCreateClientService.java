@@ -46,7 +46,6 @@ public class MissionPermitsCreateClientService implements ClientCreateServiceAPI
         requestVO.setMissionType(model.getMissionType());
         requestVO.setMissionDescription(model.getMissionDescription());
         requestVO.setActivationDate(model.getActivationDate());
-        requestVO.setActivationDate(model.getActivationDate());
         requestVO.setExpiryDate(model.getExpiryDate());
         requestVO.setAdditionalRemarks(model.getAdditionalRemarks());
     }
