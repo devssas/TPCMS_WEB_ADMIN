@@ -84,6 +84,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
                 .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
+                .reportingUnit((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
                 .build();
 
         TPEngineResponse response = makeClientCall(loginUserDo);
@@ -112,6 +113,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         viewVehicleDetailsRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         viewVehicleDetailsRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewVehicleDetailsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
+        viewVehicleDetailsRequestVO.setUnitNumber(loginUserDo.getReportingUnit());
         viewVehicleDetailsRequestVO.setVehicleDetailsSeeAll("Y");
 
         viewVehicleDetailsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());

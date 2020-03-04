@@ -19,4 +19,6 @@ public class LoginUserDo extends PaginationDo {
 
     private String calenderDate;
 
+    private String reportingUnit;
+
 }
