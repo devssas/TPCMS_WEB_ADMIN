@@ -61,7 +61,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/newNotification" class="box-v2">
                                     <i class="icon-plus"></i>
                                     <h3>Create New Notification</h3>
                                     <p>In this Section, you can Create New Notifications.</p>

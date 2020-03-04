@@ -67,7 +67,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/fileCriminalCase" class="box-v2">
                                     <i class="icon-file"></i>
                                     <h3>File Criminal Case to Prosecution Office</h3>
                                     <p>In this Section, you can File a New Case to Prosecution office.</p>

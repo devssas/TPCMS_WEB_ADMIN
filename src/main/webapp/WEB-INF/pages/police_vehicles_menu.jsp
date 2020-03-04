@@ -60,7 +60,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v2">
+                                <a href="${pageContext.request.contextPath}/newVehicle" class="box-v2">
                                     <i class="icon-plus"></i>
                                     <h3>Create New Vehicles Permits</h3>
                                     <p>In this Section, you can Create New Police Vehicles Permits.</p>

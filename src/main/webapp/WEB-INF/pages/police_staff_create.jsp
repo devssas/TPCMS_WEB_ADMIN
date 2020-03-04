@@ -5,7 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <!doctype html>
-<html>
+<html lang="ar">
 <head>
     <title>TPcms</title>
 
@@ -18,13 +18,13 @@
     <meta property="og:url" content="">
     <meta property="og:image" content="assets/images/head/og-image.jpg">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}assets/css/core.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/core.css">
 
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}assets/images/head/favicon.png">
-    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}assets/images/head/60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}assets/images/head/76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}assets/images/head/120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}assets/images/head/152x152.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/head/favicon.png">
+    <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/assets/images/head/60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/head/76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/head/120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/head/152x152.png">
 
 </head>
 <body>
@@ -35,63 +35,23 @@
 
         <section class="content-wrapper">
 
-            <section class="big-menu">
-                <div class="inner">
-                    <div class="menu-top">
-                        <figure class="logo">
-                            <img src="assets/images/logo/logo.png" alt="">
-                        </figure>
-                        <figure class="figure-text-1">
-                            <img src="assets/images/text/header-title-text-2.png" alt="">
-                        </figure>
-                    </div> <!-- menu-top -->
-                    <div class="menu-center">
-                        <div class="inner">
-                            <div class="profile-description">
-                                <figure>
-                                    <img src="assets/images/layout/profile-foto.jpg" alt="">
-                                </figure>
-                                <div class="text">
-                                    <h3>Milad Gajam</h3>
-                                    <h4>System Administrator</h4>
-                                </div> <!-- text -->
-                            </div> <!-- profile-description -->
-                            <nav class="menu">
-                                <ul>
-                                    <li><a href="javascript:;" class="active"><i class="icon-dashboard"></i>Dashboard</a></li>
-                                    <li><a href="javascript:;"><i class="icon-mission-permits"></i>Mission Permits</a></li>
-                                    <li><a href="javascript:;"><i class="icon-criminal-database"></i>Criminal Database</a></li>
-                                    <li><a href="javascript:;"><i class="icon-prosecution-office"></i>Prosecution Office</a></li>
-                                    <li><a href="javascript:;"><i class="icon-police-staff"></i>Police Staff</a></li>
-                                    <li><a href="javascript:;"><i class="icon-police_vehicles"></i>Police Vehicles</a></li>
-                                    <li><a href="javascript:;"><i class="icon-notification"></i>Notifications</a></li>
-                                </ul>
-                            </nav>
-                        </div> <!-- inner -->
-                    </div> <!-- menu-center -->
-                    <div class="menu-bottom">
-                        <nav class="menu">
-                            <ul>
-                                <li><a href="javascript:;"><i class="icon-system"></i>System Administrator</a></li>
-                            </ul>
-                        </nav>
-                        <span class="description">Tripoli POLICE<br>Web Admin<br>v.1.0</span>
-                    </div> <!-- menu-bottom -->
-                </div> <!-- inner -->
-
-            </section>
+            <jsp:include page="menu_bar_dashboard.jsp">
+                <jsp:param name="staff" value="active" />
+                <jsp:param name="officerName" value="${officerName}" />
+                <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
+                <jsp:param name="accessRole" value="${accessRole}" />
+                <jsp:param name="disabled" value="${disabled}" />
+            </jsp:include>
 
             <section class="content-inner">
 
                 <section class="content">
 
-                    <section class="highlight">
-                        <div class="page-back">
-                            <a href="javascript:;" class=""><i class="icon-back"></i>Back to Overview</a>
-                            <h2>Add New Officer</h2>
-                        </div>
-                        <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
-                    </section>
+                    <jsp:include page="highlight_back_to_overview.jsp">
+                        <jsp:param name="header" value="Add New Officer" />
+                        <jsp:param name="redirect" value="policeStaffMenu" />
+                        <jsp:param name="pageName" value="Police Staff Menu" />
+                    </jsp:include>
 
                     <form action="">
 
@@ -449,8 +409,8 @@
 </div> <!-- page-wrapper -->
 
 
-<script src="${pageContext.request.contextPath}assets/js/lib.min.js"></script>
-<script src="${pageContext.request.contextPath}assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
