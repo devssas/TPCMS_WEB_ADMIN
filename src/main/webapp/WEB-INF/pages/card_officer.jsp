@@ -10,11 +10,12 @@
                 <li><a href="javascript:;"><i class="icon-cancel" data-fancybox-close></i></a></li>
             </ul>
         </div>
-        <figure>
-            <img src="data:image/png;base64,${image}" alt="">
-            <span class="icons"><i class="icon-officer-card"></i></span>
-        </figure>
-
+        <div class="figure">
+            <figure>
+                <img src="data:image/png;base64,${image}" alt="">
+                <span class="icons"><i class="icon-officer-card"></i></span>
+            </figure>
+        </div>
         <div class="form-content">
             <div class="divided-content flout-2 custom-size-v1">
                 <div>
