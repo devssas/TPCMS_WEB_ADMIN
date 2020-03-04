@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.webpages.policestaff.controller;
+package com.tpcmswebadmin.webpages.policevehicles.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import org.springframework.stereotype.Controller;
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
 
 @Controller
-public class PoliceStaffViewController {
+public class PoliceVehicleNewController {
 
-    @GetMapping("/officerProfiles")
-    public String getPoliceStaff(Model model, HttpServletRequest httpServletRequest) {
+    @GetMapping("/newVehicle")
+    public String createNewVehicle(Model model, HttpServletRequest httpServletRequest) {
         model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
 
@@ -23,7 +23,6 @@ public class PoliceStaffViewController {
         if(adminRole.equals(ADMIN.name()))
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
 
-        return "police_staff_list_view";
+        return "police_vehicle_create";
     }
-
 }

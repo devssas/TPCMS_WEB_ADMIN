@@ -16,7 +16,7 @@ import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionCardDto;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
 import com.tpcmswebadmin.service.missionpermits.service.mapper.MissionPermitsMapper;
-import com.tpcmswebadmin.webpages.missionpermits.domain.model.MissionPermitCardCreateModel;
+import com.tpcmswebadmin.webpages.missionpermits.model.MissionPermitCardCreateModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,30 +35,6 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
-
-    public TPEngineResponse createNewMissionCard(MissionPermitCardCreateModel missionPermitCardCreateModel, HttpServletRequest httpServletRequest) {
-        SpecialMissionRequestVO specialMissionRequestVO = new SpecialMissionRequestVO();
-        specialMissionRequestVO.setMissionDescription(missionPermitCardCreateModel.getMissionDescription());
-        specialMissionRequestVO.setMissionType(missionPermitCardCreateModel.getMissionType());
-        specialMissionRequestVO.setAllowedWeaponType(missionPermitCardCreateModel.getWeaponType());
-        specialMissionRequestVO.setPermissionToCarryWeapon(missionPermitCardCreateModel.isPermittedToCarryWeapon() ? "Y" : "N");
-        specialMissionRequestVO.setActivationDate(missionPermitCardCreateModel.getActivationDate());
-        specialMissionRequestVO.setExpiryDate(missionPermitCardCreateModel.getExpiryDate());
-        specialMissionRequestVO.setAdditionalRemarks(missionPermitCardCreateModel.getAdditionalRemarks());
-
-        specialMissionRequestVO.setMobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
-        setCredentials(specialMissionRequestVO);
-
-        try {
-            log.info("Special mission card will be sent to client. {}", specialMissionRequestVO.getMobileAppUserName());
-
-            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().createSpecialMission(specialMissionRequestVO);
-        } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on Special mission card creation" + specialMissionRequestVO.getMobileAppUserName());
-        }
-
-        return null;
-    }
 
     public MissionCardDto getSpecialMissionsByMissionId(String missionId, String missionQrCode, HttpServletRequest httpServletRequest) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
