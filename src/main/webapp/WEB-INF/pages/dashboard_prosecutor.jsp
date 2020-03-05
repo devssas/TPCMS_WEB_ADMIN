@@ -54,7 +54,7 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Prosecutor Dashboard" />
+                        <jsp:param name="header" value="Dashboard Prosecutor" />
                     </jsp:include>
 
                     <section>

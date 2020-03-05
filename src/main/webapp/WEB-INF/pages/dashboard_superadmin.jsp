@@ -47,7 +47,6 @@
                 <jsp:param name="officerName" value="${officerName}" />
                 <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
                 <jsp:param name="accessRole" value="${accessRole}" />
-                <jsp:param name="disabled" value="${disabled}" />
                 <jsp:param name="dashboardPage" value="${dashboardPage}" />
                 <jsp:param name="prosecutorPage" value="${prosecutorPage}" />
             </jsp:include>
@@ -57,7 +56,7 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Dashboard" />
+                        <jsp:param name="header" value="Dashboard Superadmin" />
                     </jsp:include>
 
                     <section>
