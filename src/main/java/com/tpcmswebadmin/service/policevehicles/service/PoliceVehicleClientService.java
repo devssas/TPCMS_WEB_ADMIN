@@ -80,11 +80,17 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
 
     @Override
     public ResponseDto<PoliceVehicleDto> getResponseDto(HttpServletRequest request) {
+        String searchKey =  request.getSession().getAttribute("search") == null ? null : (String) request.getSession().getAttribute("search");
+        String status =  request.getSession().getAttribute("status") == null ? null : (String) request.getSession().getAttribute("status");
+
+
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
                 .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .reportingUnit((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .searchKey(searchKey)
+                .status(status)
                 .build();
 
         TPEngineResponse response = makeClientCall(loginUserDo);

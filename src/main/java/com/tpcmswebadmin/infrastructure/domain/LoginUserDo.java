@@ -21,4 +21,8 @@ public class LoginUserDo extends PaginationDo {
 
     private String reportingUnit;
 
+    private String searchKey;
+
+    private String status;
+
 }

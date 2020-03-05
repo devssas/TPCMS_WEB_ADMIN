@@ -5,10 +5,7 @@ import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleDto;
 import com.tpcmswebadmin.service.policevehicles.service.PoliceVehicleClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +18,16 @@ public class PoliceVehicleControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("policeVehicle")
-    public ResponseDto<PoliceVehicleDto> getPoliceVehicles(HttpServletRequest httpServletRequest) {
+    public ResponseDto<PoliceVehicleDto> getPoliceVehicles(@RequestParam(value = "search", required = false) String search,
+                                                           @RequestParam(value = "status", required = false) String status,
+                                                           HttpServletRequest httpServletRequest) {
+
+        if(search != null)
+            httpServletRequest.getSession().setAttribute("search", search);
+
+        if(status != null)
+            httpServletRequest.getSession().setAttribute("status", status);
+
         return policeVehicleClientService.getResponseDto(httpServletRequest);
     }
 
