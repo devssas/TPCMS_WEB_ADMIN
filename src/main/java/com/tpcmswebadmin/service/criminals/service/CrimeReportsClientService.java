@@ -9,16 +9,13 @@ import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
-import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.criminals.domain.CrimeReportCardDto;
-import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
+import com.tpcmswebadmin.service.criminals.domain.card.CrimeReportCard;
+import com.tpcmswebadmin.service.criminals.domain.dto.CrimeReportDto;
 import com.tpcmswebadmin.service.criminals.service.mapper.CrimeReportsMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +34,7 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
 
     private final CredentialsService credentialsService;
 
-    public CrimeReportCardDto getCrimeReportCardByCrimeReportId(String crimeReportId, HttpServletRequest httpServletRequest) {
+    public CrimeReportCard getCrimeReportCardByCrimeReportId(String crimeReportId, HttpServletRequest httpServletRequest) {
         ViewCrimeReportRequestVO viewCrimeReportRequestVO = new ViewCrimeReportRequestVO();
         viewCrimeReportRequestVO.setLoginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE));
         viewCrimeReportRequestVO.setCrimeReportsId(crimeReportId);
@@ -55,8 +52,8 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
         return null;
     }
 
-    private CrimeReportCardDto prepareResponse(TPEngineResponse tpEngineResponse) {
-        return CrimeReportCardDto.builder()
+    private CrimeReportCard prepareResponse(TPEngineResponse tpEngineResponse) {
+        return CrimeReportCard.builder()
                 .crimeTitle(tpEngineResponse.getCrimeReportList()[0].getCrimeName())
                 .reportId(tpEngineResponse.getCrimeReportList()[0].getCrimeReportsId())
                 .status(tpEngineResponse.getCrimeReportList()[0].getCrimianlStatusCode())

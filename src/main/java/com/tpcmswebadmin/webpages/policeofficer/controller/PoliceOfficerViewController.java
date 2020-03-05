@@ -1,6 +1,8 @@
 package com.tpcmswebadmin.webpages.policeofficer.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
+import com.tpcmswebadmin.webpages.policeofficer.delegate.PoliceOfficerViewDelegate;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
 
 @Controller
+@RequiredArgsConstructor
 public class PoliceOfficerViewController {
+
+    private final PoliceOfficerViewDelegate policeOfficerViewDelegate;
 
     @GetMapping("/officerProfiles")
     public String getPoliceStaff(Model model, HttpServletRequest httpServletRequest) {
@@ -22,6 +27,8 @@ public class PoliceOfficerViewController {
 
         if(adminRole.equals(ADMIN.name()))
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
+
+        model.addAttribute("statuses", policeOfficerViewDelegate.getPoliceOfficerStatuses(httpServletRequest));
 
         return "police_staff_list_view";
     }

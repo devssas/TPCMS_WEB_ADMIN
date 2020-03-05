@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.service.criminals.service;
 
+import com.ssas.tpcms.engine.vo.request.ViewCrimeReportRequestVO;
 import com.ssas.tpcms.engine.vo.request.ViewCriminalProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
@@ -8,9 +9,13 @@ import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
+import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
+import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.criminals.domain.CasesDto;
+import com.tpcmswebadmin.service.criminals.domain.card.CrimeReportCard;
+import com.tpcmswebadmin.service.criminals.domain.card.ManageCasesCard;
+import com.tpcmswebadmin.service.criminals.domain.dto.CasesDto;
 import com.tpcmswebadmin.service.criminals.service.mapper.CriminalProfileMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -30,6 +36,37 @@ public class CriminalProfileClientService implements ClientServiceAPI<CasesDto, 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
+
+    public ManageCasesCard getCriminalCaseCardByCriminalsCode(String criminalsCode, HttpServletRequest httpServletRequest) {
+        ViewCriminalProfileRequestVO viewCriminalProfileRequestVO = new ViewCriminalProfileRequestVO();
+        viewCriminalProfileRequestVO.setLoginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE));
+        viewCriminalProfileRequestVO.setMobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
+        viewCriminalProfileRequestVO.setCriminalsCode(criminalsCode);
+
+        setCredentials(viewCriminalProfileRequestVO);
+
+        try {
+            log.info("ManageCasesCard ById Request will be sent to client. {}", viewCriminalProfileRequestVO.getMobileAppUserName());
+
+            return prepareResponse(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCriminalsProfile(viewCriminalProfileRequestVO));
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on ManageCasesCard ById request. " + viewCriminalProfileRequestVO.getMobileAppUserName());
+        }
+        return null;
+    }
+
+    private ManageCasesCard prepareResponse(TPEngineResponse tpEngineResponse) {
+        return ManageCasesCard.builder()
+                .crimeType(tpEngineResponse.getCriminalProfileList()[0].getCrimeName())
+                .criminalName(StringUtility.makeFullName(tpEngineResponse.getCriminalProfileList()[0].getFirstName_Ar(), tpEngineResponse.getCriminalProfileList()[0].getLastName_Ar()))
+                .caseId(tpEngineResponse.getCriminalProfileList()[0].getCaseId())
+                .status(tpEngineResponse.getCriminalProfileList()[0].getCrimianlStatusCode())
+                .requestUnit(tpEngineResponse.getCriminalProfileList()[0].getTypeOfCrime())
+                .images(ImageUtility.convertToBase64image(tpEngineResponse.getCriminalProfileList()[0].getProfilePhoto1()))
+                .caseBrief(tpEngineResponse.getCriminalProfileList()[0].getCaseBriefDesc())
+                .date(tpEngineResponse.getCriminalProfileList()[0].getFlagedDate())
+                .build();
+    }
 
     @Override
     public ResponseDto<CasesDto> getResponseDto(HttpServletRequest request) {
@@ -95,12 +132,13 @@ public class CriminalProfileClientService implements ClientServiceAPI<CasesDto, 
 
         list.add("National ID");
         list.add("Criminal Name");
-        list.add("User Id");
-        list.add("Location");
-        list.add("Crime Type");
+        list.add("Criminals Code");
+        list.add("Address");
+        list.add("City");
         list.add("Status");
         list.add("Actions");
 
         return list;
     }
+
 }

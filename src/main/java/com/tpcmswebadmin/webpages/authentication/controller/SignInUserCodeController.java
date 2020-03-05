@@ -22,14 +22,6 @@ import javax.validation.Valid;
 @Controller
 public class SignInUserCodeController {
 
-    private static final Logger logger = LoggerFactory.getLogger(SignInUserCodeController.class);
-
-    private final SignInUserCodeDelegate signInUserCodeDelegate;
-
-    public SignInUserCodeController(SignInUserCodeDelegate signInUserCodeDelegate) {
-        this.signInUserCodeDelegate = signInUserCodeDelegate;
-    }
-
     @GetMapping("/signInUserCode")
     public String getSignInUserCode(Model model) {
         model.addAttribute("signInUserCodeModel", new SignInUserCodeModel());
@@ -37,27 +29,6 @@ public class SignInUserCodeController {
         return Pages.SIGN_IN_USERCODE;
     }
 
-    @PostMapping("/signInUserCode")
-    public String signInWithUserCode(@Valid @ModelAttribute("signInUserCodeModel") SignInUserCodeModel signInUserCodeModel, HttpServletRequest request) {
-        String userCode = generateUserCode(signInUserCodeModel);
 
-        signInUserCodeModel.setUsername((String) request.getSession().getAttribute(TpCmsConstants.USERNAME));
-        signInUserCodeModel.setMobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
-        signInUserCodeModel.setUserCodeFull(userCode);
-
-        if (signInUserCodeDelegate.signInUserCode(signInUserCodeModel)) {
-            request.getSession().setAttribute(TpCmsConstants.USERCODE, userCode);
-
-            return Pages.REDIRECT_SIGN_IN_PASSCODE;
-        } else {
-
-            return Pages.SIGN_IN_USERCODE;
-        }
-    }
-
-    private String generateUserCode(SignInUserCodeModel signInUserCodeModel) {
-        return StringUtility.concat(signInUserCodeModel.getUserCode1(), signInUserCodeModel.getUserCode2(), signInUserCodeModel.getUserCode3(), signInUserCodeModel.getUserCode4(),
-                                    signInUserCodeModel.getUserCode5());
-    }
 
 }

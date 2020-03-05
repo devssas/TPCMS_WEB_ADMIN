@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.service.criminals.domain;
+package com.tpcmswebadmin.service.criminals.domain.card;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.List;
 
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class CrimeReportCardDto implements Serializable {
+public class CrimeReportCard implements Serializable {
 
     private static final long serialVersionUID = 5741606045804495559L;
 

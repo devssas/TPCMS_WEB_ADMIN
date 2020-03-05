@@ -68,18 +68,10 @@
                                     <div class="table-filter-inner">
                                         <div class="form-row select-not-find">
                                             <label>
-                                                <span class="label">User Type</span>
-                                                <select name="" id="select-1">
-                                                    <option value="">All/Supervisors/Officers</option>
-                                                    <option value="1">All/Supervisors/Officers</option>
-                                                    <option value="2">All/Supervisors/Officers</option>
-                                                    <option value="3">All/Supervisors/Officers</option>
-                                                    <option value="4">All/Supervisors/Officers</option>
-                                                    <option value="5">All/Supervisors/Officers</option>
-                                                    <option value="6">All/Supervisors/Officers</option>
-                                                    <option value="7">All/Supervisors/Officers</option>
-                                                </select>
+                                                <span class="label">Status</span>
+                                                <form:select id="statuses" path="statuses" type="text" items="${statuses}"/>
                                             </label>
+                                            <form:errors id="statuses" path="statuses" cssClass="text-danger" />
                                         </div>
                                         <a href="${pageContext.request.contextPath}/policeStaffMenu" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                     </div>

@@ -1,8 +1,7 @@
 package com.tpcmswebadmin.webpages.criminals.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
-import com.tpcmswebadmin.webpages.criminals.domain.CrimeReportModel;
-import com.tpcmswebadmin.webpages.criminals.service.CrimeReportDelegate;
+import com.tpcmswebadmin.webpages.criminals.delegate.CrimeReportDelegate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,7 @@ import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
 
 @Controller
 @RequiredArgsConstructor
-public class CrimeReportReviewController {
+public class CrimeReportManageCaseReviewController {
 
     private final CrimeReportDelegate crimeReportDelegate;
 
@@ -31,6 +30,8 @@ public class CrimeReportReviewController {
 
         if(adminRole.equals(ADMIN.name()))
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
+
+        model.addAttribute("statuses", crimeReportDelegate.getManageCaseStatuses(httpServletRequest));
 
         return "criminal_crime_reports_view";
     }

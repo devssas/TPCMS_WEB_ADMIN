@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TpCmsConstants {
 
+    public static final String SUPERADMIN_DEVICE_ID = "1322239a06be715d";
+    public static final String SUPERADMIN_DEVICE_OFFICER_ = "LYeGOV55397TP";
+
     public static final String OFFICER_CODE = "officerCode";
     public static final String REPORT_UNIT = "reportUnit";
     public static final String USERNAME = "username";
@@ -20,6 +23,8 @@ public class TpCmsConstants {
     public static final String ACCESS_ROLE = "accessRole";
     public static final String PROSECUTOR_NAME = "prosecutorName";
     public static final String PROSECUTOR_PROFILE_PICTURE = "prosecutorProfilePicture";
+    public static final String SUPERADMIN_NAME = "superAdminName";
+    public static final String SUPERADMIN_PROFILE_PICTURE = "superAdminProfilePicture";
 
     /**
      * static parameter pass for request Channel on webAdmin
