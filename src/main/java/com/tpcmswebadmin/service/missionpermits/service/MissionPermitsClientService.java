@@ -89,11 +89,11 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(MissionPermitsMapper.makeMissionPermitsDtoList(response.getSpecialMissionList()));
+        return prepareResponseDto(MissionPermitsMapper.makeMissionPermitsDtoList(response.getSpecialMissionList()), true);
     }
 
     @Override
-    public ResponseDto<MissionPermitsDto> prepareResponseDto(List<MissionPermitsDto> list) {
+    public ResponseDto<MissionPermitsDto> prepareResponseDto(List<MissionPermitsDto> list, boolean status) {
         ResponseDto<MissionPermitsDto> responseDto = new ResponseDto<>();
         DataDto<MissionPermitsDto> dataDto = new DataDto<>();
 

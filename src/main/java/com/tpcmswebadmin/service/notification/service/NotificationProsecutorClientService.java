@@ -42,11 +42,11 @@ public class NotificationProsecutorClientService implements ClientServiceAPI<Not
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(NotificationProsecutorMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()));
+        return prepareResponseDto(NotificationProsecutorMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
     }
 
     @Override
-    public ResponseDto<NotificationDto> prepareResponseDto(List<NotificationDto> list) {
+    public ResponseDto<NotificationDto> prepareResponseDto(List<NotificationDto> list, boolean status) {
         ResponseDto<NotificationDto> responseDto = new ResponseDto<>();
         DataDto<NotificationDto> dataDto = new DataDto<>();
 

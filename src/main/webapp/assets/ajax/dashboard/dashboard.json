@@ -1,0 +1,120 @@
+{
+	"mapsCenter":[
+		{
+			"lat": 32.887211,
+			"lng": 13.191338
+		}
+	],
+	"data":[
+		{
+			"title": "Akköprü",
+			"lat": 39.9501646,
+			"lng": 32.8371048,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Aşti",
+			"lat": 39.9182122,
+			"lng": 32.814424,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Batıkent",
+			"lat": 39.9684335,
+			"lng": 32.7274293,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Beşevler",
+			"lat": 39.93268,
+			"lng": 32.82901,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Beytepe",
+			"lat": 39.90674,
+			"lng": 32.73309,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Demetevler",
+			"lat": 39.96533,
+			"lng": 32.79442,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Dikimevi",
+			"lat": 39.9323639,
+			"lng": 32.8777456,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Eryaman 1-2",
+			"lat": 39.98049,
+			"lng": 32.64786,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Hastane",
+			"lat": 39.9692,
+			"lng": 32.78318,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "İvedik",
+			"lat": 39.95722,
+			"lng": 32.81706,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Kızılay",
+			"lat": 39.92068,
+			"lng": 32.85402,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Koru",
+			"lat": 39.88757,
+			"lng": 32.68692,
+			"pin": "assets/images/layout/pin.png"
+		},
+
+		{
+			"title": "Sıhhiye",
+			"lat": 39.92803,
+			"lng": 32.85476,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Ulus",
+			"lat": 39.93961,
+			"lng": 32.8506,
+			"pin": "assets/images/layout/pin.png"
+		},
+		{
+			"title": "Ümitköy",
+			"lat": 39.90539,
+			"lng": 32.70895,
+			"pin": "assets/images/layout/pin.png"
+		}
+
+	],
+	"notifications": {
+		"default": 10,
+		"new": 10
+	},
+	"permits": {
+		"default": 30
+	},
+	"cases": {
+		"default": 35
+	},
+	"sos": {
+		"default": 5,
+		"new": 8
+	},
+	"sosDetail": {
+		"default": 40
+	}
+}
+

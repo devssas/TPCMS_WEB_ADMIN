@@ -85,7 +85,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(PoliceOfficerMapper.makePoliceStaffDtoList(response.getOfficersProfileList()));
+        return prepareResponseDto(PoliceOfficerMapper.makePoliceStaffDtoList(response.getOfficersProfileList()), true);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
     }
 
     @Override
-    public ResponseDto<PoliceOfficerDto> prepareResponseDto(List<PoliceOfficerDto> list) {
+    public ResponseDto<PoliceOfficerDto> prepareResponseDto(List<PoliceOfficerDto> list, boolean status) {
         ResponseDto<PoliceOfficerDto> responseDto = new ResponseDto<>();
         DataDto<PoliceOfficerDto> dataDto = new DataDto<>();
 

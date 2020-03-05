@@ -50,27 +50,45 @@
                     </jsp:include>
 
                     <section class="content-box">
-                        <div class="table-filter">
-                            <form action="">
-                                <div class="form-container">
-                                    <div class="search-box">
-                                        <div class="form-row search-row">
-                                            <label>
-                                                <input type="text" placeholder="Search">
-                                                <i class="icon-search"></i>
-                                            </label>
+                        <section class="site-data-container" data-template-url="assets/ajax/table/table-v4/table-v4.html" data-json-url="/tpcmsWebAdmin/api/prosecution/cases/review">
+                            <div class="table-filter">
+                                <form action="" class="site-data-filters">
+                                    <div class="form-container">
+                                        <div class="search-box">
+                                            <div class="form-row search-row">
+                                                <label>
+                                                    <input type="text" name="search" placeholder="Search">
+                                                    <i class="icon-search"></i>
+                                                </label>
+                                            </div>
+                                            <div class="form-row submit-row">
+                                                <button type="submit" class="button button-v3 button-icons fix-size-sml">Search <i class="icon-search"></i></button>
+                                            </div>
                                         </div>
-                                        <div class="form-row submit-row">
-                                            <button type="submit" class="button button-v3 button-icons fix-size-sml">Search <i class="icon-search"></i></button>
+                                        <div class="table-filter-inner">
+                                            <a href="${pageContext.request.contextPath}/dashboardProsecutor" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
                                         </div>
                                     </div>
-                                    <div class="table-filter-inner">
-                                        <a href="${pageContext.request.contextPath}/dashboardProsecutor" class="button button-v3 fix-size-sml right-fix">Back to Overview</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/table-v4/table-v4.html" data-json-url="/tpcmsWebAdmin/api/prosecution/cases/review"></section>
+                                </form>
+                            </div>
+                            <div class="site-data-content"></div>
+                            <div class="error-text"></div>
+                            <div class="pagination site-data-pagination">
+                                <ul>
+                                    <li><a href="#" class="prev"></a></li>
+
+                                    <li>
+                                        <div class="form-row select select-not-find">
+                                            <select name="page">
+                                                <option value="1">1</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li><a href="#" class="next"></a></li>
+                                </ul>
+                            </div><!-- /pagination-row -->
+                        </section>
+
                     </section>
 
                 </section>
@@ -87,7 +105,7 @@
 
 
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.js"></script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 

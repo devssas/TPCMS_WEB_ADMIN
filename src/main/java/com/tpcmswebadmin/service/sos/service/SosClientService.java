@@ -41,11 +41,11 @@ public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserD
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(SosCallsMapper.makeSosCallDtoList(response.getSosRequestList()));
+        return prepareResponseDto(SosCallsMapper.makeSosCallDtoList(response.getSosRequestList()), true);
     }
 
     @Override
-    public ResponseDto<SosCallDto> prepareResponseDto(List<SosCallDto> list) {
+    public ResponseDto<SosCallDto> prepareResponseDto(List<SosCallDto> list, boolean status) {
         ResponseDto<SosCallDto> responseDto = new ResponseDto<>();
         DataDto<SosCallDto> dataDto = new DataDto<>();
 

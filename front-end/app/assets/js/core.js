@@ -440,16 +440,12 @@ var main = {
                         data		: data,
                         success		: function (response) {
 
-                            console.log(response);
-
                             if(response.data.length || response.data.tbody.length){
 
                                 var template = Handlebars.compile(templateHtml),
                                     output = template(response);
 
                                 $(".error-text", container).text("").hide();
-                                $(".item-length", container).html(response.itemLength);
-                                // $(".result-summary", container).show();
 
                                 if($(".complaints-detail-content").length){
                                     $(".complaints-detail-content").html("");
@@ -471,51 +467,15 @@ var main = {
                                     for (var i = 1; i <= response.pages; i++) {
                                         $("select", pagination).append('<option value="' + i + '">' + i + '</option>');
                                     }
-                                    $("select", pagination).trigger("change");
-                                }
-
-                                if($(".show-complaints-detail").length){
-                                    $(".show-complaints-detail").off("click").on({
-                                        click: function () {
-                                            var _this = $(this),
-                                                jsonUrl = _this.data("complaints-datail-json-url"),
-                                                templateUrl = _this.data("complaints-datail-template-url"),
-                                                id = _this.data("complaints-id");
-
-
-                                            $.ajax({
-                                                url: jsonUrl,
-                                                dataType: "json",
-                                                data: {"id":id},
-                                            })
-                                                .done(function (detailData) {
-
-                                                    $.ajax({
-                                                        url: templateUrl,
-                                                        method: "GET"
-                                                    })
-                                                        .done(function (responseTemplate) {
-
-                                                            var template = Handlebars.compile(responseTemplate),
-                                                                detail = template(detailData);
-
-                                                            $('.complaints-detail-content').html(detail);
-                                                        });
-                                                });
-
-
-
-                                        }
-                                    })
                                 }
 
                                 deferredData.resolve();
 
                             } else {
                                 container.removeClass("loading");
-                                // $(".result-summary", container).hide();
-                                $(".item-length", container).text("");
                                 pagination.hide();
+                                content.html("").hide();
+                                $(".error-text", container).text(response.message).show();
 
                                 deferredData.resolve();
                             }
@@ -978,7 +938,7 @@ var main = {
             });
         }, time)
     }
-}
+};
 
 $(function () {
     main.init();

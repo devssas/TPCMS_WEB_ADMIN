@@ -42,7 +42,7 @@ public class CalendarEventService implements ClientServiceAPI<CalendarDto, Login
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return response.getAppointmentDetailsList() == null ? initialResponse : prepareResponseDto(CalenderEventMapper.makeCalenderEventList(response.getAppointmentDetailsList()));
+        return response.getAppointmentDetailsList() == null ? initialResponse : prepareResponseDto(CalenderEventMapper.makeCalenderEventList(response.getAppointmentDetailsList()), true);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class CalendarEventService implements ClientServiceAPI<CalendarDto, Login
     }
 
     @Override
-    public ResponseDto<CalendarDto> prepareResponseDto(List<CalendarDto> list) {
+    public ResponseDto<CalendarDto> prepareResponseDto(List<CalendarDto> list, boolean status) {
         ResponseDto<CalendarDto> responseDto = new ResponseDto<>();
         DataDto<CalendarDto> dataDto = new DataDto<>();
 

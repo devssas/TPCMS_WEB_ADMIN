@@ -89,11 +89,11 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(PoliceVehicleMapper.makePoliceVehicleDtoList(response.getVehicleDetailsList()));
+        return prepareResponseDto(PoliceVehicleMapper.makePoliceVehicleDtoList(response.getVehicleDetailsList()), true);
     }
 
     @Override
-    public ResponseDto<PoliceVehicleDto> prepareResponseDto(List<PoliceVehicleDto> list) {
+    public ResponseDto<PoliceVehicleDto> prepareResponseDto(List<PoliceVehicleDto> list, boolean status) {
         ResponseDto<PoliceVehicleDto> responseDto = new ResponseDto<>();
         DataDto<PoliceVehicleDto> dataDto = new DataDto<>();
 

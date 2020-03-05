@@ -75,11 +75,11 @@ public class SupervisorClientService implements ClientServiceAPI<SupervisorDto, 
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(AdministratorMapper.makeSupervisorDtoList(response.getOfficersProfileList()));
+        return prepareResponseDto(AdministratorMapper.makeSupervisorDtoList(response.getOfficersProfileList()), true);
     }
 
     @Override
-    public ResponseDto<SupervisorDto> prepareResponseDto(List<SupervisorDto> list) {
+    public ResponseDto<SupervisorDto> prepareResponseDto(List<SupervisorDto> list, boolean status) {
         ResponseDto<SupervisorDto> responseDto = new ResponseDto<>();
         DataDto<SupervisorDto> dataDto = new DataDto<>();
 

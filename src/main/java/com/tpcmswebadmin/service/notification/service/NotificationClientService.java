@@ -77,11 +77,11 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()));
+        return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
     }
 
     @Override
-    public ResponseDto<NotificationDto> prepareResponseDto(List<NotificationDto> list) {
+    public ResponseDto<NotificationDto> prepareResponseDto(List<NotificationDto> list, boolean status) {
         ResponseDto<NotificationDto> responseDto = new ResponseDto<>();
         DataDto<NotificationDto> dataDto = new DataDto<>();
 

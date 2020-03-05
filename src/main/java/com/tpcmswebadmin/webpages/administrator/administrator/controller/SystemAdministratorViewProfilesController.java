@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.administrator.administrator.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.service.authentication.domain.model.SignInPassCodeModel;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ public class SystemAdministratorViewProfilesController {
         model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
         model.addAttribute("accessRole", httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE));
+        model.addAttribute("dashboardPage", Pages.DASHBOARD_SUPERADMIN_JSON);
+        model.addAttribute("prosecutorPage", Pages.MENU_BAR_SUPERADMIN_PROSECUTION_HOME);
 
         return "system_administrator_view_profiles";
     }

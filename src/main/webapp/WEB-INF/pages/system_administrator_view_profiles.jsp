@@ -39,6 +39,8 @@
                 <jsp:param name="officerName" value="${officerName}" />
                 <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
                 <jsp:param name="accessRole" value="${accessRole}" />
+                <jsp:param name="dashboardPage" value="${dashboardPage}" />
+                <jsp:param name="prosecutorPage" value="${prosecutorPage}" />
             </jsp:include>
 
             <section class="content-inner">

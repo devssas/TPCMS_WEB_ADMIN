@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -42,20 +43,34 @@ public class ProsecutionCasesSubmitReviewClientService implements ClientServiceA
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList()));
+        if(response.getCriminalProfileList() == null) {
+            return prepareResponseDto(Collections.emptyList(), false);
+        } else {
+            List<ProsecutionCasesDto> resultList = ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList());
+            return prepareResponseDto(resultList, true);
+        }
     }
 
     @Override
-    public ResponseDto<ProsecutionCasesDto> prepareResponseDto(List<ProsecutionCasesDto> list) {
+    public ResponseDto<ProsecutionCasesDto> prepareResponseDto(List<ProsecutionCasesDto> list, boolean status) {
         ResponseDto<ProsecutionCasesDto> responseDto = new ResponseDto<>();
         DataDto<ProsecutionCasesDto> dataDto = new DataDto<>();
 
-        dataDto.setTbody(list);
-        dataDto.setThead(setTableColumnNames());
+        if(status) {
+            dataDto.setTbody(list);
+            dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+            responseDto.setData(dataDto);
+            responseDto.setMessage("success");
+            responseDto.setStatus("true");
+        } else {
+            dataDto.setTbody(Collections.emptyList());
+            dataDto.setThead(setTableColumnNames());
+
+            responseDto.setData(dataDto);
+            responseDto.setMessage("failure");
+            responseDto.setStatus("false");
+        }
 
         return responseDto;
     }

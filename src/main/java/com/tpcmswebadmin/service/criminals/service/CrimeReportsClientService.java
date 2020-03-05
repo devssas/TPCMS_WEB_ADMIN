@@ -79,11 +79,11 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(CrimeReportsMapper.makeCrimeReportDtoList(response.getCrimeReportList()));
+        return prepareResponseDto(CrimeReportsMapper.makeCrimeReportDtoList(response.getCrimeReportList()), true);
     }
 
     @Override
-    public ResponseDto<CrimeReportDto> prepareResponseDto(List<CrimeReportDto> list) {
+    public ResponseDto<CrimeReportDto> prepareResponseDto(List<CrimeReportDto> list, boolean status) {
         ResponseDto<CrimeReportDto> responseDto = new ResponseDto<>();
         DataDto<CrimeReportDto> dataDto = new DataDto<>();
 

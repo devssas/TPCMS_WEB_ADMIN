@@ -761,8 +761,6 @@
   }
 }
 
-
-
 .pagination{
   padding-top: 15px;
   >ul{
@@ -833,3 +831,10 @@
   }
 }
 
+.error-text{
+  @extend %fs-16;
+  @include f-roboto(700);
+  color: $color-4;
+  text-align: center;
+  padding: 15px 0;
+}

@@ -42,11 +42,11 @@ public class ProsecutionCasesHistoryClientService implements ClientServiceAPI<Pr
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList()));
+        return prepareResponseDto(ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList()), true);
     }
 
     @Override
-    public ResponseDto<ProsecutionCasesDto> prepareResponseDto(List<ProsecutionCasesDto> list) {
+    public ResponseDto<ProsecutionCasesDto> prepareResponseDto(List<ProsecutionCasesDto> list, boolean status) {
         ResponseDto<ProsecutionCasesDto> responseDto = new ResponseDto<>();
         DataDto<ProsecutionCasesDto> dataDto = new DataDto<>();
 

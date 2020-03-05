@@ -20,7 +20,7 @@ public interface ClientServiceAPI<T, K, E> {
 
     ResponseDto<T> getResponseDto(HttpServletRequest request);
 
-    ResponseDto<T> prepareResponseDto(List<T> arrayList);
+    ResponseDto<T> prepareResponseDto(List<T> arrayList, boolean status);
 
     TPEngineResponse makeClientCall(K model);
 
