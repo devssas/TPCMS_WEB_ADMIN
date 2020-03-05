@@ -348,7 +348,227 @@ var main = {
         }
 
     },
+    pagination: function () {
+        $(".pagination").each(function (index, pagination) {
+            $("select", pagination).on({
+                change: function () {
+                    var prev = $("option:selected", this).prev("option");
+                    var next = $("option:selected", this).next("option");
+
+                    if (prev.length) {
+                        $(".prev", pagination).removeClass("disabled");
+                    } else {
+                        $(".prev", pagination).addClass("disabled");
+                    }
+
+                    if (next.length) {
+                        $(".next", pagination).removeClass("disabled");
+                    } else {
+                        $(".next", pagination).addClass("disabled");
+                    }
+                }
+            }).trigger("change");
+
+            $(".prev", pagination).on({
+                click: function (event) {
+                    var select = $("select", pagination);
+                    var prev = $("option:selected", select).prev("option");
+
+                    if (prev.length) {
+                        prev.prop("selected", true);
+                        select.trigger("change");
+                    }
+
+                    event.preventDefault();
+                }
+            });
+
+            $(".next", pagination).on({
+                click: function (event) {
+                    var select = $("select", pagination);
+                    var next = $("option:selected", select).next("option");
+
+                    if (next.length) {
+                        next.prop("selected", true);
+                        select.trigger("change");
+                    }
+
+                    event.preventDefault();
+                }
+            });
+        });
+    },
     filterControl: function () {
+        var deferredData = $.Deferred();
+
+        if($(".site-data-container").length){
+
+            $(".site-data-container").each(function () {
+                var container 	= $(this),
+                    filters		= $(".site-data-filters", container),
+                    content 	= $(".site-data-content", container),
+                    pagination	= $(".site-data-pagination", container),
+
+                    templateURL	= container.data("template-url"),
+                    dataURL		= container.data("json-url"),
+
+                    templateHtml;
+
+                $.ajax({
+                    type	: "GET",
+                    url		: templateURL,
+                    async	: false,
+                    success	: function (response) {
+                        templateHtml = response;
+                    }
+                });
+
+                function getList (isPaging) {
+
+                    container.addClass("loading");
+
+                    if (!isPaging){
+                        $("select", pagination).val("1").data("value", "1");
+                    }
+
+                    var data = $(":input", container).serialize();
+
+                    $.ajax({
+                        type		:"GET",
+                        url			: dataURL,
+                        dataType	: "json",
+                        data		: data,
+                        success		: function (response) {
+
+                            console.log(response);
+
+                            if(response.data.length || response.data.tbody.length){
+
+                                var template = Handlebars.compile(templateHtml),
+                                    output = template(response);
+
+                                $(".error-text", container).text("").hide();
+                                $(".item-length", container).html(response.itemLength);
+                                // $(".result-summary", container).show();
+
+                                if($(".complaints-detail-content").length){
+                                    $(".complaints-detail-content").html("");
+                                }
+                                content.html(output);
+                                container.removeClass("loading");
+                                content.show();
+
+                                //pagination show/hide
+                                if (response.pages > 1) {
+                                    pagination.show();
+                                } else {
+                                    pagination.hide();
+                                }
+
+                                //pagination first
+                                if (!isPaging) {
+                                    $("select", pagination).html("");
+                                    for (var i = 1; i <= response.pages; i++) {
+                                        $("select", pagination).append('<option value="' + i + '">' + i + '</option>');
+                                    }
+                                    $("select", pagination).trigger("change");
+                                }
+
+                                if($(".show-complaints-detail").length){
+                                    $(".show-complaints-detail").off("click").on({
+                                        click: function () {
+                                            var _this = $(this),
+                                                jsonUrl = _this.data("complaints-datail-json-url"),
+                                                templateUrl = _this.data("complaints-datail-template-url"),
+                                                id = _this.data("complaints-id");
+
+
+                                            $.ajax({
+                                                url: jsonUrl,
+                                                dataType: "json",
+                                                data: {"id":id},
+                                            })
+                                                .done(function (detailData) {
+
+                                                    $.ajax({
+                                                        url: templateUrl,
+                                                        method: "GET"
+                                                    })
+                                                        .done(function (responseTemplate) {
+
+                                                            var template = Handlebars.compile(responseTemplate),
+                                                                detail = template(detailData);
+
+                                                            $('.complaints-detail-content').html(detail);
+                                                        });
+                                                });
+
+
+
+                                        }
+                                    })
+                                }
+
+                                deferredData.resolve();
+
+                            } else {
+                                container.removeClass("loading");
+                                // $(".result-summary", container).hide();
+                                $(".item-length", container).text("");
+                                pagination.hide();
+
+                                deferredData.resolve();
+                            }
+
+                        }
+                    });
+
+                }
+
+                //submit
+                var filtersData;
+                var currentFiltersData = $(":input", filters).serialize();
+                // filters events
+                filters.on({
+                    submit: function (event) {
+                        filtersData = $(":input", filters).serialize();
+                        if(currentFiltersData != filtersData){
+                            currentFiltersData = filtersData;
+                            getList();
+                        }
+                        event.preventDefault();
+                    }
+                });
+
+                if($(".change-on-submit").length){
+                    $(".change-on-submit").on({
+                        change: function () {
+                            getList();
+                        }
+                    })
+                }
+
+                //pagination change
+                $("select", pagination).on({
+                    change: function () {
+                        if ($(this).val() != $(this).data("value")) {
+                            $(this).data("value", $(this).val());
+                            getList(true);
+                        }
+                    }
+                });
+
+                getList();
+
+            });
+
+        }else{
+            deferredData.resolve();
+        }
+
+        return deferredData;
+    },
+    /*filterControl: function () {
 
         if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url")) && $(".dynamic-content").is(':empty')){
 
@@ -415,7 +635,7 @@ var main = {
 
         }
 
-    },
+    },*/
     carousel: function (){
         if($(".card-carousel").length){
             $(".card-carousel").owlCarousel({
@@ -770,6 +990,7 @@ $(function () {
     main.dropzone();
     main.carousel();
     main.fancybox();
+    main.pagination();
     main.filterControl();
     main.validationMethods();
     main.validationsCommon();
