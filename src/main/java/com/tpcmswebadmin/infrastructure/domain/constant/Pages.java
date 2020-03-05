@@ -15,8 +15,10 @@ public class Pages {
 
     public static final String DASHBOARD_ADMIN = "dashboard_admin";
     public static final String DASHBOARD_PROSECUTOR = "dashboard_prosecutor";
+    public static final String DASHBOARD_SUPERADMIN = "dashboard_superadmin";
 
     public static final String PROSECUTION_OFFICE_MENU = "prosecution_office_menu";
+    public static final String SYSTEM_ADMIN_PROSECUTION_OFFICE_MENU = "system_administrator_prosecution_office_menu";
 
     public static final String NOTIFICATION_PROSECUTOR = "notification_prosecutor_view";
 
@@ -44,5 +46,13 @@ public class Pages {
 
     public static final String DASHBOARD_ADMIN_JSON = "dashboard";
     public static final String DASHBOARD_PROSECUTOR_JSON = "dashboardProsecutor";
-    public static final String DASHBOARD_SUPERADMIN = "dashboardProsecutor";
+    public static final String DASHBOARD_SUPERADMIN_JSON = "dashboardSuperAdmin";
+
+    /**
+     * Mvc page names
+     */
+    public static final String MENU_BAR_PROSECUTION_PROSECUTION_HOME = "prosecutionOfficeMenu";
+    public static final String MENU_BAR_SUPERADMIN_PROSECUTION_HOME = "prosecutionOfficeMenuAdmin";
+
 }
+

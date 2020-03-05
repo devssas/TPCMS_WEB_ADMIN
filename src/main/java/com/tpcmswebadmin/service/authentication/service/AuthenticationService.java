@@ -142,14 +142,18 @@ public class AuthenticationService {
                         .status(true)
                         .nextUrl(DASHBOARD_PROSECUTOR_JSON)
                         .build();
-            } else {
-                if(accessRole.equals("SUPER-ADMIN")) {
-                    httpServletRequest.getSession().setAttribute(TpCmsConstants.SUPERADMIN_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
-                    httpServletRequest.getSession().setAttribute(TpCmsConstants.SUPERADMIN_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
-                } else {
+            } else if(accessRole.equals("SUPER-ADMIN")){
                     httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
                     httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
-                }
+
+                return SignInResponse.builder()
+                        .message(null)
+                        .status(true)
+                        .nextUrl(DASHBOARD_SUPERADMIN_JSON)
+                        .build();
+            } else {
+                    httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
+                    httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
 
                 return SignInResponse.builder()
                         .message(null)
