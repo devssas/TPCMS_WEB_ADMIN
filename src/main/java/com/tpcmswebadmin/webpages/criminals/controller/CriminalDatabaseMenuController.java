@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.criminals.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,8 +22,13 @@ public class CriminalDatabaseMenuController {
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);
 
-        if(adminRole.equals(ADMIN.name()))
+        if(adminRole.equals(ADMIN.name())) {
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
+            model.addAttribute("dashboardPage", Pages.DASHBOARD_ADMIN_JSON);
+        } else {
+            model.addAttribute("dashboardPage", Pages.DASHBOARD_SUPERADMIN_JSON);
+            model.addAttribute("prosecutorPage", Pages.MENU_BAR_SUPERADMIN_PROSECUTION_HOME);
+        }
 
         return "criminal_database_menu";
     }

@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
 <!doctype html>
 <html lang="ar">
 <head>
@@ -25,6 +25,14 @@
     <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/head/120x120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/head/152x152.png">
 
+    <style>
+        #map {
+            width: 100%;
+            height: 400px;
+            background-color: grey;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -35,10 +43,11 @@
         <section class="content-wrapper">
 
             <jsp:include page="menu_bar_dashboard.jsp">
-                <jsp:param name="administrator" value="active" />
+                <jsp:param name="home" value="active" />
                 <jsp:param name="officerName" value="${officerName}" />
                 <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
                 <jsp:param name="accessRole" value="${accessRole}" />
+                <jsp:param name="disabled" value="${disabled}" />
                 <jsp:param name="dashboardPage" value="${dashboardPage}" />
                 <jsp:param name="prosecutorPage" value="${prosecutorPage}" />
             </jsp:include>
@@ -48,31 +57,61 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Administrator" />
+                        <jsp:param name="header" value="Dashboard" />
                     </jsp:include>
+
+                    <section>
+                        <div class="maps">
+                            <div id="map"></div>
+                        </div>
+                    </section>
 
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="${pageContext.request.contextPath}/systemAdministrator" class="box-v2">
-                                    <i class="icon-police-staff"></i>
-                                    <h3>Admin Profile</h3>
-                                    <p>In this Section, you can View and Manage Admin Users Profiles.</p>
+                                <a href="${pageContext.request.contextPath}/missionPermitsMenu" class="box-v1">
+                                    <h3>Permits</h3>
+                                    <p>${missionPermitCount}</p>
+                                    <span>Valid Permits</span>
+                                    <i class="icon-mission-permits"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:;" class="box-v2">
-                                    <i class="icon-plus"></i>
-                                    <h3>Create New Admin Users</h3>
-                                    <p>In this Section, you can Create New Admin User Profile.</p>
+                                <a href="${pageContext.request.contextPath}/criminalsMenu" class="box-v1">
+                                    <h3>Cases</h3>
+                                    <p>${caseCount}</p>
+                                    <span>Cases Added</span>
+                                    <i class="icon-manage-cases"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/notificationMenu" class="box-v1">
+                                    <h3>Notifications<c:if test="${!notificationCount.equals('0')}"><span class="notification">${notificationCount}</span></c:if></h3>
+                                    <p>${notificationCount}</p>
+                                    <span>Notifications</span>
+                                    <i class="icon-notification"></i>
+                                </a>
+                            </li>
+                            <li class="cols-2">
+                                <a href="javascript:;" class="box-v1">
+                                    <h3>SOS</h3>
+                                    <p>82</p>
+                                    <span>Log Sheet</span>
+                                    <i class="icon-sos"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/sos" class="box-v1">
+                                    <h3>SOS<c:if test="${!sosNotificationCount.equals('0')}"><span class="notification">${sosNotificationCount}</span></c:if></h3>
+                                    <p>${sosCount}</p>
+                                    <span>Live Alerts</span>
+                                    <i class="icon-sos"></i>
                                 </a>
                             </li>
                         </ul>
                     </section>
 
                 </section>
-
-
 
             </section> <!-- content-inner -->
 

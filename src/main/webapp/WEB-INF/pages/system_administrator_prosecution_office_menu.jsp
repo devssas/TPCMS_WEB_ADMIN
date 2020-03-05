@@ -35,7 +35,7 @@
         <section class="content-wrapper">
 
             <jsp:include page="menu_bar_dashboard.jsp">
-                <jsp:param name="administrator" value="active" />
+                <jsp:param name="home" value="active" />
                 <jsp:param name="officerName" value="${officerName}" />
                 <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
                 <jsp:param name="accessRole" value="${accessRole}" />
@@ -48,31 +48,43 @@
                 <section class="content">
 
                     <jsp:include page="highlight.jsp">
-                        <jsp:param name="header" value="Administrator" />
+                        <jsp:param name="header" value="Prosecution Office" />
                     </jsp:include>
 
                     <section>
                         <ul class="horizontal-list v1">
                             <li>
-                                <a href="${pageContext.request.contextPath}/systemAdministrator" class="box-v2">
-                                    <i class="icon-police-staff"></i>
-                                    <h3>Admin Profile</h3>
-                                    <p>In this Section, you can View and Manage Admin Users Profiles.</p>
+                                <a href="${pageContext.request.contextPath}/prosecutionManageCases" class="box-v2">
+                                    <i class="icon-manage-cases"></i>
+                                    <h3>Manage Cases</h3>
+                                    <p>In this Section, you can View and Manage Open Cases.</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/prosecutionCasesHistory" class="box-v2">
+                                    <i class="icon-history"></i>
+                                    <h3>Cases History</h3>
+                                    <p>In this Section, you can View Old Cases that are Closed and Archived.</p>
                                 </a>
                             </li>
                             <li>
                                 <a href="javascript:;" class="box-v2">
-                                    <i class="icon-plus"></i>
-                                    <h3>Create New Admin Users</h3>
-                                    <p>In this Section, you can Create New Admin User Profile.</p>
+                                    <i class="icon-library"></i>
+                                    <h3>Library</h3>
+                                    <p>In this Section, you can View Prosecution Library, including Important Laws, Circulars, Legal Papers and Legal References.</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/calendar" class="box-v2">
+                                    <i class="icon-calender"></i>
+                                    <h3>Calender</h3>
+                                    <p>In this Section, you can log in all your Meeting and Important Events log in Calender System for Reminder.</p>
                                 </a>
                             </li>
                         </ul>
                     </section>
 
                 </section>
-
-
 
             </section> <!-- content-inner -->
 
