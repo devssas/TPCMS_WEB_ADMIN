@@ -1,12 +1,10 @@
 package com.tpcmswebadmin.webpages.criminals.delegate;
 
 import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
-import com.tpcmswebadmin.service.criminals.domain.CasesDto;
-import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
+import com.tpcmswebadmin.service.criminals.domain.dto.CasesDto;
+import com.tpcmswebadmin.service.criminals.domain.dto.CrimeReportDto;
 import com.tpcmswebadmin.service.criminals.service.CrimeReportsClientService;
 import com.tpcmswebadmin.service.criminals.service.CriminalProfileClientService;
-import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
-import com.tpcmswebadmin.webpages.criminals.domain.CrimeReportModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

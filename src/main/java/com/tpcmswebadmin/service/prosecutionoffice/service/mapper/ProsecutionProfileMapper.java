@@ -2,7 +2,6 @@ package com.tpcmswebadmin.service.prosecutionoffice.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.CriminalsProfileResponseVO;
 import com.tpcmswebadmin.infrastructure.utils.DateUtility;
-import com.tpcmswebadmin.service.criminals.domain.CasesDto;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

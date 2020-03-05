@@ -2,7 +2,7 @@ package com.tpcmswebadmin.service.criminals.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.CrimeReportResponseVO;
 import com.tpcmswebadmin.infrastructure.utils.DateUtility;
-import com.tpcmswebadmin.service.criminals.domain.CrimeReportDto;
+import com.tpcmswebadmin.service.criminals.domain.dto.CrimeReportDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
