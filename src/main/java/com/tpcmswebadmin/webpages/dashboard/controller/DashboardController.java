@@ -40,12 +40,14 @@ public class DashboardController {
 
         switch (adminRole) {
             case "ADMIN":
-            case "SUPER_ADMIN":
                 model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
                 model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
+                model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
 
-                if(adminRole.equals(ADMIN.name()))
-                    model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
+                return Pages.DASHBOARD_ADMIN;
+            case "SUPER-ADMIN":
+                model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.SUPERADMIN_NAME));
+                model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.SUPERADMIN_PROFILE_PICTURE));
 
                 return Pages.DASHBOARD_ADMIN;
             default:

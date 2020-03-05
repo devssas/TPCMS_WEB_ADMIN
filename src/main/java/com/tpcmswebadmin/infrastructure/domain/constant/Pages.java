@@ -44,4 +44,5 @@ public class Pages {
 
     public static final String DASHBOARD_ADMIN_JSON = "dashboard";
     public static final String DASHBOARD_PROSECUTOR_JSON = "dashboardProsecutor";
+    public static final String DASHBOARD_SUPERADMIN = "dashboardProsecutor";
 }

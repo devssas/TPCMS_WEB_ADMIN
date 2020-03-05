@@ -23,6 +23,8 @@ public class TpCmsConstants {
     public static final String ACCESS_ROLE = "accessRole";
     public static final String PROSECUTOR_NAME = "prosecutorName";
     public static final String PROSECUTOR_PROFILE_PICTURE = "prosecutorProfilePicture";
+    public static final String SUPERADMIN_NAME = "superAdminName";
+    public static final String SUPERADMIN_PROFILE_PICTURE = "superAdminProfilePicture";
 
     /**
      * static parameter pass for request Channel on webAdmin
