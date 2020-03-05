@@ -11,22 +11,22 @@
             </ul>
         </div>
         <figure>
-            <img src="/assets/images/layout/card-figure-v2.jpg" alt="">
+            <img src="data:image/png;base64,${image}" alt="">
         </figure>
         <div class="divided-content flout-2 custom-size-v2">
             <div>
                 <div class="form-row">
                     <label>
                         <span class="label">مرحبا كيف الحال</span>
-                        <span class="text"></span>
+                        <span class="text">${criminalName}</span>
                     </label>
                 </div>
             </div>
             <div>
                 <div class="form-row">
                     <label>
-                        <span class="label"></span>
-                        <span class="text"></span>
+                        <span class="label">ﺔﻤﻳﺮﺠﻟا عون</span>
+                        <span class="text">${crimeType}</span>
                     </label>
                 </div>
             </div>
@@ -38,8 +38,8 @@
                 <div>
                     <div class="form-row">
                         <label>
-                            <span class="label">${caseId}</span>
-                            <span class="text">${date}</span>
+                            <span class="label">ﺔﻟﺎﺤﻟا</span>
+                            <span class="text">${status}</span>
                         </label>
                     </div>
                 </div>
@@ -54,16 +54,16 @@
                 <div>
                     <div class="form-row">
                         <label>
-                            <span class="label">1 ﺔﻟﺎﺤﻟا</span>
-                            <span class="text">105 ﺓﺪﺣﻮﻟا</span>
+                            <span class="label">ﻞﺒﻗ ﻦﻣ ﺏﻮﻠﻄﻣ</span>
+                            <span class="text">${requestUnit}</span>
                         </label>
                     </div>
                 </div>
                 <div>
                     <div class="form-row">
                         <label>
-                            <span class="label">ﺔﻟﺎﺤﻟا</span>
-                            <span class="text">ﻞﺒﻗ ﻦﻣ ﺏﻮﻠﻄﻣ</span>
+                            <span class="label">ﻍﻼﺑﻹا ﺦﻳﺭﺎﺗ</span>
+                            <span class="text">${date}</span>
                         </label>
                     </div>
                 </div>
