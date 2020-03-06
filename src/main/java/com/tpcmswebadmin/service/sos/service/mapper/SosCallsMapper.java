@@ -1,6 +1,7 @@
 package com.tpcmswebadmin.service.sos.service.mapper;
 
 import com.ssas.tpcms.engine.vo.response.SOSResponseVO;
+import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.service.sos.domain.SosCallDto;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -21,11 +22,10 @@ public class SosCallsMapper {
     public static SosCallDto makeSosCallDto(SOSResponseVO sosResponseVO) {
         return SosCallDto.builder()
                 .requestNumber(sosResponseVO.getSosRequestId())
-                .requestDate(sosResponseVO.getRequestDate())
+                .requestDate(DateUtility.convertToFormat(sosResponseVO.getRequestDate(), "dd/MM/YYYY"))
                 .userId(sosResponseVO.getOfficerProfileId())
-                .emergencyLocation(null)
-                .phone(null)
-                .remarks(sosResponseVO.getAdditionalRemarks())
+                .emergencyLocation("Lat: " + sosResponseVO.getLatitudeDetails()+ " || Lng: " + sosResponseVO.getLongitudeDetails())
+                .phone("(" + sosResponseVO.getContactCountryCode()+ ")-" + sosResponseVO.getContactMobileNumber())
                 .status(sosResponseVO.getStatusCode())
                 .actions(prepareActionsColumn(sosResponseVO.getSosRequestId()))
                 .build();

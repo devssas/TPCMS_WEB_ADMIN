@@ -26,4 +26,16 @@ public class SosViewDelegate {
 
         notificationClientService.updateNotifications(loginUserDo, NotificationType.SOS);
     }
+
+    public void updateNotifications(HttpServletRequest httpServletRequest) {
+        notificationClientService.updateNotifications(makeLoginUser(httpServletRequest), NotificationType.SOS);
+    }
+
+    private LoginUserDo makeLoginUser(HttpServletRequest httpServletRequest) {
+        return LoginUserDo.builder()
+                .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
+                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
+                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
+                .build();
+    }
 }

@@ -25,8 +25,6 @@ public class SosCallDto implements Serializable {
 
     private String phone;
 
-    private String remarks;
-
     private String status;
 
     private String actions;

@@ -97,9 +97,8 @@ public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserD
         list.add("Request Number");
         list.add("Request Date");
         list.add("User ID");
-        list.add("emergency Location");
+        list.add("Emergency Location");
         list.add("Phone");
-        list.add("Remarks");
         list.add("Status");
         list.add("Actions");
 
