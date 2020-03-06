@@ -24,6 +24,10 @@ var main = {
     },
     cardTransactionLocations: function () {
 
+        var map = $("#map"),
+            templateURL	= map.data("template-url"),
+            dataURL = map.data("json-url");
+
         var markersPin = {
                 url: "assets/images/layout/pin.png",
                 size: new google.maps.Size(100, 102),
@@ -42,7 +46,7 @@ var main = {
 
             $.ajax({
                 type: "GET",
-                url: "assets/ajax/dashboard/dashboard.json"
+                url: dataURL
             })
                 .done(function (response) {
                     markersList = response;
@@ -53,7 +57,7 @@ var main = {
 
         function createdMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(markersList.mapsCenter[0]),
+                center: new google.maps.LatLng(markersList.mapCenter.lat,markersList.mapCenter.lng),
                 zoom: 11,
                 mapTypeControl: false,
                 streetViewControl: false,
@@ -66,7 +70,7 @@ var main = {
         function refreshMap() {
 
             $.ajax({
-                url: "assets/ajax/dashboard/dashboard.html",
+                url: templateURL,
                 type: "GET"
             })
                 .done(function (jsonTemplate) {
@@ -478,6 +482,8 @@ var main = {
                                 }
 
                                 deferredData.resolve();
+
+                                main.fancybox();
 
                             } else {
                                 container.removeClass("loading");

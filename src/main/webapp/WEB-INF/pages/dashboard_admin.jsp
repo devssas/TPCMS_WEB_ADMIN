@@ -61,52 +61,13 @@
 
                     <section>
                         <div class="maps">
-                            <div id="map"></div>
+                            <div id="map" data-template-url="assets/ajax/dashboard/dashboard.html" data-json-url="${pageContext.request.contextPath}/api/dashboard"></div>
                         </div>
                     </section>
 
                     <section>
                         <ul class="horizontal-list v1">
-                            <li>
-                                <a href="${pageContext.request.contextPath}/missionPermitsMenu" class="box-v1">
-                                    <h3>Permits</h3>
-                                    <p>${missionPermitCount}</p>
-                                    <span>Valid Permits</span>
-                                    <i class="icon-mission-permits"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/criminalsMenu" class="box-v1">
-                                    <h3>Cases</h3>
-                                    <p>${caseCount}</p>
-                                    <span>Cases Added</span>
-                                    <i class="icon-manage-cases"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/notificationMenu" class="box-v1">
-                                    <h3>Notifications<c:if test="${!notificationCount.equals('0')}"><span class="notification">${notificationCount}</span></c:if></h3>
-                                    <p>${notificationCount}</p>
-                                    <span>Notifications</span>
-                                    <i class="icon-notification"></i>
-                                </a>
-                            </li>
-                            <li class="cols-2">
-                                <a href="javascript:;" class="box-v1">
-                                    <h3>SOS</h3>
-                                    <p>82</p>
-                                    <span>Log Sheet</span>
-                                    <i class="icon-sos"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/sos" class="box-v1">
-                                    <h3>SOS<c:if test="${!sosNotificationCount.equals('0')}"><span class="notification">${sosNotificationCount}</span></c:if></h3>
-                                    <p>${sosCount}</p>
-                                    <span>Live Alerts</span>
-                                    <i class="icon-sos"></i>
-                                </a>
-                            </li>
+
                         </ul>
                     </section>
 
@@ -120,12 +81,11 @@
 
 </div> <!-- page-wrapper -->
 
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
-
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 
+<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
 </body>
 </html>

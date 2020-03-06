@@ -316,7 +316,6 @@ header {
     .notification{
       display: inline-block;
       @extend %fs-12;
-      width: 25px;
       height: 20px;
       line-height: 20px;
       color: $color-white;
@@ -324,6 +323,7 @@ header {
       background-color: $color-4;
       border-radius: 4px;
       margin-right: 10px;
+      padding: 0 5px;
     }
   }
   p{

@@ -3,7 +3,7 @@ package com.tpcmswebadmin.webpages.dashboard.delegate;
 import com.ssas.tpcms.engine.vo.response.AdminDashBoardResponseVO;
 import com.ssas.tpcms.engine.vo.response.PushNotificationsResponseVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
-import com.tpcmswebadmin.service.dashboard.DashboardService;
+import com.tpcmswebadmin.service.dashboard.service.DashboardService;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardModel;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardNotificationModel;
 import lombok.RequiredArgsConstructor;

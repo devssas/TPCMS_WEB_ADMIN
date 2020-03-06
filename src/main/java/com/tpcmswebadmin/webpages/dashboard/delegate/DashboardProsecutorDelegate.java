@@ -1,7 +1,7 @@
 package com.tpcmswebadmin.webpages.dashboard.delegate;
 
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
-import com.tpcmswebadmin.service.dashboard.DashboardProsecutorService;
+import com.tpcmswebadmin.service.dashboard.service.DashboardProsecutorService;
 import com.tpcmswebadmin.webpages.dashboard.domain.model.DashboardProsecutorModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

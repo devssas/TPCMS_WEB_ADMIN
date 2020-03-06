@@ -48,12 +48,14 @@
                 <section class="content">
 
                     <jsp:include page="highlight_back_to_overview.jsp">
-                        <jsp:param name="header" value="Add New Officer" />
+                        <jsp:param name="header" value="File Criminal Case" />
                         <jsp:param name="redirect" value="criminalsMenu" />
                         <jsp:param name="pageName" value="Criminal Database" />
+                        <jsp:param name="httpError" value="${httpError}" />
                     </jsp:include>
 
-                    <form action="">
+
+                    <form:form id="create-misison-card-form" modelAttribute="fileCriminalCase" method="post" >
 
                         <section class="content-box">
                             <div class="divided-content flout-2">
@@ -74,32 +76,36 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">National ID *</span>
-                                                        <input type="text" placeholder="Placeholder" class="field-query" data-min-lenght="2" data-url="assets/ajax/form-request/branding-name-call.json/">
+                                                        <form:input id="nationalId" path="nationalId" placeholder="Ex: National Id"/>
                                                     </label>
+                                                    <form:errors id="nationalId" path="nationalId" cssClass="text-danger" />
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">First Name *</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="firstName" path="firstName" placeholder="Ex: First Name"/>
                                                     </label>
+                                                    <form:errors id="firstName" path="firstName" cssClass="text-danger" />
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Middle Name</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="middleName" path="middleName" placeholder="Ex: Middle Name"/>
                                                     </label>
+                                                    <form:errors id="middleName" path="middleName" cssClass="text-danger" />
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Last Name</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="lastName" path="lastName" placeholder="Ex: Last Name"/>
                                                     </label>
+                                                    <form:errors id="middleName" path="middleName" cssClass="text-danger" />
                                                 </div>
                                                 <div class="form-row">
                                                     <span class="label">Date of Birth</span>
                                                     <label>
                                                         <span class="icons-content">
-                                                            <input type="text" class="datepicker" placeholder="Select Date">
+                                                             <form:input id="activationDate" class="datepicker" path="dateOfBirth" placeholder="Select Date"/>
                                                             <i class="icon-calender"></i>
                                                         </span>
                                                     </label>
@@ -110,14 +116,14 @@
                                                         <div>
                                                             <label>
                                                                 <span class="text">Male</span>
-                                                                <input name="gender" type="radio" value="Male">
+                                                                <form:checkbox id="genderMale" path="genderMale" />
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>
                                                                 <span class="text">Female</span>
-                                                                <input name="gender" type="radio" value="Female">
+                                                                <form:checkbox id="genderFemale" path="genderFemale" />
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
@@ -126,7 +132,7 @@
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Crime Classification</span>
-                                                        <select name="" id="">
+                                                        <select name="" id="crimeclassification">
                                                             <option value="">Placeholder</option>
                                                         </select>
                                                     </label>
@@ -134,25 +140,25 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Driving License Number</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="drivingLicenceNumber" path="drivingLicenceNumber" placeholder="Ex: Driving Licence Number"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Passport Number</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="passportNumber" path="passportNumber" placeholder="Ex: Passport Number"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Blood Group</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="bloodGroup" path="bloodGroup" placeholder="Ex: Blood group"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Visual Identification Mark </span>
-                                                        <textarea name="" id="" placeholder="Placeholder"></textarea>
+                                                        <form:textarea id="visualIdentificationMark" path="visualIdentificationMark" class="mid" placeholder="Visual Identifiation Mark"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row phone-number-row">
@@ -160,27 +166,29 @@
                                                         <span class="label">Mobile Number *</span>
                                                         <span class="phone-number-content">
                                                             <input type="tel" placeholder="+218">
+                                                            <form:input id="countryCode" path="countryCode" placeholder="Ex: Country Code"/>
                                                             <input type="tel" placeholder="1234567890">
+                                                            <form:input id="mobileNumber" path="mobileNumber" placeholder="Ex: Mobile Number"/>
                                                         </span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Email</span>
-                                                        <input type="email" placeholder="Placeholder">
+                                                        <form:input id="email" path="email" placeholder="Ex: Email"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Personal ID Card</span>
-                                                        <input type="email" placeholder="Placeholder">
+                                                        <form:input id="personalIdCard" path="personalIdCard" placeholder="Ex: Personal ID Card"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <span class="label">Flaged Date</span>
                                                     <label>
                                                         <span class="icons-content">
-                                                            <input type="text" class="datepicker" placeholder="Select Date">
+                                                            <form:input id="flaggedDate" class="datepicker" path="flaggedDate" placeholder="Select Date"/>
                                                             <i class="icon-calender"></i>
                                                         </span>
                                                     </label>
@@ -188,19 +196,19 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Wanted By</span>
-                                                        <input type="email" placeholder="Placeholder">
+                                                        <form:input id="wantedBy" path="wantedBy" placeholder="Ex: Wanted By"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Case ID</span>
-                                                        <input type="email" placeholder="Placeholder">
+                                                        <form:input id="caseId" path="caseId" placeholder="Ex: Case Id"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Case Brief</span>
-                                                        <textarea name="" id="" placeholder="Placeholder"></textarea>
+                                                        <form:textarea id="caseBrief" path="caseBrief" class="mid" placeholder="Brief Description"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -385,7 +393,7 @@
                                 <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
                         </section> <!-- content-box -->
-                    </form>
+                    </form:form>
 
                 </section> <!-- content -->
 
