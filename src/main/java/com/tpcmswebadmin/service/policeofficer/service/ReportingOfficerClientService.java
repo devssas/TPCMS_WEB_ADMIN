@@ -47,12 +47,22 @@ public class ReportingOfficerClientService  {
         ResponseDto<ReportingOfficerDto> responseDto = new ResponseDto<>();
         DataDto<ReportingOfficerDto> dataDto = new DataDto<>();
 
-        dataDto.setTbody(arrayList);
-        dataDto.setThead(null);
+        if(arrayList.isEmpty()) {
+            dataDto.setTbody(null);
+            dataDto.setThead(null);
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+            responseDto.setData(dataDto);
+            responseDto.setMessage(null);
+            responseDto.setStatus("true");
+        } else {
+            dataDto.setTbody(null);
+            dataDto.setThead(null);
+
+            responseDto.setData(dataDto);
+            responseDto.setMessage(null);
+            responseDto.setStatus("false");
+        }
+
 
         return responseDto;
     }

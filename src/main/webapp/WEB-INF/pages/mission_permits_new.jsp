@@ -52,6 +52,7 @@
                         <jsp:param name="header" value="Create Mission Card" />
                         <jsp:param name="redirect" value="missionPermitsMenu" />
                         <jsp:param name="pageName" value="Overview" />
+                        <jsp:param name="httpError" value="${httpError}" />
                     </jsp:include>
 
                     <form:form id="create-misison-card-form" modelAttribute="newMissionPermit" method="post" >

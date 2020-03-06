@@ -57,9 +57,27 @@ public class MissionPermitNewController {
             return "mission_permits_new";
         }
 
-        missionPermitNewDelegate.createNewMissionCard(missionPermitCardCreateModel, request);
+        if(missionPermitNewDelegate.createNewMissionCard(missionPermitCardCreateModel, request))
+            return "redirect:/mission_permits_view";
+        else {
+            model.addAttribute("officerName", request.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
+            model.addAttribute("officerProfilePicture", request.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
+            model.addAttribute("weaponTypes", referenceDelegate.getAllWeaponTypes());
 
-        return "redirect:missionPermits";
+            String adminRole = (String) request.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
+            model.addAttribute("accessRole", adminRole);
+
+            if(adminRole.equals(ADMIN.name())) {
+                model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
+                model.addAttribute("dashboardPage", Pages.DASHBOARD_ADMIN_JSON);
+            } else {
+                model.addAttribute("dashboardPage", Pages.DASHBOARD_SUPERADMIN_JSON);
+                model.addAttribute("prosecutorPage", Pages.MENU_BAR_SUPERADMIN_PROSECUTION_HOME);
+            }
+
+            model.addAttribute("httpError", "true");
+            return "mission_permits_new";
+        }
     }
 
 }

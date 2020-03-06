@@ -13,6 +13,14 @@ var main = {
         Handlebars.registerHelper("inc", function(value, options){
             return parseInt(value) + 1;
         });
+
+        if($("[name='httpError']").length && $("[name='httpError']").val() == "true"){
+            $.fancybox.open({
+                src: "assets/ajax/card/error.html",
+                type: "ajax",
+                smallBtn: false
+            });
+        }
     },
     cardTransactionLocations: function () {
 
