@@ -25,7 +25,7 @@ public class OfficerCardController {
         model.addAttribute("commandCenter", officerCardModel.getCommandCenter());
         model.addAttribute("officerId", officerCardModel.getOfficerId());
         model.addAttribute("officerName", officerCardModel.getOfficerName());
-        model.addAttribute("expiryDate", DateUtility.convertToFormat(officerCardModel.getExpiryDate(), "dd/MM/YYYY"));
+        model.addAttribute("expiryDate", officerCardModel.getExpiryDate() == null ? "N/A" : DateUtility.convertToFormat(officerCardModel.getExpiryDate(), "dd/MM/YYYY"));
         model.addAttribute("unit", officerCardModel.getUnit());
         model.addAttribute("rank", officerCardModel.getRank());
         model.addAttribute("weaponType", officerCardModel.getWeaponType());
