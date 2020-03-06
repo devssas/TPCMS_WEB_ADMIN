@@ -22,7 +22,7 @@ public class ManageCasesCardController {
         ManageCasesCardModel manageCasesCardModel = manageCasesDelegate.getManageCasesCardByCriminalsCode(criminalCode, httpServletRequest);
 
         model.addAttribute("criminalName", manageCasesCardModel.getCriminalName());
-        model.addAttribute("date", DateUtility.convertToFormat(manageCasesCardModel.getDate(), "dd/MM/YYYY"));
+        model.addAttribute("date", manageCasesCardModel.getDate() == null ? "N/A" : DateUtility.convertToFormat(manageCasesCardModel.getDate(), "dd/MM/YYYY"));
         model.addAttribute("requestUnit", manageCasesCardModel.getRequestUnit());
         model.addAttribute("crimeType", manageCasesCardModel.getCrimeType());
         model.addAttribute("caseId", manageCasesCardModel.getCaseId());
