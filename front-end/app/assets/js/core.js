@@ -57,7 +57,7 @@ var main = {
 
         function createdMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(markersList.mapCenter.lat,markersList.mapCenter.lng),
+                center: new google.maps.LatLng(markersList.mapCenter.lat, markersList.mapCenter.lng),
                 zoom: 11,
                 mapTypeControl: false,
                 streetViewControl: false,
@@ -481,9 +481,9 @@ var main = {
                                     }
                                 }
 
-                                deferredData.resolve();
-
                                 main.fancybox();
+
+                                deferredData.resolve();
 
                             } else {
                                 container.removeClass("loading");
