@@ -1,10 +1,10 @@
-{{#with permits}}
+{{#with notifications}}
 <li>
-    <a href="/tpcmsWebAdmin/missionPermitsMenu" class="box-v1">
-        <h3>Permits</h3>
+    <a href="/tpcmsWebAdmin/notificationMenu" class="box-v1">
+        <h3>Notifications{{#if new}}<span class="notification">{{new}}</span>{{/if}}</h3>
         <p>{{default}}</p>
-        <span>Valid Permits</span>
-        <i class="icon-mission-permits"></i>
+        <span>Notifications</span>
+        <i class="icon-notification"></i>
     </a>
 </li>
 {{/with}}
@@ -18,23 +18,13 @@
     </a>
 </li>
 {{/with}}
-{{#with notifications}}
+{{#with permits}}
 <li>
-    <a href="/tpcmsWebAdmin/notificationMenu" class="box-v1">
-        <h3>Notifications{{#if new}}<span class="notification">{{new}}</span>{{/if}}</h3>
+    <a href="/tpcmsWebAdmin/missionPermitsMenu" class="box-v1">
+        <h3>Permits</h3>
         <p>{{default}}</p>
-        <span>Notifications</span>
-        <i class="icon-notification"></i>
-    </a>
-</li>
-{{/with}}
-{{#with sosDetail}}
-<li class="cols-2">
-    <a href="javascript:;" class="box-v1">
-        <h3>SOS</h3>
-        <p>{{default}}</p>
-        <span>Log Sheet</span>
-        <i class="icon-sos"></i>
+        <span>Valid Permits</span>
+        <i class="icon-mission-permits"></i>
     </a>
 </li>
 {{/with}}
@@ -44,6 +34,16 @@
         <h3>SOS{{#if new}}<span class="notification">{{new}}</span>{{/if}}</h3>
         <p>{{default}}</p>
         <span>Live Alerts</span>
+        <i class="icon-sos"></i>
+    </a>
+</li>
+{{/with}}
+{{#with sosDetail}}
+<li class="cols-2">
+    <a href="javascript:;" class="box-v1">
+        <h3>SOS Detail</h3>
+        <p>{{default}}</p>
+        <span>Log Sheet</span>
         <i class="icon-sos"></i>
     </a>
 </li>
