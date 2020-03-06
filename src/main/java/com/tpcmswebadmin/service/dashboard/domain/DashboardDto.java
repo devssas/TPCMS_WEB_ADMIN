@@ -26,8 +26,8 @@ public class DashboardDto implements Serializable {
 
     private DefaultDto cases;
 
-    private DefaultDto sos;
+    private DefaultWithNewDto sos;
 
-    private DefaultWithNewDto sosDetail;
+    private DefaultDto sosDetail;
 
 }

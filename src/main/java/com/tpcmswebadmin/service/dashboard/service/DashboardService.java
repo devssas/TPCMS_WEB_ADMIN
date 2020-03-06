@@ -2,6 +2,7 @@ package com.tpcmswebadmin.service.dashboard.service;
 
 import com.ssas.tpcms.engine.vo.request.AdminDashBoardRequestVO;
 import com.ssas.tpcms.engine.vo.request.PushNotificationsRequestVO;
+import com.ssas.tpcms.engine.vo.response.AdminDashBoardResponseVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
@@ -35,20 +36,22 @@ public class DashboardService {
 
     public DashboardDto getAdminDashboardAPI(HttpServletRequest httpServletRequest) {
         TPEngineResponse response = getAdminDashboard(httpServletRequest);
+        AdminDashBoardResponseVO clientResponse = response.getAdminDashBoardResponseVO();
+        TPEngineResponse notificationResponse = getAdminDashboardNotifications(httpServletRequest);
 
         return DashboardDto.builder()
                 .mapCenter(new MapCenter())
                 .data(Collections.emptyList())
                 .notifications(DefaultWithNewDto.builder()
-                                       .defaultName("dejneme")
-                                       .newName("xsxsxsxs")
+                                       .defaultName(clientResponse.getCountNotificationsVO().length == 0 ? "0" :clientResponse.getCountNotificationsVO()[0].getTotalNotificationsCount())
+                                       .newName(notificationResponse.getPushNotificationsList()[0].getTotalNotificationCount().equals("0") ? null : notificationResponse.getPushNotificationsList()[0].getTotalNotificationCount())
                                        .build())
-                .permits(DefaultDto.builder().defaultName("dejvf").build())
-                .cases(DefaultDto.builder().defaultName("dejvf").build())
-                .sos(DefaultDto.builder().defaultName("dejvf").build())
-                .sosDetail(DefaultWithNewDto.builder()
-                                   .defaultName("dejneme")
-                                   .newName("xsxsxsxs")
+                .permits(DefaultDto.builder().defaultName(clientResponse.getCountMissionPermitsVO().length == 0 ? "0" : clientResponse.getCountMissionPermitsVO()[0].getTotalMissionPermitCount()).build())
+                .cases(DefaultDto.builder().defaultName(clientResponse.getCountOfficerProfileVO().length == 0 ? "0" :clientResponse.getCountOfficerProfileVO()[0].getTotalOfficersCount()).build())
+                .sosDetail(DefaultDto.builder().defaultName(clientResponse.getCountSOSVO().length == 0 ? "0" : clientResponse.getCountSOSVO()[0].getTotalSOSRequestCount()).build())
+                .sos(DefaultWithNewDto.builder()
+                                   .defaultName(clientResponse.getCountSOSVO().length == 0 ? "0" : clientResponse.getCountSOSVO()[0].getTotalSOSRequestCount())
+                                   .newName(notificationResponse.getPushNotificationsList()[0].getTotalSOSCount().equals("0") ? null : notificationResponse.getPushNotificationsList()[0].getTotalSOSCount())
                                    .build())
                 .build();
     }
