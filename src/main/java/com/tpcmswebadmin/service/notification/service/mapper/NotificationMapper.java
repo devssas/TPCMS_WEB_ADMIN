@@ -30,12 +30,9 @@ public class NotificationMapper {
 
     public static String prepareActionsColumn(String id) {
         String notificationId = "{notificationId}";
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/notification?notificationId={notificationId}'><i class='icon-view'></i></a>";
 
-        String actionView = "<a href='/tpcmsWebAdmin/viewNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
-        String actionDelete = "<a href='/tpcmsWebAdmin/updateNotification?notificationId={notificationId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
-
-        return actionView.replace(notificationId, id) + actionUpdate.replace(notificationId, id) + actionDelete.replace(notificationId, id);
+        return actionView.replace(notificationId, id);
     }
 
 }
