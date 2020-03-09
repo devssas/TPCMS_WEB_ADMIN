@@ -68,18 +68,21 @@ var main = {
         }
 
         function refreshMap() {
+            alert(templateURL);
+            if(templateURL){
+                alert("geldi");
+                $.ajax({
+                    url: templateURL,
+                    type: "GET"
+                })
+                    .done(function (jsonTemplate) {
+                        var template = Handlebars.compile(jsonTemplate),
+                            tableHTML = template(markersList);
 
-            $.ajax({
-                url: templateURL,
-                type: "GET"
-            })
-                .done(function (jsonTemplate) {
-                    var template = Handlebars.compile(jsonTemplate),
-                        tableHTML = template(markersList);
+                        $(".horizontal-list.v1").html(tableHTML);
 
-                    $(".horizontal-list.v1").html(tableHTML);
-
-                });
+                    });
+            }
 
             if (mapMarkersList) {
                 mapMarkersList.clearMarkers();
@@ -569,7 +572,7 @@ var main = {
                 beforeLoad: function (e,i,s) {
                     var clickedElement = s.opts.$orig;
 
-                    if(clickedElement){
+                    if(clickedElement && clickedElement.parents(".search-box-v2").length){
                         clickedElement.parents(".search-box-v2").addClass("fancy-click-element");
                     }
                 }
@@ -742,6 +745,7 @@ var main = {
                         .done(function (response) {
 
                             if (!response.status) {
+
                                 if (response.message) {
                                     $(form).find(".form-general-error .alert-title").text(response.message);
                                     $(form).find(".form-general-error").show();
@@ -753,6 +757,55 @@ var main = {
 
                             } else if(response.nextUrl){
                                 window.location.href = response.nextUrl;
+                            } else {
+
+                                if ($(form).hasClass("previousCase") || $(form).hasClass("permitsCreateMissionCard")) {
+                                    var templateUrl = $(form).data("template-url");
+
+                                    $.ajax({
+                                        url: templateUrl,
+                                        method: "GET"
+                                    })
+                                        .done(function (responseTemplate) {
+
+                                            $(form).find(".dynamic-content").addClass("loading");
+
+                                            var template = Handlebars.compile(responseTemplate),
+                                                tableHTML = template(response);
+
+                                            $(form).find(".dynamic-content").html(tableHTML).removeClass("loading");
+
+                                            if($(".previous-case-id").length){
+                                                $(".previous-case-id").off("click").on({
+                                                    click: function () {
+                                                        var _this = $(this),
+                                                            caseId = _this.data("case-id");
+
+                                                        $(".fancy-click-element").find(".add-previous-case-id").val(caseId);
+
+                                                        $.fancybox.close();
+                                                    }
+                                                });
+                                            }
+
+                                            if($(".create-mission-card").length){
+                                                $(".create-mission-card").off("click").on({
+                                                    click: function () {
+                                                        var _this = $(this),
+                                                            officerId = _this.data("officer-id"),
+                                                            officerName = _this.data("officer-name"),
+                                                            commandCenter = _this.data("command-center");
+
+                                                        $(".add-create-mission-card-id").val(officerId);
+                                                        $(".add-create-mission-card-name").val(officerName);
+                                                        $(".add-create-mission-card-command-center").val(commandCenter);
+
+                                                        $.fancybox.close();
+                                                    }
+                                                });
+                                            }
+                                        });
+                                }
                             }
                             // buttonLoading(form);
                         });
@@ -773,6 +826,13 @@ var main = {
         if (previousCase.length) {
             var options = $.extend({}, defaults);
             previousCase.validate(options);
+        }
+
+        // permits Create Mission Card
+        var permitsCreateMissionCard = $(".permitsCreateMissionCard");
+        if (permitsCreateMissionCard.length) {
+            var options = $.extend({}, defaults);
+            permitsCreateMissionCard.validate(options);
         }
 
         var loginUserName = $(".login-user-name");
