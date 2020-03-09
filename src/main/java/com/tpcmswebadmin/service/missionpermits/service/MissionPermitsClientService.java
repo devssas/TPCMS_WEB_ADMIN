@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -90,7 +91,10 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(MissionPermitsMapper.makeMissionPermitsDtoList(response.getSpecialMissionList()), true);
+        if (response.getSpecialMissionList() == null)
+            return prepareResponseDto(Collections.emptyList(), true);
+        else
+            return prepareResponseDto(MissionPermitsMapper.makeMissionPermitsDtoList(response.getSpecialMissionList()), true);
     }
 
     @Override

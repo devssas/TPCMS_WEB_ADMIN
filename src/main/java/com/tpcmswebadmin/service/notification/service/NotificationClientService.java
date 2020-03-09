@@ -11,6 +11,7 @@ import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import com.tpcmswebadmin.service.missionpermits.service.mapper.MissionPermitsMapper;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import com.tpcmswebadmin.service.notification.domain.enums.NotificationType;
 import com.tpcmswebadmin.service.notification.service.mapper.NotificationMapper;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -78,7 +80,10 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
+        if (response.getSpecialMissionList() == null)
+            return prepareResponseDto(Collections.emptyList(), true);
+        else
+            return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
     }
 
     @Override

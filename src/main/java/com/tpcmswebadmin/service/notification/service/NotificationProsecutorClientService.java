@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -43,7 +44,10 @@ public class NotificationProsecutorClientService implements ClientServiceAPI<Not
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(NotificationProsecutorMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
+        if (response.getSpecialMissionList() == null)
+            return prepareResponseDto(Collections.emptyList(), true);
+        else
+            return prepareResponseDto(NotificationProsecutorMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
     }
 
     @Override

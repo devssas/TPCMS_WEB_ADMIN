@@ -11,6 +11,7 @@ import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import com.tpcmswebadmin.service.missionpermits.service.mapper.MissionPermitsMapper;
 import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleCardDto;
 import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleDto;
 import com.tpcmswebadmin.service.policevehicles.service.mapper.PoliceVehicleMapper;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -96,7 +98,10 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(PoliceVehicleMapper.makePoliceVehicleDtoList(response.getVehicleDetailsList()), true);
+        if (response.getSpecialMissionList() == null)
+            return prepareResponseDto(Collections.emptyList(), true);
+        else
+            return prepareResponseDto(PoliceVehicleMapper.makePoliceVehicleDtoList(response.getVehicleDetailsList()), true);
     }
 
     @Override
