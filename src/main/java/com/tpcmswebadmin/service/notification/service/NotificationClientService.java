@@ -81,7 +81,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if (response.getSpecialMissionList() == null)
-            return prepareResponseDto(Collections.emptyList(), true);
+            return prepareResponseDto(Collections.emptyList(), false);
         else
             return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
     }
@@ -91,12 +91,21 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         ResponseDto<NotificationDto> responseDto = new ResponseDto<>();
         DataDto<NotificationDto> dataDto = new DataDto<>();
 
-        dataDto.setTbody(list);
-        dataDto.setThead(setTableColumnNames());
+        if(status) {
+            dataDto.setTbody(list);
+            dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+            responseDto.setData(dataDto);
+            responseDto.setMessage("success");
+            responseDto.setStatus("true");
+        } else {
+            dataDto.setTbody(Collections.emptyList());
+            dataDto.setThead(setTableColumnNames());
+
+            responseDto.setData(dataDto);
+            responseDto.setMessage("There's no data available for loggedin user");
+            responseDto.setStatus("false");
+        }
 
         return responseDto;
     }

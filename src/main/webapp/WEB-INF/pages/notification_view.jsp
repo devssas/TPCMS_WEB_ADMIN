@@ -82,6 +82,7 @@
                                 </form>
                             </div>
                             <div class="site-data-content"></div>
+                            <div class="error-text"></div>
                             <div class="pagination site-data-pagination">
                                 <ul>
                                     <li><a href="#" class="prev"></a></li>

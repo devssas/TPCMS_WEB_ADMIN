@@ -99,7 +99,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if (response.getSpecialMissionList() == null)
-            return prepareResponseDto(Collections.emptyList(), true);
+            return prepareResponseDto(Collections.emptyList(), false);
         else
             return prepareResponseDto(PoliceVehicleMapper.makePoliceVehicleDtoList(response.getVehicleDetailsList()), true);
     }
@@ -109,12 +109,21 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         ResponseDto<PoliceVehicleDto> responseDto = new ResponseDto<>();
         DataDto<PoliceVehicleDto> dataDto = new DataDto<>();
 
-        dataDto.setTbody(list);
-        dataDto.setThead(setTableColumnNames());
+        if(status) {
+            dataDto.setTbody(list);
+            dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+            responseDto.setData(dataDto);
+            responseDto.setMessage("success");
+            responseDto.setStatus("true");
+        } else {
+            dataDto.setTbody(Collections.emptyList());
+            dataDto.setThead(setTableColumnNames());
+
+            responseDto.setData(dataDto);
+            responseDto.setMessage("There's no data available for loggedin user");
+            responseDto.setStatus("false");
+        }
 
         return responseDto;
     }

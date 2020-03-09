@@ -92,7 +92,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if (response.getSpecialMissionList() == null)
-            return prepareResponseDto(Collections.emptyList(), true);
+            return prepareResponseDto(Collections.emptyList(), false);
         else
             return prepareResponseDto(MissionPermitsMapper.makeMissionPermitsDtoList(response.getSpecialMissionList()), true);
     }
@@ -102,12 +102,21 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         ResponseDto<MissionPermitsDto> responseDto = new ResponseDto<>();
         DataDto<MissionPermitsDto> dataDto = new DataDto<>();
 
-        dataDto.setTbody(list);
-        dataDto.setThead(setTableColumnNames());
+        if(status) {
+            dataDto.setTbody(list);
+            dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+            responseDto.setData(dataDto);
+            responseDto.setMessage("success");
+            responseDto.setStatus("true");
+        } else {
+            dataDto.setTbody(Collections.emptyList());
+            dataDto.setThead(setTableColumnNames());
+
+            responseDto.setData(dataDto);
+            responseDto.setMessage("There's no data available for loggedin user");
+            responseDto.setStatus("false");
+        }
 
         return responseDto;
     }
