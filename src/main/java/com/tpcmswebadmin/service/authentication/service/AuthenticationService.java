@@ -88,7 +88,7 @@ public class AuthenticationService {
     public SignInResponse signInWithUserCode(SignInUserCodeModel signInUserCodeModel, HttpServletRequest httpServletRequest) {
         TPEngineResponse response = signInUserCode(signInUserCodeModel);
 
-        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
+        if (response != null && response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
             httpServletRequest.getSession().setAttribute(TpCmsConstants.USERCODE, signInUserCodeModel.getUserCodeFull());
 
             return SignInResponse.builder()
@@ -126,7 +126,7 @@ public class AuthenticationService {
     public SignInResponse signInWithPassCode(SignInPassCodeModel signInPassCodeModel, HttpServletRequest httpServletRequest) {
         TPEngineResponse response = signInPassCode(signInPassCodeModel);
 
-        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
+        if (response != null && response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
             httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_CODE, response.getOfficerCode());
             httpServletRequest.getSession().setAttribute(TpCmsConstants.REPORT_UNIT, response.getOfficersProfileResponseVO().getReportingUnit());
 
