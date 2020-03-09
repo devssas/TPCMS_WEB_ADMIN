@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.webpages.prosecutionoffice.domain;
+package com.tpcmswebadmin.webpages.prosecutionoffice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

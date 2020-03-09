@@ -32,8 +32,8 @@ public class SosCallsMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/viewSosCall?sosRequestId={sosRequestId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
+        String actionView = "<a href='/tpcmsWebAdmin/sosDetails?sosId={sosId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
 
-        return actionView.replace("{sosRequestId}", id);
+        return actionView.replace("{sosId}", id);
     }
 }

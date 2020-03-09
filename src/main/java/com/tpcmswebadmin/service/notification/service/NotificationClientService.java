@@ -80,7 +80,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        if (response.getSpecialMissionList() == null)
+        if (response.getGeneralAnnouncementList() == null)
             return prepareResponseDto(Collections.emptyList(), false);
         else
             return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
