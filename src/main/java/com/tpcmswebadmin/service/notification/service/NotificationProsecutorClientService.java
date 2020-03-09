@@ -44,7 +44,7 @@ public class NotificationProsecutorClientService implements ClientServiceAPI<Not
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        if (response.getSpecialMissionList() == null)
+        if (response.getGeneralAnnouncementList() == null)
             return prepareResponseDto(Collections.emptyList(), true);
         else
             return prepareResponseDto(NotificationProsecutorMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);

@@ -2,7 +2,7 @@ package com.tpcmswebadmin.webpages.prosecutionoffice.delegate;
 
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionRequestEvidenceDetailDto;
 import com.tpcmswebadmin.service.prosecutionoffice.service.ProsecutionCasesRequestEvidenceClientService;
-import com.tpcmswebadmin.webpages.prosecutionoffice.domain.ManageCrimeFileModel;
+import com.tpcmswebadmin.webpages.prosecutionoffice.model.ManageCrimeFileModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -98,7 +98,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        if (response.getSpecialMissionList() == null)
+        if (response.getVehicleDetailsList() == null)
             return prepareResponseDto(Collections.emptyList(), false);
         else
             return prepareResponseDto(PoliceVehicleMapper.makePoliceVehicleDtoList(response.getVehicleDetailsList()), true);
