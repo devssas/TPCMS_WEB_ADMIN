@@ -61,7 +61,7 @@ public class AuthenticationService {
                         .build();
             } else {
                 return SignInResponse.builder()
-                        .message("Failure")
+                        .message(response != null ? response.getResponseCodeVO().getResponseMessage() : "Failure on system")
                         .status(false)
                         .nextUrl(null)
                         .build();
@@ -98,7 +98,7 @@ public class AuthenticationService {
                     .build();
         } else {
             return SignInResponse.builder()
-                    .message("Failure")
+                    .message(response != null ? response.getResponseCodeVO().getResponseMessage() : "Failure on system")
                     .status(false)
                     .nextUrl(null)
                     .build();
@@ -163,7 +163,7 @@ public class AuthenticationService {
             }
         } else {
             return SignInResponse.builder()
-                    .message("Failure")
+                    .message(response != null ? response.getResponseCodeVO().getResponseMessage() : "Failure on system")
                     .status(false)
                     .nextUrl(null)
                     .build();
