@@ -50,7 +50,7 @@ public class AuthenticationService {
         } else {
             TPEngineResponse response = signInUserName(signInUsernameModel);
 
-            if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
+            if (response != null && response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
                 httpServletRequest.getSession().setAttribute(TpCmsConstants.USERNAME, signInUsernameModel.getUsername());
                 httpServletRequest.getSession().setAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID, response.getOfficersProfileResponseVO().getMobileDeviceId());
 
