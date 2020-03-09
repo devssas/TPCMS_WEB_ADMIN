@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TpCmsConstants {
 
+    public static final String GENERAL_CLIENT_ERROR = "Failure on system";
+
     public static final String SUPERADMIN_DEVICE_ID = "1322239a06be715d";
     public static final String SUPERADMIN_DEVICE_OFFICER_ = "LYeGOV55397TP";
 

@@ -12,6 +12,7 @@ import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.authentication.domain.response.SignInResponse;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,9 @@ import java.rmi.RemoteException;
 
 import static com.tpcmswebadmin.infrastructure.domain.constant.Pages.*;
 
-
+@Slf4j
 @Service
 public class AuthenticationService {
-
-    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
     private final TPCMSClient tpcmsClient;
 
@@ -61,7 +60,7 @@ public class AuthenticationService {
                         .build();
             } else {
                 return SignInResponse.builder()
-                        .message(response != null ? response.getResponseCodeVO().getResponseMessage() : "Failure on system")
+                        .message(response != null ? response.getResponseCodeVO().getResponseMessage() : TpCmsConstants.GENERAL_CLIENT_ERROR)
                         .status(false)
                         .nextUrl(null)
                         .build();
@@ -76,11 +75,11 @@ public class AuthenticationService {
         setCredentials(officersLoginRequestVO);
 
         try {
-            logger.info("SignIn userName request will be sent to client. {}", officersLoginRequestVO.getMobileAppUserName());
+            log.info("SignIn userName request will be sent to client. {}", officersLoginRequestVO.getMobileAppUserName());
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
         } catch (RemoteException | ServiceException e) {
-            logger.warn("Something wrong on signIn username request. " + officersLoginRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on signIn username request. " + officersLoginRequestVO.getMobileAppUserName());
         }
         return null;
     }
@@ -98,7 +97,7 @@ public class AuthenticationService {
                     .build();
         } else {
             return SignInResponse.builder()
-                    .message(response != null ? response.getResponseCodeVO().getResponseMessage() : "Failure on system")
+                    .message(response != null ? response.getResponseCodeVO().getResponseMessage() : TpCmsConstants.GENERAL_CLIENT_ERROR)
                     .status(false)
                     .nextUrl(null)
                     .build();
@@ -113,11 +112,11 @@ public class AuthenticationService {
         setCredentials(officersLoginRequestVO);
 
         try {
-            logger.info("SignIn userCode request will be sent to client. Code: {}, User: {}" + signInUserCodeModel.getUserCodeFull(), officersLoginRequestVO.getMobileAppUserName());
+            log.info("SignIn userCode request will be sent to client. Code: {}, User: {}" + signInUserCodeModel.getUserCodeFull(), officersLoginRequestVO.getMobileAppUserName());
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
         } catch (RemoteException | ServiceException e) {
-            logger.warn(StringUtility.concat("something wrong on signIn userCode request. " + officersLoginRequestVO.getMobileAppUserName()));
+            log.warn(StringUtility.concat("something wrong on signIn userCode request. " + officersLoginRequestVO.getMobileAppUserName()));
         }
 
         return null;
@@ -163,7 +162,7 @@ public class AuthenticationService {
             }
         } else {
             return SignInResponse.builder()
-                    .message(response != null ? response.getResponseCodeVO().getResponseMessage() : "Failure on system")
+                    .message(response != null ? response.getResponseCodeVO().getResponseMessage() : TpCmsConstants.GENERAL_CLIENT_ERROR)
                     .status(false)
                     .nextUrl(null)
                     .build();
@@ -179,11 +178,11 @@ public class AuthenticationService {
         setCredentials(officersLoginRequestVO);
 
         try {
-            logger.info("SignIn passCode request will be sent to client. {} ", officersLoginRequestVO.getMobileAppUserName());
+            log.info("SignIn passCode request will be sent to client. {} ", officersLoginRequestVO.getMobileAppUserName());
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
         } catch (RemoteException | ServiceException e) {
-            logger.warn(StringUtility.concat("Something wrong on signIn passCode request. " + officersLoginRequestVO.getMobileAppUserName()));
+            log.warn(StringUtility.concat("Something wrong on signIn passCode request. " + officersLoginRequestVO.getMobileAppUserName()));
         }
 
         return null;
