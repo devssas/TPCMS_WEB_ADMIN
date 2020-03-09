@@ -540,74 +540,6 @@ var main = {
 
         return deferredData;
     },
-    /*filterControl: function () {
-
-        if($(".dynamic-content").length && Boolean($(".dynamic-content").data("template-url")) && $(".dynamic-content").is(':empty')){
-
-            $(".dynamic-content").each(function () {
-                var windowUrl = window.location.href,
-                    _this = $(this),
-                    templateUrl = _this.data("template-url"),
-                    jsonUrl = _this.data("json-url"),
-                    jsonTemplate;
-
-                $.ajax({
-                    url: templateUrl,
-                    method: "GET"
-                })
-                    .done(function (responseTemplate) {
-                        jsonTemplate = responseTemplate;
-
-                        if($("#filter-form").length){
-
-                            $( "#filter-form" ).submit(function( event ) {
-                                event.preventDefault();
-
-                                var filter = $("#filter-form").serialize();
-                                getJson(jsonUrl, jsonTemplate, _this, filter);
-                            }).submit();
-
-                        } else {
-
-                            if(windowUrl.indexOf("?calendarDate") > 0){
-                                var date  = windowUrl.split("?");
-                                getJson(jsonUrl, jsonTemplate, _this, date[1]);
-                            } else {
-                                getJson(jsonUrl, jsonTemplate, _this);
-                            }
-
-                        }
-
-                    });
-            });
-
-            function getJson(jsonUrl, jsonTemplate, _this, filter) {
-
-                $('.dynamic-page').addClass("loading");
-                _this.html("");
-
-                $.ajax({
-                    url: jsonUrl,
-                    method: "GET",
-                    dataType: "json",
-                    data: filter,
-                    async: false
-                })
-                    .done(function (responseJson) {
-
-                        var template = Handlebars.compile(jsonTemplate),
-                            tableHTML = template(responseJson);
-
-                        _this.html(tableHTML).parents(".dynamic-page").removeClass("loading");
-
-                        main.fancybox();
-
-                    });
-            }
-
-        }
-
-    },*/
     carousel: function (){
         if($(".card-carousel").length){
             $(".card-carousel").owlCarousel({
@@ -853,7 +785,7 @@ var main = {
                 },
                 messages: {
                     username:{
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     }
 
                 }
@@ -887,19 +819,19 @@ var main = {
                 },
                 messages: {
                     userCode1: {
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     },
                     userCode2: {
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     },
                     userCode3: {
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     },
                     userCode4: {
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     },
                     userCode5: {
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     }
                 }
             });
@@ -926,13 +858,13 @@ var main = {
                 },
                 messages: {
                     passCode1: {
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     },
                     passCode2: {
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     },
                     passCode3: {
-                        required: "Bu alan boş geçilemez."
+                        required: "This field cannot be empty"
                     }
                 }
             });
