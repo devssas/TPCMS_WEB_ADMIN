@@ -7,6 +7,15 @@ spring:
     active: unit-test
   mvc:
     locale: en
+  jpa:
+    database: hsql
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        enable_lazy_load_no_trans: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
 
 server:
     port: 8082
