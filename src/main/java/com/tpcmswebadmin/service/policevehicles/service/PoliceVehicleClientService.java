@@ -85,6 +85,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
 
 
         LoginUserDo loginUserDo = LoginUserDo.builder()
+                .accessRole((String) request.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE))
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
                 .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
@@ -121,6 +122,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         viewVehicleDetailsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewVehicleDetailsRequestVO.setUnitNumber(loginUserDo.getReportingUnit());
         viewVehicleDetailsRequestVO.setVehicleDetailsSeeAll("Y");
+        viewVehicleDetailsRequestVO.setAccessRoleCode(loginUserDo.getAccessRole());
 
         viewVehicleDetailsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewVehicleDetailsRequestVO);

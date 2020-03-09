@@ -70,6 +70,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
     @Override
     public ResponseDto<NotificationDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
+                .accessRole((String) request.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE))
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
                 .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
@@ -102,6 +103,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         viewNotificationsRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewNotificationsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewNotificationsRequestVO.setNotificationSeeAll("Y");
+        viewNotificationsRequestVO.setAccessRoleCode(loginUserDo.getAccessRole());
 
         viewNotificationsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewNotificationsRequestVO);

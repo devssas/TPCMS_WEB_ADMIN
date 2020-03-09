@@ -82,6 +82,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
     @Override
     public ResponseDto<MissionPermitsDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
+                .accessRole((String) request.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE))
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
                 .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
@@ -114,6 +115,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         viewSpecialMissionRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewSpecialMissionRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewSpecialMissionRequestVO.setSpecialMissionSeeAll("Y");
+        viewSpecialMissionRequestVO.setAccessRoleCode(loginUserDo.getAccessRole());
 
         viewSpecialMissionRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         setCredentials(viewSpecialMissionRequestVO);
