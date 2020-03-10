@@ -56,7 +56,6 @@
                     </jsp:include>
 
                     <form:form id="new-notification-form" modelAttribute="newNotificationModel" method="post" >
-
                         <section class="content-box">
                             <div class="divided-content flout-2">
 
@@ -67,19 +66,22 @@
                                                 <h3>NOTIFICATION DETAILS</h3>
                                             </div>
                                             <div class="form-container">
-
-                                                <div class="form-row select">
-                                                    <label>
-                                                        <span class="label">Notification Type *</span>
-                                                        <form:select id="notificationTypes"  path="notificationType" type="text" items="${notificationTypes}"/>
-                                                    </label>
+                                                <div class="table-filter-inner">
+                                                    <div class="form-row select select-not-find">
+                                                        <label>
+                                                            <span class="label">Notification Type *</span>
+                                                            <form:select id="notificationType" name="status" path="notificationType" type="text" items="${notificationTypes}" cssClass="change-on-submit"/>
+                                                        </label>
+                                                    </div>
                                                 </div>
 
-                                                <div class="form-row select">
-                                                    <label>
-                                                        <span class="label">Nature Of Announcement *</span>
-                                                        <form:select id="natureOfAnnouncement" path="natureOfAnnouncement" type="text" items="${natureOfAnnouncement}"/>
-                                                    </label>
+                                                <div class="table-filter-inner">
+                                                    <div class="form-row select select-not-find">
+                                                        <label>
+                                                            <span class="label">Nature Of Announcement *</span>
+                                                            <form:select id="nature" path="natureOfAnnouncement" type="text" items="${natureOfAnnouncement}"/>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div> <!-- form-container -->
                                         </div> <!-- inner -->

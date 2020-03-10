@@ -27,7 +27,7 @@ public class SosDetailsDelegate {
         TPEngineResponse response = sosClientService.makeClientCall(sosId, loginUserDo);
 
         return SosCallDetailModel.builder()
-                .location(response.getSosRequestList()[0].getLatitudeDetails() + " || " + response.getSosRequestList()[0].getLongitudeDetails())
+                .location("Lat: " + response.getSosRequestList()[0].getLatitudeDetails().substring(0,9) + " - Lng: " +response.getSosRequestList()[0].getLongitudeDetails().substring(0,9))
                 .phoneNumber(response.getSosRequestList()[0].getContactMobileNumber())
                 .username(StringUtility.makeFullName(response.getSosRequestList()[0].getOfficerFirstName_Ar(), response.getSosRequestList()[0].getOfficerLastName_Ar()))
                 .requestDate(DateUtility.convertToFormat(response.getSosRequestList()[0].getRequestDate(), "dd/MM/YYYY"))
