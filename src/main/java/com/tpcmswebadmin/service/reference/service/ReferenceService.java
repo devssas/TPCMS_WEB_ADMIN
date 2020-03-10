@@ -1,10 +1,13 @@
 package com.tpcmswebadmin.service.reference.service;
 
 import com.ssas.tpcms.engine.vo.response.AllowedWeaponTypesConfigResponseVO;
+import com.ssas.tpcms.engine.vo.response.CommandCenterResponseVO;
 import com.ssas.tpcms.engine.vo.response.NatureOfAnnouncementResponseVO;
 import com.ssas.tpcms.engine.vo.response.OfficerUnitResponseVO;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
+import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
+import com.tpcmswebadmin.service.reference.domain.dto.CommandCenterDto;
 import com.tpcmswebadmin.service.reference.domain.dto.NatureOfAnnouncementDto;
 import com.tpcmswebadmin.service.reference.domain.dto.OfficerUnitDto;
 import com.tpcmswebadmin.service.reference.domain.enums.ClientStatus;
@@ -98,6 +101,33 @@ public class ReferenceService {
                 .natureOfAnnouncementCode(natureOfAnnouncementResponseVOS.getNatureOfAnnouncementCode())
                 .natureOfAnnouncementDescription(natureOfAnnouncementResponseVOS.getNatureOfAnnouncementDescription())
                 .natureOfAnnouncementId(natureOfAnnouncementResponseVOS.getNatureOfAnnouncementId())
+                .build();
+    }
+
+    public List<CommandCenterDto> getCommandCenter() {
+        try {
+            return makeCommandCenterDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCommandCenterMapping());
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on signIn username request. ");
+        }
+
+        return Collections.emptyList();
+    }
+
+    private List<CommandCenterDto> makeCommandCenterDtoList(CommandCenterResponseVO[] commandCenterResponseVOS) {
+        return Arrays.stream(commandCenterResponseVOS)
+                .map(ReferenceService::makeCommandCenterDto)
+                .collect(Collectors.toList());
+    }
+
+    private static CommandCenterDto makeCommandCenterDto(CommandCenterResponseVO commandCenterResponseVO) {
+        return CommandCenterDto.builder()
+                .commandCenterCode(commandCenterResponseVO.getCommandCenterCode())
+                .colorCode(commandCenterResponseVO.getColorCode())
+                .commandCenterDescription(commandCenterResponseVO.getCommandCenterDescription())
+                .commandCenterId(commandCenterResponseVO.getCommandCenterId())
+                .commandCenterLogo1(ImageUtility.convertToBase64image(commandCenterResponseVO.getCommandCenterLogo1()))
+                .commandCenterLogo2(ImageUtility.convertToBase64image(commandCenterResponseVO.getCommandCenterLogo2()))
                 .build();
     }
 

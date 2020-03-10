@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.reference.delegate;
 
+import com.tpcmswebadmin.service.reference.domain.dto.CommandCenterDto;
 import com.tpcmswebadmin.service.reference.domain.dto.NatureOfAnnouncementDto;
 import com.tpcmswebadmin.service.reference.domain.dto.OfficerUnitDto;
 import com.tpcmswebadmin.service.reference.service.ReferenceService;
@@ -32,6 +33,12 @@ public class ReferenceDelegate {
     public List<String> getNatureOfAnnouncement() {
         return referenceService.getNatureOfAnnouncement().stream()
                 .map(NatureOfAnnouncementDto::getNatureOfAnnouncementDescription)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getCommandCenter() {
+        return referenceService.getCommandCenter().stream()
+                .map(CommandCenterDto::getCommandCenterCode)
                 .collect(Collectors.toList());
     }
 }

@@ -14,11 +14,17 @@ var main = {
             return parseInt(value) + 1;
         });
 
-        if($("[name='httpError']").length && $("[name='httpError']").val() == "true"){
+        if($("[name='httpError']").length && $("[name='httpError']").val() != ""){
+            var message = $("[name='httpError']").val();
             $.fancybox.open({
                 src: "assets/ajax/card/error.html",
                 type: "ajax",
-                smallBtn: false
+                smallBtn: false,
+                afterLoad: function () {
+                    if(message != "true"){
+                        $(".custom-error-message").text(message);
+                    }
+                }
             });
         }
     },

@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PoliceVehicleNewModel {
 
-    private String vehicleId;
-
     private String vehicleName;
 
     private String plateNumber;
@@ -29,7 +27,7 @@ public class PoliceVehicleNewModel {
 
     private String expiryDate;
 
-    private String isPermittedToCarryWeapon;
+    private boolean isPermittedToCarryWeapon;
 
     private String allowedWeaponType1;
 
@@ -45,13 +43,13 @@ public class PoliceVehicleNewModel {
 
     private String image;
 
-    private String isPermittedToCarryCivilians;
+    private boolean isPermittedToCarryCivilians;
 
-    private String isPermittedToCarryPrisoners;
+    private boolean isPermittedToCarryPrisoners;
 
-    private String isPermittedToNightPatrol;
+    private boolean isPermittedToNightPatrol;
 
-    private String isPermittedToDriveOutsideCity;
+    private boolean isPermittedToDriveOutsideCity;
 
     private String driverOfficerId1;
 
