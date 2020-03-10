@@ -1,0 +1,38 @@
+{
+  "status": true,
+  "message": null,
+  "data": {
+    "tbody": [
+      {
+        "officerId": "2315465152",
+        "officerName": "John",
+        "commandCenter":  "254646"
+      },
+      {
+        "officerId": "2315465152",
+        "officerName": "John",
+        "commandCenter":  "254646"
+      },
+      {
+        "officerId": "2315465152",
+        "officerName": "John",
+        "commandCenter":  "254646"
+      },
+      {
+        "officerId": "2315465152",
+        "officerName": "John",
+        "commandCenter":  "254646"
+      },
+      {
+        "officerId": "2315465152",
+        "officerName": "John",
+        "commandCenter":  "254646"
+      },
+      {
+        "officerId": "2315465152",
+        "officerName": "John",
+        "commandCenter":  "254646"
+      }
+    ]
+  }
+}

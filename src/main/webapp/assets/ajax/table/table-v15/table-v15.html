@@ -1,0 +1,22 @@
+<div class="table-v2">
+    <div class="thead">
+        <div class="tr">
+            {{#each data.thead}}
+            <div class="th">{{this}}</div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="tbody">
+        {{#each data.tbody}}
+        <div class="tr">
+            <div class="td">
+                <a href="javascript:;" class="create-mission-card" data-officer-id="{{officerId}}" data-officer-name="{{officerName}}" data-command-center="{{commandCenter}}" >
+                    <span> Officer Name: {{officerName}}</span>
+                    <span> Officer ID: {{officerId}}</span>
+                </a>
+            </div>
+            <div class="td"><a href="javascript:;" class="create-mission-card" data-officer-id="{{officerId}}" data-officer-name="{{officerName}}" data-command-center="{{commandCenter}}">{{{commandCenter}}} : Command Center</a></div>
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,4 +1,4 @@
-package com.tpcmswebadmin.service.reference.domain;
+package com.tpcmswebadmin.service.reference.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

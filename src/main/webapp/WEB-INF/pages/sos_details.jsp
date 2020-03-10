@@ -66,7 +66,7 @@
                                                 <span class="text-v1">${requestSerialNumber}</span>
                                             </label>
                                             <label>
-                                                <span class="label">Request Date:</span>
+                                                <span class="label">Request Date</span>
                                                 <span class="text-v1">${requestDate}</span>
                                             </label>
                                             <label>

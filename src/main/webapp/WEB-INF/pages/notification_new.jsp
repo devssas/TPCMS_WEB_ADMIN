@@ -55,10 +55,11 @@
                         <jsp:param name="pageName" value="Notification Menu" />
                     </jsp:include>
 
-                    <form action="">
+                    <form:form id="new-notification-form" modelAttribute="newNotificationModel" method="post" >
 
                         <section class="content-box">
                             <div class="divided-content flout-2">
+
                                 <div>
                                     <div class="box-v3">
                                         <div class="inner">
@@ -66,58 +67,54 @@
                                                 <h3>NOTIFICATION DETAILS</h3>
                                             </div>
                                             <div class="form-container">
-                                                <div class="form-row">
+
+                                                <div class="form-row select">
                                                     <label>
                                                         <span class="label">Notification Type *</span>
-                                                        <select name="" id="">
-                                                            <option value="">Choose</option>
-                                                        </select>
+                                                        <form:select id="notificationTypes"  path="notificationType" type="text" items="${notificationTypes}"/>
                                                     </label>
                                                 </div>
-                                                <div class="form-row form-with-icon">
+
+                                                <div class="form-row select">
                                                     <label>
-                                                        <span class="label">Unit ID*</span>
-                                                        <input type="text" placeholder="301/all units/..">
-                                                        <i class="icon-search"></i>
-                                                    </label>
-                                                </div>
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">Command Center *</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <span class="label">Nature Of Announcement *</span>
+                                                        <form:select id="natureOfAnnouncement" path="natureOfAnnouncement" type="text" items="${natureOfAnnouncement}"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
                                         </div> <!-- inner -->
                                     </div> <!-- box-v3 -->
                                 </div>
+
                                 <div>
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
                                                 <h3>NOTIFICATION</h3>
                                             </div>
+
                                             <div class="form-container">
                                                 <div class="form-row">
                                                     <label>
-                                                        <textarea name="" id="" placeholder="Statement"></textarea>
+                                                        <form:textarea id="statement" path="statement" placeholder="Statement"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
                                         </div> <!-- inner -->
                                     </div> <!-- box-v3 -->
                                 </div>
+
                             </div> <!-- divided-content flout-2 -->
+
                             <div class="button-row">
                                 <input type="submit" class="button button-v4 color-1 fix-size-sml" value="Create">
                                 <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
+
                         </section> <!-- content-box -->
-                    </form>
+                    </form:form>
 
                 </section> <!-- content -->
-
-
 
             </section> <!-- content-inner -->
 
@@ -126,10 +123,11 @@
     </div> <!-- page-inner -->
 
 </div> <!-- page-wrapper -->
-<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
+
+<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 
 </body>
 </html>

@@ -67,9 +67,9 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row form-with-icon">
-                                                    <label>
+                                                    <label data-fancybox-search data-type="ajax" data-src="assets/ajax/card/permits-create-mission-card.html">
                                                         <span class="label">Officer ID *</span>
-                                                        <form:input id="officerId" class="field-query officerId-call" path="officerId" placeholder="Ex:123456" data-url="${pageContext.request.contextPath}/api/reporting-officer/" data-min-lenght="2" data-method="post" />
+                                                        <form:input id="officerId" path="officerId" placeholder="Ex:123456" cssClass="add-create-mission-card-id" />
                                                         <i class="icon-search"></i>
                                                     </label>
                                                     <form:errors id="officerId" path="officerId" cssClass="text-danger" />
@@ -77,7 +77,7 @@
                                                 <div class="form-row form-with-icon">
                                                     <label>
                                                         <span class="label">Officer Name *</span>
-                                                        <form:input id="officerName" class="field-query officerName-call" path="officerName" placeholder="Ex:Test test" data-url="${pageContext.request.contextPath}/api/reporting-officer/" data-min-lenght="3"/>
+                                                        <form:input id="officerName" path="officerName" placeholder="Ex: Officer Name" cssClass="add-create-mission-card-name" disabled="true"/>
                                                         <i class="icon-search"></i>
                                                     </label>
                                                     <form:errors id="officerName" path="officerName" cssClass="text-danger" />
@@ -85,7 +85,7 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Command Center *</span>
-                                                        <form:input id="commandCenter" path="commandCenter" placeholder="Ex: Command Center"/>
+                                                        <form:input id="commandCenter" path="commandCenter" placeholder="Ex: Command Center" cssClass="add-create-mission-card-command-center" disabled="true"/>
                                                     </label>
                                                     <form:errors id="commandCenter" path="commandCenter" cssClass="text-danger" />
                                                 </div>

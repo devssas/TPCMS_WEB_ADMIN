@@ -12,7 +12,7 @@ import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
 import com.tpcmswebadmin.service.prosecutionoffice.service.mapper.ProsecutionProfileMapper;
-import com.tpcmswebadmin.service.reference.domain.ClientStatus;
+import com.tpcmswebadmin.service.reference.domain.enums.ClientStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
