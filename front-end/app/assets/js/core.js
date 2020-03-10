@@ -68,9 +68,7 @@ var main = {
         }
 
         function refreshMap() {
-            alert(templateURL);
             if(templateURL){
-                alert("geldi");
                 $.ajax({
                     url: templateURL,
                     type: "GET"
