@@ -237,6 +237,77 @@ var main = {
             });
         }
 
+        if($(".crime-select").length){
+
+
+            $(".crime-select").each(function () {
+                var _this = $(this);
+
+                $.ajax({
+                    url: $(this).data("url"),
+                    method: "get",
+                    dataType: "json",
+                })
+                    .done(function (response) {
+
+                        var template;
+
+                        for (var i = 0; i < response.data.length; i++){
+                            template += "<option value='" + response.data[i].id + "' data-description='" + response.data[i].description + "'>" + response.data[i].text + "</option>";
+                        }
+
+                        _this.append(template).select2({
+                            minimumResultsForSearch: -1,
+                            ajax: {
+                                url: _this.data("url")
+                            },
+                            escapeMarkup: function(markup) {
+                                console.log("markup " + markup);
+                                return markup;
+                            },
+                            templateSelection: function (data) {
+                                console.log("templateSelection " + data);
+                                return data
+                            },
+                            templateResult: function (data) {
+                                console.log("templateResult " + data);
+                                return data
+                            }
+
+                            // templateSelection: formatState,
+                            // templateResult: formatState
+                        }).off("select2:open").on("select2:open", function (e) {
+                            // $(".select2-results .select2-results__options").niceScroll({
+                            //     autohidemode: false,
+                            //     cursorwidth: 4,
+                            //     cursorcolor: "#BCC3CA",
+                            //     cursorborder: 2,
+                            //     cursorborderradius: 2,
+                            //     horizrailenabled: true,
+                            // });
+                        });
+
+                        // if($("[data-selected]").length){
+                        //     $("[data-selected]").each(function () {
+                        //         $(this).val($(this).attr("data-selected")).trigger('change.select2');
+                        //     });
+                        // }
+
+                    });
+            });
+
+
+        }
+
+        function formatState (state) {
+            console.log(state);
+            if (!state.id) {
+                return state.text;
+            }
+            // var $state = $("<div><span class='flag flag-"+ state.text.toLowerCase() +"'></span>"+ state.id +"</div>");
+            var $state = $("<div><span class='test'>"+ state.text +"</span><span class='test1'>"+ state.description +"</span></div>");
+            return $state;
+        }
     },
     addWitness: function(){
         if($(".addWitness").length){
