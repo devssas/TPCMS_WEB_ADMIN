@@ -1,6 +1,5 @@
 package com.tpcmswebadmin.service.sos.service;
 
-import com.ssas.tpcms.engine.vo.request.GeneralAnnouncementRequestVO;
 import com.ssas.tpcms.engine.vo.request.SOSRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;

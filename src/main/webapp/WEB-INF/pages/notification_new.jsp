@@ -50,27 +50,31 @@
                 <section class="content">
 
                     <jsp:include page="highlight_back_to_overview.jsp">
-                        <jsp:param name="header" value="Add New Officer" />
+                        <jsp:param name="header" value="Create New Notification" />
                         <jsp:param name="redirect" value="notificationMenu" />
                         <jsp:param name="pageName" value="Notification Menu" />
                     </jsp:include>
 
                     <form:form id="new-notification-form" modelAttribute="newNotificationModel" method="post" >
                         <section class="content-box">
+
                             <div class="divided-content flout-2">
 
                                 <div>
                                     <div class="box-v3">
+
                                         <div class="inner">
+
                                             <div class="highlight box-highlight">
                                                 <h3>NOTIFICATION DETAILS</h3>
                                             </div>
+
                                             <div class="form-container">
                                                 <div class="table-filter-inner">
                                                     <div class="form-row select select-not-find">
                                                         <label>
                                                             <span class="label">Notification Type *</span>
-                                                            <form:select id="notificationType" name="status" path="notificationType" type="text" items="${notificationTypes}" cssClass="change-on-submit"/>
+                                                            <form:select id="notificationType" path="notificationType" items="${notificationTypes}"/>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -79,12 +83,14 @@
                                                     <div class="form-row select select-not-find">
                                                         <label>
                                                             <span class="label">Nature Of Announcement *</span>
-                                                            <form:select id="nature" path="natureOfAnnouncement" type="text" items="${natureOfAnnouncement}"/>
+                                                            <form:select id="natureOfAnnouncement" path="natureOfAnnouncement" items="${natureOfAnnouncement}"/>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div> <!-- form-container -->
+
                                         </div> <!-- inner -->
+
                                     </div> <!-- box-v3 -->
                                 </div>
 

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NotificationCreateModel {
 
-    private NotificationType notificationType;
+    private String notificationType;
 
     private String reportingUnitId;
 
