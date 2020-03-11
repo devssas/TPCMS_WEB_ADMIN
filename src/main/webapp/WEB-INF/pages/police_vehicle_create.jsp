@@ -50,12 +50,13 @@
                 <section class="content">
 
                     <jsp:include page="highlight_back_to_overview.jsp">
-                        <jsp:param name="header" value="Add New Officer" />
+                        <jsp:param name="header" value="Add New Vehicle" />
                         <jsp:param name="redirect" value="policeVehiclesMenu" />
                         <jsp:param name="pageName" value="Police Vehicle Menu" />
+                        <jsp:param name="httpError" value="${httpError}" />
                     </jsp:include>
 
-                    <form action="">
+                    <form:form id="new-police-vehicle" modelAttribute="newPoliceVehicle" method="post" enctype="multipart/form-data">
 
                         <section class="content-box">
                             <div class="divided-content flout-2">
@@ -68,45 +69,39 @@
                                             <div class="form-container">
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Vehicle ID *</span>
-                                                        <input type="text" placeholder="Placeholder">
-                                                    </label>
-                                                </div>
-                                                <div class="form-row">
-                                                    <label>
                                                         <span class="label">Vehicle Name *</span>
-                                                        <input type="text" placeholder="Placeholder">
-                                                    </label>
-                                                </div>
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">Vehicle Name *</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="vehicleName" path="vehicleName" placeholder="Vehicle Name"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Plate Number *</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="plateNumber" path="plateNumber" placeholder="Plate Name"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Chasis Number</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <span class="label">Chase Number</span>
+                                                        <form:input id="chaseNumber" path="chaseNumber" placeholder="Chase Name"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Command Center *</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:select id="commandCenter" path="commandCenter"  items="${commandCenters}" />
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Reporting Unit *</span>
+                                                        <form:select id="unit" path="unit"  items="${officerUnits}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <span class="label">Activation Date</span>
                                                     <label>
                                                         <span class="icons-content">
-                                                            <input type="text" class="datepicker" placeholder="Select Date">
+                                                            <form:input id="activationDate" class="datepicker" path="activationDate" placeholder="Activation Date"/>
                                                             <i class="icon-calender"></i>
                                                         </span>
                                                     </label>
@@ -115,7 +110,7 @@
                                                     <span class="label">Expiry Date</span>
                                                     <label>
                                                         <span class="icons-content">
-                                                            <input type="text" class="datepicker" placeholder="Select Date">
+                                                            <form:input id="expiryDate" class="datepicker" path="expiryDate" placeholder="Expiry Date"/>
                                                             <i class="icon-calender"></i>
                                                         </span>
                                                     </label>
@@ -131,8 +126,8 @@
                                             <div class="form-container">
                                                 <div class="form-row checkbox-row">
                                                     <label>
-                                                        <span class="label">Permission to Carry Civilians</span>
-                                                        <input type="checkbox" id="">
+                                                        <span class="label">Permission to Carry Weapons</span>
+                                                        <form:checkbox id="isPermittedToCarryWeapon" path="permittedToCarryWeapon"/>
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
@@ -140,43 +135,38 @@
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Allowed Weapon Type 1</span>
-                                                        <select name="" id="">
-                                                            <option value="">Placeholder</option>
-                                                        </select>
+                                                        <form:select id="weaponType1" path="allowedWeaponType1"  items="${weaponTypes}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Weapon 1 Serial Number</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="weapon1SerialNumber" path="weapon1SerialNumber" placeholder="Serial Number"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Allowed Weapon Type 2</span>
-                                                        <select name="" id="">
-                                                            <option value="">Placeholder</option>
-                                                        </select>
+                                                        <form:select id="weaponType2" path="allowedWeaponType2"  items="${weaponTypes}" />
+
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Weapon 2 Serial Number</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="weapon2SerialNumber" path="weapon2SerialNumber" placeholder="Serial Number"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Allowed Weapon Type 3</span>
-                                                        <select name="" id="">
-                                                            <option value="">Placeholder</option>
-                                                        </select>
+                                                        <form:select id="weaponType3" path="allowedWeaponType3"  items="${weaponTypes}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Weapon 3 Serial Number</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="weapon3SerialNumber" path="weapon3SerialNumber" placeholder="Serial Number"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -191,28 +181,28 @@
                                                 <div class="form-row checkbox-row">
                                                     <label>
                                                         <span class="label">Permission to Carry Civilians</span>
-                                                        <input type="checkbox" id="">
+                                                        <form:checkbox id="isPermittedToCarryCivilians" path="permittedToCarryCivilians" />
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row checkbox-row">
                                                     <label>
                                                         <span class="label">Permission to Carry Prisoners</span>
-                                                        <input type="checkbox" id="">
+                                                        <form:checkbox id="isPermittedToCarryPrisoners" path="permittedToCarryPrisoners" />
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row checkbox-row">
                                                     <label>
                                                         <span class="label">Permission for Night Patrol</span>
-                                                        <input type="checkbox" id="">
+                                                        <form:checkbox id="isPermittedToNightPatrol" path="permittedToNightPatrol" />
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row checkbox-row">
                                                     <label>
                                                         <span class="label">Permission Drive Outside City</span>
-                                                        <input type="checkbox" id="">
+                                                        <form:checkbox id="isPermittedToDriveOutsideCity" path="permittedToDriveOutsideCity" />
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
@@ -220,14 +210,14 @@
                                                 <div class="form-row form-with-icon">
                                                     <label>
                                                         <span class="label">Driver - Officer ID 1</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="driverOfficerId1" path="driverOfficerId1" placeholder="Officer Id"/>
                                                         <i class="icon-search"></i>
                                                     </label>
                                                 </div>
                                                 <div class="form-row form-with-icon">
                                                     <label>
                                                         <span class="label">Driver - Officer ID 2</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="driverOfficerId2" path="driverOfficerId2" placeholder="Officer Id"/>
                                                         <i class="icon-search"></i>
                                                     </label>
                                                 </div>
@@ -240,12 +230,11 @@
                                         <div class="inner">
                                             <div class="highlight box-highlight">
                                                 <h3>VEHICLE PHOTOS</h3>
-                                                <!--<a href="javascript:;" class="button button-v4 icon-btn-with-text-v2 color-1"><i class="icon-plus"></i>Add Photo</a>-->
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row multiple-photo-upload">
                                                     <div class="photo-upload upload-view">
-                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-multiple.json" ></div>
+                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5"></div>
                                                         <div class="custom-upload">
                                                             <i class="icon-plus"></i>
                                                             <span class="description">Upload Photo</span>
@@ -263,8 +252,7 @@
                                             <div class="form-container">
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Crime Title</span>
-                                                        <textarea name="" id="" placeholder="Placeholder"></textarea>
+                                                        <form:textarea id="additionalRemarks" path="additionalRemarks" placeholder="Placeholder"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -277,7 +265,7 @@
                                 <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
                         </section> <!-- content-box -->
-                    </form>
+                    </form:form>
 
                 </section> <!-- content -->
 
