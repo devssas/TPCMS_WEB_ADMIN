@@ -52,7 +52,8 @@ var main = {
 
             $.ajax({
                 type: "GET",
-                url: dataURL
+                url: dataURL,
+                cache: false
             })
                 .done(function (response) {
                     markersList = response;
@@ -77,7 +78,8 @@ var main = {
             if(templateURL){
                 $.ajax({
                     url: templateURL,
-                    type: "GET"
+                    type: "GET",
+                    cache: false
                 })
                     .done(function (jsonTemplate) {
                         var template = Handlebars.compile(jsonTemplate),
@@ -226,7 +228,8 @@ var main = {
                                     search: params.term
                                 }
                                 return query;
-                            }
+                            },
+                            cache: false
                         },
                         dropdownParent: $(element)
                     }).off("select2:open").on("select2:open", function (e) {
@@ -484,6 +487,7 @@ var main = {
                     type	: "GET",
                     url		: templateURL,
                     async	: false,
+                    cache: false,
                     success	: function (response) {
                         templateHtml = response;
                     }
@@ -504,6 +508,7 @@ var main = {
                         url			: dataURL,
                         dataType	: "json",
                         data		: data,
+                        cache: false,
                         success		: function (response) {
 
                             if(response.data.length || response.data.tbody.length){
