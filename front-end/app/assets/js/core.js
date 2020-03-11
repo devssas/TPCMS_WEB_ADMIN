@@ -261,7 +261,7 @@ var main = {
                             // scrolling can be used
                             params.page = params.page || 1;
                             return {
-                                results: data.items,
+                                results: data.data,
                                 pagination: {
                                     more: (params.page * 30) < data.total_count
                                 }
