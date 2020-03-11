@@ -719,6 +719,20 @@
   }
 }
 
+.select-custom-options{
+  text-align: right;
+  padding: 5px 10px;
+  .title{
+    @extend %fs-16;
+    @include f-roboto(700);
+    color: $color-black;
+  }
+  .description{
+    @extend %fs-14;
+    @include f-roboto(400);
+    color: rgba($color-black,0.5);
+  }
+}
 
 //------------------------------------------------------------
 // = PLUGIN OVERRIDE STYLES

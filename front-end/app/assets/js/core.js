@@ -239,75 +239,53 @@ var main = {
 
         if($(".crime-select").length){
 
-
             $(".crime-select").each(function () {
-                var _this = $(this);
 
-                $.ajax({
-                    url: $(this).data("url"),
-                    method: "get",
-                    dataType: "json",
-                })
-                    .done(function (response) {
+                $(this).select2({
+                    ajax: {
+                        url: $(this).data("url"),
+                        dataType: 'json',
+                        processResults: function (data, params) {
+                            // parse the results into the format expected by Select2
+                            // since we are using custom formatting functions we do not need to
+                            // alter the remote JSON data, except to indicate that infinite
+                            // scrolling can be used
+                            params.page = params.page || 1;
+                            return {
+                                results: data.items,
+                                pagination: {
+                                    more: (params.page * 30) < data.total_count
+                                }
+                            };
+                        },
+                        cache: false
+                    },
+                    minimumResultsForSearch: -1,
+                    templateResult: formatRepo,
+                    templateSelection: formatRepoSelection
+                });
 
-                        var template;
+                function formatRepo (repo) {
 
-                        for (var i = 0; i < response.data.length; i++){
-                            template += "<option value='" + response.data[i].id + "' data-description='" + response.data[i].description + "'>" + response.data[i].text + "</option>";
-                        }
+                    if (repo.loading) {
+                        return repo.text;
+                    }
 
-                        _this.append(template).select2({
-                            minimumResultsForSearch: -1,
-                            ajax: {
-                                url: _this.data("url")
-                            },
-                            escapeMarkup: function(markup) {
-                                console.log("markup " + markup);
-                                return markup;
-                            },
-                            templateSelection: function (data) {
-                                console.log("templateSelection " + data);
-                                return data
-                            },
-                            templateResult: function (data) {
-                                console.log("templateResult " + data);
-                                return data
-                            }
+                    var $container = $(
+                        "<div class='select-custom-options'><div class='title'>" + repo.title + "</div><div class='description'>" + repo.description + "</div></div>"
+                    );
 
-                            // templateSelection: formatState,
-                            // templateResult: formatState
-                        }).off("select2:open").on("select2:open", function (e) {
-                            // $(".select2-results .select2-results__options").niceScroll({
-                            //     autohidemode: false,
-                            //     cursorwidth: 4,
-                            //     cursorcolor: "#BCC3CA",
-                            //     cursorborder: 2,
-                            //     cursorborderradius: 2,
-                            //     horizrailenabled: true,
-                            // });
-                        });
+                    return $container;
+                }
 
-                        // if($("[data-selected]").length){
-                        //     $("[data-selected]").each(function () {
-                        //         $(this).val($(this).attr("data-selected")).trigger('change.select2');
-                        //     });
-                        // }
+                function formatRepoSelection (repo) {
+                    return repo.id;
+                }
 
-                    });
             });
 
-
         }
 
-        function formatState (state) {
-            console.log(state);
-            if (!state.id) {
-                return state.text;
-            }
-            // var $state = $("<div><span class='flag flag-"+ state.text.toLowerCase() +"'></span>"+ state.id +"</div>");
-            var $state = $("<div><span class='test'>"+ state.text +"</span><span class='test1'>"+ state.description +"</span></div>");
-            return $state;
-        }
     },
     addWitness: function(){
         if($(".addWitness").length){
