@@ -50,6 +50,7 @@ public class NotificationClientCreateService implements ClientCreateServiceAPI<N
     public void setCredentials(GeneralAnnouncementRequestVO requestVO, LoginUserDo loginUserDo) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());

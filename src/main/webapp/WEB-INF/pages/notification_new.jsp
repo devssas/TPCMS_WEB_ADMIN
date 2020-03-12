@@ -77,10 +77,20 @@
                                                         <div class="form-row select-not-find">
                                                             <label>
                                                                 <span class="label">Notification Type *</span>
-                                                                <form:select id="notificationType" path="notificationType" items="${notificationTypes}"/>
+                                                                <select>
+                                                                    <option value="">${notificationTypes}</option>
+                                                                </select>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-row select-not-find">
+                                                            <label>
+                                                                <span class="label">Nature Of Announcement *</span>
+                                                                <form:select id="natureOfAnnouncement" path="natureOfAnnouncement" items="${natureOfAnnouncement}"/>
                                                             </label>
                                                         </div>
                                                     </div>
+
                                                     <div>
                                                         <div class="form-row">
                                                             <label>

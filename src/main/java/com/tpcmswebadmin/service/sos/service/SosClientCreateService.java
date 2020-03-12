@@ -47,6 +47,7 @@ public class SosClientCreateService implements ClientCreateServiceAPI<Notificati
     public void setCredentials(SOSRequestVO requestVO, LoginUserDo loginUserDo) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());

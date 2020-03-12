@@ -1,7 +1,9 @@
 package com.tpcmswebadmin.webpages.notification.delegate;
 
+import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
+import com.tpcmswebadmin.infrastructure.domain.dto.ResponseMVCDto;
 import com.tpcmswebadmin.service.notification.domain.enums.NotificationType;
 import com.tpcmswebadmin.service.notification.service.NotificationClientCreateService;
 import com.tpcmswebadmin.service.sos.service.SosClientCreateService;
@@ -21,13 +23,30 @@ public class NotificationNewDelegate {
 
     private final SosClientCreateService sosClientCreateService;
 
-    public void createNotification(NotificationCreateModel notificationCreateModel, HttpServletRequest httpServletRequest) {
+    public ResponseMVCDto createNotification(NotificationCreateModel notificationCreateModel, HttpServletRequest httpServletRequest) {
         LoginUserDo loginUserDo = makeLoginUser(httpServletRequest);
+        TPEngineResponse response;
 
-        if(NotificationType.NOTIFICATION.name().equals(notificationCreateModel.getNotificationType()))
-            notificationClientCreateService.create(notificationCreateModel, loginUserDo);
+        if (NotificationType.NOTIFICATION.getTitle().equals(notificationCreateModel.getNotificationType()))
+            response = notificationClientCreateService.create(notificationCreateModel, loginUserDo);
         else
-            sosClientCreateService.create(notificationCreateModel, loginUserDo);
+            response = sosClientCreateService.create(notificationCreateModel, loginUserDo);
+
+        return returnResponseMVCDto(response);
+    }
+
+    private ResponseMVCDto returnResponseMVCDto(TPEngineResponse response) {
+        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
+            return ResponseMVCDto.builder()
+                    .message(null)
+                    .result(true)
+                    .build();
+        } else {
+            return ResponseMVCDto.builder()
+                    .message(response.getResponseCodeVO().getResponseValue())
+                    .result(false)
+                    .build();
+        }
     }
 
     public List<String> getNotificationTypes() {
