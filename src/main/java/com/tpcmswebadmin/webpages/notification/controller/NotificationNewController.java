@@ -32,8 +32,7 @@ public class NotificationNewController {
 
     @GetMapping("/newNotification")
     public String getNotifications(Model model, HttpServletRequest httpServletRequest) {
-        model.addAttribute("newNotificationCreateModel", new NotificationCreateModel());
-        callAttributes(model, httpServletRequest);
+        callAttributes(model, httpServletRequest, new NotificationCreateModel());
 
         return "notification_new";
     }
@@ -47,6 +46,9 @@ public class NotificationNewController {
         }
 
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
+        if(notificationCreateModel.getNotificationType() == null) {
+            notificationCreateModel.setNotificationType("Notification");
+        }
         ResponseMVCDto response = notificationNewDelegate.createNotification(notificationCreateModel, httpServletRequest);
 
         if(response.isResult()) {
@@ -58,13 +60,14 @@ public class NotificationNewController {
                 return "redirect:/dashboardSuperAdmin";
             }
         } else {
-            callAttributes(model, httpServletRequest);
+            callAttributes(model, httpServletRequest, notificationCreateModel);
             model.addAttribute("httpError", response.getMessage());
             return "notification_new";
         }
     }
 
-    private void callAttributes(Model model, HttpServletRequest httpServletRequest) {
+    private void callAttributes(Model model, HttpServletRequest httpServletRequest, NotificationCreateModel notificationCreateModel) {
+        model.addAttribute("newNotificationCreateModel", notificationCreateModel);
         model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
         model.addAttribute("notificationTypes", "Notification");

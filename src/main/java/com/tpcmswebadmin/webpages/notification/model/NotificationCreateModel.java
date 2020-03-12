@@ -14,17 +14,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class NotificationCreateModel {
 
-    @NotNull
     private String notificationType;
 
     private String reportingUnitId;
 
     private String commandCenter;
 
-    @NotNull
     private String statement;
 
-    @NotNull
     private String natureOfAnnouncement;
 
 }

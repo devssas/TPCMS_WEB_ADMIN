@@ -53,6 +53,7 @@
                         <jsp:param name="header" value="Create New Notification" />
                         <jsp:param name="redirect" value="notificationMenu" />
                         <jsp:param name="pageName" value="Notification Menu" />
+                        <jsp:param name="httpError" value="${httpError}" />
                     </jsp:include>
 
                     <form:form id="new-notification-form" modelAttribute="newNotificationCreateModel" method="post" >

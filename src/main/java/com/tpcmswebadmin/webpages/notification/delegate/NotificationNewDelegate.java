@@ -21,16 +21,11 @@ public class NotificationNewDelegate {
 
     private final NotificationClientCreateService notificationClientCreateService;
 
-    private final SosClientCreateService sosClientCreateService;
-
     public ResponseMVCDto createNotification(NotificationCreateModel notificationCreateModel, HttpServletRequest httpServletRequest) {
         LoginUserDo loginUserDo = makeLoginUser(httpServletRequest);
         TPEngineResponse response;
 
-        if (NotificationType.NOTIFICATION.getTitle().equals(notificationCreateModel.getNotificationType()))
-            response = notificationClientCreateService.create(notificationCreateModel, loginUserDo);
-        else
-            response = sosClientCreateService.create(notificationCreateModel, loginUserDo);
+        response = notificationClientCreateService.create(notificationCreateModel, loginUserDo);
 
         return returnResponseMVCDto(response);
     }
