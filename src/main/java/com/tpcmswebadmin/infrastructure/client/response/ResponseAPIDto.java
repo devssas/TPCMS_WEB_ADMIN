@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties
-public class ResponseDto<T> {
+public class ResponseAPIDto<T> {
 
     private String status;
 
@@ -19,7 +19,7 @@ public class ResponseDto<T> {
 
     private DataDto<T> data;
 
-    public ResponseDto(String status, String message) {
+    public ResponseAPIDto(String status, String message) {
         this.status = status;
         this.message = message;
     }

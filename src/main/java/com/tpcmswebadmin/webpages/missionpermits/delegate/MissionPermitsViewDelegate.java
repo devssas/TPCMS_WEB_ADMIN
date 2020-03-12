@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.webpages.missionpermits.delegate;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
 import com.tpcmswebadmin.service.missionpermits.service.MissionPermitsClientService;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +19,9 @@ public class MissionPermitsViewDelegate {
     private final MissionPermitsClientService missionPermitsClientService;
 
     public List<String> getMissionPermitStatuses(HttpServletRequest httpServletRequest) {
-        ResponseDto<MissionPermitsDto> responseDto = missionPermitsClientService.getResponseDto(httpServletRequest);
+        ResponseAPIDto<MissionPermitsDto> responseAPIDto = missionPermitsClientService.getResponseDto(httpServletRequest);
 
-        return responseDto.getData().getTbody().stream().map(MissionPermitsDto::getStatus).distinct().collect(
+        return responseAPIDto.getData().getTbody().stream().map(MissionPermitsDto::getStatus).distinct().collect(
                 Collectors.toList());
     }
 }

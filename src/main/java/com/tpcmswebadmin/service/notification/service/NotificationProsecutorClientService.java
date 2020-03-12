@@ -4,14 +4,13 @@ import com.ssas.tpcms.engine.vo.request.ViewNotificationsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
-import com.tpcmswebadmin.service.notification.service.mapper.NotificationMapper;
 import com.tpcmswebadmin.service.notification.service.mapper.NotificationProsecutorMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +33,7 @@ public class NotificationProsecutorClientService implements ClientServiceAPI<Not
     private final CredentialsService credentialsService;
 
     @Override
-    public ResponseDto<NotificationDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<NotificationDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .accessRole((String) request.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE))
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
@@ -45,24 +44,24 @@ public class NotificationProsecutorClientService implements ClientServiceAPI<Not
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if (response.getGeneralAnnouncementList() == null)
-            return prepareResponseDto(Collections.emptyList(), true);
+            return prepareResponseDto(Collections.emptyList(), true, response);
         else
-            return prepareResponseDto(NotificationProsecutorMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
+            return prepareResponseDto(NotificationProsecutorMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true, response);
     }
 
     @Override
-    public ResponseDto<NotificationDto> prepareResponseDto(List<NotificationDto> list, boolean status) {
-        ResponseDto<NotificationDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<NotificationDto> prepareResponseDto(List<NotificationDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<NotificationDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<NotificationDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+        responseAPIDto.setData(dataDto);
+        responseAPIDto.setMessage("status");
+        responseAPIDto.setStatus("true");
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

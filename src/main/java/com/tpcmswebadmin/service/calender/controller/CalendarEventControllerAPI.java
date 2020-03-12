@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.calender.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.calender.domain.CalendarDto;
 import com.tpcmswebadmin.service.calender.service.CalendarEventService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class CalendarEventControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("calendarEvent")
-    public ResponseDto<CalendarDto> getPoliceOfficers(@RequestParam("calendarDate") String date, HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<CalendarDto> getPoliceOfficers(@RequestParam("calendarDate") String date, HttpServletRequest httpServletRequest) {
         return calendarEventService.getResponseDto(date, httpServletRequest);
     }
 

@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.webpages.criminals.delegate;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.criminals.domain.dto.CasesDto;
 import com.tpcmswebadmin.service.criminals.domain.dto.CrimeReportDto;
 import com.tpcmswebadmin.service.criminals.service.CrimeReportsClientService;
@@ -21,17 +21,17 @@ public class CrimeReportDelegate {
     private final CriminalProfileClientService criminalProfileClientService;
 
     public List<String> getManageCaseStatuses(HttpServletRequest httpServletRequest) {
-        ResponseDto<CrimeReportDto> responseDto = crimeReportsClientService.getResponseDto(httpServletRequest);
+        ResponseAPIDto<CrimeReportDto> responseAPIDto = crimeReportsClientService.getResponseDto(httpServletRequest);
 
-        return responseDto.getData().getTbody().stream()
+        return responseAPIDto.getData().getTbody().stream()
                 .map(CrimeReportDto::getStatus)
                 .distinct().collect(Collectors.toList());
     }
 
     public List<String> getCriminalCaseStatuses(HttpServletRequest httpServletRequest) {
-        ResponseDto<CasesDto> responseDto = criminalProfileClientService.getResponseDto(httpServletRequest);
+        ResponseAPIDto<CasesDto> responseAPIDto = criminalProfileClientService.getResponseDto(httpServletRequest);
 
-        return responseDto.getData().getTbody().stream()
+        return responseAPIDto.getData().getTbody().stream()
                 .map(CasesDto::getStatus)
                 .distinct().collect(Collectors.toList());
     }

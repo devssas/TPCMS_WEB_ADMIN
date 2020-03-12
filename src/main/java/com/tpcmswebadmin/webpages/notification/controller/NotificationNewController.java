@@ -35,10 +35,10 @@ public class NotificationNewController {
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
         model.addAttribute("notificationTypes", notificationNewDelegate.getNotificationTypes());
         model.addAttribute("natureOfAnnouncement", referenceDelegate.getNatureOfAnnouncement());
+        model.addAttribute("newNotificationCreateModel", new NotificationCreateModel());
 
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);
-
 
         if(adminRole.equals(ADMIN.name())) {
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
@@ -65,9 +65,9 @@ public class NotificationNewController {
         if(PROSECUTION.name().equals(adminRole)) {
             return "redirect:/dashboard_prosecutor";
         } else if (ADMIN.name().equals(adminRole)){
-            return "redirect:/dashboard_superadmin";
-        } else {
             return "redirect:/dashboard_admin";
+        } else {
+            return "redirect:/dashboard_superadmin";
         }
     }
 

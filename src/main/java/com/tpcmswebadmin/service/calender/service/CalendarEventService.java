@@ -4,7 +4,7 @@ import com.ssas.tpcms.engine.vo.request.AdminAppointmentRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
@@ -31,8 +31,8 @@ public class CalendarEventService implements ClientServiceAPI<CalendarDto, Login
 
     private final CredentialsService credentialsService;
 
-    public ResponseDto<CalendarDto> getResponseDto(String date, HttpServletRequest request) {
-        ResponseDto<CalendarDto> initialResponse = new ResponseDto<>();
+    public ResponseAPIDto<CalendarDto> getResponseDto(String date, HttpServletRequest request) {
+        ResponseAPIDto<CalendarDto> initialResponse = new ResponseAPIDto<>();
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -42,28 +42,28 @@ public class CalendarEventService implements ClientServiceAPI<CalendarDto, Login
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return response.getAppointmentDetailsList() == null ? initialResponse : prepareResponseDto(CalenderEventMapper.makeCalenderEventList(response.getAppointmentDetailsList()), true);
+        return response.getAppointmentDetailsList() == null ? initialResponse : prepareResponseDto(CalenderEventMapper.makeCalenderEventList(response.getAppointmentDetailsList()), true, response);
     }
 
     @Override
-    public ResponseDto<CalendarDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<CalendarDto> getResponseDto(HttpServletRequest request) {
         log.info("Dummy method, no use");
         return null;
     }
 
     @Override
-    public ResponseDto<CalendarDto> prepareResponseDto(List<CalendarDto> list, boolean status) {
-        ResponseDto<CalendarDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<CalendarDto> prepareResponseDto(List<CalendarDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<CalendarDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<CalendarDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+        responseAPIDto.setData(dataDto);
+        responseAPIDto.setMessage("status");
+        responseAPIDto.setStatus("true");
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

@@ -1,15 +1,11 @@
 package com.tpcmswebadmin.service.reference.service;
 
-import com.ssas.tpcms.engine.vo.response.AllowedWeaponTypesConfigResponseVO;
-import com.ssas.tpcms.engine.vo.response.CommandCenterResponseVO;
-import com.ssas.tpcms.engine.vo.response.NatureOfAnnouncementResponseVO;
-import com.ssas.tpcms.engine.vo.response.OfficerUnitResponseVO;
+import com.ssas.tpcms.engine.vo.response.*;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
+import com.tpcmswebadmin.infrastructure.domain.dto.ResponseDataApiDto;
 import com.tpcmswebadmin.infrastructure.utils.DateUtility;
 import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
-import com.tpcmswebadmin.service.reference.domain.dto.CommandCenterDto;
-import com.tpcmswebadmin.service.reference.domain.dto.NatureOfAnnouncementDto;
-import com.tpcmswebadmin.service.reference.domain.dto.OfficerUnitDto;
+import com.tpcmswebadmin.service.reference.domain.dto.*;
 import com.tpcmswebadmin.service.reference.domain.enums.ClientStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -128,6 +125,52 @@ public class ReferenceService {
                 .commandCenterId(commandCenterResponseVO.getCommandCenterId())
                 .commandCenterLogo1(ImageUtility.convertToBase64image(commandCenterResponseVO.getCommandCenterLogo1()))
                 .commandCenterLogo2(ImageUtility.convertToBase64image(commandCenterResponseVO.getCommandCenterLogo2()))
+                .build();
+    }
+
+    public ResponseDataApiDto<CrimeTypesSimplifiedDto> getCrimeTypes() {
+        try {
+            return makeResponseDataApi(makeCrimeTypesDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeTypesMapping(null, null)));
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on signIn username request. ");
+        }
+
+        return null;
+    }
+
+    private ResponseDataApiDto<CrimeTypesSimplifiedDto> makeResponseDataApi(List<CrimeTypesDto> crimeTypesList) {
+        List<CrimeTypesSimplifiedDto> simplifiedDtoList = new ArrayList<>();
+
+        for(CrimeTypesDto crimeTypes : crimeTypesList) {
+            CrimeTypesSimplifiedDto crimeTypesSimplifiedDto = CrimeTypesSimplifiedDto.builder()
+                    .id(crimeTypes.getCrimeTypeId())
+                    .description(crimeTypes.getCrimeDescAr())
+                    .title(crimeTypes.getCrimeNameAr())
+                    .build();
+
+            simplifiedDtoList.add(crimeTypesSimplifiedDto);
+        }
+
+        return new ResponseDataApiDto<>(simplifiedDtoList);
+    }
+
+    private List<CrimeTypesDto> makeCrimeTypesDtoList(CrimeTypeConfigResponseVO[] crimeTypeConfigResponseVOS) {
+        return Arrays.stream(crimeTypeConfigResponseVOS)
+                .map(ReferenceService::makeCrimeTypesDto)
+                .collect(Collectors.toList());
+    }
+
+    private static CrimeTypesDto makeCrimeTypesDto(CrimeTypeConfigResponseVO crimeTypeConfigResponseVO) {
+        return CrimeTypesDto.builder()
+                .additionalRemarks(crimeTypeConfigResponseVO.getAdditionalRemarks())
+                .crimeDescAr(crimeTypeConfigResponseVO.getCrimeDesc_Ar())
+                .crimeNameAr(crimeTypeConfigResponseVO.getCrimeName_Ar())
+                .crimeDescEn(crimeTypeConfigResponseVO.getCrimeDesc_En())
+                .crimeNameEn(crimeTypeConfigResponseVO.getCrimeName_En())
+                .crimeTypeCode(crimeTypeConfigResponseVO.getCrimeTypeCode())
+                .crimeTypeId(crimeTypeConfigResponseVO.getCrimeTypeId())
+                .crimeTypeLogo1(ImageUtility.convertToBase64image(crimeTypeConfigResponseVO.getCrimeTypeLogo1()))
+                .crimeTypeLogo2(ImageUtility.convertToBase64image(crimeTypeConfigResponseVO.getCrimeTypeLogo2()))
                 .build();
     }
 

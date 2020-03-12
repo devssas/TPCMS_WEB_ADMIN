@@ -1,18 +1,18 @@
-package com.tpcmswebadmin.webpages.policevehicles.dto;
+package com.tpcmswebadmin.infrastructure.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseDto {
+public class ResponseDataApiDto<T> {
 
-    private boolean result;
-
-    private String message;
+    private List<T> data;
 
 }

@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.sos.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.sos.domain.SosCallDetailDto;
 import com.tpcmswebadmin.service.sos.domain.SosCallDto;
 import com.tpcmswebadmin.service.sos.service.SosClientService;
@@ -19,7 +19,7 @@ public class SosCallControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("sosCall")
-    public ResponseDto<SosCallDto> getSosCalls(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<SosCallDto> getSosCalls(HttpServletRequest httpServletRequest) {
         return sosClientService.getResponseDto(httpServletRequest);
     }
 

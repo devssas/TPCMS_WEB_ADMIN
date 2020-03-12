@@ -1,18 +1,16 @@
 package com.tpcmswebadmin.service.sos.service;
 
 import com.ssas.tpcms.engine.vo.request.ViewSOSRequestVO;
-import com.ssas.tpcms.engine.vo.response.SOSResponseVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.dashboard.domain.MapCenter;
-import com.tpcmswebadmin.service.policevehicles.service.mapper.PoliceVehicleMapper;
 import com.tpcmswebadmin.service.sos.domain.SosCallDetailDto;
 import com.tpcmswebadmin.service.sos.domain.SosCallDto;
 import com.tpcmswebadmin.service.sos.service.mapper.SosCallsMapper;
@@ -24,10 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -74,7 +70,7 @@ public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserD
     }
 
     @Override
-    public ResponseDto<SosCallDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<SosCallDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -84,33 +80,33 @@ public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserD
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if (response.getSosRequestList() == null)
-            return prepareResponseDto(Collections.emptyList(), false);
+            return prepareResponseDto(Collections.emptyList(), false, response);
         else
-            return prepareResponseDto(SosCallsMapper.makeSosCallDtoList(response.getSosRequestList()), true);
+            return prepareResponseDto(SosCallsMapper.makeSosCallDtoList(response.getSosRequestList()), true, response);
     }
 
     @Override
-    public ResponseDto<SosCallDto> prepareResponseDto(List<SosCallDto> list, boolean status) {
-        ResponseDto<SosCallDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<SosCallDto> prepareResponseDto(List<SosCallDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<SosCallDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<SosCallDto> dataDto = new DataDto<>();
 
         if(status) {
             dataDto.setTbody(list);
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("success");
-            responseDto.setStatus("true");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("success");
+            responseAPIDto.setStatus("true");
         } else {
             dataDto.setTbody(Collections.emptyList());
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("There's no data available for loggedin user");
-            responseDto.setStatus("false");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("There's no data available for loggedin user");
+            responseAPIDto.setStatus("false");
         }
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

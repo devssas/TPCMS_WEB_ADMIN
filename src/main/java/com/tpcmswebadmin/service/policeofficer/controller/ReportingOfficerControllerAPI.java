@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.policeofficer.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.policeofficer.domain.dto.ReportingOfficerDto;
 import com.tpcmswebadmin.service.policeofficer.service.ReportingOfficerClientService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class ReportingOfficerControllerAPI {
     private final ReportingOfficerClientService reportingOfficerClientService;
 
     @GetMapping("/reporting-officer/{name}")
-    public ResponseDto<ReportingOfficerDto> getByName(@PathVariable("name") String name, HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<ReportingOfficerDto> getByName(@PathVariable("name") String name, HttpServletRequest httpServletRequest) {
         return reportingOfficerClientService.getResponseDto(name, httpServletRequest);
     }
 

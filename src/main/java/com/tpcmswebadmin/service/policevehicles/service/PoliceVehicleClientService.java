@@ -4,14 +4,13 @@ import com.ssas.tpcms.engine.vo.request.ViewVehicleDetailsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.missionpermits.service.mapper.MissionPermitsMapper;
 import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleCardDto;
 import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleDto;
 import com.tpcmswebadmin.service.policevehicles.service.mapper.PoliceVehicleMapper;
@@ -81,7 +80,7 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
     }
 
     @Override
-    public ResponseDto<PoliceVehicleDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<PoliceVehicleDto> getResponseDto(HttpServletRequest request) {
         String searchKey =  request.getSession().getAttribute("search") == null ? null : (String) request.getSession().getAttribute("search");
         String status =  request.getSession().getAttribute("status") == null ? null : (String) request.getSession().getAttribute("status");
 
@@ -99,33 +98,33 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if (response.getVehicleDetailsList() == null)
-            return prepareResponseDto(Collections.emptyList(), false);
+            return prepareResponseDto(Collections.emptyList(), false, response);
         else
-            return prepareResponseDto(PoliceVehicleMapper.makePoliceVehicleDtoList(response.getVehicleDetailsList()), true);
+            return prepareResponseDto(PoliceVehicleMapper.makePoliceVehicleDtoList(response.getVehicleDetailsList()), true, response);
     }
 
     @Override
-    public ResponseDto<PoliceVehicleDto> prepareResponseDto(List<PoliceVehicleDto> list, boolean status) {
-        ResponseDto<PoliceVehicleDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<PoliceVehicleDto> prepareResponseDto(List<PoliceVehicleDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<PoliceVehicleDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<PoliceVehicleDto> dataDto = new DataDto<>();
 
         if(status) {
             dataDto.setTbody(list);
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("success");
-            responseDto.setStatus("true");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("success");
+            responseAPIDto.setStatus("true");
         } else {
             dataDto.setTbody(Collections.emptyList());
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("There's no data available for loggedin user");
-            responseDto.setStatus("false");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage(response.getResponseCodeVO().getResponseCode() + " - " + response.getResponseCodeVO().getResponseValue());
+            responseAPIDto.setStatus("false");
         }
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

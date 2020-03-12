@@ -1,5 +1,7 @@
 package com.tpcmswebadmin.service.reference.controller;
 
+import com.tpcmswebadmin.infrastructure.domain.dto.ResponseDataApiDto;
+import com.tpcmswebadmin.service.reference.domain.dto.CrimeTypesSimplifiedDto;
 import com.tpcmswebadmin.service.reference.service.ReferenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,5 +25,10 @@ public class ReferenceController {
     @GetMapping("weapon-types")
     public List<String> getWeaponTypes() {
         return referenceService.getWeaponTypes();
+    }
+
+    @GetMapping("crime-types")
+    public ResponseDataApiDto<CrimeTypesSimplifiedDto> getCrimeTypes() {
+        return referenceService.getCrimeTypes();
     }
 }

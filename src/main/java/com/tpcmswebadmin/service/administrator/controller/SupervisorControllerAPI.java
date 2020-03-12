@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.administrator.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.administrator.domain.SupervisorDto;
 import com.tpcmswebadmin.service.administrator.service.SupervisorClientService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class SupervisorControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("supervisor")
-    public ResponseDto<SupervisorDto> getSupervisors(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<SupervisorDto> getSupervisors(HttpServletRequest httpServletRequest) {
         return supervisorClientService.getResponseDto(httpServletRequest);
     }
 }

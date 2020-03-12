@@ -4,7 +4,7 @@ import com.ssas.tpcms.engine.vo.request.ViewOfficersProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
@@ -66,7 +66,7 @@ public class SupervisorClientService implements ClientServiceAPI<SupervisorDto, 
     }
 
     @Override
-    public ResponseDto<SupervisorDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<SupervisorDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -75,22 +75,22 @@ public class SupervisorClientService implements ClientServiceAPI<SupervisorDto, 
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(AdministratorMapper.makeSupervisorDtoList(response.getOfficersProfileList()), true);
+        return prepareResponseDto(AdministratorMapper.makeSupervisorDtoList(response.getOfficersProfileList()), true, response);
     }
 
     @Override
-    public ResponseDto<SupervisorDto> prepareResponseDto(List<SupervisorDto> list, boolean status) {
-        ResponseDto<SupervisorDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<SupervisorDto> prepareResponseDto(List<SupervisorDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<SupervisorDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<SupervisorDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+        responseAPIDto.setData(dataDto);
+        responseAPIDto.setMessage("status");
+        responseAPIDto.setStatus("true");
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

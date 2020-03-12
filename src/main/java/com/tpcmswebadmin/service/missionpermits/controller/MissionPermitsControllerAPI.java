@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.missionpermits.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
 import com.tpcmswebadmin.service.missionpermits.service.MissionPermitsClientService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class MissionPermitsControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("missionPermits")
-    public ResponseDto<MissionPermitsDto> getSpecialMissions(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<MissionPermitsDto> getSpecialMissions(HttpServletRequest httpServletRequest) {
         return missionPermitsClientService.getResponseDto(httpServletRequest);
     }
 }

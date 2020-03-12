@@ -5,7 +5,7 @@ import com.ssas.tpcms.engine.vo.request.ViewSpecialMissionRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
@@ -17,7 +17,6 @@ import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionCardDto;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionPermitsDto;
 import com.tpcmswebadmin.service.missionpermits.service.mapper.MissionPermitsMapper;
-import com.tpcmswebadmin.webpages.missionpermits.model.MissionPermitCardCreateModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -81,7 +80,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
     }
 
     @Override
-    public ResponseDto<MissionPermitsDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<MissionPermitsDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .accessRole((String) request.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE))
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
@@ -92,33 +91,33 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if (response.getSpecialMissionList() == null)
-            return prepareResponseDto(Collections.emptyList(), false);
+            return prepareResponseDto(Collections.emptyList(), false, response);
         else
-            return prepareResponseDto(MissionPermitsMapper.makeMissionPermitsDtoList(response.getSpecialMissionList()), true);
+            return prepareResponseDto(MissionPermitsMapper.makeMissionPermitsDtoList(response.getSpecialMissionList()), true, response);
     }
 
     @Override
-    public ResponseDto<MissionPermitsDto> prepareResponseDto(List<MissionPermitsDto> list, boolean status) {
-        ResponseDto<MissionPermitsDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<MissionPermitsDto> prepareResponseDto(List<MissionPermitsDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<MissionPermitsDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<MissionPermitsDto> dataDto = new DataDto<>();
 
         if(status) {
             dataDto.setTbody(list);
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("success");
-            responseDto.setStatus("true");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("success");
+            responseAPIDto.setStatus("true");
         } else {
             dataDto.setTbody(Collections.emptyList());
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("There's no data available for loggedin user");
-            responseDto.setStatus("false");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage(response.getResponseCodeVO().getResponseCode() + " - " + response.getResponseCodeVO().getResponseValue());
+            responseAPIDto.setStatus("false");
         }
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

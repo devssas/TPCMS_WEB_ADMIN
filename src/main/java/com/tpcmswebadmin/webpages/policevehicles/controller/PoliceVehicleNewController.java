@@ -2,9 +2,8 @@ package com.tpcmswebadmin.webpages.policevehicles.controller;
 
 import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
-import com.tpcmswebadmin.webpages.card.domain.VehicleCardModel;
 import com.tpcmswebadmin.webpages.policevehicles.delegate.PoliceVehicleNewDelegate;
-import com.tpcmswebadmin.webpages.policevehicles.dto.ResponseDto;
+import com.tpcmswebadmin.infrastructure.domain.dto.ResponseMVCDto;
 import com.tpcmswebadmin.webpages.policevehicles.model.PoliceVehicleNewModel;
 import com.tpcmswebadmin.webpages.reference.delegate.ReferenceDelegate;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
-import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.PROSECUTION;
 
 @Slf4j
 @Controller
@@ -49,7 +47,7 @@ public class PoliceVehicleNewController {
             return "police_vehicle_create";
         }
 
-        ResponseDto response = policeVehicleNewDelegate.createVehicle(policeVehicleNewModel, httpServletRequest);
+        ResponseMVCDto response = policeVehicleNewDelegate.createVehicle(policeVehicleNewModel, httpServletRequest);
 
         if(response.isResult()) {
             return "redirect:/police_vehicles_view";

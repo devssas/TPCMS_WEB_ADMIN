@@ -55,55 +55,47 @@
                         <jsp:param name="pageName" value="Notification Menu" />
                     </jsp:include>
 
-                    <form:form id="new-notification-form" modelAttribute="newNotificationModel" method="post" >
+                    <form:form id="new-notification-form" modelAttribute="newNotificationCreateModel" method="post" >
                         <section class="content-box">
-
-                            <div class="divided-content flout-2">
-
                                 <div>
                                     <div class="box-v3">
-
                                         <div class="inner">
-
                                             <div class="highlight box-highlight">
                                                 <h3>NOTIFICATION DETAILS</h3>
                                             </div>
-
                                             <div class="form-container">
-                                                <div class="table-filter-inner">
-                                                    <div class="form-row select select-not-find">
-                                                        <label>
-                                                            <span class="label">Notification Type *</span>
-                                                            <form:select id="notificationType" path="notificationType" items="${notificationTypes}"/>
-                                                        </label>
+                                                <div class="form-row single-photo-upload">
+                                                    <div class="photo-upload upload-view">
+                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
+                                                        <i class="icon-plus"></i>-
+                                                        <span class="description">Upload Photo</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="table-filter-inner">
-                                                    <div class="form-row select select-not-find">
-                                                        <label>
-                                                            <span class="label">Nature Of Announcement *</span>
-                                                            <form:select id="natureOfAnnouncement" path="natureOfAnnouncement" items="${natureOfAnnouncement}"/>
-                                                        </label>
+                                                <div class="divided-content flout-2">
+                                                    <div>
+                                                        <div class="form-row select-not-find">
+                                                            <label>
+                                                                <span class="label">Notification Type *</span>
+                                                                <form:select id="notificationType" path="notificationType" items="${notificationTypes}"/>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="form-row">
+                                                            <label>
+                                                                <span class="label">Crime Type</span>
+                                                                <select name="select1" class="crime-select" data-method="get" id="select1" data-url="${pageContext.request.contextPath}/api/reference/crime-types">
+                                                                    <option value="">Placeholder</option>
+                                                                </select>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div> <!-- form-container -->
 
-                                        </div> <!-- inner -->
-
-                                    </div> <!-- box-v3 -->
-                                </div>
-
-                                <div>
-                                    <div class="box-v3">
-                                        <div class="inner">
-                                            <div class="highlight box-highlight">
-                                                <h3>NOTIFICATION</h3>
-                                            </div>
-
-                                            <div class="form-container">
                                                 <div class="form-row">
                                                     <label>
+                                                        <span class="label">textarea</span>
                                                         <form:textarea id="statement" path="statement" placeholder="Statement"/>
                                                     </label>
                                                 </div>
@@ -111,15 +103,12 @@
                                         </div> <!-- inner -->
                                     </div> <!-- box-v3 -->
                                 </div>
+                                <div class="button-row">
+                                    <input type="submit" class="button button-v4 color-1 fix-size-sml" value="Create">
+                                    <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
+                                </div>
+                            </section> <!-- content-box -->
 
-                            </div> <!-- divided-content flout-2 -->
-
-                            <div class="button-row">
-                                <input type="submit" class="button button-v4 color-1 fix-size-sml" value="Create">
-                                <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
-                            </div>
-
-                        </section> <!-- content-box -->
                     </form:form>
 
                 </section> <!-- content -->

@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.notification.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import com.tpcmswebadmin.service.notification.service.NotificationClientService;
 import com.tpcmswebadmin.service.notification.service.NotificationProsecutorClientService;
@@ -24,13 +24,13 @@ public class NotificationControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public ResponseDto<NotificationDto> getNotifications(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<NotificationDto> getNotifications(HttpServletRequest httpServletRequest) {
         return notificationClientService.getResponseDto(httpServletRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("prosecutor")
-    public ResponseDto<NotificationDto> getProsecutorNotifications(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<NotificationDto> getProsecutorNotifications(HttpServletRequest httpServletRequest) {
         return notificationProsecutorClientService.getResponseDto(httpServletRequest);
     }
 

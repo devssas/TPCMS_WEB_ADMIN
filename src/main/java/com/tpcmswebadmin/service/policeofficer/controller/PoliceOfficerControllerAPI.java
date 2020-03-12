@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.policeofficer.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.policeofficer.domain.dto.PoliceOfficerDto;
 import com.tpcmswebadmin.service.policeofficer.service.PoliceOfficerClientService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class PoliceOfficerControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("policeStaff")
-    public ResponseDto<PoliceOfficerDto> getPoliceOfficers(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<PoliceOfficerDto> getPoliceOfficers(HttpServletRequest httpServletRequest) {
         return policeOfficerClientService.getResponseDto(httpServletRequest);
     }
 

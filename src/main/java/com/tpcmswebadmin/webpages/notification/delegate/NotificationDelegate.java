@@ -1,13 +1,11 @@
 package com.tpcmswebadmin.webpages.notification.delegate;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import com.tpcmswebadmin.service.notification.domain.enums.NotificationType;
 import com.tpcmswebadmin.service.notification.service.NotificationClientService;
-import com.tpcmswebadmin.service.reference.domain.dto.OfficerUnitDto;
-import com.tpcmswebadmin.service.reference.service.ReferenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -28,9 +26,9 @@ public class NotificationDelegate {
     }
 
     public List<String> getNotificationStatuses(HttpServletRequest httpServletRequest) {
-        ResponseDto<NotificationDto> responseDto = notificationClientService.getResponseDto(httpServletRequest);
+        ResponseAPIDto<NotificationDto> responseAPIDto = notificationClientService.getResponseDto(httpServletRequest);
 
-        return responseDto.getData().getTbody().stream().map(NotificationDto::getNatureOfAnnouncement).distinct().collect(Collectors.toList());
+        return responseAPIDto.getData().getTbody().stream().map(NotificationDto::getNatureOfAnnouncement).distinct().collect(Collectors.toList());
     }
 
     private LoginUserDo makeLoginUser(HttpServletRequest httpServletRequest) {

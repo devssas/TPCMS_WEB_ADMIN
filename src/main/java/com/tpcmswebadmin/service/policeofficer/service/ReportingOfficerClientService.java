@@ -1,11 +1,10 @@
 package com.tpcmswebadmin.service.policeofficer.service;
 
 import com.ssas.tpcms.engine.vo.request.ReportingOfficerRequestVO;
-import com.ssas.tpcms.engine.vo.request.ViewOfficersProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
@@ -30,7 +29,7 @@ public class ReportingOfficerClientService  {
 
     private final CredentialsService credentialsService;
 
-    public ResponseDto<ReportingOfficerDto> getResponseDto(String name, HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<ReportingOfficerDto> getResponseDto(String name, HttpServletRequest httpServletRequest) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -43,28 +42,28 @@ public class ReportingOfficerClientService  {
     }
 
 
-    public ResponseDto<ReportingOfficerDto> prepareResponseDto(List<ReportingOfficerDto> arrayList) {
-        ResponseDto<ReportingOfficerDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<ReportingOfficerDto> prepareResponseDto(List<ReportingOfficerDto> arrayList) {
+        ResponseAPIDto<ReportingOfficerDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<ReportingOfficerDto> dataDto = new DataDto<>();
 
         if(arrayList.isEmpty()) {
             dataDto.setTbody(null);
             dataDto.setThead(null);
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage(null);
-            responseDto.setStatus("true");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage(null);
+            responseAPIDto.setStatus("true");
         } else {
             dataDto.setTbody(null);
             dataDto.setThead(null);
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage(null);
-            responseDto.setStatus("false");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage(null);
+            responseAPIDto.setStatus("false");
         }
 
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     public TPEngineResponse makeClientCall(String name, LoginUserDo loginUserDo) {

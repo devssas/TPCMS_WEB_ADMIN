@@ -52,7 +52,8 @@ var main = {
 
             $.ajax({
                 type: "GET",
-                url: dataURL
+                url: dataURL,
+                cache: false
             })
                 .done(function (response) {
                     markersList = response;
@@ -77,7 +78,8 @@ var main = {
             if(templateURL){
                 $.ajax({
                     url: templateURL,
-                    type: "GET"
+                    type: "GET",
+                    cache: false
                 })
                     .done(function (jsonTemplate) {
                         var template = Handlebars.compile(jsonTemplate),
@@ -226,7 +228,8 @@ var main = {
                                     search: params.term
                                 }
                                 return query;
-                            }
+                            },
+                            cache: false
                         },
                         dropdownParent: $(element)
                     }).off("select2:open").on("select2:open", function (e) {
@@ -241,6 +244,55 @@ var main = {
                     });
                 }
             });
+        }
+
+        if($(".crime-select").length){
+
+            $(".crime-select").each(function () {
+
+                $(this).select2({
+                    ajax: {
+                        url: $(this).data("url"),
+                        dataType: 'json',
+                        processResults: function (data, params) {
+                            // parse the results into the format expected by Select2
+                            // since we are using custom formatting functions we do not need to
+                            // alter the remote JSON data, except to indicate that infinite
+                            // scrolling can be used
+                            params.page = params.page || 1;
+                            return {
+                                results: data.data,
+                                pagination: {
+                                    more: (params.page * 30) < data.total_count
+                                }
+                            };
+                        },
+                        cache: false
+                    },
+                    minimumResultsForSearch: -1,
+                    templateResult: formatRepo,
+                    templateSelection: formatRepoSelection
+                });
+
+                function formatRepo (repo) {
+
+                    if (repo.loading) {
+                        return repo.text;
+                    }
+
+                    var $container = $(
+                        "<div class='select-custom-options'><div class='title'>" + repo.title + "</div><div class='description'>" + repo.description + "</div></div>"
+                    );
+
+                    return $container;
+                }
+
+                function formatRepoSelection (repo) {
+                    return repo.id;
+                }
+
+            });
+
         }
 
     },
@@ -435,6 +487,7 @@ var main = {
                     type	: "GET",
                     url		: templateURL,
                     async	: false,
+                    cache: false,
                     success	: function (response) {
                         templateHtml = response;
                     }
@@ -455,6 +508,7 @@ var main = {
                         url			: dataURL,
                         dataType	: "json",
                         data		: data,
+                        cache: false,
                         success		: function (response) {
 
                             if(response.data.length || response.data.tbody.length){

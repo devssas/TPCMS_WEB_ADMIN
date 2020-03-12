@@ -4,7 +4,7 @@ import com.ssas.tpcms.engine.vo.request.ViewCriminalProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
@@ -34,7 +34,7 @@ public class ProsecutionCasesSubmitReviewClientService implements ClientServiceA
     private final CredentialsService credentialsService;
 
     @Override
-    public ResponseDto<ProsecutionCasesDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<ProsecutionCasesDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -44,35 +44,35 @@ public class ProsecutionCasesSubmitReviewClientService implements ClientServiceA
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if(response.getCriminalProfileList() == null) {
-            return prepareResponseDto(Collections.emptyList(), false);
+            return prepareResponseDto(Collections.emptyList(), false, response);
         } else {
             List<ProsecutionCasesDto> resultList = ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList());
-            return prepareResponseDto(resultList, true);
+            return prepareResponseDto(resultList, true, response);
         }
     }
 
     @Override
-    public ResponseDto<ProsecutionCasesDto> prepareResponseDto(List<ProsecutionCasesDto> list, boolean status) {
-        ResponseDto<ProsecutionCasesDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<ProsecutionCasesDto> prepareResponseDto(List<ProsecutionCasesDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<ProsecutionCasesDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<ProsecutionCasesDto> dataDto = new DataDto<>();
 
         if(status) {
             dataDto.setTbody(list);
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("success");
-            responseDto.setStatus("true");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("success");
+            responseAPIDto.setStatus("true");
         } else {
             dataDto.setTbody(Collections.emptyList());
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("failure");
-            responseDto.setStatus("false");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("failure");
+            responseAPIDto.setStatus("false");
         }
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

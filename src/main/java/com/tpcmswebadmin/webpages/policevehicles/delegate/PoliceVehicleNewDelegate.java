@@ -4,7 +4,7 @@ import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.service.policevehicles.service.PoliceVehicleCreateClientService;
-import com.tpcmswebadmin.webpages.policevehicles.dto.ResponseDto;
+import com.tpcmswebadmin.infrastructure.domain.dto.ResponseMVCDto;
 import com.tpcmswebadmin.webpages.policevehicles.model.PoliceVehicleNewModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,17 +17,17 @@ public class PoliceVehicleNewDelegate {
 
     private final PoliceVehicleCreateClientService policeVehicleCreateClientService;
 
-    public ResponseDto createVehicle(PoliceVehicleNewModel policeVehicleNewModel, HttpServletRequest httpServletRequest) {
+    public ResponseMVCDto createVehicle(PoliceVehicleNewModel policeVehicleNewModel, HttpServletRequest httpServletRequest) {
         LoginUserDo loginUserDo = makeLoginUser(httpServletRequest);
         TPEngineResponse response = policeVehicleCreateClientService.create(policeVehicleNewModel, loginUserDo);
 
          if(response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
-             return ResponseDto.builder()
+             return ResponseMVCDto.builder()
                      .message(null)
                      .result(true)
                      .build();
          } else {
-             return ResponseDto.builder()
+             return ResponseMVCDto.builder()
                      .message(response.getResponseCodeVO().getResponseValue())
                      .result(false)
                      .build();

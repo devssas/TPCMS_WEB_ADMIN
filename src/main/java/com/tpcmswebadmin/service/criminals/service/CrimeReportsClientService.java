@@ -4,7 +4,7 @@ import com.ssas.tpcms.engine.vo.request.ViewCrimeReportRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
@@ -70,7 +70,7 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
     }
 
     @Override
-    public ResponseDto<CrimeReportDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<CrimeReportDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -79,22 +79,22 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(CrimeReportsMapper.makeCrimeReportDtoList(response.getCrimeReportList()), true);
+        return prepareResponseDto(CrimeReportsMapper.makeCrimeReportDtoList(response.getCrimeReportList()), true, response);
     }
 
     @Override
-    public ResponseDto<CrimeReportDto> prepareResponseDto(List<CrimeReportDto> list, boolean status) {
-        ResponseDto<CrimeReportDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<CrimeReportDto> prepareResponseDto(List<CrimeReportDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<CrimeReportDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<CrimeReportDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+        responseAPIDto.setData(dataDto);
+        responseAPIDto.setMessage("status");
+        responseAPIDto.setStatus("true");
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

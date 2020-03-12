@@ -1,11 +1,10 @@
 package com.tpcmswebadmin.service.criminals.service;
 
-import com.ssas.tpcms.engine.vo.request.ViewCrimeReportRequestVO;
 import com.ssas.tpcms.engine.vo.request.ViewCriminalProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
@@ -13,7 +12,6 @@ import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
 import com.tpcmswebadmin.infrastructure.utils.StringUtility;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.criminals.domain.card.CrimeReportCard;
 import com.tpcmswebadmin.service.criminals.domain.card.ManageCasesCard;
 import com.tpcmswebadmin.service.criminals.domain.dto.CasesDto;
 import com.tpcmswebadmin.service.criminals.service.mapper.CriminalProfileMapper;
@@ -25,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -69,7 +66,7 @@ public class CriminalProfileClientService implements ClientServiceAPI<CasesDto, 
     }
 
     @Override
-    public ResponseDto<CasesDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<CasesDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -78,22 +75,22 @@ public class CriminalProfileClientService implements ClientServiceAPI<CasesDto, 
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(CriminalProfileMapper.makeCasesDtoList(response.getCriminalProfileList()), true);
+        return prepareResponseDto(CriminalProfileMapper.makeCasesDtoList(response.getCriminalProfileList()), true, response);
     }
 
     @Override
-    public ResponseDto<CasesDto> prepareResponseDto(List<CasesDto> list, boolean status) {
-        ResponseDto<CasesDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<CasesDto> prepareResponseDto(List<CasesDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<CasesDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<CasesDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+        responseAPIDto.setData(dataDto);
+        responseAPIDto.setMessage("status");
+        responseAPIDto.setStatus("true");
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

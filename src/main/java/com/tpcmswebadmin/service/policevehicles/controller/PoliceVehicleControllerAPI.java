@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.policevehicles.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.policevehicles.domain.dto.PoliceVehicleDto;
 import com.tpcmswebadmin.service.policevehicles.service.PoliceVehicleClientService;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +18,9 @@ public class PoliceVehicleControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("policeVehicle")
-    public ResponseDto<PoliceVehicleDto> getPoliceVehicles(@RequestParam(value = "search", required = false) String search,
-                                                           @RequestParam(value = "status", required = false) String status,
-                                                           HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<PoliceVehicleDto> getPoliceVehicles(@RequestParam(value = "search", required = false) String search,
+                                                              @RequestParam(value = "status", required = false) String status,
+                                                              HttpServletRequest httpServletRequest) {
 
         if(search != null)
             httpServletRequest.getSession().setAttribute("search", search);

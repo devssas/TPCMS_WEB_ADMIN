@@ -1,7 +1,7 @@
 package com.tpcmswebadmin.infrastructure.service;
 
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -18,9 +18,9 @@ public interface ClientServiceAPI<T, K, E> {
      *
      */
 
-    ResponseDto<T> getResponseDto(HttpServletRequest request);
+    ResponseAPIDto<T> getResponseDto(HttpServletRequest request);
 
-    ResponseDto<T> prepareResponseDto(List<T> arrayList, boolean status);
+    ResponseAPIDto<T> prepareResponseDto(List<T> arrayList, boolean status, TPEngineResponse response);
 
     TPEngineResponse makeClientCall(K model);
 

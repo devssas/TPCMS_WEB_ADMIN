@@ -5,13 +5,12 @@ import com.ssas.tpcms.engine.vo.request.ViewNotificationsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
-import com.tpcmswebadmin.service.missionpermits.service.mapper.MissionPermitsMapper;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import com.tpcmswebadmin.service.notification.domain.enums.NotificationType;
 import com.tpcmswebadmin.service.notification.service.mapper.NotificationMapper;
@@ -70,7 +69,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
     }
 
     @Override
-    public ResponseDto<NotificationDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<NotificationDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .accessRole((String) request.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE))
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
@@ -81,33 +80,33 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         if (response.getGeneralAnnouncementList() == null)
-            return prepareResponseDto(Collections.emptyList(), false);
+            return prepareResponseDto(Collections.emptyList(), false, response);
         else
-            return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true);
+            return prepareResponseDto(NotificationMapper.makeNotificationDtoList(response.getGeneralAnnouncementList()), true, response);
     }
 
     @Override
-    public ResponseDto<NotificationDto> prepareResponseDto(List<NotificationDto> list, boolean status) {
-        ResponseDto<NotificationDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<NotificationDto> prepareResponseDto(List<NotificationDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<NotificationDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<NotificationDto> dataDto = new DataDto<>();
 
         if(status) {
             dataDto.setTbody(list);
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("success");
-            responseDto.setStatus("true");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("success");
+            responseAPIDto.setStatus("true");
         } else {
             dataDto.setTbody(Collections.emptyList());
             dataDto.setThead(setTableColumnNames());
 
-            responseDto.setData(dataDto);
-            responseDto.setMessage("There's no data available for loggedin user");
-            responseDto.setStatus("false");
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("There's no data available for loggedin user");
+            responseAPIDto.setStatus("false");
         }
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.tpcmswebadmin.service.prosecutionoffice.controller;
 
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
 import com.tpcmswebadmin.service.prosecutionoffice.service.ProsecutionCasesHistoryClientService;
 import com.tpcmswebadmin.service.prosecutionoffice.service.ProsecutionCasesRequestEvidenceClientService;
@@ -30,25 +30,25 @@ public class ProsecutionOfficeControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("casesHistory")
-    public ResponseDto<ProsecutionCasesDto> getCasesHistory(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<ProsecutionCasesDto> getCasesHistory(HttpServletRequest httpServletRequest) {
         return prosecutionCasesHistoryClientService.getResponseDto(httpServletRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("cases")
-    public ResponseDto<ProsecutionCasesDto> getManageCases(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<ProsecutionCasesDto> getManageCases(HttpServletRequest httpServletRequest) {
         return prosecutionManageCasesClientService.getResponseDto(httpServletRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("cases/evidence")
-    public ResponseDto<ProsecutionCasesDto> getRequestForEvidence(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<ProsecutionCasesDto> getRequestForEvidence(HttpServletRequest httpServletRequest) {
         return prosecutionCasesRequestEvidenceClientService.getResponseDto(httpServletRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("cases/review")
-    public ResponseDto<ProsecutionCasesDto> getSubmitForReview(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<ProsecutionCasesDto> getSubmitForReview(HttpServletRequest httpServletRequest) {
         return prosecutionCasesSubmitReviewClientService.getResponseDto(httpServletRequest);
     }
 

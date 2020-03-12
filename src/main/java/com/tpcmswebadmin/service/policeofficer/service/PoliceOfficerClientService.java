@@ -4,7 +4,7 @@ import com.ssas.tpcms.engine.vo.request.ViewOfficersProfileRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
-import com.tpcmswebadmin.infrastructure.client.response.ResponseDto;
+import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
@@ -76,7 +76,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
     }
 
     @Override
-    public ResponseDto<PoliceOfficerDto> getResponseDto(HttpServletRequest request) {
+    public ResponseAPIDto<PoliceOfficerDto> getResponseDto(HttpServletRequest request) {
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
                 .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
@@ -85,7 +85,7 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(PoliceOfficerMapper.makePoliceStaffDtoList(response.getOfficersProfileList()), true);
+        return prepareResponseDto(PoliceOfficerMapper.makePoliceStaffDtoList(response.getOfficersProfileList()), true, response);
     }
 
     @Override
@@ -112,18 +112,18 @@ public class PoliceOfficerClientService implements ClientServiceAPI<PoliceOffice
     }
 
     @Override
-    public ResponseDto<PoliceOfficerDto> prepareResponseDto(List<PoliceOfficerDto> list, boolean status) {
-        ResponseDto<PoliceOfficerDto> responseDto = new ResponseDto<>();
+    public ResponseAPIDto<PoliceOfficerDto> prepareResponseDto(List<PoliceOfficerDto> list, boolean status, TPEngineResponse response) {
+        ResponseAPIDto<PoliceOfficerDto> responseAPIDto = new ResponseAPIDto<>();
         DataDto<PoliceOfficerDto> dataDto = new DataDto<>();
 
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
 
-        responseDto.setData(dataDto);
-        responseDto.setMessage("status");
-        responseDto.setStatus("true");
+        responseAPIDto.setData(dataDto);
+        responseAPIDto.setMessage("status");
+        responseAPIDto.setStatus("true");
 
-        return responseDto;
+        return responseAPIDto;
     }
 
     @Override
