@@ -95,8 +95,8 @@
 
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">textarea</span>
-                                                        <form:textarea id="statement" path="statement" placeholder="Statement"/>
+                                                        <span class="label">Statement</span>
+                                                        <form:textarea id="statement" path="statement" placeholder="Example..."/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->

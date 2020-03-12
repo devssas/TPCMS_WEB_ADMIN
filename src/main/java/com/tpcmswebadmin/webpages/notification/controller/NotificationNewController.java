@@ -63,11 +63,11 @@ public class NotificationNewController {
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
 
         if(PROSECUTION.name().equals(adminRole)) {
-            return "redirect:/dashboard_prosecutor";
+            return "redirect:/dashboardProsecutor";
         } else if (ADMIN.name().equals(adminRole)){
-            return "redirect:/dashboard_admin";
+            return "redirect:/dashboard";
         } else {
-            return "redirect:/dashboard_superadmin";
+            return "redirect:/dashboardSuperAdmin";
         }
     }
 
