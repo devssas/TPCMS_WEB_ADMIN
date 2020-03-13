@@ -49,7 +49,7 @@ public class PoliceOfficerNewController {
         ResponseMVCDto response = policeOfficerNewDelegate.createOfficer(policeOfficerCreateModel, httpServletRequest);
 
         if(response.isResult()) {
-            return "redirect:/police_staff_list_view";
+            return "redirect:/officerProfiles";
         } else {
             callAttributes(model, httpServletRequest, policeOfficerCreateModel);
             model.addAttribute("httpError", response.getMessage());

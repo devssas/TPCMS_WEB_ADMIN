@@ -66,6 +66,7 @@
                                                 <h3>OFFICER DETAILS</h3>
                                             </div>
                                             <div class="form-container">
+<%--                                                data-src="${pageContext.request.contextPath}/api/policeStaff/search"--%>
                                                 <div class="form-row form-with-icon">
                                                     <label data-fancybox-search data-type="ajax" data-src="assets/ajax/card/permits-create-mission-card.html">
                                                         <span class="label">Officer ID *</span>
@@ -74,18 +75,17 @@
                                                     </label>
                                                     <form:errors id="officerId" path="officerId" cssClass="text-danger" />
                                                 </div>
-                                                <div class="form-row form-with-icon">
+                                                <div class="form-row">
                                                     <label>
                                                         <span class="label">Officer Name *</span>
-                                                        <form:input id="officerName" path="officerName" placeholder="Ex: Officer Name" cssClass="add-create-mission-card-name" disabled="true"/>
-                                                        <i class="icon-search"></i>
+                                                        <form:input id="officerName" path="officerName" placeholder="Ex: Officer Name" cssClass="add-create-mission-card-name"/>
                                                     </label>
                                                     <form:errors id="officerName" path="officerName" cssClass="text-danger" />
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Command Center *</span>
-                                                        <form:input id="commandCenter" path="commandCenter" placeholder="Ex: Command Center" cssClass="add-create-mission-card-command-center" disabled="true"/>
+                                                        <form:input id="commandCenter" path="commandCenter" placeholder="Ex: Command Center" cssClass="add-create-mission-card-command-center"/>
                                                     </label>
                                                     <form:errors id="commandCenter" path="commandCenter" cssClass="text-danger" />
                                                 </div>
@@ -187,8 +187,6 @@
 </div> <!-- page-wrapper -->
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
 </body>
 </html>

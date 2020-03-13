@@ -137,7 +137,7 @@
                                                     <label>
                                                         <span class="label">Mobile Number *</span>
                                                         <span class="phone-number-content">
-                                                             <form:input id="countryCode" path="countryCode" placeholder="+218"/>
+                                                             <form:input id="countryCode" path="countryCode" placeholder="218" value="218"/>
                                                              <form:input id="mobileNumber" path="mobileNumber" placeholder="mobileNumber"/>
                                                         </span>
                                                     </label>

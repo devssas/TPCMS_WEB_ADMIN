@@ -54,7 +54,7 @@ public class ReferenceDelegate {
 
     public List<String> getOfficersRanks() {
         return referenceService.getOfficersRank().stream()
-                .map(OfficerRankDto::getOfficerRankNameAr)
+                .map(OfficerRankDto::getOfficerRankCode)
                 .collect(Collectors.toList());
     }
 }

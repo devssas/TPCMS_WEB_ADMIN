@@ -84,9 +84,11 @@ public class PoliceOfficerCreateClientService implements ClientCreateServiceAPI<
     public void setCredentials(OfficersProfileRequestVO request, LoginUserDo loginUserDo) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
+        request.setLoginOfficerCode(loginUserDo.getLoginOfficersCode());
         request.setMobileAppUserName(credentials.getMobileAppUserName());
         request.setMobileAppPassword(credentials.getMobileAppPassword());
         request.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
         request.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+        request.setLoginOfficerUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
     }
 }

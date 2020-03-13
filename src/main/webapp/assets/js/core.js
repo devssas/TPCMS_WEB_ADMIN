@@ -359,7 +359,6 @@ var main = {
 
                 if(!_this.hasClass("dz-started")){
                     _this.dropzone({
-                        autoProcessQueue: false,
                         url: uploadUrl,
                         maxFiles: maxFiles,
                         addRemoveLinks: true,
@@ -371,7 +370,8 @@ var main = {
                             $.ajax({
                                 url: deleteUrl,
                                 type: "POST",
-                                data: {"imageName": name},
+                                data: "id=" + name,
+                                dataType: "html"
                             });
                             var _ref;
                             return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
@@ -408,30 +408,6 @@ var main = {
                                     });
 
                             }
-
-                            $("#button").click(function (e) {
-                                e.preventDefault();
-                                _initThis.processQueue();
-                            });
-
-                            this.on('sending', function(file, xhr, formData) {
-                                console.log(file);
-                                console.log(file.dataURL);
-                                // console.log(file.name);
-                                // console.log(file.lastModified);
-                                // console.log(file.type);
-                                // console.log(file.size);
-                                // console.log(file.dataURL);
-
-                                // Append all form inputs to the formData Dropzone will POST
-                                var data = $('#new-notification-form').serializeArray();
-                                formData.append("imageName", file.name);
-                                formData.append("imageBase64", file.dataURL);
-                                // console.log(formData);
-                                $.each(data, function(key, el) {
-                                    formData.append(el.name, el.value);
-                                });
-                            });
 
                         }
                     });
