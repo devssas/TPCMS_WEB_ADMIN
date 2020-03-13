@@ -103,8 +103,7 @@
                                                     <span class="label">Date of Birth</span>
                                                     <label>
                                                         <span class="icons-content">
-                                                            <input type="text" class="datepicker" placeholder="Select Date" disabled>
-                                                             <form:input id="dateOfBirth" class="datepicker" path="dateOfBirth" placeholder="Date Of Birth"/>
+                                                            <form:input id="dateOfBirth" class="datepicker" path="dateOfBirth" placeholder="Date Of Birth"/>
                                                             <i class="icon-calender"></i>
                                                         </span>
                                                     </label>
@@ -138,7 +137,6 @@
                                                     <label>
                                                         <span class="label">Mobile Number *</span>
                                                         <span class="phone-number-content">
-                                                            <input type="text" placeholder="+218" disabled>
                                                              <form:input id="countryCode" path="countryCode" placeholder="+218"/>
                                                              <form:input id="mobileNumber" path="mobileNumber" placeholder="mobileNumber"/>
                                                         </span>
@@ -181,30 +179,13 @@
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Type</span>
-                                                        <form:select id="status" path="status" items="${officerUnits}" />
+                                                        <form:select id="weaponType" path="weaponType" items="${weaponTypes}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">SRL Number</span>
-                                                        <input type="text" placeholder="Type.." disabled>
-                                                    </label>
-                                                </div>
-                                            </div> <!-- form-container -->
-                                        </div> <!-- inner -->
-                                    </div> <!-- box-v3 -->
-                                    <div class="box-v3">
-                                        <div class="inner">
-                                            <div class="highlight box-highlight">
-                                                <h3>STATUS *</h3>
-                                            </div>
-                                            <div class="form-container">
-                                                <div class="form-row select-not-find">
-                                                    <label>
-                                                        <span class="label">Type</span>
-                                                        <select name="" id="" disabled>
-                                                            <option value="">Active/inactive</option>
-                                                        </select>
+                                                        <form:input id="serialNumber" path="serialNumber" placeholder="34DF455"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -221,13 +202,13 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Contact Address*</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="contactAddress" path="contactAddress" placeholder="Address"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">City *</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="city" path="city" placeholder="City"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -254,52 +235,44 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Reporting Officer *</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="reportingOfficer" path="reportingOfficer" placeholder="Reporting Officer Id"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Officer Grade</span>
-                                                        <select name="" id="" disabled>
-                                                            <option value="">Grade 1/2/3 etc</option>
-                                                        </select>
+                                                        <form:select id="officerGrade" path="officerGrade"  items="${officerGrades}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Officer Rank</span>
-                                                        <select name="" id="" disabled>
-                                                            <option value="">Lautinent, Carnel, etc</option>
-                                                        </select>
+                                                        <form:select id="officerRank" path="officerRank"  items="${officerRanks}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Reporting Unit *</span>
-                                                        <select name="" id="" disabled>
-                                                            <option value="">105, 106 etc</option>
-                                                        </select>
+                                                        <form:select id="reportingUnit" path="reportingUnit"  items="${reportingUnits}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Access Role *</span>
-                                                        <select name="" id="" disabled>
-                                                            <option value="">Super-admin, admin, Officer (Mobile), etc</option>
-                                                        </select>
+                                                        <form:select id="accessRole" path="accessRole"  items="${accessRoles}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Officer ID</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="officerId" path="officerId" placeholder="Officer Id"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row side-by-side-v1-row">
                                                     <span class="label">Employment Start Date</span>
                                                     <label>
                                                         <span class="icons-content">
-                                                            <input type="text" class="datepicker" placeholder="Select Date" disabled>
+                                                            <form:input id="employmentStartDate" class="datepicker" path="employmentStartDate" placeholder="Start Date"/>
                                                             <i class="icon-calender"></i>
                                                         </span>
                                                     </label>
@@ -308,7 +281,7 @@
                                                     <span class="label">Expiry Date</span>
                                                     <label>
                                                         <span class="icons-content">
-                                                            <input type="text" class="datepicker" placeholder="Select Date" disabled>
+                                                            <form:input id="expiryDate" class="datepicker" path="expiryDate" placeholder="Expiry Date"/>
                                                             <i class="icon-calender"></i>
                                                         </span>
                                                     </label>
@@ -325,27 +298,27 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Next of Kin</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="nextOfKin" class="nextOfKin" path="nextOfKin" placeholder="Next Of Kin"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Emergency Contact Person</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="emergencyContactPerson" class="emergencyContactPerson" path="emergencyContactPerson" placeholder="Emergency Contact Person"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Relationship with Contact Person</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="relationshipWithContactPerson" class="relationshipWithContactPerson" path="relationshipWithContactPerson" placeholder="Relationship With Contact Person"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row phone-number-row">
                                                     <label>
                                                         <span class="label">Emergency Contact Number 1</span>
                                                         <span class="phone-number-content">
-                                                            <input type="text" placeholder="+218" disabled>
-                                                            <input type="text" placeholder="1234567890" disabled>
+                                                            <form:input id="emergencyContactCountryCode1" class="emergencyContactCountryCode1" path="emergencyContactCountryCode1" placeholder="$218"/>
+                                                            <form:input id="emergencyContactNumber1" class="emergencyContactNumber1" path="emergencyContactNumber1" placeholder="1234567890"/>
                                                         </span>
                                                     </label>
                                                 </div>
@@ -353,21 +326,21 @@
                                                     <label>
                                                         <span class="label">Emergency Contact Number 2</span>
                                                         <span class="phone-number-content">
-                                                            <input type="text" placeholder="+218" disabled>
-                                                            <input type="text" placeholder="1234567890" disabled>
+                                                            <form:input id="emergencyContactCountryCode2" class="emergencyContactCountryCode2" path="emergencyContactCountryCode2" placeholder="$218"/>
+                                                            <form:input id="emergencyContactNumber2" class="emergencyContactNumber2" path="emergencyContactNumber2" placeholder="1234567890"/>
                                                         </span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Blood Group</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="bloodGroup" class="bloodGroup" path="bloodGroup" placeholder="A(+) rh"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Visual Identification Mark</span>
-                                                        <textarea name="" id="" placeholder="placeholder" disabled></textarea>
+                                                        <form:input id="visualIdentificationMark" class="visualIdentificationMark" path="visualIdentificationMark" placeholder="Identification Mark"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->

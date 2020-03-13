@@ -174,4 +174,86 @@ public class ReferenceService {
                 .build();
     }
 
+    public List<AccessRoleDto> getAccessRoles() {
+        try {
+            return makeAccessRoleDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getAccessRoleMapping());
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on signIn username request. ");
+        }
+
+        return Collections.emptyList();
+    }
+
+    private List<AccessRoleDto> makeAccessRoleDtoList(AccessRolesConfigResponseVO[] accessRolesConfigResponseVOS) {
+        return Arrays.stream(accessRolesConfigResponseVOS)
+                .map(ReferenceService::makeAccessRoleDto)
+                .collect(Collectors.toList());
+    }
+
+    private static AccessRoleDto makeAccessRoleDto(AccessRolesConfigResponseVO accessRolesConfigResponseVO) {
+        return AccessRoleDto.builder()
+                .accessRoleCode(accessRolesConfigResponseVO.getAccessRoleCode())
+                .accessRoleId(accessRolesConfigResponseVO.getAccessRoleId())
+                .roleDescription(accessRolesConfigResponseVO.getRoleDescription())
+                .build();
+    }
+
+    public List<OfficerGradeDto> getOfficerGrades() {
+        try {
+            return makeOfficerGradeDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getOfficerGradeMapping(null, null));
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on signIn username request. ");
+        }
+
+        return Collections.emptyList();
+    }
+
+    private List<OfficerGradeDto> makeOfficerGradeDtoList(OfficerGradeConfigResponseVO[] officerGradeConfigResponseVOS) {
+        return Arrays.stream(officerGradeConfigResponseVOS)
+                .map(ReferenceService::makeOfficerGradeDto)
+                .collect(Collectors.toList());
+    }
+
+    private static OfficerGradeDto makeOfficerGradeDto(OfficerGradeConfigResponseVO officerGradeConfigResponseVO) {
+        return OfficerGradeDto.builder()
+                .officerGradeId(officerGradeConfigResponseVO.getOfficerGradeId())
+                .officerGradeCode(officerGradeConfigResponseVO.getOfficerGradeCode())
+                .officerGradeDescAr(officerGradeConfigResponseVO.getOfficerGradeDesc_Ar())
+                .officerGradeDescEn(officerGradeConfigResponseVO.getOfficerGradeDesc_En())
+                .officerGradeNameAr(officerGradeConfigResponseVO.getOfficerGradeName_Ar())
+                .officerGradeNameEn(officerGradeConfigResponseVO.getOfficerGradeName_en())
+                .additionalRemarks(officerGradeConfigResponseVO.getAdditionalRemarks())
+                .build();
+    }
+    
+    
+    public List<OfficerRankDto> getOfficersRank() {
+        try {
+            return makeOfficeRankDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getOfficerRankMapping(null, null));
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on signIn username request. ");
+        }
+
+        return Collections.emptyList();
+    }
+
+    private List<OfficerRankDto> makeOfficeRankDtoList(OfficerRankConfigResponseVO[] officerRankConfigResponseVOS) {
+        return Arrays.stream(officerRankConfigResponseVOS)
+                .map(ReferenceService::makeOfficerRankDto)
+                .collect(Collectors.toList());
+    }
+
+    private static OfficerRankDto makeOfficerRankDto(OfficerRankConfigResponseVO officerRankConfigResponseVO) {
+        return OfficerRankDto.builder()
+                .officerRankId(officerRankConfigResponseVO.getOfficerRankId())
+                .officerRankCode(officerRankConfigResponseVO.getOfficerRankCode())
+                .officerRankDescAr(officerRankConfigResponseVO.getOfficerRankDesc_Ar())
+                .officerRankDescEn(officerRankConfigResponseVO.getOfficerRankDesc_En())
+                .officerRankNameAr(officerRankConfigResponseVO.getOfficerRankDesc_Ar())
+                .officerRankNameEn(officerRankConfigResponseVO.getOfficerRankName_en())
+                .additionalRemarks(officerRankConfigResponseVO.getAdditionalRemarks())
+                .build();
+
+    }
+
 }

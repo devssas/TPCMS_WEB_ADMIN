@@ -6,6 +6,7 @@ import com.tpcmswebadmin.infrastructure.domain.dto.ResponseMVCDto;
 import com.tpcmswebadmin.webpages.policeofficer.delegate.PoliceOfficerNewDelegate;
 import com.tpcmswebadmin.webpages.policeofficer.model.PoliceOfficerCreateModel;
 import com.tpcmswebadmin.webpages.policevehicles.model.PoliceVehicleNewModel;
+import com.tpcmswebadmin.webpages.reference.delegate.ReferenceDelegate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,8 @@ import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
 public class PoliceOfficerNewController {
 
     private final PoliceOfficerNewDelegate policeOfficerNewDelegate;
+
+    private final ReferenceDelegate referenceDelegate;
 
     @GetMapping("/newOfficer")
     public String createNewOfficer(Model model, HttpServletRequest httpServletRequest) {
@@ -58,6 +61,11 @@ public class PoliceOfficerNewController {
         model.addAttribute("newPoliceStaff", policeOfficerCreateModel);
         model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
+        model.addAttribute("weaponTypes", referenceDelegate.getAllWeaponTypes());
+        model.addAttribute("officerGrades", referenceDelegate.getOfficerGrades());
+        model.addAttribute("accessRoles", referenceDelegate.getAccessRoles());
+        model.addAttribute("officerRanks", referenceDelegate.getOfficersRanks());
+        model.addAttribute("reportingUnits", referenceDelegate.getOfficerUnits());
 
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);

@@ -31,4 +31,6 @@ public class ReferenceController {
     public ResponseDataApiDto<CrimeTypesSimplifiedDto> getCrimeTypes() {
         return referenceService.getCrimeTypes();
     }
+
+
 }

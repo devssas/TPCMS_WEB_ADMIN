@@ -21,9 +21,9 @@ public class PoliceOfficerCreateModel {
 
     private String dateOfBirth;
 
-    private String genderMale;
+    private boolean genderMale;
 
-    private String genderFemale;
+    private boolean genderFemale;
 
     private String passportNumber;
 
@@ -71,7 +71,11 @@ public class PoliceOfficerCreateModel {
 
     private String relationshipWithContactPerson;
 
+    private String emergencyContactCountryCode1;
+
     private String emergencyContactNumber1;
+
+    private String emergencyContactCountryCode2;
 
     private String emergencyContactNumber2;
 
