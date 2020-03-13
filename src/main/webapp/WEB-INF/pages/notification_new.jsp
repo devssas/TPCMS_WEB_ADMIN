@@ -56,7 +56,7 @@
                         <jsp:param name="httpError" value="${httpError}" />
                     </jsp:include>
 
-                    <form:form id="new-notification-form" modelAttribute="newNotificationCreateModel" method="post" >
+                    <form:form id="new-notification-form" modelAttribute="newNotificationCreateModel" method="post" enctype="multipart/form-data" >
                         <section class="content-box">
                                 <div>
                                     <div class="box-v3">
@@ -66,9 +66,9 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row single-photo-upload">
-                                                    <div class="photo-upload upload-view">
-                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
-                                                        <i class="icon-plus"></i>-
+                                                    <div class="photo-upload">
+                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/notification/image" data-delete-url="${pageContext.request.contextPath}/api/notification/image/delete" data-max-files="1" ></div>
+                                                        <i class="icon-plus"></i>
                                                         <span class="description">Upload Photo</span>
                                                     </div>
                                                 </div>
@@ -115,7 +115,7 @@
                                     </div> <!-- box-v3 -->
                                 </div>
                                 <div class="button-row">
-                                    <input type="submit" class="button button-v4 color-1 fix-size-sml" value="Create">
+                                    <input type="submit" id="button" class="button button-v4 color-1 fix-size-sml" value="Create">
                                     <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                                 </div>
                             </section> <!-- content-box -->
@@ -131,11 +131,9 @@
     </div> <!-- page-inner -->
 
 </div> <!-- page-wrapper -->
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.js"></script>
 
 </body>
 </html>

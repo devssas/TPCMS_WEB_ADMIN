@@ -70,6 +70,12 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Vehicle Name *</span>
+                                                        <form:input id="vehicleId" path="vehicleId" placeholder="Vehicle Id"/>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Vehicle Name *</span>
                                                         <form:input id="vehicleName" path="vehicleName" placeholder="Vehicle Name"/>
                                                     </label>
                                                 </div>
@@ -276,10 +282,9 @@
     </div> <!-- page-inner -->
 
 </div> <!-- page-wrapper -->
+
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
 </body>
 </html>

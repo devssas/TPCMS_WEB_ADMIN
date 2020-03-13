@@ -37,7 +37,7 @@ public class NotificationNewController {
         return "notification_new";
     }
 
-    @PostMapping("/newNotification")
+/*    @PostMapping("/newNotification")
     public String createNotification(@Valid @ModelAttribute("newNotificationModel") NotificationCreateModel notificationCreateModel,
                                      BindingResult bindingResult, Model model, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -64,7 +64,7 @@ public class NotificationNewController {
             model.addAttribute("httpError", response.getMessage());
             return "notification_new";
         }
-    }
+    }*/
 
     private void callAttributes(Model model, HttpServletRequest httpServletRequest, NotificationCreateModel notificationCreateModel) {
         model.addAttribute("newNotificationCreateModel", notificationCreateModel);

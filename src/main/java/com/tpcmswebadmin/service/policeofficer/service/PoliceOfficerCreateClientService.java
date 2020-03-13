@@ -49,7 +49,7 @@ public class PoliceOfficerCreateClientService implements ClientCreateServiceAPI<
         request.setMiddleName_Ar(model.getMiddleName());
         request.setMiddleName_En(model.getMiddleName());
         request.setDateOfBirth(model.getDateOfBirth());
-        request.setGender(model.getGender());
+        request.setGender(model.isGenderMale() ? "M" : "F");
         request.setPassportNumber(model.getPassportNumber());
         request.setMobileNumberCountryCode(model.getCountryCode());
         request.setMobileNumber(model.getMobileNumber());
@@ -84,9 +84,11 @@ public class PoliceOfficerCreateClientService implements ClientCreateServiceAPI<
     public void setCredentials(OfficersProfileRequestVO request, LoginUserDo loginUserDo) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
+        request.setLoginOfficerCode(loginUserDo.getLoginOfficersCode());
         request.setMobileAppUserName(credentials.getMobileAppUserName());
         request.setMobileAppPassword(credentials.getMobileAppPassword());
         request.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
         request.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+        request.setLoginOfficerUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
     }
 }

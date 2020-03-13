@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PoliceVehicleNewModel {
 
+    private Integer vehicleId;
+
     private String vehicleName;
 
     private String plateNumber;

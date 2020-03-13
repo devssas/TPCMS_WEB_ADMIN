@@ -25,14 +25,6 @@
     <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/head/120x120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/head/152x152.png">
 
-    <style>
-        #map {
-            width: 100%;
-            height: 400px;
-            background-color: grey;
-        }
-    </style>
-
 </head>
 <body>
 
@@ -66,9 +58,7 @@
                     </section>
 
                     <section>
-                        <ul class="horizontal-list v1">
-
-                        </ul>
+                        <ul class="horizontal-list v1"></ul>
                     </section>
 
                 </section>

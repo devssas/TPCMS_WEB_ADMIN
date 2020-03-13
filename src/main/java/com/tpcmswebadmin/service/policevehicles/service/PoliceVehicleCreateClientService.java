@@ -72,7 +72,7 @@ public class PoliceVehicleCreateClientService implements ClientCreateServiceAPI<
         requestVO.setStatusId(null);
         requestVO.setUnitNumber(model.getUnit());
         requestVO.setVehicleDetailsId(null); //todo id
-        requestVO.setVehicleId(null); //todo id
+        requestVO.setVehicleId(String.valueOf(model.getVehicleId()));
         requestVO.setVehicleName(model.getVehicleName());
         requestVO.setVehiclePhoto1(null); //todo later
         requestVO.setVehiclePhoto2(null); //todo later

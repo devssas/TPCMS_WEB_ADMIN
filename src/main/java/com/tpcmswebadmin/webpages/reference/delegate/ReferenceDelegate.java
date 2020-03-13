@@ -1,8 +1,6 @@
 package com.tpcmswebadmin.webpages.reference.delegate;
 
-import com.tpcmswebadmin.service.reference.domain.dto.CommandCenterDto;
-import com.tpcmswebadmin.service.reference.domain.dto.NatureOfAnnouncementDto;
-import com.tpcmswebadmin.service.reference.domain.dto.OfficerUnitDto;
+import com.tpcmswebadmin.service.reference.domain.dto.*;
 import com.tpcmswebadmin.service.reference.service.ReferenceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -26,7 +24,7 @@ public class ReferenceDelegate {
 
     public List<String> getOfficerUnits() {
         return referenceService.getOfficerUnitList().stream()
-                .map(OfficerUnitDto::getUnitCode)
+                .map(OfficerUnitDto::getUnitNumber)
                 .collect(Collectors.toList());
     }
 
@@ -39,6 +37,24 @@ public class ReferenceDelegate {
     public List<String> getCommandCenter() {
         return referenceService.getCommandCenter().stream()
                 .map(CommandCenterDto::getCommandCenterCode)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getOfficerGrades() {
+        return referenceService.getOfficerGrades().stream()
+                .map(OfficerGradeDto::getOfficerGradeCode)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getAccessRoles() {
+        return referenceService.getAccessRoles().stream()
+                .map(AccessRoleDto::getAccessRoleCode)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getOfficersRanks() {
+        return referenceService.getOfficersRank().stream()
+                .map(OfficerRankDto::getOfficerRankCode)
                 .collect(Collectors.toList());
     }
 }

@@ -54,6 +54,7 @@ public class MissionPermitsCreateClientService implements ClientCreateServiceAPI
     public void setCredentials(SpecialMissionRequestVO requestVO, LoginUserDo loginUserDo) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());

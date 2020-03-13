@@ -1,29 +1,25 @@
-package com.tpcmswebadmin.webpages.missionpermits.delegate;
+package com.tpcmswebadmin.webpages.policeofficer.delegate;
 
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.domain.dto.ResponseMVCDto;
-import com.tpcmswebadmin.service.missionpermits.service.MissionPermitsClientService;
-import com.tpcmswebadmin.service.missionpermits.service.MissionPermitsCreateClientService;
-import com.tpcmswebadmin.webpages.missionpermits.model.MissionPermitCardCreateModel;
+import com.tpcmswebadmin.service.policeofficer.service.PoliceOfficerCreateClientService;
+import com.tpcmswebadmin.webpages.policeofficer.model.PoliceOfficerCreateModel;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
-
-@Slf4j
 @Component
 @RequiredArgsConstructor
-public class MissionPermitNewDelegate {
+public class PoliceOfficerNewDelegate {
 
-    private final MissionPermitsCreateClientService missionPermitsCreateClientService;
+    private final PoliceOfficerCreateClientService policeOfficerCreateClientService;
 
-    public ResponseMVCDto createNewMissionCard(MissionPermitCardCreateModel missionPermitCardCreateModel, HttpServletRequest request) {
-        LoginUserDo loginUserDo = makeLoginUser(request);
-        TPEngineResponse response = missionPermitsCreateClientService.create(missionPermitCardCreateModel, loginUserDo);
+    public ResponseMVCDto createOfficer(PoliceOfficerCreateModel policeOfficerCreateModel, HttpServletRequest httpServletRequest) {
+        LoginUserDo loginUserDo = makeLoginUser(httpServletRequest);
+        TPEngineResponse response = policeOfficerCreateClientService.create(policeOfficerCreateModel, loginUserDo);
 
         if(response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
             return ResponseMVCDto.builder()
@@ -45,5 +41,4 @@ public class MissionPermitNewDelegate {
                 .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
                 .build();
     }
-
 }
