@@ -70,6 +70,12 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Vehicle Name *</span>
+                                                        <form:input id="vehicleId" path="vehicleId" placeholder="Vehicle Id"/>
+                                                    </label>
+                                                </div>
+                                                <div class="form-row">
+                                                    <label>
+                                                        <span class="label">Vehicle Name *</span>
                                                         <form:input id="vehicleName" path="vehicleName" placeholder="Vehicle Name"/>
                                                     </label>
                                                 </div>

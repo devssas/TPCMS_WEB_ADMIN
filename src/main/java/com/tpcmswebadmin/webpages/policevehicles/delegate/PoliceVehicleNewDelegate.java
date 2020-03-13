@@ -28,7 +28,7 @@ public class PoliceVehicleNewDelegate {
                      .build();
          } else {
              return ResponseMVCDto.builder()
-                     .message(response.getResponseCodeVO().getResponseValue())
+                     .message(response.getResponseCodeVO().getResponseCode() + " - " + response.getResponseCodeVO().getResponseValue())
                      .result(false)
                      .build();
          }

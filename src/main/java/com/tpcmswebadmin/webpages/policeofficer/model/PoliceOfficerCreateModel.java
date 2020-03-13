@@ -21,7 +21,9 @@ public class PoliceOfficerCreateModel {
 
     private String dateOfBirth;
 
-    private String gender;
+    private String genderMale;
+
+    private String genderFemale;
 
     private String passportNumber;
 

@@ -53,11 +53,12 @@
                         <jsp:param name="header" value="Add New Officer" />
                         <jsp:param name="redirect" value="policeStaffMenu" />
                         <jsp:param name="pageName" value="Police Staff Menu" />
+                        <jsp:param name="httpError" value="${httpError}" />
                     </jsp:include>
 
-                    <form action="">
+                    <form:form id="new-notification-form" modelAttribute="newPoliceStaff" method="post" enctype="multipart/form-data" >
 
-                        <section class="content-box">
+                    <section class="content-box">
                             <div class="divided-content flout-2">
                                 <div>
                                     <div class="box-v3">
@@ -76,50 +77,34 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">National ID *</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="nationalId" path="nationalId" placeholder="National Id"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">First Name *</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="firstName" path="firstName" placeholder="First Name"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Middle Name</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="middleName" path="middleName" placeholder="Middle Name"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Last Name *</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="lastName" path="lastName" placeholder="Last Name"/>
                                                     </label>
                                                 </div>
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">First Name (Arabic) *</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
-                                                    </label>
-                                                </div>
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">Middle Name (Arabic)</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
-                                                    </label>
-                                                </div>
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">Last Name (Arabic) *</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
-                                                    </label>
-                                                </div>
+
                                                 <div class="form-row side-by-side-v1-row">
                                                     <span class="label">Date of Birth</span>
                                                     <label>
                                                         <span class="icons-content">
                                                             <input type="text" class="datepicker" placeholder="Select Date" disabled>
+                                                             <form:input id="dateOfBirth" class="datepicker" path="dateOfBirth" placeholder="Date Of Birth"/>
                                                             <i class="icon-calender"></i>
                                                         </span>
                                                     </label>
@@ -130,14 +115,14 @@
                                                         <div>
                                                             <label>
                                                                 <span class="text">Male</span>
-                                                                <input name="gender" type="radio" value="Male" disabled>
+                                                                <form:checkbox id="genderMale" path="genderMale"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>
                                                                 <span class="text">Female</span>
-                                                                <input name="gender" type="radio" value="Female" disabled>
+                                                                <form:checkbox id="genderFemale" path="genderFemale"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
@@ -146,7 +131,7 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Passport Number</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="passportNumber" path="passportNumber" placeholder="Passport number"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row phone-number-row">
@@ -154,14 +139,15 @@
                                                         <span class="label">Mobile Number *</span>
                                                         <span class="phone-number-content">
                                                             <input type="text" placeholder="+218" disabled>
-                                                            <input type="text" placeholder="1234567890" disabled>
+                                                             <form:input id="countryCode" path="countryCode" placeholder="+218"/>
+                                                             <form:input id="mobileNumber" path="mobileNumber" placeholder="mobileNumber"/>
                                                         </span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Email</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
+                                                        <form:input id="email" path="email" placeholder="tp@gmail.com"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -179,14 +165,14 @@
                                                         <div>
                                                             <label>
                                                                 <span class="text">Yes</span>
-                                                                <input name="permissionToCarry" type="radio" value="Yes" disabled>
+                                                                <form:checkbox id="isPermittedToCarryWeapon" path="permittedToCarryWeapon"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>
                                                                 <span class="text">No</span>
-                                                                <input name="permissionToCarry" type="radio" value="No" disabled>
+                                                                <form:checkbox id="isPermittedToCarryWeapon" path="permittedToCarryWeapon"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
@@ -195,9 +181,7 @@
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Type</span>
-                                                        <select name="" id="" disabled>
-                                                            <option value="">Choose</option>
-                                                        </select>
+                                                        <form:select id="status" path="status" items="${officerUnits}" />
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
@@ -396,7 +380,7 @@
                                 <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
                         </section> <!-- content-box -->
-                    </form>
+                    </form:form>
 
                 </section> <!-- content -->
 

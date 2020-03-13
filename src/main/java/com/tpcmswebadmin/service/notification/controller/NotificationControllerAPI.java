@@ -1,18 +1,22 @@
 package com.tpcmswebadmin.service.notification.controller;
 
 import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
+import com.tpcmswebadmin.infrastructure.utils.ImageUtility;
+import com.tpcmswebadmin.service.notification.domain.NotificationCreateDto;
 import com.tpcmswebadmin.service.notification.domain.NotificationDto;
 import com.tpcmswebadmin.service.notification.service.NotificationClientService;
 import com.tpcmswebadmin.service.notification.service.NotificationProsecutorClientService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/notification")
@@ -34,4 +38,26 @@ public class NotificationControllerAPI {
         return notificationProsecutorClientService.getResponseDto(httpServletRequest);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("image")
+    public ResponseEntity<Void> createImage(@RequestParam(name = "imageBase64", required = false) String imageBase64,
+                                            @RequestParam(name = "imageName", required = false) String imageName,
+                                           // @RequestBody NotificationCreateDto notificationCreateDto,
+                                            HttpServletRequest httpServletRequest) {
+
+        log.info(imageBase64);
+        log.info(imageName);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("image/delete")
+    public ResponseEntity<Void> deleteMapping(@RequestParam(name = "imageName", required = false) String imageName,
+                                            HttpServletRequest httpServletRequest) {
+
+        log.info(imageName);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

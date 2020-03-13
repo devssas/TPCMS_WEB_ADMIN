@@ -50,7 +50,7 @@ public class PoliceVehicleNewController {
         ResponseMVCDto response = policeVehicleNewDelegate.createVehicle(policeVehicleNewModel, httpServletRequest);
 
         if(response.isResult()) {
-            return "redirect:/police_vehicles_view";
+            return "redirect:/policeVehicles";
         } else {
             callAttributes(model, httpServletRequest);
             model.addAttribute("httpError", response.getMessage());

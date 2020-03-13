@@ -49,7 +49,7 @@ public class PoliceOfficerCreateClientService implements ClientCreateServiceAPI<
         request.setMiddleName_Ar(model.getMiddleName());
         request.setMiddleName_En(model.getMiddleName());
         request.setDateOfBirth(model.getDateOfBirth());
-        request.setGender(model.getGender());
+        request.setGender(model.getGenderMale());
         request.setPassportNumber(model.getPassportNumber());
         request.setMobileNumberCountryCode(model.getCountryCode());
         request.setMobileNumber(model.getMobileNumber());

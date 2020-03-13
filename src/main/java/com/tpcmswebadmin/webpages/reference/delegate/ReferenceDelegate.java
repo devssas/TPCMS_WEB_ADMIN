@@ -26,7 +26,7 @@ public class ReferenceDelegate {
 
     public List<String> getOfficerUnits() {
         return referenceService.getOfficerUnitList().stream()
-                .map(OfficerUnitDto::getUnitCode)
+                .map(OfficerUnitDto::getUnitNumber)
                 .collect(Collectors.toList());
     }
 
