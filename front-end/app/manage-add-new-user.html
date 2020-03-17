@@ -99,8 +99,8 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row single-photo-upload">
-                                                    <div class="photo-upload upload-view">
-                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
+                                                    <div class="photo-upload">
+                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1"></div>
                                                         <i class="icon-admin-profile"></i>
                                                         <span class="description">Upload Photo</span>
                                                     </div>
@@ -156,39 +156,45 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                                <div class="form-row radio-btn-v1-row">
-                                                    <span class="label">Gender</span>
-                                                    <div class="radio-btn-group">
-                                                        <div>
-                                                            <label>
-                                                                <span class="text">Male</span>
-                                                                <input name="gender" type="radio" value="Male" disabled>
-                                                                <span class="checkmark"></span>
-                                                            </label>
-                                                        </div>
-                                                        <div>
-                                                            <label>
-                                                                <span class="text">Female</span>
-                                                                <input name="gender" type="radio" value="Female" disabled>
-                                                                <span class="checkmark"></span>
-                                                            </label>
+
+                                                <div class="active-content-event">
+
+                                                    <div class="form-row radio-btn-v1-row">
+                                                        <span class="label">Gender</span>
+                                                        <div class="radio-btn-group">
+                                                            <div>
+                                                                <label>
+                                                                    <span class="text">Male</span>
+                                                                    <input class="change-active-class" name="gender" type="radio" value="Male" data-active-class="permission-to-carry-weapon" data-open-close="true">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div>
+                                                                <label>
+                                                                    <span class="text">Female</span>
+                                                                    <input class="change-active-class" name="gender" type="radio" value="Female" data-active-class="permission-to-carry-weapon" data-open-close="false">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">Passport Number</span>
-                                                        <input type="text" placeholder="Placeholder" disabled>
-                                                    </label>
-                                                </div>
-                                                <div class="form-row phone-number-row">
-                                                    <label>
-                                                        <span class="label">Mobile Number *</span>
-                                                        <span class="phone-number-content">
-                                                            <input type="text" placeholder="+218" disabled>
-                                                            <input type="text" placeholder="1234567890" disabled>
-                                                        </span>
-                                                    </label>
+                                                    <div class="change-active-content" data-active-content="permission-to-carry-weapon">
+                                                        <div class="form-row">
+                                                            <label>
+                                                                <span class="label">Passport Number</span>
+                                                                <input type="text" placeholder="Placeholder" disabled>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-row phone-number-row">
+                                                        <label>
+                                                            <span class="label">Mobile Number *</span>
+                                                            <span class="phone-number-content">
+                                                                <input type="text" placeholder="+218" disabled>
+                                                                <input type="text" placeholder="1234567890" disabled>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    </div>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
