@@ -89,7 +89,7 @@ public class CriminalCaseCreateService implements ClientCreateServiceAPI<Crimina
         requestVO.setPreviousCriminalProfileId_1(null);
         requestVO.setPreviousCriminalProfileId_2(null);
         requestVO.setPreviousCriminalProfileId_3(null);
-        requestVO.setProfilePhoto1(model.getImage().getBytes());
+        requestVO.setProfilePhoto1(null);
         requestVO.setProfilePhoto10(null);
         requestVO.setProfilePhoto2(null);
         requestVO.setProfilePhoto3(null);

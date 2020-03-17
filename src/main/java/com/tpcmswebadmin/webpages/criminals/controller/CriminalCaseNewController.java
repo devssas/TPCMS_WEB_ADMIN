@@ -52,7 +52,7 @@ public class CriminalCaseNewController {
         ResponseMVCDto response = criminalCaseNewDelegate.createCriminalCase(criminalCaseCreateModel, httpServletRequest);
 
         if(response.isResult()) {
-            return "redirect:/criminal_database_menu";
+            return "redirect:/criminalsMenu";
         } else {
             callAttributes(model, httpServletRequest, criminalCaseCreateModel);
             model.addAttribute("httpError", response.getMessage());

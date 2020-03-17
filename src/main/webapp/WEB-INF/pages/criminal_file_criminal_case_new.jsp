@@ -163,9 +163,7 @@
                                                     <label>
                                                         <span class="label">Mobile Number *</span>
                                                         <span class="phone-number-content">
-                                                            <input type="tel" placeholder="+218">
                                                             <form:input id="countryCode" path="countryCode" placeholder="Ex: Country Code"/>
-                                                            <input type="tel" placeholder="1234567890">
                                                             <form:input id="mobileNumber" path="mobileNumber" placeholder="Ex: Mobile Number"/>
                                                         </span>
                                                     </label>
