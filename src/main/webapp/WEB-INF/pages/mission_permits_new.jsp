@@ -106,7 +106,6 @@
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </div>
-                                                <hr>
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Weapon Type</span>
@@ -114,6 +113,7 @@
                                                     </label>
                                                     <form:errors id= "weaponType"  path="weaponType" cssClass="text-danger" />
                                                 </div>
+                                                <hr>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Mission Type *</span>

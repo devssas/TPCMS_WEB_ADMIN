@@ -203,7 +203,7 @@
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Case ID</span>
+                                                        <span class="label">Case ID *</span>
                                                         <form:input id="caseId" path="caseId" placeholder="Ex: Case Id"/>
                                                     </label>
                                                 </div>

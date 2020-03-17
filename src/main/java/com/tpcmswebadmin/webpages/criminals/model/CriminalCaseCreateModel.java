@@ -26,6 +26,7 @@ public class CriminalCaseCreateModel {
     @NotEmpty(message = "{error.criminalCase.lastName.notNull}")
     private String lastName;
 
+    @NotEmpty(message = "{error.criminalCase.dateOfBirth.notNull}")
     private String dateOfBirth;
 
     private String gender;
@@ -34,26 +35,33 @@ public class CriminalCaseCreateModel {
 
     private String drivingLicenceNumber;
 
+    @NotEmpty(message = "{error.criminalCase.passportNumber.notNull}")
     private String passportNumber;
 
     private String bloodGroup;
 
     private String visualIdentificationMark;
 
+    @NotEmpty(message = "{error.criminalCase.contactAddress.notNull}")
     private String countryCode;
 
+    @NotEmpty(message = "{error.criminalCase.contactAddress.notNull}")
     private String mobileNumber;
 
     private String email;
 
+    @NotEmpty(message = "{error.criminalCase.personalIdCard.notNull}")
     private String personalIdCard;
 
+    @NotEmpty(message = "{error.criminalCase.contactAddress.notNull}")
     private String flaggedDate;
 
     private String wantedBy;
 
+    @NotEmpty(message = "{error.criminalCase.caseId.notNull}")
     private String caseId;
 
+    @NotEmpty(message = "{error.criminalCase.caseBrief.notNull}")
     private String caseBrief;
 
     private String status;
@@ -65,18 +73,23 @@ public class CriminalCaseCreateModel {
 
     private String parentsAddress;
 
+    @NotEmpty(message = "{error.criminalCase.friendsAddress.notNull}")
     private String friendsAddress;
 
     private String relativesAddress;
 
+    @NotEmpty(message = "{error.criminalCase.personalCity.notNull}")
     private String personalCity;
 
     private String crimeType;
 
+    @NotEmpty(message = "{error.criminalCase.crimeTitle.notNull}")
     private String crimeTitle;
 
+    @NotEmpty(message = "{error.criminalCase.crimeScene.notNull}")
     private String crimeScene;
 
+    @NotEmpty(message = "{error.criminalCase.crimeLocation.notNull}")
     private String crimeLocation;
 
     private String crimeImage;
