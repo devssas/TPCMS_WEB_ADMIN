@@ -348,6 +348,70 @@ var main = {
     },
     dropzone: function () {
 
+      /*  Dropzone.autoDiscover = false;
+        var valid_extensions=  /(\.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpg|\.jpeg|\.png|\.tiff|\.wpd)$/i;
+
+        // $('#insurance_type').on('change',function(){
+        //     ins_Type=$(this).val();
+        // });
+        //
+        // $('#insurance_expirationdate').on('change',function(){
+        //     ins_Date=$(this).val();
+        // });
+
+        myDropzone = new Dropzone("#dropzdoc",{
+            url: 'Your URL where to send the data to',
+            //this is how extra parameters got passed to dropzone
+            sending: function(file, xhr, formData) {
+                formData.append("insurance_type", ins_Type);  //name and value
+                formData.append("insurance_expirationdate", ins_Date); //name and value
+            },
+            //end of sending extra parameters
+            acceptedFiles:".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.tiff,.wpd",
+            dictInvalidFileType: "You can't upload files of this type, only png or jpg file",
+            paramName: "insurance_doc",
+            createImageThumbnails:false,
+            dictDefaultMessage: "<div style='text-align:left;'>- Select your Insurance Type.<br>\n\
+                      - Select 1 Date.<br>\n\
+                      - Drop your file here.<br><div>\n\
+                       Only <span style='color:red;'>1</span> file is    acccepted.",
+            autoProcessQueue:false,
+            maxFiles: 1
+        });
+
+        myDropzone.on("processing", function(file, progress) {
+            $('#upload_process').fadeIn();
+        });
+
+        myDropzone.on("success", function(file,response) {
+            $('#upload_process').fadeOut();
+        });
+
+        myDropzone.on("addedfile", function(file) {
+            //test extension files
+            if (this.files.length) {
+                var _i, _len;
+                for (_i = 0, _len = this.files.length; _i < _len; _i++) {
+                    if (valid_extensions.test(this.files[_i].name) == false) {
+                        alert('Invalid file extension.\nAllowed file extensions: pdf, doc, docx, xls, xlsx, jpg, jpeg, png, tiff, wpd');
+                        this.removeFile(file);
+                        return;
+                    }
+                }
+
+                //if all good then procced the queue
+                if (ins_Type !== '' && ins_Date !== '') {
+                    this.options.autoProcessQueue = true;
+                    this.processQueue();
+                } else {
+                    alert('Date are empty');
+                    this.removeAllFiles(file);
+                }
+            }
+        });
+*/
+
+
         if($(".photo-upload").length){
 
             $(".photo-upload").each(function () {
@@ -359,18 +423,23 @@ var main = {
 
                 if(!_this.hasClass("dz-started")){
                     _this.dropzone({
+                        // autoProcessQueue: false,
                         url: uploadUrl,
                         maxFiles: maxFiles,
+                        parallelUploads: maxFiles,
+                        // uploadMultiple: true,
                         addRemoveLinks: true,
                         dictRemoveFile: "",
                         thumbnailMethod: "contain",
                         dictDefaultMessage: null,
                         removedfile: function(file) {
+                            console.log("removedfile");
+
                             var name = file.name;
                             $.ajax({
                                 url: deleteUrl,
                                 type: "POST",
-                                data: "id=" + name,
+                                data: {"imageName": name},
                                 dataType: "html"
                             });
                             var _ref;
@@ -380,34 +449,85 @@ var main = {
 
                             var _initThis = this;
 
-                            _initThis.on("addedfile", function(file) {
-                                if (_initThis.files[maxFiles]!=null){
-                                    _initThis.removeFile(_initThis.files[0]);
-                                }
-                            });
-
                             if(_this.parents(".photo-upload").hasClass("upload-view")){
                                 var uploadAjaxUrl = _this.data("upload-ajax-url");
-
                                 $.ajax({
                                     url: uploadAjaxUrl
                                 })
                                     .done(function (response) {
-
                                         for(var i = 0; i < response.data.length ; i++){
-
                                             _initThis.files.push(response.data[i]);
                                             _initThis.emit('addedfile', response.data[i]);
                                             _initThis.emit("thumbnail", response.data[i], response.data[i].url);
                                             _initThis.emit('complete', response.data[i]);
                                             response.data[i].previewElement.classList.add('dz-success');
                                             response.data[i].previewElement.classList.add('dz-complete')
-
                                         }
-
                                     });
-
                             }
+
+                            _initThis.on("addedfile", function(file) {
+                                if (_initThis.files[maxFiles]!=null){
+                                    _initThis.removeFile(_initThis.files[0]);
+                                }
+                            });
+
+                            _initThis.on('sending', function(file, xhr, formData, e, d, c) {
+                                console.log("sending");
+                                console.log(file.name);
+                                console.log(file.size);
+                                console.log(file.type);
+                                console.log(file.dataURL);
+
+                                setTimeout(function () {
+                                    console.log(file.dataURL);
+                                },50);
+
+                                // console.log(formData);
+                                // console.log(event.target.result);
+                                // console.log(file);
+                                //     console.log(file.dataURL);
+                                // setTimeout(function () {
+                                // },50);
+
+                                // Append all form inputs to the formData Dropzone will POST
+                                // var data = $(".notification").serializeArray();
+                                // $.each(data, function(key, el) {
+                                //     formData.append(el.name, el.value);
+                                // });
+
+                                formData.append("imageName", file.name);
+                                formData.append("imageSize", file.size);
+                                formData.append("imageType", file.type);
+                                formData.append("imageBase64", file.dataURL);
+                            });
+
+                            _initThis.on("success", function () {
+                                console.log("success");
+                            });
+
+                            _initThis.on("complete", function () {
+                                console.log("complete");
+                            });
+
+                            _initThis.on("uploadprogress", function () {
+                                console.log("uploadprogress");
+                            });
+
+                            _initThis.on("processing", function () {
+                                console.log("processing");
+                            });
+
+                            _initThis.on("error", function () {
+                                console.log("error");
+                            });
+
+                            // $("#submit").on({
+                            //     click: function (e) {
+                            //         e.preventDefault();
+                            //         _initThis.processQueue();
+                            //     }
+                            // });
 
                         }
                     });
@@ -987,6 +1107,12 @@ var main = {
                 }
             });
             loginPassCode.validate(options);
+        }
+
+        var notification = $(".notification");
+        if (notification.length) {
+            var options = $.extend({}, defaults, {});
+            notification.validate(options);
         }
 
     },

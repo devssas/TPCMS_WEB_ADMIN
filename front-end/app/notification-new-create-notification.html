@@ -87,7 +87,7 @@
                         <a href="javascript:;" class="button button-v2 button-icons sign-out">Sign out<i class="icon-logout"></i></a>
                     </section>
 
-                    <form action="">
+                    <form action="" class="notification" data-url="/assets/ajax/upload-file/test.json">
 
                         <section class="content-box">
                             <div>
@@ -99,7 +99,7 @@
                                         <div class="form-container">
                                             <div class="form-row single-photo-upload">
                                                 <div class="photo-upload upload-view">
-                                                    <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
+                                                    <div class="photo-upload-inner" data-upload-url="/assets/ajax/upload-file/test.json" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
                                                     <i class="icon-plus"></i>
                                                     <span class="description">Upload Photo</span>
                                                 </div>
@@ -144,7 +144,7 @@
                                 </div> <!-- box-v3 -->
                             </div>
                             <div class="button-row">
-                                <input type="submit" class="button button-v4 color-1 fix-size-sml" value="Create">
+                                <input type="submit" id="submit" class="button button-v4 color-1 fix-size-sml" value="Create">
                                 <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
                         </section> <!-- content-box -->

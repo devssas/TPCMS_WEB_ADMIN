@@ -302,7 +302,6 @@
         }
       }
     }
-
     &.single-photo-upload{
       .photo-upload {
         @extend .dropzone;
@@ -335,6 +334,9 @@
             justify-content: center;
             .dz-image{
               height: auto !important;
+              img{
+                width: 100%;
+              }
             }
             .dz-details{
               top: 50%;
@@ -415,6 +417,9 @@
             padding: 0 15px;
             .dz-image{
               height: auto !important;
+              img{
+                width: 100%;
+              }
             }
             .dz-details{
               top: 50%;
