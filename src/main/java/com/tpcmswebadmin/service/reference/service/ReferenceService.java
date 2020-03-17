@@ -128,7 +128,16 @@ public class ReferenceService {
                 .build();
     }
 
-    public ResponseDataApiDto<CrimeTypesSimplifiedDto> getCrimeTypes() {
+    public List<CrimeTypesDto> getCrimeTypes() {
+        try {
+            return makeCrimeTypesDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeTypesMapping(null, null));
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on signIn username request. ");
+        }
+        return Collections.emptyList();
+    }
+
+    public ResponseDataApiDto<CrimeTypesSimplifiedDto> getCrimeTypesSimplified() {
         try {
             return makeResponseDataApi(makeCrimeTypesDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeTypesMapping(null, null)));
         } catch (RemoteException | ServiceException e) {

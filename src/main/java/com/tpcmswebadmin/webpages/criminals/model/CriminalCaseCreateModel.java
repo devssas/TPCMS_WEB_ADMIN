@@ -28,9 +28,7 @@ public class CriminalCaseCreateModel {
 
     private String dateOfBirth;
 
-    private boolean genderMale;
-
-    private boolean genderFemale;
+    private String gender;
 
     private String crimeClassification;
 

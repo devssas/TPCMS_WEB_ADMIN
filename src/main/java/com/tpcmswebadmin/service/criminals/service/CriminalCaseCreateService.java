@@ -69,7 +69,7 @@ public class CriminalCaseCreateService implements ClientCreateServiceAPI<Crimina
         requestVO.setFirstName_En(model.getFirstName());
         requestVO.setFlagedDate(model.getFlaggedDate());
         requestVO.setFriendsContactInformation(model.getFriendsAddress());
-        requestVO.setGender(model.isGenderMale() ? "M" : "F");
+        requestVO.setGender(model.getGender());
         requestVO.setInterpolWantedCase("N"); //todo no field on screen
         requestVO.setLastName_Ar(model.getLastName());
         requestVO.setLastName_En(model.getLastName());

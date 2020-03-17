@@ -29,7 +29,7 @@ public class ReferenceController {
 
     @GetMapping("crime-types")
     public ResponseDataApiDto<CrimeTypesSimplifiedDto> getCrimeTypes() {
-        return referenceService.getCrimeTypes();
+        return referenceService.getCrimeTypesSimplified();
     }
 
 

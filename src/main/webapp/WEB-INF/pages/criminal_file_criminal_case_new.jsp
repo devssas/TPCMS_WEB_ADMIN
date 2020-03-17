@@ -116,14 +116,14 @@
                                                         <div>
                                                             <label>
                                                                 <span class="text">Male</span>
-                                                                <form:checkbox id="genderMale" path="genderMale" />
+                                                                <form:checkbox id="gender" path="gender" value="M" checked="true" />
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>
                                                                 <span class="text">Female</span>
-                                                                <form:checkbox id="genderFemale" path="genderFemale" />
+                                                                <form:checkbox id="gender" path="gender" value="F"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
@@ -132,9 +132,7 @@
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Crime Classification</span>
-                                                        <select name="" id="crimeclassification">
-                                                            <option value="">Placeholder</option>
-                                                        </select>
+                                                        <form:select id="crimeClassification" path="crimeClassification" type="text" items="${crimeNames}"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">

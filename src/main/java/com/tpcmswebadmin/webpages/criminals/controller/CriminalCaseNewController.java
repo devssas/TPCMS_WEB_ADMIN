@@ -70,6 +70,7 @@ public class CriminalCaseNewController {
         model.addAttribute("accessRole", adminRole);
         model.addAttribute("statuses", referenceDelegate.getClientStatus());
         model.addAttribute("crimeTypes", referenceDelegate.getCrimeTypesTitle());
+        model.addAttribute("crimeNames", referenceDelegate.getCrimeTypesName());
 
         if(adminRole.equals(ADMIN.name())) {
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);

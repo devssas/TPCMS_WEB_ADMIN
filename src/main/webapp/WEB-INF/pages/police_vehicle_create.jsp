@@ -69,7 +69,7 @@
                                             <div class="form-container">
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Vehicle Name *</span>
+                                                        <span class="label">Vehicle Id *</span>
                                                         <form:input id="vehicleId" path="vehicleId" placeholder="Vehicle Id"/>
                                                     </label>
                                                 </div>
