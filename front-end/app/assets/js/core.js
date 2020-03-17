@@ -160,38 +160,56 @@ var main = {
 
         }
 
-        if($(".field-query").length){
-            $(".field-query").each(function () {
+        if($(".active-content-event").length){
 
-                $(this).on({
-                    keyup: function () {
 
-                        var _this = $(this),
-                            _minLength = _this.data("min-lenght"),
-                            _url = _this.data("url"),
-                            _method = _this.data("method"),
-                            _value = _this.val();
+            $(".change-active-class").on({
+                click: function () {
+                    var _this = $(this),
+                        _thisType = _this.attr("type"),
+                        activeClass = _this.data("active-class");
 
-                        if(_value.length >= _minLength){
-                            $.ajax({
-                                url: _url+_value,
-                                method: _method,
-                                dataType: "json",
-                            }).done(function (response) {
-                                if(!response.status && response.message){
-                                    _this.parents(".form-row").addClass("error").find(".text-danger").remove();
-                                    _this.parent().append("<span class='text-danger'>"+ response.message +"</span>");
-                                } else {
-                                    _this.parents(".form-row").removeClass("error").find(".text-danger").remove();
-                                }
-                            });
+                    if(_thisType == "checkbox"){
+
+                        
+                        if(_this.is(":checked")){
+                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='"+ activeClass +"']").addClass("active").stop(false,false).slideDown();
+                        } else {
+                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='"+ activeClass +"']").removeClass("active").stop(false,false).slideUp();
                         }
 
+                    } else if(_thisType == "radio"){
+                        var _thisOpenClose = _this.data("open-close");
+
+                        if(_thisOpenClose){
+                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='"+ activeClass +"']").addClass("active").stop(false,false).slideDown();
+                        } else {
+                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='"+ activeClass +"']").removeClass("active").stop(false,false).slideUp();
+                        }
+
+
+
                     }
-                });
 
+
+                    // _this.parents(".active-content-event").find(".change-active-content").each(function () {
+                    //     var _this = $(this),
+                    //         activeContent = _this.data("active-content");
+                    //
+                    //     if(_this.hasClass("active") && activeClass != activeContent){
+                    //         _this.removeClass("active").find("input").val("");
+                    //     } else if(activeClass == activeContent){
+                    //         _this.addClass("active");
+                    //     }
+                    //
+                    // });
+                    
+                }
+            }).each(function () {
+                if($(this).is(":checked")){
+                    $(this).trigger("click");
+                }
             });
-
 
         }
     },
