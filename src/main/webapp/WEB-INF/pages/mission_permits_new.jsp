@@ -116,14 +116,14 @@
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Mission Type</span>
+                                                        <span class="label">Mission Type *</span>
                                                         <form:input id="missionType" path="missionType" placeholder="Ex: Mission Type"/>
                                                     </label>
                                                     <form:errors id="missionType" path="missionType" cssClass="text-danger" />
                                                 </div>
                                                 <div class="form-row select-not-find">
                                                     <label>
-                                                        <span class="label">Mission Description</span>
+                                                        <span class="label">Mission Description *</span>
                                                         <form:textarea id="missionDescription" path="missionDescription" class="mid" placeholder="Mission Description"/>
                                                     </label>
                                                     <form:errors id="missionDescription" path="missionDescription" cssClass="text-danger" />

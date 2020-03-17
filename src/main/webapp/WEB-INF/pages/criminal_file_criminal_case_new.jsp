@@ -55,7 +55,7 @@
                     </jsp:include>
 
 
-                    <form:form id="create-misison-card-form" modelAttribute="fileCriminalCase" method="post" >
+                    <form:form id="create-misison-card-form" modelAttribute="newFileCriminalCase" method="post" >
 
                         <section class="content-box">
                             <div class="divided-content flout-2">
@@ -199,6 +199,12 @@
                                                         <form:input id="wantedBy" path="wantedBy" placeholder="Ex: Wanted By"/>
                                                     </label>
                                                 </div>
+                                                <div class="form-row select-not-find">
+                                                    <label>
+                                                        <span class="label">Wanted Type</span>
+                                                        <form:input id="wantedType" path="wantedType" placeholder="Ex: Wanted Type"/>
+                                                    </label>
+                                                </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Case ID</span>
@@ -220,9 +226,7 @@
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Status</span>
-                                                        <select name="" id="">
-                                                            <option value="">Placeholder</option>
-                                                        </select>
+                                                        <form:select id="statuses" path="status" type="text" items="${statuses}"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -236,42 +240,34 @@
                                                 <h3>LOCATION</h3>
                                             </div>
                                             <div class="form-container">
-                                                <div class="form-row select-not-find">
-                                                    <label>
-                                                        <span class="label">Wanted Type</span>
-                                                        <select name="" id="">
-                                                            <option value="">Placeholder</option>
-                                                        </select>
-                                                    </label>
-                                                </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Contact Address *</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="contactAddress" path="contactAddress" placeholder="Ex: Contact Address"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Parents Address</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="parentsAddress" path="parentsAddress" placeholder="Ex: Parents Address"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Friends Address</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="friendsAddress" path="friendsAddress" placeholder="Ex: Friends Address"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Relatives Address</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="relativesAddress" path="relativesAddress" placeholder="Ex: Relatives Address"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Personal City</span>
-                                                        <input type="text" placeholder="Placeholder">
+                                                        <form:input id="personalCity" path="personalCity" placeholder="Ex: Personal city"/>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -286,27 +282,25 @@
                                                 <div class="form-row select-not-find">
                                                     <label>
                                                         <span class="label">Crime Type</span>
-                                                        <select name="" id="">
-                                                            <option value="">Choose</option>
-                                                        </select>
+                                                        <form:select id="crimeType" path="crimeType" type="text" items="${crimeTypes}"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Crime Title</span>
-                                                        <input type="email" placeholder="Type">
+                                                        <form:input id="personalCity" path="crimeTitle" placeholder="Ex: Personal city"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Crime Scene</span>
-                                                        <textarea name="" id="" placeholder="Officer Statment"></textarea>
+                                                        <form:textarea id="crimeScene" path="crimeScene" class="mid" placeholder="Crime Scene"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Crime Location</span>
-                                                        <input type="email" placeholder="Placeholder">
+                                                        <form:input id="crimeLocation" path="crimeLocation" placeholder="Ex: Crime Location"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row multiple-photo-upload">
@@ -397,10 +391,7 @@
 
                 </section> <!-- content -->
 
-
-
             </section> <!-- content-inner -->
-
         </section> <!-- content-wrapper -->
 
     </div> <!-- page-inner -->

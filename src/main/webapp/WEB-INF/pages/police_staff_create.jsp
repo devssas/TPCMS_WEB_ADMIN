@@ -138,7 +138,7 @@
                                                         <span class="label">Mobile Number *</span>
                                                         <span class="phone-number-content">
                                                              <form:input id="countryCode" path="countryCode" placeholder="218" value="218"/>
-                                                             <form:input id="mobileNumber" path="mobileNumber" placeholder="mobileNumber"/>
+                                                             <form:input id="mobileNumber" path="mobileNumber" placeholder="5555555"/>
                                                         </span>
                                                     </label>
                                                 </div>
@@ -264,7 +264,7 @@
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Officer ID</span>
+                                                        <span class="label">Officer ID *</span>
                                                         <form:input id="officerId" path="officerId" placeholder="Officer Id"/>
                                                     </label>
                                                 </div>

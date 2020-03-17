@@ -18,6 +18,12 @@ public class ReferenceDelegate {
         return referenceService.getClientStatus();
     }
 
+    public List<String> getCrimeTypesTitle() {
+        return referenceService.getCrimeTypes().getData().stream()
+                .map(CrimeTypesSimplifiedDto::getTitle)
+                .collect(Collectors.toList());
+    }
+
     public List<String> getAllWeaponTypes() {
         return referenceService.getWeaponTypes();
     }
