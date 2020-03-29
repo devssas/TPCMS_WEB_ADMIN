@@ -30,6 +30,6 @@ public class CriminalDatabaseMenuController {
             model.addAttribute("prosecutorPage", Pages.MENU_BAR_SUPERADMIN_PROSECUTION_HOME);
         }
 
-        return "criminal_database_menu";
+        return "criminal_criminals_menu";
     }
 }

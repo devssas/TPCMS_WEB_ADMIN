@@ -36,7 +36,7 @@ public class NotificationClientCreateService implements ClientCreateServiceAPI<N
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().createAnnouncements(generalAnnouncementRequestVO);
         } catch (RemoteException | ServiceException e) {
-            throw new MissionPermitsException("Something wrong on creating notification request. " + generalAnnouncementRequestVO.getMobileAppUserName());
+            throw new MissionPermitsException("Something wrong on creating notification request. " + e.getMessage());
         }
     }
 

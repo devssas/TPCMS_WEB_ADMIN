@@ -1,6 +1,7 @@
 package com.tpcmswebadmin.service.criminals.service;
 
 import com.ssas.tpcms.engine.vo.request.ViewCrimeReportRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewVehicleDetailsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -34,13 +35,26 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
 
     private final CredentialsService credentialsService;
 
-    public CrimeReportCard getCrimeReportCardByCrimeReportId(String crimeReportId, HttpServletRequest httpServletRequest) {
+    public TPEngineResponse getCrimeReportByCrimeReportId(String reportId, LoginUserDo loginUserDo) {
         ViewCrimeReportRequestVO viewCrimeReportRequestVO = new ViewCrimeReportRequestVO();
-        viewCrimeReportRequestVO.setLoginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE));
+        viewCrimeReportRequestVO.setCrimeReportsId(reportId);
+        setFullCredentials(viewCrimeReportRequestVO, loginUserDo);
+
+        try {
+            log.info("CrimeReportCard ById Request will be sent to client. {}", viewCrimeReportRequestVO.getMobileAppUserName());
+
+            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeReports(viewCrimeReportRequestVO);
+        } catch (RemoteException | ServiceException e) {
+            log.warn("Something wrong on CrimeReportCard ById request. " + viewCrimeReportRequestVO.getMobileAppUserName());
+        }
+        return null;
+    }
+
+    public CrimeReportCard getCrimeReportCardByCrimeReportId(String crimeReportId, LoginUserDo loginUserDo) {
+        ViewCrimeReportRequestVO viewCrimeReportRequestVO = new ViewCrimeReportRequestVO();
         viewCrimeReportRequestVO.setCrimeReportsId(crimeReportId);
 
-        viewCrimeReportRequestVO.setMobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
-        setCredentials(viewCrimeReportRequestVO);
+        setFullCredentials(viewCrimeReportRequestVO, loginUserDo);
 
         try {
             log.info("CrimeReportCard ById Request will be sent to client. {}", viewCrimeReportRequestVO.getMobileAppUserName());
@@ -71,12 +85,7 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
 
     @Override
     public ResponseAPIDto<CrimeReportDto> getResponseDto(HttpServletRequest request) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
-
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(request);
         TPEngineResponse response = makeClientCall(loginUserDo);
 
         return prepareResponseDto(CrimeReportsMapper.makeCrimeReportDtoList(response.getCrimeReportList()), true, response);
@@ -100,13 +109,11 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         ViewCrimeReportRequestVO viewCrimeReportRequestVO = new ViewCrimeReportRequestVO();
-        viewCrimeReportRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         viewCrimeReportRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewCrimeReportRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewCrimeReportRequestVO.setCrimeReportSeeAll("Y");
 
-        viewCrimeReportRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewCrimeReportRequestVO);
+        setFullCredentials(viewCrimeReportRequestVO, loginUserDo);
 
         try {
             log.info("crimeReports request will be sent to client. {}", viewCrimeReportRequestVO.getMobileAppUserName());
@@ -116,6 +123,13 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
             log.warn("Something wrong on crimeReports request. " + viewCrimeReportRequestVO.getMobileAppUserName());
         }
         return null;
+    }
+
+    public void setFullCredentials(ViewCrimeReportRequestVO requestVO, LoginUserDo loginUserDo) {
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+
+        setCredentials(requestVO);
     }
 
     @Override
@@ -142,5 +156,6 @@ public class CrimeReportsClientService implements ClientServiceAPI<CrimeReportDt
 
         return list;
     }
+
 
 }

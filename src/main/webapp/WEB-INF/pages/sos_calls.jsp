@@ -50,6 +50,7 @@
 
                     <jsp:include page="highlight_sos.jsp">
                         <jsp:param name="header" value="SOS Calls" />
+                        <jsp:param name="redirect" value="${dashboardPage}" />
                     </jsp:include>
 
                     <section class="content-box">
@@ -72,14 +73,7 @@
                                             <div class="form-row select-not-find">
                                                 <label>
                                                     <span class="label">Status</span>
-                                                    <select name="status" id="select-1" cssClass="change-on-submit">
-                                                        <option value="">All/Active/Inactive</option>
-                                                        <option value="">All/Active/Inactive</option>
-                                                        <option value="">All/Active/Inactive</option>
-                                                        <option value="">All/Active/Inactive</option>
-                                                        <option value="">All/Active/Inactive</option>
-                                                        <option value="">All/Active/Inactive</option>
-                                                    </select>
+                                                    <form:select id="statuses" name="status" path="statuses" type="text" items="${statuses}" cssClass="change-on-submit"/>
                                                 </label>
                                             </div>
                                         </div>

@@ -39,11 +39,11 @@ public class DashboardSuperAdminController {
             model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
             model.addAttribute("dashboardPage", Pages.DASHBOARD_SUPERADMIN_JSON);
             model.addAttribute("prosecutorPage", Pages.MENU_BAR_SUPERADMIN_PROSECUTION_HOME);
-
-            return Pages.DASHBOARD_SUPERADMIN;
         } else {
                 return Pages.ERROR_500;
         }
+
+        return Pages.DASHBOARD_SUPERADMIN;
     }
 
 }

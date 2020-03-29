@@ -37,7 +37,7 @@ public class NotificationCardClientService   {
         try {
             return prepareNotificationCardDo(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getNotifications(viewNotificationsRequestVO));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on get notification by id request. " + notificationId);
+            log.warn("Something wrong on get notification by id request. " + e.getMessage());
         }
         return null;
     }

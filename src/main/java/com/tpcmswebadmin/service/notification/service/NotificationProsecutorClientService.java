@@ -81,7 +81,7 @@ public class NotificationProsecutorClientService implements ClientServiceAPI<Not
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getNotifications(viewNotificationsRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on get notification list request. " + viewNotificationsRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on get notification list request. " + e.getMessage());
         }
         return null;
     }

@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.card.delegate;
 
+import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.service.criminals.domain.card.ManageCasesCard;
 import com.tpcmswebadmin.service.criminals.service.CriminalProfileClientService;
 import com.tpcmswebadmin.webpages.card.domain.ManageCasesCardModel;
@@ -15,7 +16,8 @@ public class ManageCasesDelegate {
     private final CriminalProfileClientService criminalProfileClientService;
 
     public ManageCasesCardModel getManageCasesCardByCriminalsCode(String criminalsCode, HttpServletRequest httpServletRequest) {
-        ManageCasesCard manageCasesCard = criminalProfileClientService.getCriminalCaseCardByCriminalsCode(criminalsCode, httpServletRequest);
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
+        ManageCasesCard manageCasesCard = criminalProfileClientService.getCriminalCaseCardByCriminalsCode(criminalsCode, loginUserDo);
 
         return ManageCasesCardModel.builder()
                 .image(manageCasesCard.getImages())

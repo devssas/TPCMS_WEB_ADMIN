@@ -43,11 +43,11 @@ public class DashboardController {
             model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
             model.addAttribute("dashboardPage", Pages.DASHBOARD_ADMIN_JSON);
-
-            return Pages.DASHBOARD_ADMIN;
         } else {
             return Pages.ERROR_500;
         }
+
+        return Pages.DASHBOARD_ADMIN;
     }
 
 }

@@ -30,11 +30,7 @@ public class ReportingOfficerClientService  {
     private final CredentialsService credentialsService;
 
     public ResponseAPIDto<ReportingOfficerDto> getResponseDto(String name, HttpServletRequest httpServletRequest) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
 
         TPEngineResponse response = makeClientCall(name, loginUserDo);
 
@@ -62,7 +58,6 @@ public class ReportingOfficerClientService  {
             responseAPIDto.setStatus("false");
         }
 
-
         return responseAPIDto;
     }
 
@@ -80,7 +75,7 @@ public class ReportingOfficerClientService  {
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getReportingOfficersDetails(reportingOfficerRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on Get reporting officer list request. " + reportingOfficerRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on Get reporting officer list request. " + e.getMessage());
         }
         return null;
     }

@@ -64,11 +64,12 @@ public class DashboardService {
 
         setCredentials(adminDashBoardRequestVO);
 
+        log.info("fetching dashboard notifications request. {}", adminDashBoardRequestVO.getLoginOfficersCode());
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().adminDashboardRequest(
                     adminDashBoardRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on fetching dashboard. {}", adminDashBoardRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on fetching dashboard. {}", e.getMessage());
         }
 
         return null;
@@ -87,12 +88,11 @@ public class DashboardService {
 
         setCredentials(pushNotificationsRequestVO);
 
+        log.info("fetching dashboard notifications request. {}", pushNotificationsRequestVO.getLoginOfficersCode());
         try {
-            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getPushNotifications(
-                    pushNotificationsRequestVO);
+            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getPushNotifications(pushNotificationsRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on fetching dashboard notifications request. {}",
-                     pushNotificationsRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on fetching dashboard notifications request. {}", e.getMessage());
         }
 
         return null;

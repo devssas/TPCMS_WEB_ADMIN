@@ -72,36 +72,42 @@
                                                         <span class="label">Vehicle Id *</span>
                                                         <form:input id="vehicleId" path="vehicleId" placeholder="Vehicle Id"/>
                                                     </label>
+                                                    <form:errors id="vehicleId" path="vehicleId" cssClass="text-danger"/>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Vehicle Name *</span>
                                                         <form:input id="vehicleName" path="vehicleName" placeholder="Vehicle Name"/>
                                                     </label>
+                                                    <form:errors id="vehicleName" path="vehicleName" cssClass="text-danger"/>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Plate Number *</span>
                                                         <form:input id="plateNumber" path="plateNumber" placeholder="Plate Name"/>
                                                     </label>
+                                                    <form:errors id="plateNumber" path="plateNumber" cssClass="text-danger"/>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Chase Number</span>
                                                         <form:input id="chaseNumber" path="chaseNumber" placeholder="Chase Name"/>
                                                     </label>
+                                                    <form:errors id="chaseNumber" path="chaseNumber" cssClass="text-danger"/>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Command Center *</span>
                                                         <form:select id="commandCenter" path="commandCenter"  items="${commandCenters}" />
                                                     </label>
+                                                    <form:errors id="commandCenter" path="commandCenter" cssClass="text-danger"/>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Reporting Unit *</span>
-                                                        <form:select id="unit" path="unit"  items="${officerUnits}" />
+                                                        <form:select id="unit" path="unit"  items="${reportingUnits}" />
                                                     </label>
+                                                    <form:errors id="unit" path="unit" cssClass="text-danger"/>
                                                 </div>
                                                 <div class="form-row">
                                                     <span class="label">Activation Date</span>
@@ -239,8 +245,8 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row multiple-photo-upload">
-                                                    <div class="photo-upload upload-view">
-                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5"></div>
+                                                    <div class="photo-upload">
+                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save" data-delete-url="${pageContext.request.contextPath}/api/image/delete" data-max-files="5"></div>
                                                         <div class="custom-upload">
                                                             <i class="icon-plus"></i>
                                                             <span class="description">Upload Photo</span>

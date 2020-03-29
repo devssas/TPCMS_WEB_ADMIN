@@ -1,5 +1,7 @@
 package com.tpcmswebadmin.webpages.card.delegate;
 
+import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
+import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.service.missionpermits.domain.MissionCardDto;
 import com.tpcmswebadmin.service.missionpermits.service.MissionPermitsClientService;
 import com.tpcmswebadmin.webpages.card.domain.MissionCardModel;
@@ -15,7 +17,8 @@ public class MissionCardDelegate {
     private final MissionPermitsClientService missionPermitsClientService;
 
     public MissionCardModel getMissionCardByMissionId(String missionId, String missionQrCode, HttpServletRequest httpServletRequest) {
-        MissionCardDto missionCardDto = missionPermitsClientService.getSpecialMissionsByMissionId(missionId, missionQrCode, httpServletRequest);
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
+        MissionCardDto missionCardDto = missionPermitsClientService.getSpecialMissionsByMissionId(missionId, missionQrCode, loginUserDo);
 
         return MissionCardModel.builder()
                 .officerName(missionCardDto.getOfficerName())

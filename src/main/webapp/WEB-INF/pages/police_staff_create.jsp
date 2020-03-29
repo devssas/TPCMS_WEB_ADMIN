@@ -68,8 +68,8 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row single-photo-upload">
-                                                    <div class="photo-upload upload-view">
-                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
+                                                    <div class="photo-upload">
+                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save" data-delete-url="${pageContext.request.contextPath}/api/image/delete" data-max-files="1"></div>
                                                         <i class="icon-admin-profile"></i>
                                                         <span class="description">Upload Photo</span>
                                                     </div>
@@ -99,7 +99,7 @@
                                                     </label>
                                                 </div>
 
-                                                <div class="form-row side-by-side-v1-row">
+                                                <div class="form-row">
                                                     <span class="label">Date of Birth</span>
                                                     <label>
                                                         <span class="icons-content">
@@ -114,14 +114,14 @@
                                                         <div>
                                                             <label>
                                                                 <span class="text">Male</span>
-                                                                <form:checkbox id="genderMale" path="genderMale"/>
+                                                                <form:radiobutton id="genderMale" path="gender" value="true" checked="checked"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
                                                         <div>
                                                             <label>
                                                                 <span class="text">Female</span>
-                                                                <form:checkbox id="genderFemale" path="genderFemale"/>
+                                                                <form:radiobutton id="genderFemale" path="gender" value="false"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
@@ -163,14 +163,7 @@
                                                         <div>
                                                             <label>
                                                                 <span class="text">Yes</span>
-                                                                <form:checkbox id="isPermittedToCarryWeapon" path="permittedToCarryWeapon"/>
-                                                                <span class="checkmark"></span>
-                                                            </label>
-                                                        </div>
-                                                        <div>
-                                                            <label>
-                                                                <span class="text">No</span>
-                                                                <form:checkbox id="isPermittedToCarryWeapon" path="permittedToCarryWeapon"/>
+                                                                <form:checkbox id="isPermittedToCarryWeaponYes" path="permittedToCarryWeapon"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
@@ -214,18 +207,20 @@
                                             </div> <!-- form-container -->
                                         </div> <!-- inner -->
                                     </div> <!-- box-v3 -->
-                                    <div class="box-v3">
-                                        <div class="inner">
-                                            <div class="highlight box-highlight">
-                                                <h3>PROFILE CREDENTIALS</h3>
-                                            </div>
-                                            <div class="form-container">
-                                                <div class="form-row">
-                                                    <a href="javascript:;" class="button button-v4 color-2">Reset Password</a>
-                                                </div>
-                                            </div> <!-- form-container -->
-                                        </div> <!-- inner -->
-                                    </div> <!-- box-v3 -->
+
+                                    <!--   <div class="box-v3">
+                                           <div class="inner">
+                                               <div class="highlight box-highlight">
+                                                   <h3>PROFILE CREDENTIALS</h3>
+                                               </div>
+                                               <div class="form-container">
+                                                   <div class="form-row">
+                                                       <a href="" class="button button-v4 color-2">Reset Password</a>
+                                                   </div>
+                                               </div>
+                                        </div>
+                                    </div>  box-v3 -->
+
                                     <div class="box-v3">
                                         <div class="inner">
                                             <div class="highlight box-highlight">
@@ -297,49 +292,49 @@
                                             <div class="form-container">
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Next of Kin</span>
+                                                        <span class="label">Next of Kin *</span>
                                                         <form:input id="nextOfKin" class="nextOfKin" path="nextOfKin" placeholder="Next Of Kin"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Emergency Contact Person</span>
+                                                        <span class="label">Emergency Contact Person *</span>
                                                         <form:input id="emergencyContactPerson" class="emergencyContactPerson" path="emergencyContactPerson" placeholder="Emergency Contact Person"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Relationship with Contact Person</span>
+                                                        <span class="label">Relationship with Contact Person *</span>
                                                         <form:input id="relationshipWithContactPerson" class="relationshipWithContactPerson" path="relationshipWithContactPerson" placeholder="Relationship With Contact Person"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row phone-number-row">
                                                     <label>
-                                                        <span class="label">Emergency Contact Number 1</span>
+                                                        <span class="label">Emergency Contact Number 1 *</span>
                                                         <span class="phone-number-content">
-                                                            <form:input id="emergencyContactCountryCode1" class="emergencyContactCountryCode1" path="emergencyContactCountryCode1" placeholder="$218"/>
+                                                            <form:input id="emergencyContactCountryCode1" class="emergencyContactCountryCode1" path="emergencyContactCountryCode1" placeholder="+218"/>
                                                             <form:input id="emergencyContactNumber1" class="emergencyContactNumber1" path="emergencyContactNumber1" placeholder="1234567890"/>
                                                         </span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row phone-number-row">
                                                     <label>
-                                                        <span class="label">Emergency Contact Number 2</span>
+                                                        <span class="label">Emergency Contact Number 2 *</span>
                                                         <span class="phone-number-content">
-                                                            <form:input id="emergencyContactCountryCode2" class="emergencyContactCountryCode2" path="emergencyContactCountryCode2" placeholder="$218"/>
+                                                            <form:input id="emergencyContactCountryCode2" class="emergencyContactCountryCode2" path="emergencyContactCountryCode2" placeholder="+218"/>
                                                             <form:input id="emergencyContactNumber2" class="emergencyContactNumber2" path="emergencyContactNumber2" placeholder="1234567890"/>
                                                         </span>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Blood Group</span>
+                                                        <span class="label">Blood Group *</span>
                                                         <form:input id="bloodGroup" class="bloodGroup" path="bloodGroup" placeholder="A(+) rh"/>
                                                     </label>
                                                 </div>
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Visual Identification Mark</span>
+                                                        <span class="label">Visual Identification Mark *</span>
                                                         <form:input id="visualIdentificationMark" class="visualIdentificationMark" path="visualIdentificationMark" placeholder="Identification Mark"/>
                                                     </label>
                                                 </div>
@@ -350,7 +345,7 @@
                             </div> <!-- divided-content flout-2 -->
                             <div class="button-row">
                                 <input type="submit" class="button button-v4 color-1 fix-size-sml" value="Create User">
-                                <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
+                                <a href="${pageContext.request.contextPath}/officerProfiles" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
                         </section> <!-- content-box -->
                     </form:form>
@@ -370,8 +365,6 @@
 
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 
 </body>
 </html>

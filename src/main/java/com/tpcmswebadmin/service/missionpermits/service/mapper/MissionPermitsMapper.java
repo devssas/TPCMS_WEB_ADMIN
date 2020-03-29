@@ -28,18 +28,20 @@ public class MissionPermitsMapper {
                 .missionQrCode(specialMissionResponseVO.getSpecialMissionQRCode())
                 .expiryDate(DateUtility.convertToFormat(specialMissionResponseVO.getExpiryDate(), TpCmsConstants.SCREEN_DATE_FORMAT))
                 .status(specialMissionResponseVO.getStatusCode())
-                .actions(prepareActionsColumn(specialMissionResponseVO.getSpmissionId(), specialMissionResponseVO.getSpecialMissionQRCode()))
+                .actions(prepareActionsColumn(specialMissionResponseVO.getSpmissionId(), specialMissionResponseVO.getSpecialMissionQRCode(), specialMissionResponseVO.getOfficersProfileId()))
                 .build();
     }
 
-    public static String prepareActionsColumn(String id, String missionId) {
+    public static String prepareActionsColumn(String missionId, String missionQrCode, String officerId) {
         String missionIdVariable = "{missionId}";
 
         String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/mission?missionId={missionId}&missionQrCode={missionQrCode}'><i class='icon-view'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateMission?missionId={missionId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
-        String actionDelete = "<a href='/tpcmsWebAdmin/deleteMission?missionId={missionId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/missionPermitsUpdate?missionId={missionId}&missionQrCode={missionQrCode}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+        String actionDelete = "<a href='/tpcmsWebAdmin/missionPermitsDelete?missionId={missionId}&missionQrCode={missionQrCode}&officerId={officerId}' class='button button-v4 sml-icon-btn color-2'><i class='icon-cancel'></i></a>";
 
-        return actionView.replace(missionIdVariable, id).replace("{missionQrCode}", missionId) + actionUpdate.replace(missionIdVariable, id) + actionDelete.replace(missionIdVariable, id);
+        return actionView.replace(missionIdVariable, missionId).replace("{missionQrCode}", missionQrCode) +
+                actionUpdate.replace(missionIdVariable, missionId).replace("{missionQrCode}", missionQrCode) +
+                actionDelete.replace(missionIdVariable, missionId).replace("{missionQrCode}", missionQrCode).replace("{officerId}", officerId);
     }
 
 }

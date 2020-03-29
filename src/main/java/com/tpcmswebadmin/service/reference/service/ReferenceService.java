@@ -32,9 +32,10 @@ public class ReferenceService {
 
     public List<String> getWeaponTypes() {
         try {
+            log.warn("get weapon types");
             return makeWeaponList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getAllowedWeaponTypesConfigMapping(null, null));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on get weapon types request. {}", e.getMessage());
         }
 
         return Collections.emptyList();
@@ -48,9 +49,10 @@ public class ReferenceService {
 
     public List<OfficerUnitDto> getOfficerUnitList() {
         try {
+            log.warn("get officer unit list");
             return makeOfficerUnitDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getOfficerUnitsMapping(null, null));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on officer unit list request. {}", e.getMessage());
         }
 
         return Collections.emptyList();
@@ -78,9 +80,10 @@ public class ReferenceService {
 
     public List<NatureOfAnnouncementDto> getNatureOfAnnouncement() {
         try {
+            log.info("getNatureOfAnnouncement request.");
             return makeNatureOfAnnouncementDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getNatureofAnnouncementsConfig(null, null, null));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on getNatureOfAnnouncement request. {}", e.getMessage());
         }
 
         return Collections.emptyList();
@@ -103,9 +106,10 @@ public class ReferenceService {
 
     public List<CommandCenterDto> getCommandCenter() {
         try {
+            log.info("getCommandCenter request.");
             return makeCommandCenterDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCommandCenterMapping());
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on getCommandCenter request. {}", e.getMessage());
         }
 
         return Collections.emptyList();
@@ -130,18 +134,20 @@ public class ReferenceService {
 
     public List<CrimeTypesDto> getCrimeTypes() {
         try {
+            log.info("getCrimeTypes request.");
             return makeCrimeTypesDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeTypesMapping(null, null));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on getCrimeTypes request. {}", e.getMessage());
         }
         return Collections.emptyList();
     }
 
     public ResponseDataApiDto<CrimeTypesSimplifiedDto> getCrimeTypesSimplified() {
         try {
+            log.info("getCrimeTypesSimplified request.");
             return makeResponseDataApi(makeCrimeTypesDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getCrimeTypesMapping(null, null)));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on getCrimeTypesSimplified request. {}", e.getMessage());
         }
 
         return null;
@@ -185,9 +191,10 @@ public class ReferenceService {
 
     public List<AccessRoleDto> getAccessRoles() {
         try {
+            log.info("getAccessRoles request.");
             return makeAccessRoleDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getAccessRoleMapping());
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on getAccessRoles request. {}", e.getMessage());
         }
 
         return Collections.emptyList();
@@ -209,9 +216,10 @@ public class ReferenceService {
 
     public List<OfficerGradeDto> getOfficerGrades() {
         try {
+            log.info("getOfficerGrades request.");
             return makeOfficerGradeDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getOfficerGradeMapping(null, null));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on getOfficerGrades request. {}", e.getMessage());
         }
 
         return Collections.emptyList();
@@ -238,9 +246,10 @@ public class ReferenceService {
     
     public List<OfficerRankDto> getOfficersRank() {
         try {
+            log.info("getOfficersRank request.");
             return makeOfficeRankDtoList(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getOfficerRankMapping(null, null));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. ");
+            log.warn("Something wrong on getOfficersRank request. {}", e.getMessage());
         }
 
         return Collections.emptyList();

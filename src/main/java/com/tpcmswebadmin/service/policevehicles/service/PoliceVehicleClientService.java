@@ -34,27 +34,18 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
 
     private final CredentialsService credentialsService;
 
-    public PoliceVehicleCardDto getPoliceVehiclesByVehicleId(String vehicleId, HttpServletRequest httpServletRequest) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
-
+    public PoliceVehicleCardDto getPoliceVehiclesByVehicleId(String vehicleId, LoginUserDo loginUserDo) {
         ViewVehicleDetailsRequestVO viewVehicleDetailsRequestVO = new ViewVehicleDetailsRequestVO();
-        viewVehicleDetailsRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewVehicleDetailsRequestVO.setUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
         viewVehicleDetailsRequestVO.setVehicleId(vehicleId);
 
-        viewVehicleDetailsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewVehicleDetailsRequestVO);
+        setFullCredentials(viewVehicleDetailsRequestVO, loginUserDo);
 
         try {
             log.info("Police vehicle details request will be sent to client. {}", viewVehicleDetailsRequestVO.getMobileAppUserName());
 
             return prepareVehicleCardDto(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getVehicleDetails(viewVehicleDetailsRequestVO));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on police vehicle details request. " + viewVehicleDetailsRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on police vehicle details request. " + e.getMessage());
         }
 
         return null;
@@ -66,7 +57,9 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
                 .name(vehicleDetails.getVehicleDetailsList()[0].getVehicleName())
                 .commandCenter(vehicleDetails.getVehicleDetailsList()[0].getCommandCenter())
                 .unit(vehicleDetails.getVehicleDetailsList()[0].getUnitNumber())
+                .chaseNumber(vehicleDetails.getVehicleDetailsList()[0].getChasisNumber())
                 .plateNumber(vehicleDetails.getVehicleDetailsList()[0].getPlateNumber())
+                .activationDate(vehicleDetails.getVehicleDetailsList()[0].getActivationDate())
                 .expiryDate(vehicleDetails.getVehicleDetailsList()[0].getExpiryDate())
                 .weaponType(vehicleDetails.getVehicleDetailsList()[0].getAllowedWeaponType1())
                 .weaponSrl(vehicleDetails.getVehicleDetailsList()[0].getWeaponSerialNumber1())
@@ -76,6 +69,12 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
                 .isCarryPrisoners(vehicleDetails.getVehicleDetailsList()[0].getPermissionToCarryPrisoners())
                 .isDriverOutsideCity(vehicleDetails.getVehicleDetailsList()[0].getPermissionToDriverOutsideCity())
                 .image(ImageUtility.convertToBase64image(vehicleDetails.getVehicleDetailsList()[0].getVehiclePhoto1()))
+                .driverOfficerId1(vehicleDetails.getVehicleDetailsList()[0].getDriverOfficerId_1())
+                .driverOfficerId2(vehicleDetails.getVehicleDetailsList()[0].getDriverOfficerId_2())
+                .additionalRemarks(vehicleDetails.getVehicleDetailsList()[0].getAdditionalRemarks())
+                .vehicleQrCode(vehicleDetails.getVehicleDetailsList()[0].getVehicleQRCode())
+                .statusCode(vehicleDetails.getVehicleDetailsList()[0].getStatusCode())
+                .vehicleDetailsId(vehicleDetails.getVehicleDetailsList()[0].getVehicleDetailsId())
                 .build();
     }
 
@@ -83,7 +82,6 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
     public ResponseAPIDto<PoliceVehicleDto> getResponseDto(HttpServletRequest request) {
         String searchKey =  request.getSession().getAttribute("search") == null ? null : (String) request.getSession().getAttribute("search");
         String status =  request.getSession().getAttribute("status") == null ? null : (String) request.getSession().getAttribute("status");
-
 
         LoginUserDo loginUserDo = LoginUserDo.builder()
                 .accessRole((String) request.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE))
@@ -130,15 +128,11 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         ViewVehicleDetailsRequestVO viewVehicleDetailsRequestVO = new ViewVehicleDetailsRequestVO();
-        viewVehicleDetailsRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         viewVehicleDetailsRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewVehicleDetailsRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
-        viewVehicleDetailsRequestVO.setUnitNumber(loginUserDo.getReportingUnit());
         viewVehicleDetailsRequestVO.setVehicleDetailsSeeAll("Y");
-        viewVehicleDetailsRequestVO.setAccessRoleCode(loginUserDo.getAccessRole());
 
-        viewVehicleDetailsRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewVehicleDetailsRequestVO);
+        setFullCredentials(viewVehicleDetailsRequestVO, loginUserDo);
 
         try {
             log.info("Get vehicle list request will be sent to client. {}", viewVehicleDetailsRequestVO.getMobileAppUserName());
@@ -148,6 +142,18 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
             log.warn("Something wrong on get vehicle list request. " + viewVehicleDetailsRequestVO.getMobileAppUserName());
         }
         return null;
+    }
+
+    public void setFullCredentials(ViewVehicleDetailsRequestVO requestVO, LoginUserDo loginUserDo) {
+        requestVO.setAccessRoleCode(loginUserDo.getAccessRole());
+
+        if(loginUserDo.getAccessRole().equals("ADMIN"))
+            requestVO.setUnitNumber(loginUserDo.getReportingUnit());
+
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+
+        setCredentials(requestVO);
     }
 
     @Override
@@ -164,11 +170,11 @@ public class PoliceVehicleClientService implements ClientServiceAPI<PoliceVehicl
         List<String> list = new ArrayList<>();
 
         list.add("Vehicle ID");
-        list.add("Type");
+        list.add("Weapon Type");
+        list.add("Vehicle Name");
         list.add("Plate Number");
-        list.add("City");
-        list.add("State");
-        list.add("Last Login");
+        list.add("Chase Number");
+        list.add("Command Center");
         list.add("Status");
         list.add("Actions");
 

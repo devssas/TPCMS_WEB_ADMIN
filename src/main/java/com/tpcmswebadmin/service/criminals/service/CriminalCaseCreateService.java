@@ -8,7 +8,7 @@ import com.tpcmswebadmin.infrastructure.service.ClientCreateServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.missionpermits.exception.MissionPermitsException;
-import com.tpcmswebadmin.webpages.criminals.model.CriminalCaseCreateModel;
+import com.tpcmswebadmin.webpages.criminals.model.FileCriminalCaseCreateModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ import java.rmi.RemoteException;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class CriminalCaseCreateService implements ClientCreateServiceAPI<CriminalCaseCreateModel, CriminalProfileRequestVO> {
+public class CriminalCaseCreateService implements ClientCreateServiceAPI<FileCriminalCaseCreateModel, CriminalProfileRequestVO> {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
     @Override
-    public TPEngineResponse create(CriminalCaseCreateModel model, LoginUserDo loginUserDo) {
+    public TPEngineResponse create(FileCriminalCaseCreateModel model, LoginUserDo loginUserDo) {
         CriminalProfileRequestVO criminalProfileRequestVO = new CriminalProfileRequestVO();
         setFields(model, criminalProfileRequestVO);
         setCredentials(criminalProfileRequestVO, loginUserDo);
@@ -39,7 +39,7 @@ public class CriminalCaseCreateService implements ClientCreateServiceAPI<Crimina
     }
 
     @Override
-    public void setFields(CriminalCaseCreateModel model, CriminalProfileRequestVO requestVO) {
+    public void setFields(FileCriminalCaseCreateModel model, CriminalProfileRequestVO requestVO) {
         requestVO.setAdditionalRemarks(null); //todo no additional remarks
         requestVO.setAdditional_Parameter1(null);
         requestVO.setAdditional_Parameter2(null);
@@ -69,7 +69,7 @@ public class CriminalCaseCreateService implements ClientCreateServiceAPI<Crimina
         requestVO.setFirstName_En(model.getFirstName());
         requestVO.setFlagedDate(model.getFlaggedDate());
         requestVO.setFriendsContactInformation(model.getFriendsAddress());
-        requestVO.setGender(model.getGender());
+        requestVO.setGender(model.isGender() ? "M" : "F");
         requestVO.setInterpolWantedCase("N"); //todo no field on screen
         requestVO.setLastName_Ar(model.getLastName());
         requestVO.setLastName_En(model.getLastName());

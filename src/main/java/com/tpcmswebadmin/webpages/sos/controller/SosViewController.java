@@ -31,10 +31,13 @@ public class SosViewController {
         if(adminRole.equals(ADMIN.name())) {
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
             model.addAttribute("dashboardPage", Pages.DASHBOARD_ADMIN_JSON);
+
         } else {
             model.addAttribute("dashboardPage", Pages.DASHBOARD_SUPERADMIN_JSON);
             model.addAttribute("prosecutorPage", Pages.MENU_BAR_SUPERADMIN_PROSECUTION_HOME);
         }
+
+        model.addAttribute("statuses", sosViewDelegate.getSosStatuses(httpServletRequest));
 
         return "sos_calls";
     }

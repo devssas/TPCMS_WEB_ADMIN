@@ -1,8 +1,7 @@
 package com.tpcmswebadmin.webpages.criminals.controller;
-
 import com.tpcmswebadmin.infrastructure.domain.constant.Pages;
 import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
-import com.tpcmswebadmin.webpages.criminals.delegate.CrimeReportDelegate;
+import com.tpcmswebadmin.webpages.criminals.delegate.ManageCrimeReportDelegate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,21 +14,20 @@ import static com.tpcmswebadmin.infrastructure.domain.enums.Roles.ADMIN;
 
 @Controller
 @RequiredArgsConstructor
+
 public class CrimeReportManageCaseReviewController {
 
-    private final CrimeReportDelegate crimeReportDelegate;
+    private final ManageCrimeReportDelegate manageCrimeReportDelegate;
 
     @GetMapping("/crimeReport")
     public String getCriminalsDatabase(@RequestParam("reportId") String reportId, Model model, HttpServletRequest httpServletRequest) {
-        crimeReportDelegate.getCrimeReportByReportId(reportId, httpServletRequest);
-
         model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
 
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);
 
-        if(adminRole.equals(ADMIN.name())) {
+        if (adminRole.equals(ADMIN.name())) {
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);
             model.addAttribute("dashboardPage", Pages.DASHBOARD_ADMIN_JSON);
         } else {
@@ -37,8 +35,9 @@ public class CrimeReportManageCaseReviewController {
             model.addAttribute("prosecutorPage", Pages.MENU_BAR_SUPERADMIN_PROSECUTION_HOME);
         }
 
-        model.addAttribute("statuses", crimeReportDelegate.getManageCaseStatuses(httpServletRequest));
+        model.addAttribute("statuses", manageCrimeReportDelegate.getManageCaseStatuses(httpServletRequest));
 
-        return "criminal_crime_reports_view";
+        return "criminal_manage_crime_reports";
+
     }
 }

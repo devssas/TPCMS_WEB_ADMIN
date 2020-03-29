@@ -54,7 +54,7 @@ public class NotificationClientService implements ClientServiceAPI<NotificationD
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().updatePushNotifications(pushNotificationsRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on update notifications request. " + pushNotificationsRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on update notifications request. " + e.getMessage());
         }
 
         return null;

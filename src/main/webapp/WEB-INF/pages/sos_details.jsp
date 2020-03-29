@@ -35,13 +35,13 @@
         <section class="content-wrapper">
 
             <jsp:include page="menu_bar_dashboard.jsp">
-                <jsp:param name="home" value="active" />
-                <jsp:param name="officerName" value="${officerName}" />
-                <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
-                <jsp:param name="accessRole" value="${accessRole}" />
-                <jsp:param name="disabled" value="${disabled}" />
-                <jsp:param name="dashboardPage" value="${dashboardPage}" />
-                <jsp:param name="prosecutorPage" value="${prosecutorPage}" />
+                <jsp:param name="home" value="active"/>
+                <jsp:param name="officerName" value="${officerName}"/>
+                <jsp:param name="officerProfilePicture" value="${officerProfilePicture}"/>
+                <jsp:param name="accessRole" value="${accessRole}"/>
+                <jsp:param name="disabled" value="${disabled}"/>
+                <jsp:param name="dashboardPage" value="${dashboardPage}"/>
+                <jsp:param name="prosecutorPage" value="${prosecutorPage}"/>
             </jsp:include>
 
             <section class="content-inner">
@@ -49,77 +49,110 @@
                 <section class="content">
 
                     <jsp:include page="highlight_back_to_overview.jsp">
-                        <jsp:param name="header" value="SOS Calls Details " />
-                        <jsp:param name="redirect" value="sos" />
-                        <jsp:param name="pageName" value="SOS menu" />
+                        <jsp:param name="header" value="SOS Calls Details "/>
+                        <jsp:param name="redirect" value="sos"/>
+                        <jsp:param name="pageName" value="SOS menu"/>
+                        <jsp:param name="httpError" value="${httpError}" />
                     </jsp:include>
 
-                    <form action="">
-
+                    <form:form id="update-police-vehicle" modelAttribute="updateSos" method="post"
+                               enctype="multipart/form-data">
                         <section class="content-box">
                             <div class="inner">
                                 <div class="form-container">
                                     <div class="form-row text-row select-not-find">
                                         <div class="input-group-content">
+                                            <input type="hidden" name="id" value=${updateSos.id}>
                                             <label>
                                                 <span class="label">Request SRL Number</span>
-                                                <span class="text-v1">${requestSerialNumber}</span>
+                                                <span class="text-v1">${updateSos.requestSerialNumber}</span>
+                                                <input type="hidden" name="requestSerialNumber"
+                                                       value=${updateSos.requestSerialNumber}>
                                             </label>
                                             <label>
                                                 <span class="label">Request Date</span>
-                                                <span class="text-v1">${requestDate}</span>
+                                                <span class="text-v1">${updateSos.requestDate}</span>
+                                                <input type="hidden" name="requestDate" value=${updateSos.requestDate}>
                                             </label>
                                             <label>
                                                 <span class="label">Username</span>
-                                                <span class="text-v1">${username}</span>
+                                                <span class="text-v1">${updateSos.username}</span>
+                                                <input type="hidden" name="username" value=${updateSos.username}>
                                             </label>
                                             <label>
                                                 <span class="label">Phone Number</span>
-                                                <span class="text-v1">${phoneNumber}</span>
+                                                <span class="text-v1">${updateSos.phoneNumber}</span>
+                                                <input type="hidden" name="phoneNumber" value=${updateSos.phoneNumber}>
                                             </label>
                                             <label>
                                                 <span class="label">Location</span>
-                                                <span class="text-v1">${location}</span>
+                                                <span class="text-v1">${updateSos.location}</span>
+                                                <input type="hidden" name="location" value=${updateSos.location}>
+                                            </label>
+                                            <label>
+                                                <span class="label">Status</span>
+                                                <form:select id="statuses" name="status" path="status" type="text"
+                                                             items="${statuses}" cssClass="change-on-submit"/>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <label>
                                             <span class="label">Remarks</span>
-                                            <textarea name="" id="2" placeholder="Statement">${remarks}</textarea>
+                                            <form:textarea id="remarks" path="remarks" placeholder="Placeholder"/>
                                         </label>
                                     </div>
                                 </div> <!-- form-container -->
                             </div> <!-- inner -->
                             <div class="button-row">
-                                <input type="submit" class="button button-v4 color-3 fix-size-sml" value="Update">
-                                <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
+                                <input type="submit" class="button button-v4 color-3 fix-size-sml"
+                                       value="Update" ${buttonType}>
+                                <a href="${pageContext.request.contextPath}/sos"
+                                   class="button button-v4 color-2 fix-size-sml">Cancel</a>
                             </div>
 
-                        </section> <!-- content-box -->
-                    </form>
+                        </section>
+                        <!-- content-box -->
+                    </form:form>
 
                     <section>
                         <div class="maps mt-20">
-                            <div id="map" data-json-url="${pageContext.request.contextPath}/api/sosCall/details"></div>
+                            <div id="map" data-json-url="${pageContext.request.contextPath}/api/sosCall/details/map"></div>
                         </div>
                     </section>
 
-                    <section class="dynamic-content" data-template-url="assets/ajax/table/table-rounded/table-rounded-v1.html" data-json-url="assets/ajax/table/table-rounded/table-rounded-v1.json"></section>
+                    <section class="dynamic-content">
 
+                        <section class="site-data-container" data-template-url="assets/ajax/table/table-v2/table-v2.html" data-json-url="${pageContext.request.contextPath}/api/sosCall/details?sosId=${sosId}">
+                            <div class="site-data-content"></div>
+                            <div class="error-text"></div>
+                            <div class="pagination site-data-pagination">
+                                <ul>
+                                    <li><a href="#" class="prev"></a></li>
 
-                </section> <!-- content -->
+                                    <li>
+                                        <div class="form-row select select-not-find">
+                                            <select name="page">
+                                                <option value="1">1</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li><a href="#" class="next"></a></li>
+                                </ul>
+                            </div><!-- /pagination-row -->
+                        </section>
 
+                    </section> <!-- dynamic-content -->
 
-            </section> <!-- content-inner -->
+                </section> <!-- content-inner -->
 
-        </section> <!-- content-wrapper -->
+            </section> <!-- content-wrapper -->
 
     </div> <!-- page-inner -->
 
 </div> <!-- page-wrapper -->
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.js"></script>
 <script src="${pageContext.request.contextPath}/https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
 

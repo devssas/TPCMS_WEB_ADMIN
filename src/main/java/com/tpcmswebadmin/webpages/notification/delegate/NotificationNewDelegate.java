@@ -21,38 +21,22 @@ public class NotificationNewDelegate {
 
     private final NotificationClientCreateService notificationClientCreateService;
 
+    private final SosClientCreateService sosClientCreateService;
+
     public ResponseMVCDto createNotification(NotificationCreateModel notificationCreateModel, HttpServletRequest httpServletRequest) {
-        LoginUserDo loginUserDo = makeLoginUser(httpServletRequest);
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
         TPEngineResponse response;
 
-        response = notificationClientCreateService.create(notificationCreateModel, loginUserDo);
+        if(notificationCreateModel.getNotificationType().equals("Notification"))
+            response = notificationClientCreateService.create(notificationCreateModel, loginUserDo);
+        else
+            response = sosClientCreateService.create(notificationCreateModel, loginUserDo);
 
-        return returnResponseMVCDto(response);
-    }
-
-    private ResponseMVCDto returnResponseMVCDto(TPEngineResponse response) {
-        if (response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
-            return ResponseMVCDto.builder()
-                    .message(null)
-                    .result(true)
-                    .build();
-        } else {
-            return ResponseMVCDto.builder()
-                    .message(response.getResponseCodeVO().getResponseValue())
-                    .result(false)
-                    .build();
-        }
+        return ResponseMVCDto.prepareResponse(response);
     }
 
     public List<String> getNotificationTypes() {
         return Arrays.asList("Notification", "Sos");
     }
 
-    private LoginUserDo makeLoginUser(HttpServletRequest httpServletRequest) {
-        return LoginUserDo.builder()
-                .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
-    }
 }

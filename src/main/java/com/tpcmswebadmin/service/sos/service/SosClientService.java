@@ -6,12 +6,13 @@ import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
 import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
-import com.tpcmswebadmin.infrastructure.domain.constant.TpCmsConstants;
 import com.tpcmswebadmin.infrastructure.service.ClientServiceAPI;
+import com.tpcmswebadmin.service.calender.domain.CalendarDto;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.dashboard.domain.MapCenter;
 import com.tpcmswebadmin.service.sos.domain.SosCallDetailDto;
+import com.tpcmswebadmin.service.sos.domain.SosCallDetailMapDto;
 import com.tpcmswebadmin.service.sos.domain.SosCallDto;
 import com.tpcmswebadmin.service.sos.service.mapper.SosCallsMapper;
 import lombok.RequiredArgsConstructor;
@@ -34,18 +35,56 @@ public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserD
 
     private final CredentialsService credentialsService;
 
-    public SosCallDetailDto getSosDetailById(HttpServletRequest httpServletRequest) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
+    public ResponseAPIDto<SosCallDetailDto> getSosDetailById(String sosId, LoginUserDo loginUserDo) {
+        TPEngineResponse response = makeClientCall(sosId, loginUserDo);
 
+        if (response.getSosRequestList() == null)
+            return prepareResponseDetailsDto(Collections.emptyList(), false);
+        else
+            return prepareResponseDetailsDto(SosCallsMapper.makeSosCallDetailsDtoList(response.getSosRequestHistoryList()), true);
+
+    }
+
+    private ResponseAPIDto<SosCallDetailDto> prepareResponseDetailsDto(List<SosCallDetailDto> list, boolean status) {
+        ResponseAPIDto<SosCallDetailDto> responseAPIDto = new ResponseAPIDto<>();
+        DataDto<SosCallDetailDto> dataDto = new DataDto<>();
+
+        if(status) {
+            dataDto.setTbody(list);
+            dataDto.setThead(setDetailsTableColumnNames());
+
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("success");
+            responseAPIDto.setStatus("true");
+        } else {
+            dataDto.setTbody(Collections.emptyList());
+            dataDto.setThead(setDetailsTableColumnNames());
+
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("There's no data available for loggedin user");
+            responseAPIDto.setStatus("false");
+        }
+
+        return responseAPIDto;
+    }
+
+    public List<String> setDetailsTableColumnNames() {
+        List<String> list = new ArrayList<>();
+
+        list.add("Staff Name");
+        list.add("Remark Date");
+        list.add("Remark");
+
+        return list;
+    }
+
+    public SosCallDetailMapDto getSosDetailMap(String id, LoginUserDo loginUserDo) {
+        TPEngineResponse response = makeClientCall(id, loginUserDo);
         return prepareSosCallDetailDto();
     }
 
-    private SosCallDetailDto prepareSosCallDetailDto() {
-        return SosCallDetailDto.builder()
+    private SosCallDetailMapDto prepareSosCallDetailDto() {
+        return SosCallDetailMapDto.builder()
                 .mapCenter(new MapCenter())
                 .data(null)
                 .build();
@@ -53,29 +92,22 @@ public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserD
 
     public TPEngineResponse makeClientCall(String sosId, LoginUserDo loginUserDo) {
         ViewSOSRequestVO viewSOSRequestVO = new ViewSOSRequestVO();
-        viewSOSRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewSOSRequestVO.setLoginOfficersUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
         viewSOSRequestVO.setSosRequestId(sosId);
-        viewSOSRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewSOSRequestVO);
+        setFullCredentials(viewSOSRequestVO, loginUserDo);
 
         try {
             log.info("SignIn userName request will be sent to client. {}", viewSOSRequestVO.getMobileAppUserName());
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getSOSRequestDetailsView(viewSOSRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. " + viewSOSRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on signIn username request. {}", e.getMessage());
         }
         return null;
     }
 
     @Override
     public ResponseAPIDto<SosCallDto> getResponseDto(HttpServletRequest request) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(request);
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
@@ -112,23 +144,28 @@ public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserD
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         ViewSOSRequestVO viewSOSRequestVO = new ViewSOSRequestVO();
-        viewSOSRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        viewSOSRequestVO.setLoginOfficersUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
         viewSOSRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewSOSRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewSOSRequestVO.setSosRequestSeeAll("Y");
 
-        viewSOSRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewSOSRequestVO);
+        setFullCredentials(viewSOSRequestVO, loginUserDo);
 
         try {
             log.info("SignIn userName request will be sent to client. {}", viewSOSRequestVO.getMobileAppUserName());
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getSOSRequestDetailsView(viewSOSRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. " + viewSOSRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on signIn username request. {}", e.getMessage());
         }
         return null;
+    }
+
+    public void setFullCredentials(ViewSOSRequestVO requestVO, LoginUserDo loginUserDo) {
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setLoginOfficersUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+
+        setCredentials(requestVO);
     }
 
     @Override
@@ -154,5 +191,6 @@ public class SosClientService implements ClientServiceAPI<SosCallDto, LoginUserD
 
         return list;
     }
+
 
 }

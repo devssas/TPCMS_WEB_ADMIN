@@ -25,6 +25,8 @@ public class MissionCardDto implements Serializable {
 
     private String officerId;
 
+    private String activationDate;
+
     private String expiryDate;
 
     private String isPermittedCarryWeapon;
@@ -36,5 +38,7 @@ public class MissionCardDto implements Serializable {
     private String missionDescription;
 
     private String image;
+
+    private String additionalRemarks;
 
 }

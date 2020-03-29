@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class SignInUsernameController {
 
-
     @GetMapping("/signInUsername")
     public String getSignInUsername(Model model, HttpServletRequest request) {
         request.getSession().invalidate();

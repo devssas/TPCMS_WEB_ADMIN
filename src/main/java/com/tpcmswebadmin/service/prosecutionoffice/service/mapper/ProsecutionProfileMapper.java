@@ -33,9 +33,9 @@ public class ProsecutionProfileMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String actionView = "<a href='/tpcmsWebAdmin/prosecutionManageCrimeFile?caseId={caseId}'  class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
+        String actionView = "<a href='/tpcmsWebAdmin/prosecutionManageCasesDetail?criminalsCode={criminalsCode}'  class='button button-v4 sml-icon-btn color-1'><i class='icon-view'></i></a>";
 
-        return actionView.replace("{caseId}", id);
+        return actionView.replace("{criminalsCode}", id);
     }
 
 }

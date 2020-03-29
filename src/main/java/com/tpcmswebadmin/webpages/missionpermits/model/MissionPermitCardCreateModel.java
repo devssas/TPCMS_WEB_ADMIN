@@ -19,12 +19,14 @@ public class MissionPermitCardCreateModel {
     @NotEmpty(message = "{error.missionPermit.commandCenter.notNull}")
     private String commandCenter;
 
-    private boolean permittedToCarryWeapon = true;
+    private boolean permittedToCarryWeapon;
 
     private String weaponType;
 
+    @NotEmpty(message = "{error.missionPermit.missionType.notNull}")
     private String missionType;
 
+    @NotEmpty(message = "{error.missionPermit.missionDescription.notNull}")
     private String missionDescription;
 
     private String activationDate;

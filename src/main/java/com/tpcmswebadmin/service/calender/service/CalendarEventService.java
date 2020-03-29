@@ -1,6 +1,7 @@
 package com.tpcmswebadmin.service.calender.service;
 
 import com.ssas.tpcms.engine.vo.request.AdminAppointmentRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewVehicleDetailsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -32,17 +34,13 @@ public class CalendarEventService implements ClientServiceAPI<CalendarDto, Login
     private final CredentialsService credentialsService;
 
     public ResponseAPIDto<CalendarDto> getResponseDto(String date, HttpServletRequest request) {
-        ResponseAPIDto<CalendarDto> initialResponse = new ResponseAPIDto<>();
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .calenderDate(date)
-                .build();
+        List<CalendarDto> initialResponse = Collections.emptyList();
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(request);
+        loginUserDo.setCalenderDate(date);
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return response.getAppointmentDetailsList() == null ? initialResponse : prepareResponseDto(CalenderEventMapper.makeCalenderEventList(response.getAppointmentDetailsList()), true, response);
+        return response.getAppointmentDetailsList() == null ? prepareResponseDto(initialResponse, false, response) : prepareResponseDto(CalenderEventMapper.makeCalenderEventList(response.getAppointmentDetailsList()), true, response);
     }
 
     @Override
@@ -59,9 +57,21 @@ public class CalendarEventService implements ClientServiceAPI<CalendarDto, Login
         dataDto.setTbody(list);
         dataDto.setThead(setTableColumnNames());
 
-        responseAPIDto.setData(dataDto);
-        responseAPIDto.setMessage("status");
-        responseAPIDto.setStatus("true");
+        if(status) {
+            dataDto.setTbody(list);
+            dataDto.setThead(setTableColumnNames());
+
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage("success");
+            responseAPIDto.setStatus("true");
+        } else {
+            dataDto.setTbody(Collections.emptyList());
+            dataDto.setThead(setTableColumnNames());
+
+            responseAPIDto.setData(dataDto);
+            responseAPIDto.setMessage(response.getResponseCodeVO().getResponseValue());
+            responseAPIDto.setStatus("false");
+        }
 
         return responseAPIDto;
     }
@@ -69,20 +79,25 @@ public class CalendarEventService implements ClientServiceAPI<CalendarDto, Login
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         AdminAppointmentRequestVO adminAppointmentRequestVO = new AdminAppointmentRequestVO();
-        adminAppointmentRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
-        adminAppointmentRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         adminAppointmentRequestVO.setAppointmentDate(loginUserDo.getCalenderDate());
 
-        setCredentials(adminAppointmentRequestVO);
+        setFullCredentials(adminAppointmentRequestVO, loginUserDo);
 
         try {
-            log.info("criminal reports request will be sent to client. {}", adminAppointmentRequestVO.getMobileAppUserName());
+            log.info("Calender event will be sent to client. {}", adminAppointmentRequestVO.getMobileAppUserName());
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getAppointmentDetails(adminAppointmentRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on criminal reports request. " + adminAppointmentRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on Calender event request. {}",  e.getMessage());
         }
         return null;
+    }
+
+    public void setFullCredentials(AdminAppointmentRequestVO requestVO, LoginUserDo loginUserDo) {
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+
+        setCredentials(requestVO);
     }
 
     @Override

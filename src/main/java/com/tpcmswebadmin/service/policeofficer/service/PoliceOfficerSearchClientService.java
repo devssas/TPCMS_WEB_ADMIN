@@ -54,7 +54,7 @@ public class PoliceOfficerSearchClientService {
 
             return makeSearchResponse(tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getOfficersProfileList(viewOfficersProfileRequestVO));
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. " + viewOfficersProfileRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on signIn username request. " + e.getMessage());
         }
         return null;
     }

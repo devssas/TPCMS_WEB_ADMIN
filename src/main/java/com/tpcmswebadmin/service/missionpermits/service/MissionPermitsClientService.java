@@ -2,6 +2,7 @@ package com.tpcmswebadmin.service.missionpermits.service;
 
 import com.ssas.tpcms.engine.vo.request.SpecialMissionRequestVO;
 import com.ssas.tpcms.engine.vo.request.ViewSpecialMissionRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewVehicleDetailsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -37,13 +38,7 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
 
     private final CredentialsService credentialsService;
 
-    public MissionCardDto getSpecialMissionsByMissionId(String missionId, String missionQrCode, HttpServletRequest httpServletRequest) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
-
+    public MissionCardDto getSpecialMissionsByMissionId(String missionId, String missionQrCode, LoginUserDo loginUserDo) {
         ViewSpecialMissionRequestVO viewSpecialMissionRequestVO = new ViewSpecialMissionRequestVO();
         viewSpecialMissionRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         viewSpecialMissionRequestVO.setSpmissionId(missionId);
@@ -70,12 +65,14 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
                 .rank(specialMissionDetails.getSpecialMissionList()[0].getOfficersRank())
                 .unit(specialMissionDetails.getSpecialMissionList()[0].getReportingUnit())
                 .officerId(specialMissionDetails.getSpecialMissionList()[0].getOfficersProfileId())
+                .activationDate(DateUtility.convertToFormat(specialMissionDetails.getSpecialMissionList()[0].getActivationDate(), TpCmsConstants.SCREEN_DATE_FORMAT))
                 .expiryDate(DateUtility.convertToFormat(specialMissionDetails.getSpecialMissionList()[0].getExpiryDate(), TpCmsConstants.SCREEN_DATE_FORMAT))
                 .isPermittedCarryWeapon(specialMissionDetails.getSpecialMissionList()[0].getPermissionToCarryWeapon())
                 .weaponType(specialMissionDetails.getSpecialMissionList()[0].getAllowedWeaponType())
                 .missionType(specialMissionDetails.getSpecialMissionList()[0].getMissionType())
                 .missionDescription(specialMissionDetails.getSpecialMissionList()[0].getMissionDescription())
                 .image(ImageUtility.convertToBase64image(specialMissionDetails.getSpecialMissionList()[0].getAttachmentPhoto1()))
+                .additionalRemarks(specialMissionDetails.getSpecialMissionList()[0].getOtherNotes())
                 .build();
     }
 
@@ -123,14 +120,11 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         ViewSpecialMissionRequestVO viewSpecialMissionRequestVO = new ViewSpecialMissionRequestVO();
-        viewSpecialMissionRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         viewSpecialMissionRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewSpecialMissionRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewSpecialMissionRequestVO.setSpecialMissionSeeAll("Y");
-        viewSpecialMissionRequestVO.setAccessRoleCode(loginUserDo.getAccessRole());
 
-        viewSpecialMissionRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewSpecialMissionRequestVO);
+        setFullCredentials(viewSpecialMissionRequestVO, loginUserDo);
 
         try {
             log.info("Get Special mission list request will be sent to client. {}", viewSpecialMissionRequestVO.getMobileAppUserName());
@@ -142,6 +136,15 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         return null;
     }
 
+    public void setFullCredentials(ViewSpecialMissionRequestVO requestVO, LoginUserDo loginUserDo) {
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+        requestVO.setAccessRoleCode(loginUserDo.getAccessRole());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+
+        setCredentials(requestVO);
+    }
+
     @Override
     public void setCredentials(ViewSpecialMissionRequestVO requestVO) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
@@ -149,14 +152,6 @@ public class MissionPermitsClientService implements ClientServiceAPI<MissionPerm
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
-    }
-
-    public void setCredentials(SpecialMissionRequestVO specialMissionRequestVO) {
-        TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
-
-        specialMissionRequestVO.setMobileAppUserName(credentials.getMobileAppUserName());
-        specialMissionRequestVO.setMobileAppPassword(credentials.getMobileAppPassword());
-        specialMissionRequestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
     }
 
     @Override

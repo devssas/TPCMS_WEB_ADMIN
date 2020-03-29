@@ -18,27 +18,10 @@ public class PoliceVehicleNewDelegate {
     private final PoliceVehicleCreateClientService policeVehicleCreateClientService;
 
     public ResponseMVCDto createVehicle(PoliceVehicleNewModel policeVehicleNewModel, HttpServletRequest httpServletRequest) {
-        LoginUserDo loginUserDo = makeLoginUser(httpServletRequest);
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
         TPEngineResponse response = policeVehicleCreateClientService.create(policeVehicleNewModel, loginUserDo);
 
-         if(response.getResponseCodeVO().getResponseCode().startsWith("OPS")) {
-             return ResponseMVCDto.builder()
-                     .message(null)
-                     .result(true)
-                     .build();
-         } else {
-             return ResponseMVCDto.builder()
-                     .message(response.getResponseCodeVO().getResponseCode() + " - " + response.getResponseCodeVO().getResponseValue())
-                     .result(false)
-                     .build();
-         }
+        return ResponseMVCDto.prepareResponse(response);
     }
 
-    private LoginUserDo makeLoginUser(HttpServletRequest httpServletRequest) {
-        return LoginUserDo.builder()
-                .loginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
-    }
 }

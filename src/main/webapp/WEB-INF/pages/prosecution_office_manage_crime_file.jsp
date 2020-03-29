@@ -35,7 +35,7 @@
         <section class="content-wrapper">
 
             <jsp:include page="menu_bar_prosecutor_dashboard.jsp">
-                <jsp:param name="home" value="active" />
+                <jsp:param name="prosecutionOffice" value="active" />
                 <jsp:param name="prosecutorName" value="${prosecutorName}" />
                 <jsp:param name="prosecutorProfilePicture" value="${prosecutorProfilePicture}" />
                 <jsp:param name="accessRole" value="${accessRole}" />
@@ -63,11 +63,11 @@
                                                     <div class="input-group-content">
                                                         <label>
                                                             <span class="label">Case ID</span>
-                                                            <span class="text-v1">${manageCrimeFileModel.caseId}</span>
+                                                            <input type="text" value="${manageCrimeFileModel.caseId}" readonly />
                                                         </label>
                                                         <label>
                                                             <span class="label">Case Date</span>
-                                                            <span class="text-v1">${manageCrimeFileModel.caseDate}</span>
+                                                            <input type="text" value="${manageCrimeFileModel.caseDate}" readonly />
                                                         </label>
                                                     </div>
                                                 </div>
@@ -75,11 +75,11 @@
                                                     <div class="input-group-content">
                                                         <label>
                                                             <span class="label">Officer Name</span>
-                                                            <span class="text-v1">${manageCrimeFileModel.officerName}</span>
+                                                            <input type="text" value="${manageCrimeFileModel.officerName}" readonly />
                                                         </label>
                                                         <label>
                                                             <span class="label">Crime Location</span>
-                                                            <span class="text-v1">${manageCrimeFileModel.crimeLocation}</span>
+                                                            <input type="text" value="${manageCrimeFileModel.crimeLocation}" readonly>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -87,13 +87,13 @@
                                                     <div class="input-group-content">
                                                         <label>
                                                             <span class="label">Status</span>
-                                                            <span class="text-v1">${manageCrimeFileModel.status}</span>
+                                                            <input type="text" value="${manageCrimeFileModel.status}" readonly>
                                                         </label>
                                                         <label>
                                                             <span class="label">Suspects</span>
                                                             <c:forEach items="${manageCrimeFileModel.suspects}"  var="suspect">
                                                                 <ul>
-                                                                    <li>${suspect}</li>
+                                                                    <li><input type="text" value="${suspect}" readonly></li>
                                                                 </ul>
                                                             </c:forEach>
                                                         </label>
@@ -102,7 +102,7 @@
                                                 <div class="form-row">
                                                     <label>
                                                         <span class="label">Officer Statement</span>
-                                                        <textarea name="" id="" placeholder="Officer Statement">${manageCrimeFileModel.officerStatement}</textarea>
+                                                        <textarea name="officerStatement" id="officerStatement" placeholder="Officer Statement" readonly>${manageCrimeFileModel.officerStatement}</textarea>
                                                     </label>
                                                 </div>
                                             </div> <!-- form-container -->
@@ -135,11 +135,11 @@
                                                     <div class="input-group-content">
                                                         <label>
                                                             <span class="label">Crime Type</span>
-                                                            <input type="text" value="${manageCrimeFileModel.crimeType}"></label>
+                                                            <input type="text" value="${manageCrimeFileModel.crimeType}" readonly></label>
                                                         </label>
                                                         <label>
                                                             <span class="label">Crime Title</span>
-                                                            <input type="text" value="${manageCrimeFileModel.crimeTitle}">
+                                                            <input type="text" value="${manageCrimeFileModel.crimeTitle}" readonly>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -148,7 +148,7 @@
                                                     <div class="input-group-content">
                                                         <label>
                                                             <span class="label">Crime Classification</span>
-                                                            <input type="text" value="${manageCrimeFileModel.crimeClassification}" >
+                                                            <input type="text" value="${manageCrimeFileModel.crimeClassification}" readonly>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -158,17 +158,17 @@
                                                     <div class="input-group-content">
                                                         <label>
                                                             <span class="label">Witness First Name</span>
-                                                            <input type="text" value="${manageCrimeFileModel.witnessStatementFirstName}">
+                                                            <input type="text" value="${manageCrimeFileModel.witnessStatementFirstName}" readonly>
                                                         </label>
                                                         <label>
                                                             <span class="label">Witness Last Name</span>
-                                                            <input type="text" value="${manageCrimeFileModel.witnessStatementLastName}">
+                                                            <input type="text" value="${manageCrimeFileModel.witnessStatementLastName}" readonly>
                                                         </label>
                                                     </div>
                                                     <div class="form-row">
                                                         <label>
                                                             <span class="label">Statement</span>
-                                                            <textarea name="" id="2">${manageCrimeFileModel.witnessStatement}</textarea>
+                                                            <textarea name="witnessStatement" id="witnessStatement" readonly>${manageCrimeFileModel.witnessStatement}</textarea>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -179,12 +179,32 @@
                                 </div>
                             </div> <!-- divided-content flout-2 -->
                             <div class="button-row">
-                                <input type="submit" class="button button-v4 color-3 fix-size-sml" value="Add Update">
-                                <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
-                            </div>
+                                    <a href="javascript:;" data-fancybox-card data-type="ajax" class="button button-v4 color-3" data-src="assets/ajax/card/add-case-update.html">Add Update</a>
+                                    <a href="${pageContext.request.contextPath}/prosecutionRequestEvidence" class="button button-v4 color-2 fix-size-sml">Cancel</a>
+                                </div>
 
-                            <!--     <section class="dynamic-content" data-template-url="assets/ajax/table/table-v11/table-v11.html" data-json-url="assets/ajax/table/table-v11/table-v11.json"></section> -->
+                                <section class="dynamic-content">
 
+                                    <section class="site-data-container" data-template-url="assets/ajax/table/table-v2/table-v2.html" data-json-url="assets/ajax/table/table-v2/table-v2.json">
+                                        <div class="site-data-content"></div>
+                                        <div class="error-text"></div>
+                                        <div class="pagination site-data-pagination">
+                                            <ul>
+                                                <li><a href="#" class="prev"></a></li>
+
+                                                <li>
+                                                    <div class="form-row select select-not-find">
+                                                        <select name="page">
+                                                            <option value="1">1</option>
+                                                        </select>
+                                                    </div>
+                                                </li>
+                                                <li><a href="#" class="next"></a></li>
+                                            </ul>
+                                        </div><!-- /pagination-row -->
+                                </section>
+
+                            </section> <!-- dynamic-content -->
                         </section> <!-- content-box -->
                     </form>
 
@@ -197,10 +217,8 @@
     </div> <!-- page-inner -->
 
 </div> <!-- page-wrapper -->
-<script src="assets/js/lib.min.js"></script>
-<script src="assets/js/core.min.js"></script>
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
+<script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
 
 </body>
 </html>

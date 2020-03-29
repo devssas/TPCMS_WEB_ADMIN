@@ -34,7 +34,7 @@ public class SosClientCreateService implements ClientCreateServiceAPI<Notificati
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().createSOSRequest(sosRequestVO);
         } catch (RemoteException | ServiceException e) {
-            throw new MissionPermitsException("Something wrong on creating notification request. " + sosRequestVO.getMobileAppUserName());
+            throw new MissionPermitsException("Something wrong on creating notification request. " + e.getMessage());
         }
     }
 

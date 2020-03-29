@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -13,16 +15,21 @@ public class PoliceVehicleNewModel {
 
     private Integer vehicleId;
 
+    @NotEmpty(message = "{error.policeVehicle.vehicleName.notNull}")
     private String vehicleName;
 
+    @NotEmpty(message = "{error.policeVehicle.plateNumber.notNull}")
     private String plateNumber;
 
+    @NotEmpty(message = "{error.policeVehicle.chaseNumber.notNull}")
     private String chaseNumber;
 
     private String vehicleType;
 
+    @NotEmpty(message = "{error.policeVehicle.commandCenter.notNull}")
     private String commandCenter;
 
+    @NotEmpty(message = "{error.policeVehicle.unit.notNull}")
     private String unit;
 
     private String activationDate;

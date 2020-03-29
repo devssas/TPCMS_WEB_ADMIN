@@ -1,7 +1,10 @@
 package com.tpcmswebadmin.service.sos.controller;
 
 import com.tpcmswebadmin.infrastructure.client.response.ResponseAPIDto;
+import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
+import com.tpcmswebadmin.service.calender.domain.CalendarDto;
 import com.tpcmswebadmin.service.sos.domain.SosCallDetailDto;
+import com.tpcmswebadmin.service.sos.domain.SosCallDetailMapDto;
 import com.tpcmswebadmin.service.sos.domain.SosCallDto;
 import com.tpcmswebadmin.service.sos.service.SosClientService;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +27,18 @@ public class SosCallControllerAPI {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @GetMapping("sosCall/details/map")
+    public SosCallDetailMapDto getSosCallDetailsMap(HttpServletRequest httpServletRequest) {
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
+
+        return sosClientService.getSosDetailMap(null , loginUserDo);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("sosCall/details")
-    public SosCallDetailDto getSosCallDetails(HttpServletRequest httpServletRequest) {
-        return sosClientService.getSosDetailById(httpServletRequest);
+    public ResponseAPIDto<SosCallDetailDto> getSosCallDetails(@RequestParam("sosId") String sosId, HttpServletRequest httpServletRequest) {
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
+
+        return sosClientService.getSosDetailById(sosId , loginUserDo);
     }
 }

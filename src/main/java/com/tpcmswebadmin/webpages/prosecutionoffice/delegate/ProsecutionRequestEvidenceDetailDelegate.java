@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.prosecutionoffice.delegate;
 
+import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionRequestEvidenceDetailDto;
 import com.tpcmswebadmin.service.prosecutionoffice.service.ProsecutionCasesRequestEvidenceClientService;
 import com.tpcmswebadmin.webpages.prosecutionoffice.model.ManageCrimeFileModel;
@@ -15,8 +16,9 @@ public class ProsecutionRequestEvidenceDetailDelegate {
     private final ProsecutionCasesRequestEvidenceClientService prosecutionCasesRequestEvidenceClientService;
 
     public ManageCrimeFileModel getRequestEvidenceByCaseId(String criminalsCode, HttpServletRequest httpServletRequest) {
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
         ProsecutionRequestEvidenceDetailDto response = prosecutionCasesRequestEvidenceClientService.getProsecutionRequestEvidenceDetailDto(
-                criminalsCode, httpServletRequest);
+                criminalsCode, loginUserDo);
 
         return ManageCrimeFileModel.builder()
                 .caseId(response.getCaseId())

@@ -35,12 +35,14 @@ public class CrimeReportsMapper {
     }
 
     public static String prepareActionsColumn(String id) {
-        String crimeReportId = "{crimeReportId}";
+        String reportId = "{reportId}";
 
-        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/crime-report?crimeReportId={crimeReportId}'><i class='icon-view'></i></a>";
-        String actionUpdate = "<a href='/tpcmsWebAdmin/updateCrimeReport?crimeReportId={crimeReportId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
+        String actionView = "<a href='javascript:;' data-fancybox-card data-type='ajax' class='button button-v4 sml-icon-btn color-1' data-src='/tpcmsWebAdmin/card/crime-report?crimeReportId={reportId}'><i class='icon-view'></i></a>";
+        String actionUpdate = "<a href='/tpcmsWebAdmin/updateCrimeReport?reportId={reportId}' class='button button-v4 sml-icon-btn color-1'><i class='icon-edit'></i></a>";
 
-        return actionView.replace(crimeReportId, id) + actionUpdate.replace(crimeReportId, id);
+        // todo delete can be put for super admin
+
+        return actionView.replace(reportId, id) + actionUpdate.replace(reportId, id);
     }
 
 }

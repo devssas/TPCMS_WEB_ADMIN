@@ -13,6 +13,7 @@ public class TpCmsConstants {
 
     public static final String OFFICER_CODE = "officerCode";
     public static final String REPORT_UNIT = "reportUnit";
+    public static final String COMMAND_CENTER = "commandCenter";
     public static final String USERNAME = "username";
     public static final String USERCODE = "userCode";
     public static final String MOBILE_APP_DEVICE_ID = "mobileAppDeviceId";

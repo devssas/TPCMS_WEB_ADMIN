@@ -1,27 +1,27 @@
 "use strict";
 
 var main = {
-    init: function(){
+    init: function () {
         // handlebars add URL
 
-        Handlebars.registerHelper("link", function(icon, url) {
+        Handlebars.registerHelper("link", function (icon, url) {
             var url = Handlebars.escapeExpression(url),
                 icon = Handlebars.escapeExpression(icon);
             return new Handlebars.SafeString("<a href='" + url + "' class='button-v1 btn-color-1'><i class='" + icon + "'></i></a>");
         });
 
-        Handlebars.registerHelper("inc", function(value, options){
+        Handlebars.registerHelper("inc", function (value, options) {
             return parseInt(value) + 1;
         });
 
-        if($("[name='httpError']").length && $("[name='httpError']").val() != ""){
+        if ($("[name='httpError']").length && $("[name='httpError']").val() != "") {
             var message = $("[name='httpError']").val();
             $.fancybox.open({
                 src: "assets/ajax/card/error.html",
                 type: "ajax",
                 smallBtn: false,
                 afterLoad: function () {
-                    if(message != "true"){
+                    if (message != "true") {
                         $(".custom-error-message").text(message);
                     }
                 }
@@ -31,7 +31,7 @@ var main = {
     cardTransactionLocations: function () {
 
         var map = $("#map"),
-            templateURL	= map.data("template-url"),
+            templateURL = map.data("template-url"),
             dataURL = map.data("json-url");
 
         var markersPin = {
@@ -75,7 +75,7 @@ var main = {
         }
 
         function refreshMap() {
-            if(templateURL){
+            if (templateURL) {
                 $.ajax({
                     url: templateURL,
                     type: "GET",
@@ -99,7 +99,7 @@ var main = {
                 newsMarkerList(markersList.data[i])
             }
 
-            function newsMarkerList (newsMarkersList) {
+            function newsMarkerList(newsMarkersList) {
                 var latLng = new google.maps.LatLng(newsMarkersList.lat, newsMarkersList.lng);
                 var marker = new google.maps.Marker({
                     position: latLng,
@@ -131,7 +131,7 @@ var main = {
 
         setInterval(function () {
             markerList();
-        },300000);
+        }, 300000);
 
     },
     inputAction: function () {
@@ -160,7 +160,7 @@ var main = {
 
         }
 
-        if($(".active-content-event").length){
+        if ($(".active-content-event").length) {
 
 
             $(".change-active-class").on({
@@ -169,24 +169,23 @@ var main = {
                         _thisType = _this.attr("type"),
                         activeClass = _this.data("active-class");
 
-                    if(_thisType == "checkbox"){
+                    if (_thisType == "checkbox") {
 
-                        
-                        if(_this.is(":checked")){
-                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='"+ activeClass +"']").addClass("active").stop(false,false).slideDown();
+
+                        if (_this.is(":checked")) {
+                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='" + activeClass + "']").addClass("active").stop(false, false).slideDown();
                         } else {
-                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='"+ activeClass +"']").removeClass("active").stop(false,false).slideUp();
+                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='" + activeClass + "']").removeClass("active").stop(false, false).slideUp();
                         }
 
-                    } else if(_thisType == "radio"){
+                    } else if (_thisType == "radio") {
                         var _thisOpenClose = _this.data("open-close");
 
-                        if(_thisOpenClose){
-                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='"+ activeClass +"']").addClass("active").stop(false,false).slideDown();
+                        if (_thisOpenClose) {
+                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='" + activeClass + "']").addClass("active").stop(false, false).slideDown();
                         } else {
-                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='"+ activeClass +"']").removeClass("active").stop(false,false).slideUp();
+                            _this.parents(".active-content-event").find(".change-active-content[data-active-content='" + activeClass + "']").removeClass("active").stop(false, false).slideUp();
                         }
-
 
 
                     }
@@ -203,19 +202,19 @@ var main = {
                     //     }
                     //
                     // });
-                    
+
                 }
             }).each(function () {
-                if($(this).is(":checked")){
+                if ($(this).is(":checked")) {
                     $(this).trigger("click");
                 }
             });
 
         }
     },
-    customSelectbox: function(){
+    customSelectbox: function () {
 
-        if($(".select-not-find").length){
+        if ($(".select-not-find").length) {
             $(".select-not-find").each(function (index, element) {
                 if (!$('select', element).data('select2')) {
                     $("select", element).select2({
@@ -235,7 +234,7 @@ var main = {
             });
         }
 
-        if($(".select-find").length){
+        if ($(".select-find").length) {
             $(".select-find").each(function (index, element) {
                 if (!$('select', element).data('select2')) {
                     $("select", element).select2({
@@ -264,7 +263,7 @@ var main = {
             });
         }
 
-        if($(".crime-select").length){
+        if ($(".crime-select").length) {
 
             $(".crime-select").each(function () {
 
@@ -292,7 +291,7 @@ var main = {
                     templateSelection: formatRepoSelection
                 });
 
-                function formatRepo (repo) {
+                function formatRepo(repo) {
 
                     if (repo.loading) {
                         return repo.text;
@@ -305,7 +304,7 @@ var main = {
                     return $container;
                 }
 
-                function formatRepoSelection (repo) {
+                function formatRepoSelection(repo) {
                     return repo.id;
                 }
 
@@ -314,13 +313,13 @@ var main = {
         }
 
     },
-    addWitness: function(){
-        if($(".addWitness").length){
+    addWitness: function () {
+        if ($(".addWitness").length) {
             var index = 1;
 
             $(".addWitness").on({
                 click: function () {
-                    var addWitnessHtml = "<div class='form-row'><a href='javascript:;' class='button button-v4 color-1 line-height-sml removeWitness'><i class='icon-cancel'></i></a><span class='label witness-label'>Witness Statments</span><div class='input-group-content'><label><input type='text' name='witnessName"+index+"' placeholder='Name'></label><label><input type='text' name='witnessSurname"+index+"' placeholder='Surname'></label></div><div class='form-row'><label><span class='label'></span><textarea name='witnessStatement"+index+"' placeholder='Statement'></textarea></label></div></div>";
+                    var addWitnessHtml = "<div class='form-row'><a href='javascript:;' class='button button-v4 color-1 line-height-sml removeWitness'><i class='icon-cancel'></i></a><span class='label witness-label'>Witness Statments</span><div class='input-group-content'><label><input type='text' name='witnessName" + index + "' placeholder='Name'></label><label><input type='text' name='witnessSurname" + index + "' placeholder='Surname'></label></div><div class='form-row'><label><span class='label'></span><textarea name='witnessStatement" + index + "' placeholder='Statement'></textarea></label></div></div>";
                     $(".witness-container").append(addWitnessHtml);
                     index++;
 
@@ -336,224 +335,207 @@ var main = {
     },
     datePicker: function () {
 
-        if($(".datepicker").length){
-            $(".datepicker").each( function () {
+        if ($(".datepicker").length) {
+            $(".datepicker").each(function () {
                 $(this).datepicker();
             });
         }
 
-        if($("#calendar").length){
+        if ($("#calendar").length) {
             var nextUrl = $("#calendar").data("next-url");
 
-            $( "#calendar" ).datepicker({
-                onSelect: function(date, datepicker) {
-                    window.location.href = nextUrl+"?calendarDate="+date
+            $("#calendar").datepicker({
+                onSelect: function (date, datepicker) {
+                    window.location.href = nextUrl + "?calendarDate=" + date
                 },
             });
         }
 
     },
-    timePicker: function(){
-      if($('.timepicker').length){
-          $('.timepicker').timepicker({
-              timeFormat: 'h:mm p',
-              dynamic: false,
-              dropdown: true,
-              scrollbar: true,
-              zindex: 99999
-          });
-      }
+    timePicker: function () {
+        if ($('.timepicker').length) {
+            $('.timepicker').timepicker({
+                timeFormat: 'h:mm p',
+                dynamic: false,
+                dropdown: true,
+                scrollbar: true,
+                zindex: 99999
+            });
+        }
     },
     dropzone: function () {
 
-      /*  Dropzone.autoDiscover = false;
-        var valid_extensions=  /(\.pdf|\.doc|\.docx|\.xls|\.xlsx|\.jpg|\.jpeg|\.png|\.tiff|\.wpd)$/i;
+        if ($(".photo-upload").length) {
 
-        // $('#insurance_type').on('change',function(){
-        //     ins_Type=$(this).val();
-        // });
-        //
-        // $('#insurance_expirationdate').on('change',function(){
-        //     ins_Date=$(this).val();
-        // });
-
-        myDropzone = new Dropzone("#dropzdoc",{
-            url: 'Your URL where to send the data to',
-            //this is how extra parameters got passed to dropzone
-            sending: function(file, xhr, formData) {
-                formData.append("insurance_type", ins_Type);  //name and value
-                formData.append("insurance_expirationdate", ins_Date); //name and value
-            },
-            //end of sending extra parameters
-            acceptedFiles:".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.tiff,.wpd",
-            dictInvalidFileType: "You can't upload files of this type, only png or jpg file",
-            paramName: "insurance_doc",
-            createImageThumbnails:false,
-            dictDefaultMessage: "<div style='text-align:left;'>- Select your Insurance Type.<br>\n\
-                      - Select 1 Date.<br>\n\
-                      - Drop your file here.<br><div>\n\
-                       Only <span style='color:red;'>1</span> file is    acccepted.",
-            autoProcessQueue:false,
-            maxFiles: 1
-        });
-
-        myDropzone.on("processing", function(file, progress) {
-            $('#upload_process').fadeIn();
-        });
-
-        myDropzone.on("success", function(file,response) {
-            $('#upload_process').fadeOut();
-        });
-
-        myDropzone.on("addedfile", function(file) {
-            //test extension files
-            if (this.files.length) {
-                var _i, _len;
-                for (_i = 0, _len = this.files.length; _i < _len; _i++) {
-                    if (valid_extensions.test(this.files[_i].name) == false) {
-                        alert('Invalid file extension.\nAllowed file extensions: pdf, doc, docx, xls, xlsx, jpg, jpeg, png, tiff, wpd');
-                        this.removeFile(file);
-                        return;
-                    }
-                }
-
-                //if all good then procced the queue
-                if (ins_Type !== '' && ins_Date !== '') {
-                    this.options.autoProcessQueue = true;
-                    this.processQueue();
-                } else {
-                    alert('Date are empty');
-                    this.removeAllFiles(file);
-                }
-            }
-        });
-*/
-
-
-        if($(".photo-upload").length){
+            Dropzone.autoDiscover = false;
 
             $(".photo-upload").each(function () {
 
                 var _this = $(this).find(".photo-upload-inner"),
                     uploadUrl = _this.data("upload-url"),
                     deleteUrl = _this.data("delete-url"),
-                    maxFiles = _this.data("max-files") ? _this.data("max-files") : null ;
+                    maxFiles = _this.data("max-files") ? _this.data("max-files") : null;
 
-                if(!_this.hasClass("dz-started")){
+                if (!_this.hasClass("dz-started")) {
                     _this.dropzone({
-                        // autoProcessQueue: false,
+                        autoProcessQueue: false,
                         url: uploadUrl,
                         maxFiles: maxFiles,
-                        parallelUploads: maxFiles,
-                        // uploadMultiple: true,
                         addRemoveLinks: true,
                         dictRemoveFile: "",
                         thumbnailMethod: "contain",
                         dictDefaultMessage: null,
-                        removedfile: function(file) {
-                            console.log("removedfile");
+                        removedfile: function (file) {
 
                             var name = file.name;
+
                             $.ajax({
                                 url: deleteUrl,
                                 type: "POST",
-                                data: {"imageName": name},
+                                data: {fileName: name},
                                 dataType: "html"
-                            });
-                            var _ref;
-                            return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                            })
+                                .done(function (response) {
+
+                                    if (JSON.parse(response).status) {
+                                        var _ref;
+                                        return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                                    } else {
+                                        $.fancybox.open({
+                                            src: '/tpcmsWebAdmin/assets/ajax/card/error.html',
+                                            type: "ajax",
+                                            smallBtn: false
+                                        });
+                                    }
+
+                                })
+                                .fail(function (response) {
+                                    $.fancybox.open({
+                                        src: '/tpcmsWebAdmin/assets/ajax/card/error.html',
+                                        type: "ajax",
+                                        smallBtn: false
+                                    });
+                                });
+
                         },
-                        init: function() {
+                        init: function () {
 
                             var _initThis = this;
 
-                            if(_this.parents(".photo-upload").hasClass("upload-view")){
+                            _initThis.on("addedfile", function (file) {
+                                if (_initThis.files[maxFiles] != null) {
+                                    _initThis.removeFile(_initThis.files[0]);
+                                }
+                            });
+
+                            if (_this.parents(".photo-upload").hasClass("upload-view")) {
                                 var uploadAjaxUrl = _this.data("upload-ajax-url");
+
                                 $.ajax({
                                     url: uploadAjaxUrl
                                 })
                                     .done(function (response) {
-                                        for(var i = 0; i < response.data.length ; i++){
+
+                                        for (var i = 0; i < response.data.length; i++) {
+
                                             _initThis.files.push(response.data[i]);
                                             _initThis.emit('addedfile', response.data[i]);
                                             _initThis.emit("thumbnail", response.data[i], response.data[i].url);
                                             _initThis.emit('complete', response.data[i]);
                                             response.data[i].previewElement.classList.add('dz-success');
                                             response.data[i].previewElement.classList.add('dz-complete')
+
                                         }
+
+                                    });
+
+                            }
+
+                        },
+                        accept: function (file, done) {
+
+                            var reader = new FileReader();
+                            reader.onload = handleReaderLoad;
+                            reader.readAsDataURL(file);
+
+                            function handleReaderLoad(evt) {
+
+                                $.ajax({
+                                    url: uploadUrl,
+                                    method: "POST",
+                                    dataType: "html",
+                                    data: {
+                                        fileBase64: evt.target.result,
+                                        fileName: file.name,
+                                        fileType: file.type,
+                                        fileSize: file.size,
+                                        key: null
+                                    },
+                                    cache: false,
+                                    timeout: 900000,
+                                    xhr: function () {
+
+                                        var myXhr = $.ajaxSettings.xhr();
+
+                                        if (file.previewElement) {
+
+                                            var progressElement = file.previewElement.querySelector("[data-dz-uploadprogress]");
+
+                                            if (myXhr.upload) {
+
+                                                myXhr.upload.addEventListener("progress", function (event) {
+
+                                                    var total = event.total,
+                                                        loaded = event.loaded;
+
+                                                    if (event.lengthComputable) {
+                                                        var percent = Math.floor((loaded / total) * 100);
+
+                                                        progressElement.style.width = percent + "%";
+
+                                                    }
+                                                }, false);
+                                            }
+
+                                        }
+
+                                        return myXhr;
+                                    }
+                                })
+                                    .done(function (response) {
+
+                                        if (JSON.parse(response).status) {
+                                            $(file.previewElement).addClass("dz-success dz-complete");
+                                        } else {
+                                            $(file.previewElement).addClass("dz-error dz-complete");
+                                            $(file.previewElement).find("[data-dz-errormessage]").text(JSON.parse(response).message);
+
+                                            $.fancybox.open({
+                                                src: '/tpcmsWebAdmin/assets/ajax/card/error.html',
+                                                type: "ajax",
+                                                smallBtn: false
+                                            });
+                                        }
+                                    })
+                                    .fail(function (response) {
+                                        $(file.previewElement).addClass("dz-error dz-complete");
+                                        $(file.previewElement).find("[data-dz-errormessage]").text(response.responseText);
+
+                                        $.fancybox.open({
+                                            src: '/tpcmsWebAdmin/assets/ajax/card/error.html',
+                                            type: "ajax",
+                                            smallBtn: false
+                                        });
                                     });
                             }
 
-                            _initThis.on("addedfile", function(file) {
-                                if (_initThis.files[maxFiles]!=null){
-                                    _initThis.removeFile(_initThis.files[0]);
-                                }
-                            });
-
-                            _initThis.on('sending', function(file, xhr, formData, e, d, c) {
-                                console.log("sending");
-                                console.log(file.name);
-                                console.log(file.size);
-                                console.log(file.type);
-                                console.log(file.dataURL);
-
-                                setTimeout(function () {
-                                    console.log(file.dataURL);
-                                },50);
-
-                                // console.log(formData);
-                                // console.log(event.target.result);
-                                // console.log(file);
-                                //     console.log(file.dataURL);
-                                // setTimeout(function () {
-                                // },50);
-
-                                // Append all form inputs to the formData Dropzone will POST
-                                // var data = $(".notification").serializeArray();
-                                // $.each(data, function(key, el) {
-                                //     formData.append(el.name, el.value);
-                                // });
-
-                                formData.append("imageName", file.name);
-                                formData.append("imageSize", file.size);
-                                formData.append("imageType", file.type);
-                                formData.append("imageBase64", file.dataURL);
-                            });
-
-                            _initThis.on("success", function () {
-                                console.log("success");
-                            });
-
-                            _initThis.on("complete", function () {
-                                console.log("complete");
-                            });
-
-                            _initThis.on("uploadprogress", function () {
-                                console.log("uploadprogress");
-                            });
-
-                            _initThis.on("processing", function () {
-                                console.log("processing");
-                            });
-
-                            _initThis.on("error", function () {
-                                console.log("error");
-                            });
-
-                            // $("#submit").on({
-                            //     click: function (e) {
-                            //         e.preventDefault();
-                            //         _initThis.processQueue();
-                            //     }
-                            // });
-
+                            // done();
                         }
                     });
                 }
 
             });
         }
-
     },
     pagination: function () {
         $(".pagination").each(function (index, pagination) {
@@ -608,55 +590,55 @@ var main = {
     filterControl: function () {
         var deferredData = $.Deferred();
 
-        if($(".site-data-container").length){
+        if ($(".site-data-container").length) {
 
             $(".site-data-container").each(function () {
-                var container 	= $(this),
-                    filters		= $(".site-data-filters", container),
-                    content 	= $(".site-data-content", container),
-                    pagination	= $(".site-data-pagination", container),
+                var container = $(this),
+                    filters = $(".site-data-filters", container),
+                    content = $(".site-data-content", container),
+                    pagination = $(".site-data-pagination", container),
 
-                    templateURL	= container.data("template-url"),
-                    dataURL		= container.data("json-url"),
+                    templateURL = container.data("template-url"),
+                    dataURL = container.data("json-url"),
 
                     templateHtml;
 
                 $.ajax({
-                    type	: "GET",
-                    url		: templateURL,
-                    async	: false,
+                    type: "GET",
+                    url: templateURL,
+                    async: false,
                     cache: false,
-                    success	: function (response) {
+                    success: function (response) {
                         templateHtml = response;
                     }
                 });
 
-                function getList (isPaging) {
+                function getList(isPaging) {
 
                     container.addClass("loading");
 
-                    if (!isPaging){
+                    if (!isPaging) {
                         $("select", pagination).val("1").data("value", "1");
                     }
 
                     var data = $(":input", container).serialize();
 
                     $.ajax({
-                        type		:"GET",
-                        url			: dataURL,
-                        dataType	: "json",
-                        data		: data,
+                        type: "GET",
+                        url: dataURL,
+                        dataType: "json",
+                        data: data,
                         cache: false,
-                        success		: function (response) {
+                        success: function (response) {
 
-                            if(response.data.length || response.data.tbody.length){
+                            if (response.data.length || response.data.tbody.length) {
 
                                 var template = Handlebars.compile(templateHtml),
                                     output = template(response);
 
                                 $(".error-text", container).text("").hide();
 
-                                if($(".complaints-detail-content").length){
+                                if ($(".complaints-detail-content").length) {
                                     $(".complaints-detail-content").html("");
                                 }
                                 content.html(output);
@@ -703,7 +685,7 @@ var main = {
                 filters.on({
                     submit: function (event) {
                         filtersData = $(":input", filters).serialize();
-                        if(currentFiltersData != filtersData){
+                        if (currentFiltersData != filtersData) {
                             currentFiltersData = filtersData;
                             getList();
                         }
@@ -711,7 +693,7 @@ var main = {
                     }
                 });
 
-                if($(".change-on-submit").length){
+                if ($(".change-on-submit").length) {
                     $(".change-on-submit").on({
                         change: function () {
                             getList();
@@ -733,19 +715,19 @@ var main = {
 
             });
 
-        }else{
+        } else {
             deferredData.resolve();
         }
 
         return deferredData;
     },
-    carousel: function (){
-        if($(".card-carousel").length){
+    carousel: function () {
+        if ($(".card-carousel").length) {
             $(".card-carousel").owlCarousel({
                 rtl: true,
                 margin: 15,
                 nav: true,
-                navText: ["<i class='icon-right-open'></i>","<i class='icon-left-open'></i>"],
+                navText: ["<i class='icon-right-open'></i>", "<i class='icon-left-open'></i>"],
                 dots: false
             });
         }
@@ -754,21 +736,21 @@ var main = {
 
         $.fancybox.defaults.touch = false;
 
-        if($("[data-fancybox-card]").length){
+        if ($("[data-fancybox-card]").length) {
             $("[data-fancybox-card]").fancybox({
                 smallBtn: false,
                 toolbar: false
             });
         }
 
-        if($("[data-fancybox-search]").length){
+        if ($("[data-fancybox-search]").length) {
             $("[data-fancybox-search]").fancybox({
                 smallBtn: false,
                 toolbar: false,
-                beforeLoad: function (e,i,s) {
+                beforeLoad: function (e, i, s) {
                     var clickedElement = s.opts.$orig;
 
-                    if(clickedElement && clickedElement.parents(".search-box-v2").length){
+                    if (clickedElement && clickedElement.parents(".search-box-v2").length) {
                         clickedElement.parents(".search-box-v2").addClass("fancy-click-element");
                     }
                 }
@@ -777,18 +759,18 @@ var main = {
 
         // $(document).on("beforeLoad.fb", function (event, instance, slide) {
 
-            // instance.$refs.container.addClass("_loading"); // needed for transition on side panel
-            //
-            // var clickedElement = slide.opts.$orig;
+        // instance.$refs.container.addClass("_loading"); // needed for transition on side panel
+        //
+        // var clickedElement = slide.opts.$orig;
 
-            // if (clickedElement) {
-            //     clickedElement.addClass("melih");
-                // var direction = clickedElement.data("direction");
+        // if (clickedElement) {
+        //     clickedElement.addClass("melih");
+        // var direction = clickedElement.data("direction");
 
-                // if (direction) {
-                //     instance.$refs.container.addClass("side-" + direction);
-                // }
-            // }
+        // if (direction) {
+        //     instance.$refs.container.addClass("side-" + direction);
+        // }
+        // }
         // });
 
         $(document).on("afterLoad.fb", function (event, instance) {
@@ -855,14 +837,14 @@ var main = {
         }
 
         // message lang control
-        function validationLang (msgTr,msgEn,msgAr){
+        function validationLang(msgTr, msgEn, msgAr) {
             var lang = $("html").attr("lang");
 
-            if(lang == "tr"){
+            if (lang == "tr") {
                 return msgTr
-            } else if(lang == "en"){
+            } else if (lang == "en") {
                 return msgEn
-            } else if(lang == "ar"){
+            } else if (lang == "ar") {
                 return msgAr
             }
         }
@@ -895,7 +877,7 @@ var main = {
                 $success.hide();
                 $error.hide();
 
-                if($(form).hasClass("login-user-name") || $(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")){
+                if ($(form).hasClass("login-user-name") || $(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")) {
                     $(form).find(".form-container").addClass("loading");
                 }
 
@@ -907,7 +889,7 @@ var main = {
                         data = $(form).serialize(),
                         newData = "";
 
-                    if($(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")){
+                    if ($(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")) {
                         $(form).find("input[type='text']").each(function () {
                             var _this = $(this),
                                 val = _this.val();
@@ -947,11 +929,11 @@ var main = {
                                     $(form).find(".form-general-error").show();
                                 }
 
-                                if($(form).hasClass("login-user-name") || $(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")){
+                                if ($(form).hasClass("login-user-name") || $(form).hasClass("login-user-code") || $(form).hasClass("login-pass-code")) {
                                     $(form).find(".form-container").removeClass("loading");
                                 }
 
-                            } else if(response.nextUrl){
+                            } else if (response.nextUrl) {
                                 window.location.href = response.nextUrl;
                             } else {
 
@@ -971,7 +953,7 @@ var main = {
 
                                             $(form).find(".dynamic-content").html(tableHTML).removeClass("loading");
 
-                                            if($(".previous-case-id").length){
+                                            if ($(".previous-case-id").length) {
                                                 $(".previous-case-id").off("click").on({
                                                     click: function () {
                                                         var _this = $(this),
@@ -984,7 +966,7 @@ var main = {
                                                 });
                                             }
 
-                                            if($(".create-mission-card").length){
+                                            if ($(".create-mission-card").length) {
                                                 $(".create-mission-card").off("click").on({
                                                     click: function () {
                                                         var _this = $(this),
@@ -1040,7 +1022,7 @@ var main = {
                     }
                 },
                 messages: {
-                    username:{
+                    username: {
                         required: "This field cannot be empty"
                     }
 
@@ -1135,7 +1117,7 @@ var main = {
 
     },
     alertify: function (status, message, time) {
-        var html = "<div class='alertify "+ status +"'><p class='message'>"+ message +"</p></div>"
+        var html = "<div class='alertify " + status + "'><p class='message'>" + message + "</p></div>"
         $("body").append(html);
         $(".alertify").fadeIn(300);
         setInterval(function () {
@@ -1163,7 +1145,7 @@ $(function () {
 });
 
 function initMap() {
-    if($("#map").length){
+    if ($("#map").length) {
         main.cardTransactionLocations();
     }
 }

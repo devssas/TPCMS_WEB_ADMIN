@@ -21,11 +21,11 @@ public class PoliceVehicleDto implements Serializable {
 
     private String plateNumber;
 
+    private String vehicleName;
+
+    private String chaseNumber;
+
     private String city;
-
-    private String state;
-
-    private String lastLogin;
 
     private String status;
 

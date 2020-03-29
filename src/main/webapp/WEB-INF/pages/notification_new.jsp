@@ -78,9 +78,7 @@
                                                         <div class="form-row select-not-find">
                                                             <label>
                                                                 <span class="label">Notification Type *</span>
-                                                                <select>
-                                                                    <option value="">${notificationTypes}</option>
-                                                                </select>
+                                                                <form:select id="notificationType" path="notificationType" items="${notificationTypes}"/>
                                                             </label>
                                                         </div>
 
@@ -106,9 +104,10 @@
 
                                                 <div class="form-row">
                                                     <label>
-                                                        <span class="label">Statement</span>
+                                                        <span class="label">Statement *</span>
                                                         <form:textarea id="statement" path="statement" placeholder="Example..."/>
                                                     </label>
+                                                    <form:errors id="statement" path="statement" cssClass="text-danger" />
                                                 </div>
                                             </div> <!-- form-container -->
                                         </div> <!-- inner -->

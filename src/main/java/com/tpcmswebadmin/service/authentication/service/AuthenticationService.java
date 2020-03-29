@@ -12,30 +12,32 @@ import com.tpcmswebadmin.service.authentication.domain.model.SignInUsernameModel
 import com.tpcmswebadmin.service.authentication.domain.response.SignInResponse;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import com.tpcmswebadmin.service.reference.domain.dto.CommandCenterDto;
+import com.tpcmswebadmin.service.reference.service.ReferenceService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
+import java.util.List;
 
 import static com.tpcmswebadmin.infrastructure.domain.constant.Pages.*;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class AuthenticationService {
 
     private final TPCMSClient tpcmsClient;
 
     private final CredentialsService credentialsService;
 
-    public AuthenticationService(TPCMSClient tpcmsClient, CredentialsService credentialsService) {
-        this.tpcmsClient = tpcmsClient;
-        this.credentialsService = credentialsService;
-    }
+    private final ReferenceService referenceService;
 
     public SignInResponse signInWithUserName(SignInUsernameModel signInUsernameModel, HttpServletRequest httpServletRequest) {
-        if(signInUsernameModel.getUsername().equals("MELIH")) {
+        if (signInUsernameModel.getUsername().equals("MELIH")) {
             httpServletRequest.getSession().setAttribute(TpCmsConstants.USERNAME, signInUsernameModel.getUsername());
             httpServletRequest.getSession().setAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID, TpCmsConstants.SUPERADMIN_DEVICE_ID);
 
@@ -77,7 +79,7 @@ public class AuthenticationService {
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on signIn username request. " + officersLoginRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on signIn username request. {}", e.getMessage());
         }
         return null;
     }
@@ -114,7 +116,7 @@ public class AuthenticationService {
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn(StringUtility.concat("something wrong on signIn userCode request. " + officersLoginRequestVO.getMobileAppUserName()));
+            log.warn("something wrong on signIn userCode request. {}", e.getMessage());
         }
 
         return null;
@@ -127,10 +129,21 @@ public class AuthenticationService {
             httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_CODE, response.getOfficerCode());
             httpServletRequest.getSession().setAttribute(TpCmsConstants.REPORT_UNIT, response.getOfficersProfileResponseVO().getReportingUnit());
 
+            List<CommandCenterDto> commandCenterDtoList = referenceService.getCommandCenter();
+            String commandCenter = commandCenterDtoList.stream()
+                    .filter(entry -> entry.getCommandCenterId().equals(response.getOfficersProfileResponseVO().getCommandCenterId()))
+                    .findFirst()
+                    .orElse(CommandCenterDto.builder()
+                            .commandCenterCode("TP_HEAD_CENTER")
+                            .build())
+                    .getCommandCenterCode();
+
+            httpServletRequest.getSession().setAttribute(TpCmsConstants.COMMAND_CENTER, commandCenter);
+
             String accessRole = response.getOfficersProfileResponseVO().getAccessRoleCode();
             httpServletRequest.getSession().setAttribute(TpCmsConstants.ACCESS_ROLE, accessRole);
 
-            if(accessRole.equals("PROSECUTION")) {
+            if (accessRole.equals("PROSECUTION")) {
                 httpServletRequest.getSession().setAttribute(TpCmsConstants.PROSECUTOR_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
                 httpServletRequest.getSession().setAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
 
@@ -139,9 +152,9 @@ public class AuthenticationService {
                         .status(true)
                         .nextUrl(DASHBOARD_PROSECUTOR_JSON)
                         .build();
-            } else if(accessRole.equals("SUPER-ADMIN")){
-                    httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
-                    httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
+            } else if (accessRole.equals("SUPER-ADMIN")) {
+                httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
+                httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
 
                 return SignInResponse.builder()
                         .message(null)
@@ -149,8 +162,8 @@ public class AuthenticationService {
                         .nextUrl(DASHBOARD_SUPERADMIN_JSON)
                         .build();
             } else {
-                    httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
-                    httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
+                httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_NAME, StringUtility.makeFullName(response.getOfficersProfileResponseVO().getOfficer_FirstName_Ar(), response.getOfficersProfileResponseVO().getOfficer_LastName_Ar()));
+                httpServletRequest.getSession().setAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE, ImageUtility.convertToBase64image(response.getOfficersProfileResponseVO().getProfilePhoto1()));
 
                 return SignInResponse.builder()
                         .message(null)
@@ -180,7 +193,7 @@ public class AuthenticationService {
 
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().officersSignIn(officersLoginRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn(StringUtility.concat("Something wrong on signIn passCode request. " + officersLoginRequestVO.getMobileAppUserName()));
+            log.warn("Something wrong on signIn passCode request. {}", e.getMessage());
         }
 
         return null;

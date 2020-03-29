@@ -33,10 +33,11 @@ public class PoliceVehicleCreateClientService implements ClientCreateServiceAPI<
         setFields(model, vehicleDetailsRequestVO);
         setCredentials(vehicleDetailsRequestVO, loginUserDo);
 
+        log.info("Police vehicle to be created. {}", model.getVehicleId());
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().createVehicleDetails(vehicleDetailsRequestVO);
         } catch (RemoteException | ServiceException e) {
-            throw new MissionPermitsException("Something wrong on creating Special Mission request. " + vehicleDetailsRequestVO.getMobileAppUserName());
+            throw new MissionPermitsException("Something wrong on creating Police vehicle request. " +  e.getMessage());
         }
     }
 
@@ -52,14 +53,9 @@ public class PoliceVehicleCreateClientService implements ClientCreateServiceAPI<
         requestVO.setDriverOfficerId_1(model.getDriverOfficerId1());
         requestVO.setDriverOfficerId_2(model.getDriverOfficerId2());
         requestVO.setExpiryDate(model.getExpiryDate());
-        requestVO.setIsDeleteVehicleDetails(model.getVehicleName());
-        requestVO.setLoginOfficersCode(model.getActivationDate());
+        requestVO.setIsDeleteVehicleDetails(null);
         requestVO.setMissionDescription(model.getActivationDate());
         requestVO.setMissionType(model.getVehicleType());
-        requestVO.setMobileAppDeviceId(model.getDriverOfficerId1());
-        requestVO.setMobileAppPassword(model.getActivationDate());
-        requestVO.setMobileAppSmartSecurityKey(model.getActivationDate());
-        requestVO.setMobileAppUserName(model.getVehicleName());
         requestVO.setOtherAttachments(null);
         requestVO.setOtherNotes(model.getActivationDate());
         requestVO.setPermissionForNightPatrol(model.getActivationDate());
@@ -70,14 +66,13 @@ public class PoliceVehicleCreateClientService implements ClientCreateServiceAPI<
         requestVO.setPlateNumber(model.getPlateNumber());
         requestVO.setStatusCode(null); //todo no status on screen
         requestVO.setStatusId(null);
-        requestVO.setUnitNumber(model.getUnit());
-        requestVO.setVehicleDetailsId(null); //todo id
+        requestVO.setVehicleDetailsId(null); // set by client
         requestVO.setVehicleId(String.valueOf(model.getVehicleId()));
         requestVO.setVehicleName(model.getVehicleName());
         requestVO.setVehiclePhoto1(null); //todo later
         requestVO.setVehiclePhoto2(null); //todo later
         requestVO.setVehiclePhoto3(null); //todo later
-        requestVO.setVehicleQRCode(null); //todo later
+        requestVO.setVehicleQRCode(null); // set by client
         requestVO.setWeaponSerialNumber1(model.getWeapon1SerialNumber());
         requestVO.setWeaponSerialNumber2(model.getWeapon2SerialNumber());
         requestVO.setWeaponSerialNumber3(model.getWeapon3SerialNumber());
@@ -92,5 +87,6 @@ public class PoliceVehicleCreateClientService implements ClientCreateServiceAPI<
         requestVO.setMobileAppSmartSecurityKey(credentials.getMobileAppSmartSecurityKey());
         requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
         requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
     }
 }

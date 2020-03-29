@@ -1,6 +1,7 @@
 package com.tpcmswebadmin.service.prosecutionoffice.service;
 
 import com.ssas.tpcms.engine.vo.request.ViewCriminalProfileRequestVO;
+import com.ssas.tpcms.engine.vo.request.ViewVehicleDetailsRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.client.response.DataDto;
@@ -34,11 +35,7 @@ public class ProsecutionCasesHistoryClientService implements ClientServiceAPI<Pr
 
     @Override
     public ResponseAPIDto<ProsecutionCasesDto> getResponseDto(HttpServletRequest request) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(request);
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
@@ -63,14 +60,12 @@ public class ProsecutionCasesHistoryClientService implements ClientServiceAPI<Pr
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         ViewCriminalProfileRequestVO viewCriminalProfileRequestVO = new ViewCriminalProfileRequestVO();
-        viewCriminalProfileRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         viewCriminalProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewCriminalProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewCriminalProfileRequestVO.setCriminalsProfileSeeAll("Y");
         viewCriminalProfileRequestVO.setIsProsecutionViewHistory("Y");
 
-        viewCriminalProfileRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewCriminalProfileRequestVO);
+        setFullCredentials(viewCriminalProfileRequestVO, loginUserDo);
 
         try {
             log.info("criminal reports request will be sent to client. {}", viewCriminalProfileRequestVO.getMobileAppUserName());
@@ -80,6 +75,13 @@ public class ProsecutionCasesHistoryClientService implements ClientServiceAPI<Pr
             log.warn("Something wrong on criminal reports request. " + viewCriminalProfileRequestVO.getMobileAppUserName());
         }
         return null;
+    }
+
+    public void setFullCredentials(ViewCriminalProfileRequestVO requestVO, LoginUserDo loginUserDo) {
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+
+        setCredentials(requestVO);
     }
 
     @Override

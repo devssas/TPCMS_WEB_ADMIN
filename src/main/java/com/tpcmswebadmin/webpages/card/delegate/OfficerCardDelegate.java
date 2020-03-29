@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.webpages.card.delegate;
 
+import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.service.policeofficer.domain.dto.PoliceOfficerCardDto;
 import com.tpcmswebadmin.service.policeofficer.service.PoliceOfficerClientService;
 import com.tpcmswebadmin.webpages.card.domain.OfficerCardModel;
@@ -15,7 +16,8 @@ public class OfficerCardDelegate {
     private final PoliceOfficerClientService policeOfficerClientService;
 
     public OfficerCardModel getPoliceOfficerByOfficerId(String officerId, HttpServletRequest httpServletRequest) {
-        PoliceOfficerCardDto policeOfficerCardDto = policeOfficerClientService.getPoliceOfficerByOfficerId(officerId, httpServletRequest);
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
+        PoliceOfficerCardDto policeOfficerCardDto = policeOfficerClientService.getPoliceOfficerByOfficerId(officerId, loginUserDo);
 
         return OfficerCardModel.builder()
                 .commandCenter(policeOfficerCardDto.getCommandCenter())

@@ -1,8 +1,9 @@
 package com.tpcmswebadmin.webpages.card.delegate;
 
 
-import com.tpcmswebadmin.service.administrator.domain.SupervisorCardDto;
-import com.tpcmswebadmin.service.administrator.service.SupervisorClientService;
+import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
+import com.tpcmswebadmin.service.superadmin.domain.SupervisorCardDto;
+import com.tpcmswebadmin.service.superadmin.service.SupervisorClientService;
 import com.tpcmswebadmin.webpages.card.domain.SupervisorCardModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,8 @@ public class SupervisorCardDelegate {
     private final SupervisorClientService supervisorClientService;
 
     public SupervisorCardModel getSupervisorBySupervisorId(String supervisorId, HttpServletRequest httpServletRequest) {
-        SupervisorCardDto supervisorCardDto = supervisorClientService.getSupervisorBySupervisorId(supervisorId, httpServletRequest);
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
+        SupervisorCardDto supervisorCardDto = supervisorClientService.getSupervisorBySupervisorId(supervisorId, loginUserDo);
 
         return SupervisorCardModel.builder()
                 .officerName(supervisorCardDto.getOfficerName())

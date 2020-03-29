@@ -31,15 +31,17 @@ public class MissionPermitsCreateClientService implements ClientCreateServiceAPI
         setFields(model, specialMissionRequestVO);
         setCredentials(specialMissionRequestVO, loginUserDo);
 
+        log.info("Special Mission to be created. {}", model.getOfficerId());
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().createSpecialMission(specialMissionRequestVO);
         } catch (RemoteException | ServiceException e) {
-            throw new MissionPermitsException("Something wrong on creating Special Mission request. " + specialMissionRequestVO.getMobileAppUserName());
+            throw new MissionPermitsException("Something wrong on creating Special Mission request. " +  e.getMessage());
         }
     }
 
     @Override
     public void setFields(MissionPermitCardCreateModel model, SpecialMissionRequestVO requestVO) {
+        requestVO.setOfficerCode(model.getOfficerId());
         requestVO.setOfficersProfileId(model.getOfficerId());
         requestVO.setPermissionToCarryWeapon(model.isPermittedToCarryWeapon() ? "Y" : "N");
         requestVO.setAllowedWeaponType(model.getWeaponType());
@@ -54,6 +56,7 @@ public class MissionPermitsCreateClientService implements ClientCreateServiceAPI
     public void setCredentials(SpecialMissionRequestVO requestVO, LoginUserDo loginUserDo) {
         TpCmsWebAdminAppCredentials credentials = credentialsService.getCredentialsOfWebAdmin();
 
+        requestVO.setUnitNumber(loginUserDo.getLoginOfficerUnitNumber());
         requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         requestVO.setMobileAppUserName(credentials.getMobileAppUserName());
         requestVO.setMobileAppPassword(credentials.getMobileAppPassword());

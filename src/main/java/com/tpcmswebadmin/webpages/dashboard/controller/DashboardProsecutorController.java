@@ -23,13 +23,17 @@ public class DashboardProsecutorController {
     public String getDashboard(Model model, HttpServletRequest httpServletRequest) {
         DashboardProsecutorModel dashboard = dashboardProsecutorDelegate.getDashboardProsecutor(httpServletRequest);
 
-        model.addAttribute("totalEvidenceCount", dashboard.getTotalEvidenceCount());
-        model.addAttribute("notificationCount", dashboard.getNotificationCount());
-
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);
-        model.addAttribute("prosecutorName", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_NAME));
-        model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE));
+
+        if(adminRole.equals("PROSECUTION")) {
+            model.addAttribute("totalEvidenceCount", dashboard.getTotalEvidenceCount());
+            model.addAttribute("notificationCount", dashboard.getNotificationCount());
+            model.addAttribute("prosecutorName", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_NAME));
+            model.addAttribute("prosecutorProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.PROSECUTOR_PROFILE_PICTURE));
+        } else {
+            return Pages.ERROR_500;
+        }
 
         return Pages.DASHBOARD_PROSECUTOR;
     }

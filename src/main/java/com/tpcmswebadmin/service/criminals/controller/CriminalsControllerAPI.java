@@ -25,7 +25,7 @@ public class CriminalsControllerAPI {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("crimeReports")
-    public ResponseAPIDto<CrimeReportDto> getPoliceOfficers(HttpServletRequest httpServletRequest) {
+    public ResponseAPIDto<CrimeReportDto> getCrimeReports(HttpServletRequest httpServletRequest) {
         return crimeReportsClientService.getResponseDto(httpServletRequest);
     }
 

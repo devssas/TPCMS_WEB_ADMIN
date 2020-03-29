@@ -21,15 +21,29 @@ public class PoliceVehicleCardDto implements Serializable {
 
     private String vehicleId;
 
+    private String vehicleQrCode;
+
     private String unit;
 
     private String plateNumber;
+
+    private String chaseNumber;
+
+    private String activationDate;
 
     private String expiryDate;
 
     private String weaponType;
 
     private String weaponSrl;
+
+    private String weaponType2;
+
+    private String weaponSrl2;
+
+    private String weaponType3;
+
+    private String weaponSrl3;
 
     private String isCarryWeapon;
 
@@ -43,4 +57,13 @@ public class PoliceVehicleCardDto implements Serializable {
 
     private String image;
 
+    private String driverOfficerId1;
+
+    private String driverOfficerId2;
+
+    private String additionalRemarks;
+
+    private String statusCode;
+
+    private String vehicleDetailsId;
 }

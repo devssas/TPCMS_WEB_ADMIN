@@ -34,30 +34,74 @@
 
         <section class="content-wrapper">
 
-            <jsp:include page="menu_bar_prosecutor_dashboard.jsp">
-                <jsp:param name="home" value="active" />
-                <jsp:param name="prosecutorName" value="${prosecutorName}" />
-                <jsp:param name="prosecutorProfilePicture" value="${prosecutorProfilePicture}" />
-                <jsp:param name="accessRole" value="${accessRole}" />
-            </jsp:include>
+            <c:set var="accessRole" value="${accessRole}"/>
+            <c:choose>
+                <c:when test="${accessRole=='PROSECUTION'}">
+                    <jsp:include page="menu_bar_prosecutor_dashboard.jsp">
+                        <jsp:param name="prosecutionOffice" value="active" />
+                        <jsp:param name="prosecutorName" value="${prosecutorName}" />
+                        <jsp:param name="prosecutorProfilePicture" value="${prosecutorProfilePicture}" />
+                        <jsp:param name="accessRole" value="${accessRole}" />
+                    </jsp:include>
+                </c:when>
+                <c:otherwise>
+                    <jsp:include page="menu_bar_dashboard.jsp">
+                        <jsp:param name="prosecutionOffice" value="active" />
+                        <jsp:param name="officerName" value="${officerName}" />
+                        <jsp:param name="officerProfilePicture" value="${officerProfilePicture}" />
+                        <jsp:param name="accessRole" value="${accessRole}" />
+                        <jsp:param name="dashboardPage" value="${dashboardPage}" />
+                        <jsp:param name="prosecutorPage" value="${prosecutorPage}" />
+                    </jsp:include>
+                </c:otherwise>
+            </c:choose>
 
             <section class="content-inner">
 
                 <section class="content">
 
-                    <jsp:include page="highlight_back_to_overview.jsp">
-                        <jsp:param name="header" value="Calendar" />
-                        <jsp:param name="redirect" value="calendar" />
-                        <jsp:param name="pageName" value="Calendar" />
-                    </jsp:include>
+                    <c:choose>
+                        <c:when test="${accessRole=='PROSECUTION'}">
+                            <jsp:include page="highlight_back_to_overview.jsp">
+                                <jsp:param name="header" value="Calendar" />
+                                <jsp:param name="redirect" value="calendar" />
+                                <jsp:param name="pageName" value="Calender" />
+                            </jsp:include>
+                        </c:when>
+                        <c:otherwise>
+                            <jsp:include page="highlight_back_to_overview.jsp">
+                                <jsp:param name="header" value="Calendar" />
+                                <jsp:param name="redirect" value="calendar" />
+                                <jsp:param name="pageName" value="Calender" />
+                            </jsp:include>
+                        </c:otherwise>
+                    </c:choose>
 
                     <section class="content-box">
+                        <section class="site-data-container" data-template-url="assets/ajax/table/calendar/calendar.html" data-json-url="/tpcmsWebAdmin/api/calendarEvent?calendarDate=${calendarDate}">
                         <div class="icon-content-box">
                             <ul>
                                 <li><a href="javascript:;" data-fancybox-card data-type='ajax' data-src='assets/ajax/card/calendar-add-event.html'><i class="icon-calender"></i></a></li>
                             </ul>
                         </div>
-                        <section class="dynamic-content" data-template-url="assets/ajax/table/calendar/calendar.html" data-json-url="/tpcmsWebAdmin/api/calendarEvent"></section>
+
+                        <div class="site-data-content"></div>
+                        <div class="pagination site-data-pagination">
+                            <ul>
+                                <li><a href="#" class="prev"></a></li>
+
+                                <li>
+                                    <div class="form-row select select-not-find">
+                                        <select name="page">
+                                            <option value="1">1</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li><a href="#" class="next"></a></li>
+                            </ul>
+                        </div><!-- /pagination-row -->
+
+                        </section>
                     </section>
 
                 </section>
@@ -70,12 +114,8 @@
 
 </div> <!-- page-wrapper -->
 
-<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDp5oJvfmqhGjGaKJePviTrPeB4f9QCrEc&callback=initMap"></script>
-
 <script src="${pageContext.request.contextPath}/assets/js/lib.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/core.min.js"></script>
-
 
 </body>
 </html>

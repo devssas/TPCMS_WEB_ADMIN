@@ -36,10 +36,11 @@ public class DashboardProsecutorService {
 
         setCredentials(prosecutionDashBoardRequestVO);
 
+        log.info("fetching dashboard notifications request. {}", prosecutionDashBoardRequestVO.getLoginOfficersCode());
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().prosecutionOfficerDashboardRequest(prosecutionDashBoardRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on fetching prosecutor dashboard. {}", prosecutionDashBoardRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on fetching prosecutor dashboard. {}", e.getMessage());
         }
 
         return null;
@@ -54,10 +55,11 @@ public class DashboardProsecutorService {
 
         setCredentials(pushNotificationsRequestVO);
 
+        log.info("fetching dashboard notifications request. {}", pushNotificationsRequestVO.getLoginOfficersCode());
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().getPushNotifications(pushNotificationsRequestVO);
         } catch (RemoteException | ServiceException e) {
-            log.warn("Something wrong on fetching dashboard notifications request. {}", pushNotificationsRequestVO.getMobileAppUserName());
+            log.warn("Something wrong on fetching dashboard notifications request. {}", e.getMessage());
         }
 
         return null;

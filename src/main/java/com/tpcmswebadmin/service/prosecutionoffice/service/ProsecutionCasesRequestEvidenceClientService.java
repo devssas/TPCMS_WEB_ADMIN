@@ -15,6 +15,7 @@ import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionCasesDto;
 import com.tpcmswebadmin.service.prosecutionoffice.domain.ProsecutionRequestEvidenceDetailDto;
 import com.tpcmswebadmin.service.prosecutionoffice.service.mapper.ProsecutionProfileMapper;
+import com.tpcmswebadmin.service.prosecutionoffice.service.mapper.ProsecutionRequestEvidenceMapper;
 import com.tpcmswebadmin.service.reference.domain.enums.ClientStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,13 +38,12 @@ public class ProsecutionCasesRequestEvidenceClientService implements ClientServi
 
     private final CredentialsService credentialsService;
 
-    public ProsecutionRequestEvidenceDetailDto getProsecutionRequestEvidenceDetailDto(String criminalsCode, HttpServletRequest httpServletRequest) {
+    public ProsecutionRequestEvidenceDetailDto getProsecutionRequestEvidenceDetailDto(String criminalsCode, LoginUserDo loginUserDo) {
         ViewCriminalProfileRequestVO viewCriminalProfileRequestVO = new ViewCriminalProfileRequestVO();
-        viewCriminalProfileRequestVO.setLoginOfficersCode((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_CODE));
         viewCriminalProfileRequestVO.setCriminalsCode(criminalsCode);
         viewCriminalProfileRequestVO.setStatusCode(ClientStatus.REQUEST_FOR_EVIDENCE.getClientName());
-        viewCriminalProfileRequestVO.setMobileAppDeviceId((String) httpServletRequest.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID));
-        setCredentials(viewCriminalProfileRequestVO);
+
+        setFullCredentials(viewCriminalProfileRequestVO, loginUserDo);
 
         try {
             log.info("criminal reports request will be sent to client. {}", viewCriminalProfileRequestVO.getMobileAppUserName());
@@ -85,15 +85,11 @@ public class ProsecutionCasesRequestEvidenceClientService implements ClientServi
 
     @Override
     public ResponseAPIDto<ProsecutionCasesDto> getResponseDto(HttpServletRequest request) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(request);
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
-        return prepareResponseDto(ProsecutionProfileMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList()), true, response);
+        return prepareResponseDto(ProsecutionRequestEvidenceMapper.makeProsecutionCasesDtoList(response.getCriminalProfileList()), true, response);
     }
 
     @Override
@@ -114,14 +110,12 @@ public class ProsecutionCasesRequestEvidenceClientService implements ClientServi
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         ViewCriminalProfileRequestVO viewCriminalProfileRequestVO = new ViewCriminalProfileRequestVO();
-        viewCriminalProfileRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         viewCriminalProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewCriminalProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewCriminalProfileRequestVO.setCriminalsProfileSeeAll("Y");
         viewCriminalProfileRequestVO.setStatusCode(ClientStatus.REQUEST_FOR_EVIDENCE.getClientName());
 
-        viewCriminalProfileRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewCriminalProfileRequestVO);
+        setFullCredentials(viewCriminalProfileRequestVO, loginUserDo);
 
         try {
             log.info("criminal reports request will be sent to client. {}", viewCriminalProfileRequestVO.getMobileAppUserName());
@@ -131,6 +125,13 @@ public class ProsecutionCasesRequestEvidenceClientService implements ClientServi
             log.warn("Something wrong on criminal reports request. " + viewCriminalProfileRequestVO.getMobileAppUserName());
         }
         return null;
+    }
+
+    public void setFullCredentials(ViewCriminalProfileRequestVO requestVO, LoginUserDo loginUserDo) {
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+
+        setCredentials(requestVO);
     }
 
     @Override

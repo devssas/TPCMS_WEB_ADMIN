@@ -42,4 +42,8 @@ public class ManageCrimeFileModel {
 
     private String witnessStatement;
 
+    private String reviewStatus;
+
+    private String criminalsCode;
+
 }

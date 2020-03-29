@@ -1,7 +1,6 @@
 package com.tpcmswebadmin.service.policeofficer.service;
 
 import com.ssas.tpcms.engine.vo.request.OfficersProfileRequestVO;
-import com.ssas.tpcms.engine.vo.request.SpecialMissionRequestVO;
 import com.ssas.tpcms.engine.vo.response.TPEngineResponse;
 import com.tpcmswebadmin.infrastructure.client.TPCMSClient;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
@@ -32,10 +31,12 @@ public class PoliceOfficerCreateClientService implements ClientCreateServiceAPI<
         setFields(model, officersProfileRequestVO);
         setCredentials(officersProfileRequestVO, loginUserDo);
 
+        log.info("Officer to be created. {} {}", model.getFirstName(), model.getLastName());
+
         try {
             return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().createOfficersProfile(officersProfileRequestVO);
         } catch (RemoteException | ServiceException e) {
-            throw new MissionPermitsException("Something wrong on creating Police Officer request. " + officersProfileRequestVO.getMobileAppUserName());
+            throw new MissionPermitsException("Something wrong on creating Police Officer request. " + e.getMessage());
         }
     }
 
@@ -49,7 +50,7 @@ public class PoliceOfficerCreateClientService implements ClientCreateServiceAPI<
         request.setMiddleName_Ar(model.getMiddleName());
         request.setMiddleName_En(model.getMiddleName());
         request.setDateOfBirth(model.getDateOfBirth());
-        request.setGender(model.isGenderMale() ? "M" : "F");
+        request.setGender(model.isGender() ? "M" : "F");
         request.setPassportNumber(model.getPassportNumber());
         request.setMobileNumberCountryCode(model.getCountryCode());
         request.setMobileNumber(model.getMobileNumber());
@@ -78,6 +79,7 @@ public class PoliceOfficerCreateClientService implements ClientCreateServiceAPI<
         request.setEmergencyContactNumber2(model.getEmergencyContactNumber2());
         request.setBloogroup(model.getBloodGroup());
         request.setVisualIdentificationMark(model.getVisualIdentificationMark());
+        request.setReportingOfficerId(model.getReportingOfficer());
     }
 
     @Override

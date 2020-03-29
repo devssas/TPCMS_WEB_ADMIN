@@ -35,11 +35,7 @@ public class ProsecutionCasesSubmitReviewClientService implements ClientServiceA
 
     @Override
     public ResponseAPIDto<ProsecutionCasesDto> getResponseDto(HttpServletRequest request) {
-        LoginUserDo loginUserDo = LoginUserDo.builder()
-                .loginOfficersCode((String) request.getSession().getAttribute(TpCmsConstants.OFFICER_CODE))
-                .loginOfficerUnitNumber((String) request.getSession().getAttribute(TpCmsConstants.REPORT_UNIT))
-                .mobileAppDeviceId((String) request.getSession().getAttribute(TpCmsConstants.MOBILE_APP_DEVICE_ID))
-                .build();
+        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(request);
 
         TPEngineResponse response = makeClientCall(loginUserDo);
 
@@ -78,14 +74,12 @@ public class ProsecutionCasesSubmitReviewClientService implements ClientServiceA
     @Override
     public TPEngineResponse makeClientCall(LoginUserDo loginUserDo) {
         ViewCriminalProfileRequestVO viewCriminalProfileRequestVO = new ViewCriminalProfileRequestVO();
-        viewCriminalProfileRequestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
         viewCriminalProfileRequestVO.setPageNumber(String.valueOf(loginUserDo.getPageNumber()));
         viewCriminalProfileRequestVO.setLimit(String.valueOf(loginUserDo.getLimit()));
         viewCriminalProfileRequestVO.setCriminalsProfileSeeAll("Y");
         viewCriminalProfileRequestVO.setStatusCode(ClientStatus.SUBMIT_FOR_CASE_REVIEW.getClientName());
 
-        viewCriminalProfileRequestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
-        setCredentials(viewCriminalProfileRequestVO);
+        setFullCredentials(viewCriminalProfileRequestVO, loginUserDo);
 
         try {
             log.info("criminal reports request will be sent to client. {}", viewCriminalProfileRequestVO.getMobileAppUserName());
@@ -95,6 +89,13 @@ public class ProsecutionCasesSubmitReviewClientService implements ClientServiceA
             log.warn("Something wrong on criminal reports request. " + viewCriminalProfileRequestVO.getMobileAppUserName());
         }
         return null;
+    }
+
+    public void setFullCredentials(ViewCriminalProfileRequestVO requestVO, LoginUserDo loginUserDo) {
+        requestVO.setLoginOfficersCode(loginUserDo.getLoginOfficersCode());
+        requestVO.setMobileAppDeviceId(loginUserDo.getMobileAppDeviceId());
+
+        setCredentials(requestVO);
     }
 
     @Override
