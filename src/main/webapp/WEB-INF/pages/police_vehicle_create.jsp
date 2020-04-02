@@ -246,7 +246,7 @@
                                             <div class="form-container">
                                                 <div class="form-row multiple-photo-upload">
                                                     <div class="photo-upload">
-                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save" data-delete-url="${pageContext.request.contextPath}/api/image/delete" data-max-files="5"></div>
+                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save?pageName=${currentPageName}" data-delete-url="${pageContext.request.contextPath}/api/image/delete?pageName=${currentPageName}" data-max-files="3"></div>
                                                         <div class="custom-upload">
                                                             <i class="icon-plus"></i>
                                                             <span class="description">Upload Photo</span>

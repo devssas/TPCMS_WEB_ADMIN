@@ -66,4 +66,6 @@ public class PoliceVehicleNewModel {
 
     private String additionalRemarks;
 
+    private String currentPageName;
+
 }

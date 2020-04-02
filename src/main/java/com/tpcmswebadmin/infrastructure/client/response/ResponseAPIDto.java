@@ -17,6 +17,8 @@ public class ResponseAPIDto<T> {
 
     private String message;
 
+    private String pages;
+
     private DataDto<T> data;
 
     public ResponseAPIDto(String status, String message) {

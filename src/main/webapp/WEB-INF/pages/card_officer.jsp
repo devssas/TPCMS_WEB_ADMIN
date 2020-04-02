@@ -13,7 +13,6 @@
         <div class="figure">
             <figure>
                 <img src="data:image/png;base64,${image}" alt="">
-                <span class="icons"><i class="icon-officer-card"></i></span>
             </figure>
         </div>
         <div class="form-content">

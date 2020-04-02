@@ -46,6 +46,7 @@ public class PoliceOfficerNewController {
             return "police_staff_create";
         }
 
+        policeOfficerCreateModel.setCurrentPageName("NewOfficer");
         ResponseMVCDto response = policeOfficerNewDelegate.createOfficer(policeOfficerCreateModel, httpServletRequest);
 
         if(response.isResult()) {
@@ -64,7 +65,7 @@ public class PoliceOfficerNewController {
         model.addAttribute("weaponTypes", referenceDelegate.getAllWeaponTypes());
         model.addAttribute("officerGrades", referenceDelegate.getOfficerGrades());
         model.addAttribute("officerRanks", referenceDelegate.getOfficersRanks());
-
+        model.addAttribute("currentPageName", "NewOfficer");
 
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);

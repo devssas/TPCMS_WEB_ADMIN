@@ -30,4 +30,6 @@ public class NotificationCreateModel {
 
     private String image;
 
+    private String currentPageName;
+
 }

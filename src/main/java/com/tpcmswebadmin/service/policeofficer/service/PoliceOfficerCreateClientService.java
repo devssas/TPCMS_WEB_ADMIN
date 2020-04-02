@@ -7,14 +7,22 @@ import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.infrastructure.service.ClientCreateServiceAPI;
 import com.tpcmswebadmin.service.credentials.CredentialsService;
 import com.tpcmswebadmin.service.credentials.domain.TpCmsWebAdminAppCredentials;
+import com.tpcmswebadmin.service.images.domain.ImageDto;
+import com.tpcmswebadmin.service.images.service.ImageService;
 import com.tpcmswebadmin.service.missionpermits.exception.MissionPermitsException;
 import com.tpcmswebadmin.webpages.policeofficer.model.PoliceOfficerCreateModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 
 import javax.xml.rpc.ServiceException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.rmi.RemoteException;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -25,17 +33,44 @@ public class PoliceOfficerCreateClientService implements ClientCreateServiceAPI<
 
     private final CredentialsService credentialsService;
 
+    private final ImageService imageService;
+
     @Override
     public TPEngineResponse create(PoliceOfficerCreateModel model, LoginUserDo loginUserDo) {
         OfficersProfileRequestVO officersProfileRequestVO = new OfficersProfileRequestVO();
         setFields(model, officersProfileRequestVO);
         setCredentials(officersProfileRequestVO, loginUserDo);
 
+        String pageName = model.getCurrentPageName();
+        List<ImageDto> images = getImages(loginUserDo, pageName);
+        setImages(officersProfileRequestVO, images);
+
         log.info("Officer to be created. {} {}", model.getFirstName(), model.getLastName());
 
         try {
-            return tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().createOfficersProfile(officersProfileRequestVO);
+            TPEngineResponse response = tpcmsClient.tpcmsWebAdminClient().getTPCMSCoreServices().createOfficersProfile(officersProfileRequestVO);
+
+            imageService.delete(images.get(0).getFileName(), pageName, loginUserDo);
+
+            return response;
         } catch (RemoteException | ServiceException e) {
+            throw new MissionPermitsException("Something wrong on creating Police Officer request. " + e.getMessage());
+        }
+    }
+
+    private List<ImageDto> getImages(LoginUserDo loginUserDo, String pageName) {
+        String key = imageService.makeKey(loginUserDo);
+        return imageService.getByKeyAndPage(key, pageName);
+    }
+
+    private void setImages(OfficersProfileRequestVO officersProfileRequestVO, List<ImageDto> images) {
+        officersProfileRequestVO.setProfilePhoto1(convertFileContentToBlob(images.get(0).getFileBase64()));
+    }
+
+    public static byte[] convertFileContentToBlob(String filePath) {
+        try {
+            return Base64.decodeBase64(filePath.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
             throw new MissionPermitsException("Something wrong on creating Police Officer request. " + e.getMessage());
         }
     }

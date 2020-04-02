@@ -83,4 +83,6 @@ public class PoliceOfficerUpdateModel {
 
     private String officerCode;
 
+    private String image;
+
 }

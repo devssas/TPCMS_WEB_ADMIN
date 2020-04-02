@@ -67,9 +67,9 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row single-photo-upload">
-                                                    <div class="photo-upload upload-view">
-                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
-                                                        <i class="icon-plus"></i>
+                                                    <div class="photo-upload">
+                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save?pageName=${currentPageName}" data-delete-url="${pageContext.request.contextPath}/api/image/delete?pageName=${currentPageName}" data-max-files="1"></div>
+                                                        <i class="icon-admin-profile"></i>
                                                         <span class="description">Upload Photo</span>
                                                     </div>
                                                 </div>
@@ -299,15 +299,17 @@
                                                         <form:input id="crimeLocation" path="crimeLocation" placeholder="Ex: Crime Location"/>
                                                     </label>
                                                 </div>
-                                                <div class="form-row multiple-photo-upload">
-                                                    <div class="photo-upload upload-view">
-                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-multiple.json" ></div>
-                                                        <div class="custom-upload">
-                                                            <i class="icon-plus"></i>
-                                                            <span class="description">Upload Photo</span>
+                                                <div class="form-container">
+                                                    <div class="form-row multiple-photo-upload">
+                                                        <div class="photo-upload">
+                                                            <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save?pageName=${currentPageName2}" data-delete-url="${pageContext.request.contextPath}/api/image/delete?pageName=${currentPageName2}" data-max-files="5"></div>
+                                                            <div class="custom-upload">
+                                                                <i class="icon-plus"></i>
+                                                                <span class="description">Upload Photo</span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> <!-- form-container -->
                                             </div> <!-- form-container -->
                                         </div> <!-- inner -->
                                     </div> <!-- box-v3 -->
@@ -365,8 +367,8 @@
                                             </div>
                                             <div class="form-container">
                                                 <div class="form-row multiple-photo-upload">
-                                                    <div class="photo-upload upload-view">
-                                                        <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="5" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-multiple.json" ></div>
+                                                    <div class="photo-upload">
+                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save?pageName=${currentPageName3}" data-delete-url="${pageContext.request.contextPath}/api/image/delete?pageName=${currentPageName3}" data-max-files="5"></div>
                                                         <div class="custom-upload">
                                                             <i class="icon-plus"></i>
                                                             <span class="description">Upload Photo</span>

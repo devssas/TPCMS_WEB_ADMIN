@@ -81,4 +81,6 @@ public class PoliceOfficerCreateModel {
 
     private String visualIdentificationMark;
 
+    private String currentPageName;
+
 }

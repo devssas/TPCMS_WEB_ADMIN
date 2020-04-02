@@ -54,6 +54,8 @@ public class NotificationNewController {
         if(notificationCreateModel.getNotificationType() == null) {
             notificationCreateModel.setNotificationType("Notification");
         }
+
+        notificationCreateModel.setCurrentPageName("NewNotification");
         ResponseMVCDto response = notificationNewDelegate.createNotification(notificationCreateModel, httpServletRequest);
 
         if(response.isResult()) {
@@ -76,6 +78,7 @@ public class NotificationNewController {
         model.addAttribute("officerName", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_NAME));
         model.addAttribute("officerProfilePicture", httpServletRequest.getSession().getAttribute(TpCmsConstants.OFFICER_PROFILE_PICTURE));
         model.addAttribute("natureOfAnnouncement", referenceDelegate.getNatureOfAnnouncement());
+        model.addAttribute("currentPageName", "NewNotification");
 
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);

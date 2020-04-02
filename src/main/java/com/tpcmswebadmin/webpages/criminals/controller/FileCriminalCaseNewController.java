@@ -68,6 +68,9 @@ public class FileCriminalCaseNewController {
         model.addAttribute("statuses", referenceDelegate.getClientStatus());
         model.addAttribute("crimeTypes", referenceDelegate.getCrimeTypesTitle());
         model.addAttribute("crimeNames", referenceDelegate.getCrimeTypesName());
+        model.addAttribute("currentPageName", "NewCriminalCaseUploadProfile");
+        model.addAttribute("currentPageName2", "NewCriminalCaseCrimeDetails");
+        model.addAttribute("currentPageName3", "NewCriminalCaseCasePhotos");
 
         if(adminRole.equals(ADMIN.name())) {
             model.addAttribute("disabled", TpCmsConstants.LIST_DISABLE);

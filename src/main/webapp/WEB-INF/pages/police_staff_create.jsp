@@ -69,7 +69,7 @@
                                             <div class="form-container">
                                                 <div class="form-row single-photo-upload">
                                                     <div class="photo-upload">
-                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save" data-delete-url="${pageContext.request.contextPath}/api/image/delete" data-max-files="1"></div>
+                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save?pageName=${currentPageName}" data-delete-url="${pageContext.request.contextPath}/api/image/delete?pageName=${currentPageName}" data-max-files="1"></div>
                                                         <i class="icon-admin-profile"></i>
                                                         <span class="description">Upload Photo</span>
                                                     </div>

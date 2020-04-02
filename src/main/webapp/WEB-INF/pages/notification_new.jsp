@@ -65,11 +65,14 @@
                                                 <h3>NOTIFICATION DETAILS</h3>
                                             </div>
                                             <div class="form-container">
-                                                <div class="form-row single-photo-upload">
+
+                                                <div class="form-row multiple-photo-upload">
                                                     <div class="photo-upload">
-                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/notification/image" data-delete-url="${pageContext.request.contextPath}/api/notification/image/delete" data-max-files="1" ></div>
-                                                        <i class="icon-plus"></i>
-                                                        <span class="description">Upload Photo</span>
+                                                        <div class="photo-upload-inner" data-upload-url="${pageContext.request.contextPath}/api/image/save?pageName=${currentPageName}" data-delete-url="${pageContext.request.contextPath}/api/image/delete?pageName=${currentPageName}" data-max-files="3"></div>
+                                                        <div class="custom-upload">
+                                                            <i class="icon-plus"></i>
+                                                            <span class="description">Upload Photo</span>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -115,7 +118,7 @@
                                 </div>
                                 <div class="button-row">
                                     <input type="submit" id="button" class="button button-v4 color-1 fix-size-sml" value="Create">
-                                    <a href="javascript:;" class="button button-v4 color-2 fix-size-sml">Cancel</a>
+                                    <a href="${pageContext.request.contextPath}/notificationMenu" class="button button-v4 color-2 fix-size-sml">Cancel</a>
                                 </div>
                             </section> <!-- content-box -->
 

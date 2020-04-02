@@ -27,6 +27,7 @@ public class NotificationCardController {
         model.addAttribute("natureOfAnnouncement", notificationCardModel.getNatureOfAnnouncement());
         model.addAttribute("crimeTypeCode", notificationCardModel.getCrimeTypeCode());
         model.addAttribute("crimeTypeLogo1", notificationCardModel.getCrimeTypeLogo1());
+        model.addAttribute("attachment", notificationCardModel.getAttachment1());
 
         return "card_notification";
     }

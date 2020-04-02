@@ -20,4 +20,7 @@ public class ImageDto {
     private Long fileSize;
 
     private String key;
+
+    private String pageName;
+
 }

@@ -1,5 +1,6 @@
 package com.tpcmswebadmin.service.images.controller;
 
+import com.google.common.collect.ImmutableMap;
 import com.tpcmswebadmin.infrastructure.domain.LoginUserDo;
 import com.tpcmswebadmin.service.images.domain.ImageDto;
 import com.tpcmswebadmin.service.images.domain.ImageResponseDto;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -29,35 +31,35 @@ public class ImageController {
                                                       @RequestParam(value = "fileType", required = false) String fileType,
                                                       @RequestParam(value = "fileSize", required = false) Long fileSize,
                                                       @RequestParam(value = "key", required = false) String key,
+                                                      @RequestParam(value = "pageName", required = false) String pageName,
                                                       HttpServletRequest httpServletRequest) {
-        log.info(fileBase64);
-        log.info(fileName);
+
         LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
 
-        ImageDto imageDto = new ImageDto();
+        ImageDto imageDto = ImageDto.builder()
+                .fileBase64(fileBase64)
+                .fileName(fileName)
+                .fileSize(fileSize)
+                .fileType(fileType)
+                .key(key)
+                .pageName(pageName)
+                .build();
+
         return new ResponseEntity<>(imageService.save(imageDto, loginUserDo), HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("image/delete")
-    public ResponseEntity<ImageResponseDto> deleteImage(@RequestParam("fileName") String fileName, HttpServletRequest httpServletRequest) {
+    public ResponseEntity<ImageResponseDto> deleteImage(@RequestParam("fileName") String fileName,
+                                                        @RequestParam(value = "pageName", required = false) String pageName,
+                                                        HttpServletRequest httpServletRequest) {
         LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
-        ImageDto imageDto = new ImageDto();
-
-        return new ResponseEntity<>(imageService.delete(imageDto, loginUserDo), HttpStatus.OK);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PostMapping("image/update")
-    public ResponseEntity<ImageResponseDto> updateImage(@RequestBody ImageDto imageDto, HttpServletRequest httpServletRequest) {
-        LoginUserDo loginUserDo = LoginUserDo.makeLoginUser(httpServletRequest);
-
-        return new ResponseEntity<>(imageService.update(imageDto, loginUserDo), HttpStatus.OK);
+        return new ResponseEntity<>(imageService.delete(fileName, pageName, loginUserDo), HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("image")
-    public List<ImageDto> getImages(HttpServletRequest httpServletRequest) {
+    public ImmutableMap<String, Map<String, List<ImageDto>>> getImages(HttpServletRequest httpServletRequest) {
         return imageService.getAll();
     }
 }

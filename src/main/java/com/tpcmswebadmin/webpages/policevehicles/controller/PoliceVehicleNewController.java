@@ -47,6 +47,7 @@ public class PoliceVehicleNewController {
             return "police_vehicle_create";
         }
 
+        policeVehicleNewModel.setCurrentPageName("NewVehicle");
         ResponseMVCDto response = policeVehicleNewDelegate.createVehicle(policeVehicleNewModel, httpServletRequest);
 
         if(response.isResult()) {
@@ -65,6 +66,7 @@ public class PoliceVehicleNewController {
         String adminRole = (String) httpServletRequest.getSession().getAttribute(TpCmsConstants.ACCESS_ROLE);
         model.addAttribute("accessRole", adminRole);
         model.addAttribute("weaponTypes", referenceDelegate.getAllWeaponTypes());
+        model.addAttribute("currentPageName", "NewVehicle");
 
         if(adminRole.equals(ADMIN.name())) {
             model.addAttribute("reportingUnits", referenceDelegate.getOfficerUnitsForAdmin(httpServletRequest));

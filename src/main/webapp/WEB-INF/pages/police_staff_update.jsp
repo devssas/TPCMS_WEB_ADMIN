@@ -71,6 +71,7 @@
                                                     <div class="photo-upload upload-view">
                                                         <div class="photo-upload-inner" data-upload-url="/file/post" data-delete-url="/file/post" data-max-files="1" data-upload-ajax-url="/assets/ajax/upload-file/upload-file-single.json"></div>
                                                         <i class="icon-admin-profile"></i>
+                                                 <!--       <img src="data:image/png;base64,${updatePoliceStaff.image}" alt="" width="50" height="35"> -->
                                                         <span class="description">Upload Photo</span>
                                                     </div>
                                                 </div>
