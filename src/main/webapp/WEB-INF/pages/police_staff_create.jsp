@@ -160,26 +160,28 @@
                                                 <div class="form-row radio-btn-v1-row">
                                                     <span class="label">Permission to Carry</span>
                                                     <div class="radio-btn-group">
-                                                        <div>
+                                                        <div class="form-row checkbox-row">
                                                             <label>
-                                                                <span class="text">Yes</span>
-                                                                <form:checkbox id="isPermittedToCarryWeaponYes" path="permittedToCarryWeapon"/>
+                                                                <span class="label">Permission to Carry Weapon</span>
+                                                                <form:checkbox id="isPermittedToCarryWeapon" path="permittedToCarryWeapon" data-active-class="permission-to-carry-weapon" cssClass="change-active-class"/>
                                                                 <span class="checkmark"></span>
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-row select-not-find">
-                                                    <label>
-                                                        <span class="label">Type</span>
-                                                        <form:select id="weaponType" path="weaponType" items="${weaponTypes}" />
-                                                    </label>
-                                                </div>
-                                                <div class="form-row">
-                                                    <label>
-                                                        <span class="label">SRL Number</span>
-                                                        <form:input id="serialNumber" path="serialNumber" placeholder="34DF455"/>
-                                                    </label>
+                                                <div class="change-active-content" data-active-content="permission-to-carry-weapon">
+                                                    <div class="form-row select-not-find">
+                                                        <label>
+                                                            <span class="label">Type</span>
+                                                            <form:select id="weaponType" path="weaponType" items="${weaponTypes}" />
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <label>
+                                                            <span class="label">SRL Number</span>
+                                                            <form:input id="serialNumber" path="serialNumber" placeholder="34DF455"/>
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div> <!-- form-container -->
                                         </div> <!-- inner -->
@@ -263,7 +265,7 @@
                                                         <form:input id="officerId" path="officerId" placeholder="Officer Id"/>
                                                     </label>
                                                 </div>
-                                                <div class="form-row side-by-side-v1-row">
+                                                <div class="form-row">
                                                     <span class="label">Employment Start Date</span>
                                                     <label>
                                                         <span class="icons-content">
@@ -272,7 +274,7 @@
                                                         </span>
                                                     </label>
                                                 </div>
-                                                <div class="form-row side-by-side-v1-row">
+                                                <div class="form-row">
                                                     <span class="label">Expiry Date</span>
                                                     <label>
                                                         <span class="icons-content">
