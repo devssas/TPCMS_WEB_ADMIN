@@ -11,12 +11,10 @@
     </div>
     <div class="content">
         <div class="form-content">
+            <figure>
+                <img src="data:image/png;base64,${attachment}" alt=""/>
+            </figure>
             <div class="form-row">
-                <label>
-                    <span class="text">
-                         <img src="data:image/png;base64,${attachment}" alt="" width="100px" height="150"/>
-                    </span>
-                </label>
                 <label>
                     <span class="text">
                         ${announcementDesc}

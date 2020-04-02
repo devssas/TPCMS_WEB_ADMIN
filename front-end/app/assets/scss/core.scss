@@ -964,6 +964,16 @@ header {
     .form-content{
       position: relative;
       z-index: 3;
+      figure{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        img{
+          max-width: 150px;
+          max-height: 150px;
+        }
+      }
       .form-row{
         text-align: right;
         margin-bottom: 20px;
